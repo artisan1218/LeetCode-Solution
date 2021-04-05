@@ -1,9 +1,12 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2578
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+# twoSum problem
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
-\f0\fs24 \cf0 readme.md\
-}
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+### Approach 1: Brute force:
+For each number in list, go through every other number in the list and test if they add up to target. Time complexity is O(n^2) 
+
+### Approach 2: 
+First build a HashMap that stores all number in the list, then iterate through the list to see if the target-num(complement) exists in the HashMap. Since HashMap has constant lookup time, it saves O(n), So fina time complexity is O(n), but use space complexity of O(n) to store the HashMap.
