@@ -1,10 +1,11 @@
-# Longest Substring Without Repeating Characters problem
-* Given a string s, find the length of the longest substring without repeating characters.
+# Find Median of Two Sorted Arrays problem
+* Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
 
 
-### Approach 1: brute force, skipped
-Use nested loop to go through each possible substring, count their length and keep the longest one. It takes another O(n) to check if a char exists in current substring, so total time complexity is O(n^3), space complexity is O(1)
+### Approach 1: 
+Since the two given arrays are sorted, we should utilize this sorted structure in that we only need to go through half of the total arrays and we can only store the median value upon reaching the middle point. There is no need to store all seen values and sort them for the second time. Main idea is to compare the smallest element of each array, skip the smaller one and check the next pair until reaching the middle point. Since we only go through half of the total array, the time complexity is simply O((m+n)/2), which is O(n)\
+Turns out the running time is fairly good
+![image](https://user-images.githubusercontent.com/25105806/117776937-f1af5880-b1f0-11eb-8868-eef6363e7aae.png)
 
-### Approach 2: sliding window, lengthOfLongestSubstring()
-Use two pointer(left and right) to bound a sliding window in which each character is unique. Use a map to keep track of the seen char and corresponding index, map has a constant look up time so it only takes O(1) to check if the new char already existed in current sliding window. If the new char is not in map, simply add it to the map and increment the current length, if not, update the left pointer position according to the new char's index and existing char's index in the map, so that we can avoid removing char from the map, which saves O(n) time. Since we only go through the string once and store every char to the map, time complexity is O(n) and space complexity is also O(n)
 
+### Approach 2:
