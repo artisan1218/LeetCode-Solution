@@ -10,6 +10,8 @@ Turns out the running time is fairly good
 
 
 ### Approach 2: Binary Search
+Algorithm credits to https://www.youtube.com/watch?v=LPFhl65R7ww
+
 The main idea is to cut the arrays into two partitions, each partition will have two parts: array1 part and array2 part. Find the correct partitions such that: 
 1. Sum of the length of left parts of the two arrays is equal to that of the right parts of the two arrays
 2. Max value of the left part of array1 is less than min value of the right part of array2 and max value of left part of array2 is less than min value of right part of array1
@@ -18,5 +20,5 @@ We will encounter two situations when doing binary search:
 1. Max value of the left part of array1 is greater than min value of the right part of array2, which means the partition of array1 is at too left side and we should move it to right. We apply binary search here and adjust the new partition to be equal to (old partition + 1 + right bound)/2.
 2. Max value of the left part of the array2 is greater than min value of the right part of array1, which means the partition of array 1 is at too right side and we should move it to left. We apply binary search here and adjust the new partition to be equal to (left bound + old partition - 1)/2.
 
-Example:
-![image](https://user-images.githubusercontent.com/25105806/117905246-bc097e80-b287-11eb-8b0d-c1fdbcf3e072.png)
+Example:\
+ <img src="https://user-images.githubusercontent.com/25105806/117905246-bc097e80-b287-11eb-8b0d-c1fdbcf3e072.png" width="85%" height="85%">
