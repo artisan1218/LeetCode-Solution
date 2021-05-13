@@ -1,26 +1,22 @@
-# Longest Palindromic Substring problem
-* Given a string `s`, return the longest palindromic substring in `s`.
+# ZigZag Conversion problem
+* The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+  ```
+  P   A   H   N
+  A P L S I I G
+  Y   I   R
+  ```
+  And then read line by line: `"PAHNAPLSIIGYIR"`\
+  Write the code that will take a string and make this conversion given a number of rows:
+  `string convert(string s, int numRows);`
 
-### Approach 1: Brute Force, skipped
-The obvious brute force solution is to pick all possible starting and ending positions for a substring, and verify if it is a palindrome.\
-Finding all substrings of `s` uses O(n^2) time and verifying it uses O(n), so the final time complexity is O(n^3).
+### Approach 1: Traverse in ZigZag Order, convert()
+There is a pattern existed in the zigzag printout any string: the index of the line-by-line order string will skip two parts of the zigzag shape alternately, I call them bottom part and top part.
+* bottom part will decrease by two for each row starting from the number `2 * numRows - 2`, which is the number of skipped chars for the first row: `skippedBottom -= 2`
+* tom part will increase by two for each row starting from 0: `skippedTop += 2`
+All we need to do is to control the switching of these two number and append the characters at corresponding index of `i += skippedBottom` or `i += skippedTop`.
 
-### Approach 2: Dynamic Programming, longestPalindromeMethodDP()
-Basic idea of this approach is to go through the list of characters of string `s`, for each of the character in s, expand the candidate result to left and right one character a time until left and right are not equal, keep the intermediate result and compare it with the next candidate result and keep the longest one.\
-<img src="https://user-images.githubusercontent.com/25105806/118064919-d9eee600-b350-11eb-8410-1a667e34b2ec.png" width="85%" height="85%">
-
-
-Since we first go through the entire string, and for each character we expand at most len(s)/2 times, the worst case is when the entire string is a panlidorme, because we have to expand to both ends for each of the characters in the string and the time complexity is O(n^2).\
-![image](https://user-images.githubusercontent.com/25105806/118066893-5df69d00-b354-11eb-87a6-7f89288afd1f.png)
-
-### Approach 3: Improved Dynamic Programming, longestPalindromeMethodCleanDP()
-The basic idea is the same as approach 2, but with improved data structure and logic structure. This solution has better readability.\
-The time complexity is the same as approach 2, which is O(n^2), the actual running time is as follows:
-
-![image](https://user-images.githubusercontent.com/25105806/118085398-35cc6580-b377-11eb-82a9-4da9c5bca99b.png)
-
-We can see that it is indeed a little bit faster.
-
-
-### Approach 4: Manacher's Algorithm, skipped
-There is indeed a solution with linear time complexity, but since it is specific to this longest palindrome question and thus not an universal idea like dynamic programming, it is skipped due to complexity.
+     <img src="https://user-images.githubusercontent.com/25105806/118089937-c1e18b80-b37d-11eb-804a-e22539362e41.png" width="80%" height="80%">
+The whole process is like: charAt(i), skip bottom, charAt(i+bottom), skip top, charAt(i+top), starts at new row, charAt(i), skip bottom, ...
+Even though I used nested loop in the implemention, the time complexity is still O(n) because the outer loop will go through each row and the inner loop will will not go through all indices of the chars but only chars at that specific row, so the total number of indices visited is strictly equal to the total number of characters, thus O(n).\
+We can see that the running time is indeed quite fast
+![image](https://user-images.githubusercontent.com/25105806/118090743-c490b080-b37e-11eb-9d1a-9ad69a8cb5ea.png)
