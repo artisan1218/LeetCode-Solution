@@ -3,14 +3,12 @@ public class longestPalindrome {
 
     public static void main(String[] args) {
 	// TODO Auto-generated method stub
-	System.out.println(longestPalindromeMethodBruteForce("bccbad"));
+	System.out.println(longestPalindromeMethodDP("bccbcd"));
     }
 
-    public static String longestPalindromeMethodBruteForce(String s) {
+    public static String longestPalindromeMethodDP(String s) {
 	String longestPan = "";
 	String currPand = "";
-	String candPanOdd = "";
-	String candPanEven = "";
 
 	if (s.length() == 1) {
 	    return s;
@@ -19,14 +17,17 @@ public class longestPalindrome {
 		int left = 1;
 		int right = 1;
 		// initial value
-		candPanOdd = s.substring(i, i + 1);
+		int oddCandLeft = i;
+		int oddCandRight = i + 1;
+		// candPanOdd = s.substring(i, i + 1);
 
 		// Check for palindrome of odd length
 		while (i - left >= 0 && i + right < s.length()) {
 		    // if the left element and right element revolving the middle element is the
 		    // same, we expand
 		    if (s.charAt(i - left) == s.charAt(i + right)) {
-			candPanOdd = s.substring(i - left, i + right + 1);
+			oddCandLeft = i - left;
+			oddCandRight = i + right + 1;
 			left++;
 			right++;
 		    } else {
@@ -34,15 +35,19 @@ public class longestPalindrome {
 		    }
 		}
 
+		int evenCandLeft = 0;
+		int evenCandRight = 0;
 		// Check for even length palindorme
 		if (s.charAt(i) == s.charAt(i + 1)) {
+		    evenCandLeft = i;
+		    evenCandRight = i + 2;
 		    left = 1;
 		    right = 2;
 		    // initial value is the middle two char of the even length palindorme
-		    candPanEven = s.substring(i, i + 2);
 		    while (i - left >= 0 && i + right < s.length()) {
 			if (s.charAt(i - left) == s.charAt(i + right)) {
-			    candPanEven = s.substring(i - left, i + right + 1);
+			    evenCandLeft = i - left;
+			    evenCandRight = i + right + 1;
 			    left++;
 			    right++;
 			} else {
@@ -51,7 +56,13 @@ public class longestPalindrome {
 		    }
 		}
 
-		currPand = (candPanOdd.length() > candPanEven.length()) ? candPanOdd : candPanEven;
+		// pick the longest candidates, right-left is the length of the candidate
+		// palindrome
+		if ((oddCandRight - oddCandLeft) > (evenCandRight - evenCandLeft)) {
+		    currPand = s.substring(oddCandLeft, oddCandRight);
+		} else {
+		    currPand = s.substring(evenCandLeft, evenCandRight);
+		}
 
 		if (currPand.length() > longestPan.length()) {
 		    longestPan = currPand;
