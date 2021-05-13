@@ -20,4 +20,5 @@ All we need to do is to control the switching of these two number and append the
 The whole process is like: charAt(i), skip bottom, charAt(i+bottom), skip top, charAt(i+top), starts at new row, charAt(i), skip bottom, ...
 Even though I used nested loop in the implemention, the time complexity is still O(n) because the outer loop will go through each row and the inner loop will will not go through all indices of the chars but only chars at that specific row, so the total number of indices visited is strictly equal to the total number of characters, thus O(n).\
 We can see that the running time is indeed quite fast
+
 ![image](https://user-images.githubusercontent.com/25105806/118090743-c490b080-b37e-11eb-9d1a-9ad69a8cb5ea.png)
