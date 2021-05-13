@@ -22,3 +22,7 @@ We will encounter two situations when doing binary search:
 
 Example:\
  <img src="https://user-images.githubusercontent.com/25105806/117905246-bc097e80-b287-11eb-8b0d-c1fdbcf3e072.png" width="85%" height="85%">
+
+Time complexity is O(log(min(m,n))) thus O(log(n)) since we only check the shorter array and will do binary search on it, which will only look at most log(n) elements
+
+![image](https://user-images.githubusercontent.com/25105806/118186874-1541f100-b3f3-11eb-925c-b1c4124f9d30.png)
