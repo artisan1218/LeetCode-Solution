@@ -18,7 +18,7 @@ All we need to do is to control the switching of these two number and append the
 
 <img src="https://user-images.githubusercontent.com/25105806/118091542-cc048980-b37f-11eb-9be4-1cff27607429.png" width="100%" height="100%">
 
-* Note: For the right-most figure, `bottom = 4` and `top = 6`, then `i = 3`, `i = 3 + 4 = 7`, `i = 3 + 4 + 6 = 13` for chars at pos 3, 4, 13, respectively.
+* Note: For the right-most figure, `bottom = 4` and `top = 6`, then `i = 3`, `i = 3 + 4 = 7`, `i = 3 + 4 + 6 = 13` for chars at pos 3, 7, 13, respectively.
 
 The whole process is like: charAt(i), skip bottom, charAt(i=i+bottom), skip top, charAt(i=i+top), starts at new row, charAt(i), skip bottom, ...
 Even though I used nested loop in the implemention, the time complexity is still O(n) because the outer loop will go through each row and the inner loop will will not go through all indices of the chars but only chars at that specific row, so the total number of indices visited is strictly equal to the total number of characters, thus O(n).
