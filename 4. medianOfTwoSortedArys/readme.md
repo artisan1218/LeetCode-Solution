@@ -2,14 +2,14 @@
 * Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
 
 
-### Approach 1: Bruth Force
+### Approach 1: Bruth Force, findMedianSortedArraysBruteForce()
 Since the two given arrays are sorted, we should utilize this sorted structure in that we only need to go through half of the total arrays and we can only store the median value upon reaching the middle point. There is no need to store all seen values and sort them for the second time. Main idea is to compare the smallest element of each array, skip the smaller one and check the next pair until reaching the middle point. Since we only go through half of the total array, the time complexity is simply O((m+n)/2), which is O(n). This method is bruth force in that we will go through each of the element before the median.\
 Turns out the running time is fairly good
 
 ![image](https://user-images.githubusercontent.com/25105806/117776937-f1af5880-b1f0-11eb-8868-eef6363e7aae.png)
 
 
-### Approach 2: Binary Search
+### Approach 2: Binary Search, findMedianSortedArraysOptimal()
 Algorithm credits to https://www.youtube.com/watch?v=LPFhl65R7ww
 
 The main idea is to cut the arrays into two partitions, each partition will have two parts: array1 part and array2 part. Find the correct partitions such that: 
