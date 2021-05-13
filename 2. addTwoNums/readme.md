@@ -12,5 +12,8 @@ Iterate through both linked list at the same time, add the corresponding digits 
 ### Approach 2: addTwoNumbersMathQuick()
 Similar to approach 1 but improve the logic, remove uncessary blocks and make it faster. 
 
+![image](https://user-images.githubusercontent.com/25105806/118186463-9ea4f380-b3f2-11eb-9dff-25e5bbcd933f.png)
+
+
 ### Approach 3: addTwoNumbersConversion()
 Can also read the two linked list first, convert them to java BigInteger, do the math and convert the BigInteger back to linked list. This approach requires the use of BigInteger because the number might be too large for regular int in java. Thus the running time is slower than approach 2.
