@@ -9,3 +9,4 @@ Records of all my solved problems on LeetCode
 |4        |[medianOfTwoSortedAry](https://github.com/artisan1218/LeetCode-Solution/tree/main/4.%20medianOfTwoSortedArys)|Hard|Java|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|
 |5        |[longestPalindromicSubstr](https://github.com/artisan1218/LeetCode-Solution/tree/main/5.%20lonegstPalindromicSubstring)|Medium|Java|[Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)|
 |6        |[zigzagConversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/6.%20zigzagConversion)|Medium|Java|[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/)|
+|7        |[reverseInteger](https://github.com/artisan1218/LeetCode-Solution/tree/main/7.%20reverseInteger)|Easy  |Java|[Reverse Integer](https://leetcode.com/problems/reverse-integer/)|
