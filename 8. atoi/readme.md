@@ -10,6 +10,7 @@
 
 ### Approach 1: String Traversal, myAtoiNaive()
 This approach is the native solution, which is easily to come up with, simply go through the string `s`, check each char and make corresponding actions.\
+Time complexity is simply O(n) because we only visit each of the chars in the string `s` once.\
 ![image](https://user-images.githubusercontent.com/25105806/118205932-63b4b700-b416-11eb-9dd8-32adf6f0119d.png)
 
 ### Approach 2: DFA(Deterministic Finite Automaton), myAtoiDFA()
@@ -23,4 +24,8 @@ This approach utilizes the DFA to implement the logic behind this question. Turn
 We will still go through each char of the string `s`, then decide which state to go depends on the value of `s` and the current state.\
 The DFA is shown below:\
 <img src="https://user-images.githubusercontent.com/25105806/118206316-16851500-b417-11eb-97ae-82cfea4b4f8a.png" height="70%" width="70%">
+
+Time complexity is also O(n) because we only visit each of the chars in the string `s` once.\
+![image](https://user-images.githubusercontent.com/25105806/118206818-251ffc00-b418-11eb-97b4-741c4fa944d3.png)
+
 
