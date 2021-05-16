@@ -11,3 +11,4 @@ Records of all my solved problems on LeetCode
 |6        |[zigzagConversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/6.%20zigzagConversion)|Medium|Str Traversal|Java|[ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/)|
 |7        |[reverseInteger](https://github.com/artisan1218/LeetCode-Solution/tree/main/7.%20reverseInteger)|Easy  |Math|Java|[Reverse Integer](https://leetcode.com/problems/reverse-integer/)|
 |8        |[atoi](https://github.com/artisan1218/LeetCode-Solution/tree/main/8.%20atoi)|Medium|Str Traversal, DFA|Java|[String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)|
+|9        |[palindromeNumber](https://github.com/artisan1218/LeetCode-Solution/tree/main/9.%20palindromeNumber)|Easy|Math|Java|[Palindrome Number](https://leetcode.com/problems/palindrome-number/)|
