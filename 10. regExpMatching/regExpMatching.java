@@ -48,7 +48,7 @@ public class regExpMatching {
 			match[row][column] = true;
 		    } else if (s.charAt(row - 1) == p.charAt(column - 2) || p.charAt(column - 2) == '.') {
 			// the char before * in p is equal to s at row-1 (the current s char)
-			// or the char before * is a kleene star, which matches any char
+			// or the char before * is a dot, which matches any char
 			// e.g. for s="ab", p="ab*", "a" alone does not match "ab". s[2-1]==p[3-2]=="b",
 			// so the value only depends on whether "ab*" maches "a"
 			match[row][column] = match[row - 1][column];
