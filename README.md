@@ -12,3 +12,4 @@ Records of all my solved problems on LeetCode
 |7        |[reverseInteger](https://github.com/artisan1218/LeetCode-Solution/tree/main/7.%20reverseInteger)|Easy  |Math|Java|[Reverse Integer](https://leetcode.com/problems/reverse-integer/)|
 |8        |[atoi](https://github.com/artisan1218/LeetCode-Solution/tree/main/8.%20atoi)|Medium|Str Traversal, DFA|Java|[String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)|
 |9        |[palindromeNumber](https://github.com/artisan1218/LeetCode-Solution/tree/main/9.%20palindromeNumber)|Easy|Math|Java|[Palindrome Number](https://leetcode.com/problems/palindrome-number/)|
+|10       |[regExpMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/10.%20regExpMatching)|Hard|Dynamic Programming|Java|[Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)|
