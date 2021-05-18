@@ -16,3 +16,4 @@ Records of all my solved problems on LeetCode
 |11       |[maxArea](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxArea)|Medium|Two Pointers|Java|[Container With Most Water](https://leetcode.com/problems/container-with-most-water/)|
 |12       |[intToRoman](https://github.com/artisan1218/LeetCode-Solution/tree/main/intToRoman)|Medium|Math|Java|[Integer to Roman](https://leetcode.com/problems/integer-to-roman/)|
 |13       |[romanToInt](https://github.com/artisan1218/LeetCode-Solution/tree/main/romanToInt)|Easy|Math|Java|[Roman to Integer](https://leetcode.com/problems/roman-to-integer/)|
+|14       |[longestCommonPrefix](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestCommonPrefix)|Easy|Str Traversal|Java, Python|[Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)|
