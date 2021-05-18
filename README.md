@@ -15,3 +15,4 @@ Records of all my solved problems on LeetCode
 |10       |[regExpMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/regExpMatching)|Hard|Dynamic Programming|Java|[Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)|
 |11       |[maxArea](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxArea)|Medium|Two Pointers|Java|[Container With Most Water](https://leetcode.com/problems/container-with-most-water/)|
 |12       |[intToRoman](https://github.com/artisan1218/LeetCode-Solution/tree/main/intToRoman)|Medium|Math|Java|[Integer to Roman](https://leetcode.com/problems/integer-to-roman/)|
+|13       |[romanToInt](https://github.com/artisan1218/LeetCode-Solution/tree/main/romanToInt)|Easy|Math|Java|[Roman to Integer](https://leetcode.com/problems/roman-to-integer/)|
