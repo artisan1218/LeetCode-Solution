@@ -37,3 +37,8 @@ e.g. for `s="abc"` and `p="ab*c"`, if `s[2]==p[3]`, which means `'c'=='c'`, then
 Time complexity is O(m\*n) because we iterate through each spot in the matrix of m\*n. Space complexity is also O(m\*n) because we need to store a matrix of size m\*n
 
 ![image](https://user-images.githubusercontent.com/25105806/118468815-fb85ff80-b6b9-11eb-9432-a0836139b509.png)
+
+
+### Approach 2: DFA/NFA, Skipped
+
+Since every regular expression can be represented by an NFA and every NFA has equivalent DFA, it's viable that we construct a DFA according to the given pattern `p` and run the string `s` on that state machine to see if the string ends at accept state. However this approach due to difficulty of constructing valid DFA from pattern `p`. It is easier to construct NFA out of pattern `p` but NFA is not that efficient.
