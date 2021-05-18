@@ -1,20 +1,23 @@
-# twoSum problem
-* Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-* You may assume that each input would have exactly one solution, and you may not use the same element twice.
-* You can return the answer in any order.
+# Roman to Integer problem
+* Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
+```
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+Given a roman numeral, convert it to an integer.
 
-### Approach 1: Brute force, bruteForce()
-For each number in list, go through every other number in the list and test if they add up to target. Time complexity is O(n^2) 
 
+### Approach 1: Math, romanToInt()
+Simply iterate through the given String `s`, convert the single character to corresponding integer value and compare it with its immediate preceeding value. 
+1. If the current value is smaller than the preceedingt value, then we're good by simply adding the value to `result`
+2. If the current value is greater than the preceeding value, e.g. `IV`, 4 is smaller than 1, we need to do a little math here by adding `digit - 2 * preceedingDigit`, which is `4-2*1=2` in this case. So the final value will be `1+2=3`.
 
-### Approach 2: twoPassHashMap()
-First build a HashMap that stores all number in the list, then iterate through the list to see if the target-num(complement) exists in the HashMap. Since HashMap has constant lookup time, it saves O(n), So fina time complexity is O(n), but use space complexity of O(n) to store the HashMap.
-
-![image](https://user-images.githubusercontent.com/25105806/118185941-f98a1b00-b3f1-11eb-8ddc-d7cd8cc805fb.png)
-
-
-### Approach 3: onePassHashMap()
-Turns out we can check if the complement exists in the HashMap while building the HashMap. HashMap is the element:index pair of the list. Iterate through the list, if the HashMap contains the complement, then we've found the answer, simply return the current index and the index of the complement; if the HashMap does not contain the complement, then adding this number and its index to the HashMap. Since the HashMap has contant lookup time, the overall time complexity is O(n) and space complexity is O(n). Best case is when the two numbers are the first two elements of the list, which will be returned when we get the second element because now the complement is the first element and it's in the HashMap already. Worst case is when either one of the two numbers is at the end of the list, which will not be found until we reach the end.
-
-![image](https://user-images.githubusercontent.com/25105806/118185798-cb0c4000-b3f1-11eb-810c-a6b45f642959.png)
+Time complexity is O(n) since we iterate over each char of the given string `s`.
+![image](https://user-images.githubusercontent.com/25105806/118631228-23da3080-b784-11eb-9a7f-93ff46d97a44.png)
 
