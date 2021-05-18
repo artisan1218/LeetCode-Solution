@@ -13,3 +13,4 @@ Records of all my solved problems on LeetCode
 |8        |[atoi](https://github.com/artisan1218/LeetCode-Solution/tree/main/atoi)|Medium|Str Traversal, DFA|Java|[String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)|
 |9        |[palindromeNumber](https://github.com/artisan1218/LeetCode-Solution/tree/main/palindromeNumber)|Easy|Math|Java|[Palindrome Number](https://leetcode.com/problems/palindrome-number/)|
 |10       |[regExpMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/regExpMatching)|Hard|Dynamic Programming|Java|[Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)|
+|11       |[maxArea](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxArea)|Medium|Two Pointers|Java|[Container With Most Water](https://leetcode.com/problems/container-with-most-water/)|
