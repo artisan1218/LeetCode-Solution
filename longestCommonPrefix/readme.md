@@ -1,11 +1,13 @@
-# Longest Substring Without Repeating Characters problem
-* Given a string `s`, find the length of the longest substring without repeating characters.
+# Longest Common Prefix problem
+* Write a function to find the longest common prefix string amongst an array of strings.
+* If there is no common prefix, return an empty string `""`.
 
 
-### Approach 1: brute force, skipped
-Use nested loop to go through each possible substring, count their length and keep the longest one. It takes another O(n) to check if a char exists in current substring, so total time complexity is O(n^3), space complexity is O(1)
+### Approach 1: longestCommonPrefix, Java
+Since the common prefix is a substring that each string in `strs` will have, we can simply iterate through the `strs`, decide the common prefix pair by pair and keep the shortest one.\
+![image](https://user-images.githubusercontent.com/25105806/118737282-5ffba880-b7f9-11eb-8f8d-ff5813dd8383.png)
 
-### Approach 2: sliding window, lengthOfLongestSubstring()
-Use two pointer(left and right) to bound a sliding window in which each character is unique. Use a map to keep track of the seen char and corresponding index, map has a constant look up time so it only takes O(1) to check if the new char already existed in current sliding window. If the new char is not in map, simply add it to the map and increment the current length, if not, update the left pointer position according to the new char's index and existing char's index in the map, so that we can avoid removing char from the map, which saves O(n) time. Since we only go through the string once and store every char to the map, time complexity is O(n) and space complexity is also O(n)
 
-![image](https://user-images.githubusercontent.com/25105806/118186766-f4799b80-b3f2-11eb-81ba-40b1c5ca5d60.png)
+### Approach 2: longestCommonPrefix, Python
+We can easily and quickly decide the shortest string using `min()` function in python and check all chars at each string before the index of len of shortest string. E.g. if `ab` is the shortest string, then the common prefix must not exceed the length of 2, we can then check index 0 and index 1 for all strings to see if they are all equal.
+![image](https://user-images.githubusercontent.com/25105806/118737572-f0d28400-b7f9-11eb-8f2a-42209dbfb7cc.png)
