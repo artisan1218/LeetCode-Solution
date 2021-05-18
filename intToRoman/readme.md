@@ -28,8 +28,8 @@ Credits to https://leetcode.com/problems/integer-to-roman/discuss/6274/Simple-So
 
 Since each multiple out of 1, 10, 100, 1000 can only have certain symbols, we can list them all and store them as arrays. Then use simple math to match each of the symbols. This method is probably the most elegant way of solving this probelm. 
 
-Running time is roughly the same, but logic is much clear.
-![image](https://user-images.githubusercontent.com/25105806/118617300-5a5d7e80-b777-11eb-96ee-57331bcca2c2.png)
+Running time is better than approach 1 because we've avoided using String concatenations, logic is also much clear.
+![image](https://user-images.githubusercontent.com/25105806/118619003-0bb0e400-b779-11eb-976a-541ec8a3b0d6.png)
 
 
 
@@ -38,6 +38,7 @@ Credits to https://leetcode.com/problems/integer-to-roman/discuss/6310/My-java-s
 
 Similar to approach 2, we can list symbols for each multiple out of 1, 10, 100, 1000, but this time we only list unique symbols but not all of them. For example `III` is just `I` repeating for 3 times and we can use a loop to denoting this. This way, we can save some uncessary spaces. 
 
+Running time is roughly the same, but memory usage is better.
 ![image](https://user-images.githubusercontent.com/25105806/118618106-2171d980-b778-11eb-8dc2-4d1a9319e755.png)
 
 
