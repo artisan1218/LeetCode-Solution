@@ -39,32 +39,4 @@ public class longestCommonPrefix {
 	return result;
     }
 
-    public static String solution(String[] strs) {
-	String result = "";
-	boolean same = true;
-	for (int i = 0; same; i++) {
-	    for (int j = 0; j < strs.length - 1; j++) {
-		String word = strs[j];
-		String nextWord = strs[j + 1];
-		if (i >= word.length() || i >= nextWord.length()) {
-		    same = false;
-		} else {
-		    same = same && (word.charAt(i) == nextWord.charAt(i));
-		}
-	    }
-
-	    if (strs.length == 0) {
-		same = false;
-	    } else if (strs.length == 1) {
-		result = strs[0];
-		same = false;
-	    }
-	    if (same) {
-		result = result + strs[0].charAt(i);
-	    }
-	}
-
-	return result;
-    }
-
 }
