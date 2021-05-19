@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[54]:
+# In[69]:
 
 
-def longestCommonPrefix(strs) -> str:
+def longestCommonPrefixVertical(strs) -> str:
     result = ''
     minLen = min(strs, key=len)
     for i in range(len(minLen)):
@@ -16,13 +16,31 @@ def longestCommonPrefix(strs) -> str:
     
     return result
 
+def longestCommonPrefixZip(strs) -> str:
+    result = ''
+    for idx, columnTuple in enumerate(zip(*strs)):
+        if len(set(columnTuple)) == 1:
+            result = strs[0][:idx+1]
+        else:
+            break
+    
+    return result
 
-# In[56]:
+def longestCommonPrefixZip2(strs) -> str:
+    result = ''
+    for idx, columnTuple in enumerate(zip(*strs)):
+        if len(set(columnTuple)) > 1:
+            return strs[0][:idx]
+
+    return min(strs, key=len)
+
+
+# In[70]:
 
 
 if __name__ == "__main__":
-    strs = ['car', 'cir']
-    print(longestCommonPrefix(strs))
+    strs = ['ca', 'cire']
+    print(longestCommonPrefixZip2(strs))
 
 
 # In[ ]:
