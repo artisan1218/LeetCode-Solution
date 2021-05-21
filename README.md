@@ -17,3 +17,4 @@ Records of all my solved problems on LeetCode
 |12       |[intToRoman](https://github.com/artisan1218/LeetCode-Solution/tree/main/intToRoman)|Medium|Math|Java|[Integer to Roman](https://leetcode.com/problems/integer-to-roman/)|
 |13       |[romanToInt](https://github.com/artisan1218/LeetCode-Solution/tree/main/romanToInt)|Easy|Math|Java|[Roman to Integer](https://leetcode.com/problems/roman-to-integer/)|
 |14       |[longestCommonPrefix](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestCommonPrefix)|Easy|Str Traversal|Java, Python|[Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)|
+|15       |[threeSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/threeSum)|Medium|Two Pointers|Python|[3Sum](https://leetcode.com/problems/3sum/)|
