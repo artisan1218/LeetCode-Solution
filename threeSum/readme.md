@@ -14,11 +14,11 @@ Similar to approach 2, but this time we only compute necessary twoSums instead o
 
 ### Approach 4: Two Pointers, threeSumOptimal()
 Turns out we can first sort the list using built-int `.sort()` function, then again go through the list and use two pointers, `left` and `right` to bound the range that we take three values to check. There are three cases:
-1. If the sum of current three values are smaller than 0, then that means the value pointer by `left` is too small and we should move the `left` to `left+1`.
-2. If the sum of current three values are greater than 0, then that means the value pointer by `right` is too large and we should move the `right` to `right+1`.
-3. If the sum of current three values are 0, then we're good.
+1. If the sum of current three values is smaller than 0, then that means the value pointer by `left` is too small and we should move the `left` to `left+1`.
+2. If the sum of current three values is greater than 0, then that means the value pointer by `right` is too large and we should move the `right` to `right+1`.
+3. If the sum of current three values is 0, then we're good.
 
-\* Note that we can use two pointers to adjust the sum of three numbers because the list is sorted, which means elements to the left are always smaller than the elements to the right.
+* Note that we can use two pointers to adjust the sum of three numbers because the list is sorted, which means elements to the left are always smaller than the elements to the right.
 
 Time complexity is O(n^2) because the sorting takes O(nlog(n)) time, the loop takes O(n^2) time.
 ![image](https://user-images.githubusercontent.com/25105806/119204207-b9f2ad00-ba49-11eb-8463-cc5817059055.png)
