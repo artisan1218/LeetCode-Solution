@@ -9,7 +9,7 @@ Keep this process going until we reach the end of input `digits`.\
 <img src="https://user-images.githubusercontent.com/25105806/119458456-9f426180-bcf1-11eb-9c63-051171a1fe84.png" width="35%" height="35%">
 
 \
-Time complexity is O(3^n) because the number of combinations grows exponentially.\
+Time complexity is O(4^n) because each digit can be presented at most by 4 letters. On each iteration we go over all 4 of them. And we do this n (the number of digits) time.\
 ![image](https://user-images.githubusercontent.com/25105806/119459158-4cb57500-bcf2-11eb-95fb-9358162d7662.png)
 
 
