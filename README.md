@@ -20,3 +20,4 @@ Records of all my solved problems on LeetCode
 |15       |[threeSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/threeSum)|Medium|Two Pointers|Python|[3Sum](https://leetcode.com/problems/3sum/)|
 |16       |[threeSumClosest](https://github.com/artisan1218/LeetCode-Solution/tree/main/threeSumClosest)|Medium|Two Pointers|Python|[3Sum Closest](https://leetcode.com/problems/3sum-closest/)|
 |17       |[phoneNumLetterComb](https://github.com/artisan1218/LeetCode-Solution/tree/main/phoneNumLetterCombinations)|Medium|Combination|Python|[Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)|
+|18       |[fourSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/fourSum)|Medium|Two Pointers, Recursion|Python|[4Sum](https://leetcode.com/problems/4sum/submissions/)|
