@@ -41,4 +41,4 @@ Time complexity is O(m\*n) because we iterate through each spot in the matrix of
 
 ### Approach 2: DFA/NFA, Skipped
 
-Since every regular expression can be represented by an NFA and every NFA has equivalent DFA, it's viable that we construct a DFA according to the given pattern `p` and run the string `s` on that state machine to see if the string ends at accept state. However this approach due to difficulty of constructing valid DFA from pattern `p`. It is easier to construct NFA out of pattern `p` but NFA is not that efficient.
+Since every regular expression can be represented by an NFA and every NFA has equivalent DFA, it's viable that we construct a DFA according to the given pattern `p` and run the string `s` on that state machine to see if the string ends at accept state. However this approach is skipped due to difficulty of constructing valid DFA from pattern `p`. It is easier to construct NFA out of pattern `p` but NFA is not that efficient.
