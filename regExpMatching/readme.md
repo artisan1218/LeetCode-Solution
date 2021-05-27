@@ -7,7 +7,7 @@
 ### Approach 1: Dynamic Programming, isMatchDP()
 Credits to https://www.youtube.com/watch?v=l3hda49XcDE and https://leetcode.com/problems/regular-expression-matching/discuss/5651/Easy-DP-Java-Solution-with-detailed-Explanation
 
-The idea is to build a 2d matrix `match` of size `s.length()+1` and `p.length()+1`, where `match[row][column]` stands for whether pattern `p` up to position 'column' matches the text `s` up to position `row`.\
+The idea is to build a 2d matrix `match` of size `s.length()+1` and `p.length()+1`, where `match[row][column]` stands for whether pattern `p` up to position `column` matches the text `s` up to position `row`.\
 The goal is to find if `match[s.length()][p.length()]==true`. One example matrix is shown below:\
 <img src="https://user-images.githubusercontent.com/25105806/118464165-65e87100-b6b5-11eb-9e20-e941ca9c6030.png" height="50%" width="50%">
 
