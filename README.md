@@ -22,3 +22,5 @@ Records of all my solved problems on LeetCode
 |17       |[phoneNumLetterComb](https://github.com/artisan1218/LeetCode-Solution/tree/main/phoneNumLetterCombinations)|Medium|Combination|Python|[Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)|
 |18       |[fourSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/fourSum)|Medium|Two Pointers, Recursion|Python|[4Sum](https://leetcode.com/problems/4sum/submissions/)|
 |19       |[rmNthNodeFromEnd](https://github.com/artisan1218/LeetCode-Solution/tree/main/rmNthNodeFromEnd)|Medium|LinkedList|Java|[Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)|
+|20       |[validParentheses](https://github.com/artisan1218/LeetCode-Solution/tree/main/validParentheses)|Easy|Stack, Turing Machine|Python, Java|[Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)|
+  
