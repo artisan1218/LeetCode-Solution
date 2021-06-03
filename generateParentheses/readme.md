@@ -9,7 +9,8 @@ The image below can better demonstrate it:
 
 <img src="https://user-images.githubusercontent.com/25105806/120617728-3fde0300-c40f-11eb-9fea-5f940d3f875e.png" height="50%" width="55%">
 
-We can use the above logic to first gain the indices of all possible `(` and convert them into final string. T
-Actual running time:
+We can use the above logic to first gain the indices of all possible `(` and convert them into final string.\
+The actual running time:
+
 ![image](https://user-images.githubusercontent.com/25105806/120618587-1376b680-c410-11eb-8836-a5001a44458e.png)
 
