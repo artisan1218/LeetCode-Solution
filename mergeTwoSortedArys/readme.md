@@ -1,7 +1,6 @@
 # Merge Two Sorted Lists problem
 * Merge two sorted linked lists and return it as a **sorted** list. The list should be made by splicing together the nodes of the first two lists.
-
-![image](https://user-images.githubusercontent.com/25105806/120598322-fc799980-c3fa-11eb-8eeb-d543dfb00a41.png)
+<img src="https://user-images.githubusercontent.com/25105806/120598322-fc799980-c3fa-11eb-8eeb-d543dfb00a41.png" width="60%" height="60%">
 
 
 
