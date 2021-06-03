@@ -24,5 +24,5 @@ Records of all my solved problems on LeetCode
 |19       |[rmNthNodeFromEnd](https://github.com/artisan1218/LeetCode-Solution/tree/main/rmNthNodeFromEnd)|Medium|LinkedList|Java|[Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)|
 |20       |[validParentheses](https://github.com/artisan1218/LeetCode-Solution/tree/main/validParentheses)|Easy|Stack, Turing Machine|Python, Java|[Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)|
 |21       |[mergeTwoSortedArys](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeTwoSortedArys)|Easy|LinkedList|Java|[Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)|
-|22       |[generateParentheses](https://github.com/artisan1218/LeetCode-Solution/tree/main/generateParenthesis)|Medium|Dynamic Programming|Python|[Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)|
+|22       |[generateParentheses](https://github.com/artisan1218/LeetCode-Solution/tree/main/generateParentheses)|Medium|Dynamic Programming|Python|[Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)|
   
