@@ -33,7 +33,7 @@ public class mergeTwoSortedArys {
 }
 
 class Solution {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    public ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
 	ListNode result = new ListNode();
 	ListNode cursor = result;
 
@@ -75,10 +75,10 @@ class Solution {
 	    }
 	    cursor = cursor.next;
 	}
-	
-	if(l1==null && l2!=null) {
+
+	if (l1 == null && l2 != null) {
 	    cursor.next = l2;
-	}else if(l1!=null && l2==null) {
+	} else if (l1 != null && l2 == null) {
 	    cursor.next = l1;
 	}
 
