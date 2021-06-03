@@ -1,45 +1,15 @@
-# Integer to Roman problem
-* Given an integer, convert it to a roman numeral. Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
-```
-Symbol       Value
-I             1
-V             5
-X             10
-L             50
-C             100
-D             500
-M             1000
-```
+# Generate Parentheses problem
+* Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
-### Approach 1: Naive, intToRomanLoop()
-This approach is to go through the given `num` digit by digit and append the corresponding symbols to the `result`. The corresponding symbol of the given digit is determined by the value of the digit and the `fold`, which keepk track of multiple that we're currently dealing with, ranges from 1, 10, 100, 1000.
-1. The fold is 1, then the symbols can only be `I`, `V`, `X`
-2. The fold is 10, then the symbols can be `X`, `L`, `C`
-3. The fold is 100, then the symbols can be `C`, `D`, `M`
-4. The fold is 1000, then the symbols can be `M`
+### Approach 1: Dynamic Programming, generateParenthesis()
+The idea is to build the result from the start and add 1 more pair step by step. For example if `n=3`, we start with `n=1` and build `n=2`, and based on `n=2` we build `n=3`.\
+If we only see the opening parenthesis `(`, we can find a pattern that when adding 1 more pair of `()`, the new position of the `(` must be greater than the previous right-most `(` and smaller than the right-most `)` of current n. That is, the new pos of `(` when adding a new pair must be in the range of `range(prev[-1]+1, 2*(i+1)-1)`, where `prev[-1]` is the right-most `(` of `n-1` and `i` is n.\
+For example, if current `n=2` and we are building `n=3` from it. When adding 1 more pair, for previous index `0, 1` we have new index of `2, 3, 4` because the new index has to be greater than 1 and smaller than 5 (2\*3-1)\
+The image below can better demonstrate it:
 
-Running time is fairly slow due to the String concatenations
-![image](https://user-images.githubusercontent.com/25105806/118616818-e58a4480-b776-11eb-9a51-41573aa689b8.png)
+<img src="https://user-images.githubusercontent.com/25105806/120617728-3fde0300-c40f-11eb-9fea-5f940d3f875e.png" height="60%" width="60%">
 
-
-
-### Approach 2: Math, intToRomanMath()
-Credits to https://leetcode.com/problems/integer-to-roman/discuss/6274/Simple-Solution
-
-Since each multiple out of 1, 10, 100, 1000 can only have certain symbols, we can list them all and store them as arrays. Then use simple math to match each of the symbols. This method is probably the most elegant way of solving this probelm. 
-
-Running time is better than approach 1 because we've avoided using String concatenations, logic is also much clear.
-![image](https://user-images.githubusercontent.com/25105806/118619003-0bb0e400-b779-11eb-976a-541ec8a3b0d6.png)
-
-
-
-### Approach 3: Math, intToRomanMath2()
-Credits to https://leetcode.com/problems/integer-to-roman/discuss/6310/My-java-solution-easy-to-understand
-
-Similar to approach 2, we can list symbols for each multiple out of 1, 10, 100, 1000, but this time we only list unique symbols but not all of them. For example `III` is just `I` repeating for 3 times and we can use a loop to denoting this. This way, we can save some uncessary spaces. 
-
-Running time is roughly the same, but memory usage is better.
-![image](https://user-images.githubusercontent.com/25105806/118618106-2171d980-b778-11eb-8dc2-4d1a9319e755.png)
-
-
+We can use the above logic to first gain the indices of all possible `(` and convert them into final string. T
+Actual running time:
+![image](https://user-images.githubusercontent.com/25105806/120618587-1376b680-c410-11eb-8836-a5001a44458e.png)
 
