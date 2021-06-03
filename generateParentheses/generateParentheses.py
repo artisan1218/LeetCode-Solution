@@ -32,7 +32,7 @@ class Solution:
 if __name__ == "__main__":
     solver = Solution()
     n = 3
-    print(solver.generateParenthesis2(n))
+    print(solver.generateParenthesis(n))
 
 
 
