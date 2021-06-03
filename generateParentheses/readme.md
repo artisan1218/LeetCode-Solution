@@ -7,7 +7,7 @@ If we only see the opening parenthesis `(`, we can find a pattern that when addi
 For example, if current `n=2` and we are building `n=3` from it. When adding 1 more pair, for previous index `0, 1` we have new index of `2, 3, 4` because the new index has to be greater than 1 and smaller than 5 (2\*3-1)\
 The image below can better demonstrate it:
 
-<img src="https://user-images.githubusercontent.com/25105806/120617728-3fde0300-c40f-11eb-9fea-5f940d3f875e.png" height="60%" width="60%">
+<img src="https://user-images.githubusercontent.com/25105806/120617728-3fde0300-c40f-11eb-9fea-5f940d3f875e.png" height="45%" width="45%">
 
 We can use the above logic to first gain the indices of all possible `(` and convert them into final string. T
 Actual running time:
