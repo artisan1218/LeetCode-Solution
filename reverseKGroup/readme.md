@@ -5,7 +5,7 @@
 
 You may not alter the values in the list's nodes, only nodes themselves may be changed.
 
-### Approach 1: Cache k values, Naive, reverseKGroupCachePointers()
+### Approach 1: Cache k values, reverseKGroupCachePointers()
 This approach is fairly easy to come up with, simply read `k` nodes a time and cache them in a list, then add the nodes in this list in reverse order to a new ListNode.
 Downside of this approach is pretty straightforward: it uses O(k) space because we will store all k pointers/values in a list.\
 
