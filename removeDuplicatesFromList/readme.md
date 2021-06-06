@@ -1,10 +1,9 @@
-# Palindrome Number problem
-* Given an integer `x`, return true if `x` is palindrome integer.
-* An integer is a **palindrome** when it reads the same backward as forward. For example, `121` is palindrome while `123` is not.
+# Remove Duplicates from Sorted Array problem
+* Given a sorted array nums, remove the duplicates in-place such that each element appears only once and returns the new length.
+* Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
 
-### Approach 1: Math, isPalindrome()
-Since all negative numbers are not palindrome numbers, we can simply rule out all negnative numbers. Then we get the least digit, append it backwards to a new number, compare the new number and the original number to see if they are equal.
-![image](https://user-images.githubusercontent.com/25105806/118416321-ee3e2600-b663-11eb-8ee4-8791338ee869.png)
+### Approach 1: Two Pointers, removeDuplicates()
+The key point is that the given array `nums` is sorted in ascending order. We can use two pointers, one fast mover and one slow mover, to check the elements from left to right. The slow mover `modifier` is to modify the element in the array `nums` so that the array contains only unique elements. The fast mover `cursor` is to read every elements and check if the element is already added.\
+We will only read the array once, so the time complexity is O(n)
 
-Time complexity is O(log10(n)) because max number of times we loop is equal to number of digits in the given number and number of digits in a given number is equal to Ceil(log10(n)) where n is the input number.\
-Time complexity analysis credits to https://leetcode.com/problems/palindrome-number/solution/793827
+![image](https://user-images.githubusercontent.com/25105806/120942324-13f7a180-c6dd-11eb-9281-49715af99163.png)
