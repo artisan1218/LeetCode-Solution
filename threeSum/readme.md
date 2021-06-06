@@ -13,7 +13,7 @@ Similar to approach 2, but this time we only compute necessary twoSums instead o
 ![image](https://user-images.githubusercontent.com/25105806/119203779-c62a3a80-ba48-11eb-82e6-6ff42952bc69.png)
 
 ### Approach 4: Two Pointers, threeSumOptimal()
-Turns out we can first sort the list using built-int `.sort()` function, then again go through the list and use two pointers, `left` and `right` to bound the range that we take three values to check. There are three cases:
+Turns out we can first sort the list using built-in `.sort()` function in Python, then again go through the list and use two pointers, `left` and `right` to bound the range that we take three values to check. There are three cases:
 1. If the sum of current three values is smaller than 0, then that means the value pointer by `left` is too small and we should move the `left` to `left+1`.
 2. If the sum of current three values is greater than 0, then that means the value pointer by `right` is too large and we should move the `right` to `right+1`.
 3. If the sum of current three values is 0, then we're good.
