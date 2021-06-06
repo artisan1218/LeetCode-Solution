@@ -27,4 +27,4 @@ Records of all my solved problems on LeetCode
 |22       |[generateParentheses](https://github.com/artisan1218/LeetCode-Solution/tree/main/generateParentheses)|Medium|Dynamic Programming, Backtracking|Python|[Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)|
 |23       |[mergeKsortedArys](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeKsortedArys)|Hard|Priority Queue, Divide & Conquer|Java|[Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)|
 |24       |[swapPairs](https://github.com/artisan1218/LeetCode-Solution/tree/main/swapPairs)|Medium|LinkedList, Recursion|Java|[Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/)|
-  
+|25       |[reverseKGroup](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseKGroup)|Hard|LinkedList|Java|[Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)|
