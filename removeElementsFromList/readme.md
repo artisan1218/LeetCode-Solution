@@ -11,7 +11,7 @@ Time complexity is O(n)\
 <br />
 
 ### Approach 2: Built-in Function, removeElementBuiltinFunc()
-Turns out there is another easier solution to this: the built-in `.remove()` function in Python. Simply check for every element in the array and remove it if it is equal to `val`.
+Turns out there is another easier solution to this: the built-in `.remove()` function in Python. Simply check for every element in the array and remove it if it is equal to `val`.\
 Time complexity is O(n^2) because we will iterate over the array once and `.remove()` function uses O(n) time.
 
 ![image](https://user-images.githubusercontent.com/25105806/120942968-f75d6880-c6e0-11eb-9341-f53552815edf.png)
