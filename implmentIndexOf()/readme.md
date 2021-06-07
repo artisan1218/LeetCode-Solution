@@ -24,6 +24,7 @@ needle = l l o
 ```
 
 Since we will iterate over the string `haystack` and use slicing to check equality, which is also a O(n) operation, the time complexity is O(kn) where k is the window size, which is equal to `len(needle)`.
+
 ![image](https://user-images.githubusercontent.com/25105806/120944435-4f986880-c6e9-11eb-914e-10aa43b60c73.png)
 
 
@@ -55,7 +56,7 @@ Time complexity reduces to O(n+k\*a), k is the length of window, a is the number
 <br />
 
 ### Approach 3: Two Pointers, strStrTwoPointers()
-We can also use two pointers to solve this. One pointer points to the `haystack` and the other one points to `needle`. We will check equality one char a time. The idea is to first compare the first char of the `needle` with `haystack`, if they match, then check the second char of `needle` with the next char in `haystack`, if they still match, then check the next one, if not, then reset pointer in `needle` back to first char and reset pointer in `haystack` back to the next char of machting char. Repeat this process until we reach the end of `haystack` or `needle`.\
+We can also use two pointers to solve this. One pointer points to the `haystack` and the other one points to `needle`. We will check equality one char a time. The idea is to first compare the first char of the `needle` with `haystack`, if they match, then check the second char of `needle` with the next char in `haystack`, if they still match, then check the next one, if not, then reset pointer in `needle` back to first char and reset pointer in `haystack` back to the next char of machting char. Repeat this process until we reach the end of `haystack` or `needle`.
 
 ```
 haystack = t h i s i s a t e s t
