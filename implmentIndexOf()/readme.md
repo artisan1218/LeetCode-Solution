@@ -31,7 +31,7 @@ Since we will iterate over the string `haystack` and use slicing to check equali
 <br />
 
 ### Approach 2: Sliding Window Improved, strStrImprovedSlidingWindow()
-The comparsion using slicing is too expensive, turns out we can simplify this process by only checking the first char of the `needle` with every char in `haystack`, if the first char matches, then we can proceed to check the remaining char in `needle`. This way, the comparsion using slicing only happens when the first char matches.\
+The comparsion using slicing is too expensive, turns out we can simplify this process by only checking the first char of the `needle` with every char in `haystack`, if the first char matches, then we can proceed to check the remaining char in `needle`. This way, the comparsion using slicing only happens when the first char matches.
 
 ```
 haystack = h e l l o w o r l d
@@ -50,7 +50,9 @@ needle = l l o
    l == l, check if l o == l o
    l o == l o, return
 ```
+
 Time complexity reduces to O(n+k\*a), k is the length of window, a is the number of char in `haystack` that matches the first char of `needle`, n is simply the length of `haystack`.
+
 ![image](https://user-images.githubusercontent.com/25105806/120944565-0dbbf200-c6ea-11eb-8a53-da53f124b176.png)
 
 <br />
