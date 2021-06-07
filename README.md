@@ -30,3 +30,4 @@ Records of all my solved problems on LeetCode
 |25       |[reverseKGroup](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseKGroup)|Hard|LinkedList|Java|[Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)|
 |26       |[removeDuplicatesFromList](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromList)|Easy|Two Pointers|Python|[Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)|
 |27       |[removeElementsFromList](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeElementsFromList)|Easy|Two Pointers|Python|[Remove Element](https://leetcode.com/problems/remove-element/)|
+|28       |[implementIndexOf](https://github.com/artisan1218/LeetCode-Solution/tree/main/implmentIndexOf())|Easy|Sliding Window, Two Pointers|Python|[Implement strStr()](https://leetcode.com/problems/implement-strstr/)|
