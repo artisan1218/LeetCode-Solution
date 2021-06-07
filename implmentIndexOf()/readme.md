@@ -117,7 +117,7 @@ needle = i s a
    a == a, reached the end of needle, return
 ```
 
-Time complexity is O(n)
+Time complexity is O((n-k)\*n)
 
 ![image](https://user-images.githubusercontent.com/25105806/120944703-caae4e80-c6ea-11eb-9ca5-535039fb30d2.png)
 
