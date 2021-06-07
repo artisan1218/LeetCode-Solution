@@ -1,45 +1,124 @@
-# Integer to Roman problem
-* Given an integer, convert it to a roman numeral. Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
+# Implement strStr() problem
+* Implement strStr()/indexOf().
+* Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+* For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
+
+### Approach 1: Sliding Window, strStrSlidingWindow()
+The idea is to fix a window size of `len(needle)`, slide the window from the beginning of the `haystack` one char by one char and check if the `needle` is equal to this window.
+
 ```
-Symbol       Value
-I             1
-V             5
-X             10
-L             50
-C             100
-D             500
-M             1000
+haystack = h e l l o w o r l d
+needle = l l o
+
+1. h e l l o w o r l d
+   ^---^
+   h e l != l l o, check next one
+   
+2. h e l l o w o r l d
+     ^---^
+   e l l != l l o, check next one 
+   
+3. h e l l o w o r l d
+       ^---^
+   l l o == l l o, return 
 ```
 
-### Approach 1: Naive, intToRomanLoop()
-This approach is to go through the given `num` digit by digit and append the corresponding symbols to the `result`. The corresponding symbol of the given digit is determined by the value of the digit and the `fold`, which keepk track of multiple that we're currently dealing with, ranges from 1, 10, 100, 1000.
-1. The fold is 1, then the symbols can only be `I`, `V`, `X`
-2. The fold is 10, then the symbols can be `X`, `L`, `C`
-3. The fold is 100, then the symbols can be `C`, `D`, `M`
-4. The fold is 1000, then the symbols can be `M`
-
-Running time is fairly slow due to the String concatenations
-![image](https://user-images.githubusercontent.com/25105806/118616818-e58a4480-b776-11eb-9a51-41573aa689b8.png)
+Since we will iterate over the string `haystack` and use slicing to check equality, which is also a O(n) operation, the time complexity is O(kn) where k is the window size, which is equal to `len(needle)`.
+![image](https://user-images.githubusercontent.com/25105806/120944435-4f986880-c6e9-11eb-914e-10aa43b60c73.png)
 
 
+<br />
 
-### Approach 2: Math, intToRomanMath()
-Credits to https://leetcode.com/problems/integer-to-roman/discuss/6274/Simple-Solution
+### Approach 2: Sliding Window Improved, strStrImprovedSlidingWindow()
+The comparsion using slicing is too expensive, turns out we can simplify this process by only checking the first char of the `needle` with every char in `haystack`, if the first char matches, then we can proceed to check the remaining char in `needle`. This way, the comparsion using slicing only happens when the first char matches.\
 
-Since each multiple out of 1, 10, 100, 1000 can only have certain symbols, we can list them all and store them as arrays. Then use simple math to match each of the symbols. This method is probably the most elegant way of solving this probelm. 
+```
+haystack = h e l l o w o r l d
+needle = l l o
 
-Running time is better than approach 1 because we've avoided using String concatenations, logic is also much clear.
-![image](https://user-images.githubusercontent.com/25105806/118619003-0bb0e400-b779-11eb-976a-541ec8a3b0d6.png)
+1. h e l l o w o r l d
+   ^
+   h != l, check next one
+   
+2. h e l l o w o r l d
+     ^
+   e != l, check next one 
+   
+3. h e l l o w o r l d
+       ^
+   l == l, check if l o == l o
+   l o == l o, return
+```
+Time complexity reduces to O(n+k\*a), k is the length of window, a is the number of char in `haystack` that matches the first char of `needle`, n is simply the length of `haystack`.
+![image](https://user-images.githubusercontent.com/25105806/120944565-0dbbf200-c6ea-11eb-8a53-da53f124b176.png)
 
+<br />
 
+### Approach 3: Two Pointers, strStrTwoPointers()
+We can also use two pointers to solve this. One pointer points to the `haystack` and the other one points to `needle`. We will check equality one char a time. The idea is to first compare the first char of the `needle` with `haystack`, if they match, then check the second char of `needle` with the next char in `haystack`, if they still match, then check the next one, if not, then reset pointer in `needle` back to first char and reset pointer in `haystack` back to the next char of machting char. Repeat this process until we reach the end of `haystack` or `needle`.\
 
-### Approach 3: Math, intToRomanMath2()
-Credits to https://leetcode.com/problems/integer-to-roman/discuss/6310/My-java-solution-easy-to-understand
+```
+haystack = t h i s i s a t e s t
+needle = i s a
 
-Similar to approach 2, we can list symbols for each multiple out of 1, 10, 100, 1000, but this time we only list unique symbols but not all of them. For example `III` is just `I` repeating for 3 times and we can use a loop to denoting this. This way, we can save some uncessary spaces. 
+1. t h i s i s a t e s t
+   ^
+   i s a
+   ^
+   t != i, check next one in haystack
+   
+2. t h i s i s a t e s t
+     ^
+   i s a
+   ^
+   h != i, check next one in haystack
+   
+3. t h i s i s a t e s t
+       ^
+   i s a
+   ^
+   i == i, check next one in haystack and needle
 
-Running time is roughly the same, but memory usage is better.
-![image](https://user-images.githubusercontent.com/25105806/118618106-2171d980-b778-11eb-8dc2-4d1a9319e755.png)
+4. t h i s i s a t e s t
+         ^
+   i s a
+     ^
+   s == s, check next one in haystack and needle
+   
+5. t h i s i s a t e s t
+           ^
+   i s a
+       ^
+   i != a, reset two pointers
+
+6. t h i s i s a t e s t
+         ^
+   i s a
+   ^
+   s != i, check next one in haystack
+   
+7. t h i s i s a t e s t
+           ^
+   i s a
+   ^
+   i == i, check next one in haystack and needle
+   
+8. t h i s i s a t e s t
+             ^
+   i s a
+     ^
+   s == s, check next one in haystack and needle
+   
+9. t h i s i s a t e s t
+               ^
+   i s a
+       ^
+   a == a, reached the end of needle, return
+```
+
+Time complexity is O(n)
+
+![image](https://user-images.githubusercontent.com/25105806/120944703-caae4e80-c6ea-11eb-9ca5-535039fb30d2.png)
 
 
 
