@@ -123,5 +123,12 @@ Time complexity is O((n-k)\*n)
 
 ![image](https://user-images.githubusercontent.com/25105806/120944703-caae4e80-c6ea-11eb-9ca5-535039fb30d2.png)
 
+<br />
 
+### Approach 4: KMP Algorithm, strStrKMP()
+There is even a O(n+k) algorithm called KMP algorithm. The idea is pretty similar to approach 3 except that when a bad match happens, that is, when two chars does not match, KMP algorithm will move the pointer to the next non-repeating char to avoid checking some of the common prefix/suffix twice, while the two pointers solution will always go the next position of the same char, which will checking duplicates char more than one time. \
+Time complexity is O(n+k) where n is size of `haystack` and k is the size of `needle`. First of all, we generate the `nextList` array to show any possible duplicates of prefix and postfix within needle. Then we go through haystack. Every time we see a bad match, move `ndlPtr(needle pointer)` to `nextList[ndlPtr-1]` and keep `strPtr(haystack pointer)` in current position; otherwise, move both of them to next position.\
+Actual running time:
+
+![image](https://user-images.githubusercontent.com/25105806/120967315-2b09b400-c71c-11eb-987c-e9e4a3cb0f61.png)
 
