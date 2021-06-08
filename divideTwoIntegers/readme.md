@@ -8,11 +8,8 @@ Note: Assume we are dealing with an environment that could only store integers w
 ### Approach 1: Naive, Skipped()
 The idea is very straightforward and comes from the definition of 'dividing': that is, how many `divisors` are contained in `dividend`. We simply subtract divisor from dividend once a time until `dividend` is smaller than `divisor`, which means `dividend` does not contain `divisor` anymore. \
 For example: we divide 5000 by 14:
-1. We first subtract 14 from 5000 for 256 times: 14\*256=3584 and 5000-3584=1416. Up to this step, quotient = 256
-2. Then keep subtracting 14 from 1416, we can subtract 64 times: 14\*64=896, 1416-896=520. Up to this step, quotient = 256 + 64
-3. Subtracting 14 from 520 for 32 times: 14\*32=448, 520-448=72. Up to this step, quotient = 256 + 64 + 32
-4. Subtracting 14 from 72 for 4 times: 14\*4=56, 72-56=16. Up to this step, quotient = 256 + 64 + 32 + 4
-5. Finally subtracting 14 from 16, 14\*1=16, 16-14=2 and 2<14. Finally, quotient = 256 + 64 + 32 + 4 + 1 = 357
+* We can subtract 14 from 5000 for 357 times: 14\*357=4998 and 5000-4998=2 and 2<14. quotient = 357
+
 
 The main downside of this approach is:
 1. When the dividend(2^31-1) is large and divisor is small(1), the running time is slow because we simply subtract 1 from 2^31-1 2^31-1 times.
