@@ -31,3 +31,4 @@ Records of all my solved problems on LeetCode
 |26       |[removeDuplicatesFromList](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromList)|Easy|Two Pointers|Python|[Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)|
 |27       |[removeElementsFromList](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeElementsFromList)|Easy|Two Pointers|Python|[Remove Element](https://leetcode.com/problems/remove-element/)|
 |28       |[implementIndexOf](https://github.com/artisan1218/LeetCode-Solution/tree/main/implmentIndexOf())|Easy|Sliding Window, Two Pointers|Python|[Implement strStr()](https://leetcode.com/problems/implement-strstr/)|
+|29       |[divideTwoInts](https://github.com/artisan1218/LeetCode-Solution/tree/main/divideTwoIntegers)|Medium|Bitwise Manipulation|Java|[Divide Two Integers](https://leetcode.com/problems/divide-two-integers/)|
