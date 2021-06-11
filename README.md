@@ -13,7 +13,7 @@ Records of all my solved problems on LeetCode
 |8        |[atoi](https://github.com/artisan1218/LeetCode-Solution/tree/main/atoi)|Medium|Str Traversal, DFA|True|Java|[String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)|
 |9        |[palindromeNumber](https://github.com/artisan1218/LeetCode-Solution/tree/main/palindromeNumber)|Easy|Math|False|Java|[Palindrome Number](https://leetcode.com/problems/palindrome-number/)|
 |10       |[regExpMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/regExpMatching)|Hard|Dynamic Programming|True|Java|[Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)|
-|11       |[maxArea](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxArea)|Medium|Two Pointers|False|Java|[Container With Most Water](https://leetcode.com/problems/container-with-most-water/)|
+|11       |[maxArea](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxArea)|Medium|Two Pointers|True|Java|[Container With Most Water](https://leetcode.com/problems/container-with-most-water/)|
 |12       |[intToRoman](https://github.com/artisan1218/LeetCode-Solution/tree/main/intToRoman)|Medium|Math|False|Java|[Integer to Roman](https://leetcode.com/problems/integer-to-roman/)|
 |13       |[romanToInt](https://github.com/artisan1218/LeetCode-Solution/tree/main/romanToInt)|Easy|Math|False|Java|[Roman to Integer](https://leetcode.com/problems/roman-to-integer/)|
 |14       |[longestCommonPrefix](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestCommonPrefix)|Easy|Str Traversal|False|Java, Python|[Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)|
