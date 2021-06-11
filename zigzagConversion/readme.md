@@ -12,7 +12,7 @@
 ### Approach 1: Traverse in ZigZag Order, convert()
 There is a pattern existed in the zigzag printout any string: the index of the line-by-line order string will skip two parts of the zigzag shape alternately, I call them bottom part and top part.
 * bottom part will decrease by two for each row starting from the number `2 * numRows - 2`, which is the number of skipped chars for the first row: `skippedBottom -= 2`
-* top part will increase by two for each row starting from 0: `skippedTop += 2`\
+* top part will increase by two for each row starting from 0: `skippedTop += 2`
 
 All we need to do is to control the switching of these two number and append the characters at corresponding index of `i += skippedBottom` or `i += skippedTop`.
 
