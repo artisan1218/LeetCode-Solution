@@ -9,6 +9,10 @@ Turns out we can use two pointers `left` and `right` to bound the sides and form
 We will move `left` and `right` inward keep the max area.
 Time complexity is O(n) because the two pointers altogether will iterate through each side of the `height` and the program will end as soon as they meet. Space complexity is O(1) because all we need to store is the left and right side of the container.
 
+   ![maxAreaAnimation](https://user-images.githubusercontent.com/25105806/121755812-00797b80-cacd-11eb-80e4-129c40acb153.gif)
+
+**Note:Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/maxArea/maxAreaAnimation.ppsx) to download the animation to play for yourself**
+
 ![image](https://user-images.githubusercontent.com/25105806/118609194-5c234400-b76f-11eb-9657-8a2d0b0900c8.png)
 
 
