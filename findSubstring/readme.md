@@ -23,7 +23,13 @@ Credits to https://leetcode.com/problems/substring-with-concatenation-of-all-wor
 
 We use two maps in this approach for comparsion. Since the order of words does not matter. We only need to keep track of each word and its frequency. The first map `count` is used to keep track of how many words appeared in list `words` for how many times. The second map `current` is used to keep track of seen words so far. We can then simply compare the number of words in `words` and the number of words in `current`, if they are equal, then add the index of current starting point to result, otherwise go check the next word. Since we setup several early stopping condition, if a word does not exist, we'll break the loop; if a word appears more times than it did in `words`, we'll break the loop as well. So the only case for a valid substring is when the number of words in `current` is equal to that of `count`
 
+![findString](https://user-images.githubusercontent.com/25105806/121660385-113bda00-ca58-11eb-929c-96490ee7a8c1.gif)
+
 Time complexity is reduced to O(mn):
 ![image](https://user-images.githubusercontent.com/25105806/121617512-fa769280-ca19-11eb-9bb6-2161e77d555d.png)
 
+
+
+
+Note: 
 
