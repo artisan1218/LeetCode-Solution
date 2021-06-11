@@ -13,6 +13,8 @@ Use two pointer(left and right) to bound a sliding window in which each characte
 
 **Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/longestSubstringWithoutRepeating/lengthOfLongestSubstringAnimation.ppsx) to download the animation to play for yourself**
 
+<br />
+
 Since we only go through the string once and store every char to the map, time complexity is O(n) and space complexity is also O(n)
 
 ![image](https://user-images.githubusercontent.com/25105806/118186766-f4799b80-b3f2-11eb-81ba-40b1c5ca5d60.png)
