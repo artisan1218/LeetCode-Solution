@@ -31,5 +31,5 @@ Time complexity is reduced to O(mn):
 
 
 
-Note: 
+Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/findSubstring/findStringAnimation.ppsx) to download the animation to play for yourself. 
 
