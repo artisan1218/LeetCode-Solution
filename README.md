@@ -3,7 +3,7 @@ Records of all my solved problems on LeetCode
 
 |Problem #|Solution Link                                                                        |Difficulty|Category|Language|LeetCode Link|
 | :----:  | :---------------------------------------------------------------------------------: | :-------:|:-------:|:------:|:-----------:|
-|1        |[twoSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/twoSum)     |Easy      |Hash     |Java    |[Two Sum](https://leetcode.com/problems/two-sum/)|
+|1        |[twoSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/twoSum)     |Easy      |HashMap     |Java    |[Two Sum](https://leetcode.com/problems/two-sum/)|
 |2        |[addTwoNums](https://github.com/artisan1218/LeetCode-Solution/tree/main/addTwoNums)|Medium |Math     |Java    |[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|
 |3        |[lngestSubstrW/ORptingChar](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestSubstringWithoutRepeating)|Medium|Sliding Window|Java|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|
 |4        |[medianOfTwoSortedAry](https://github.com/artisan1218/LeetCode-Solution/tree/main/medianOfTwoSortedArys)|Hard|Binary Search|Java|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|
@@ -32,3 +32,4 @@ Records of all my solved problems on LeetCode
 |27       |[removeElementsFromList](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeElementsFromList)|Easy|Two Pointers|Python|[Remove Element](https://leetcode.com/problems/remove-element/)|
 |28       |[implementIndexOf](https://github.com/artisan1218/LeetCode-Solution/tree/main/implmentIndexOf())|Easy|Sliding Window, Two Pointers|Python|[Implement strStr()](https://leetcode.com/problems/implement-strstr/)|
 |29       |[divideTwoInts](https://github.com/artisan1218/LeetCode-Solution/tree/main/divideTwoIntegers)|Medium|Bitwise Manipulation|Java|[Divide Two Integers](https://leetcode.com/problems/divide-two-integers/)|
+|30       |[findSubstring](https://github.com/artisan1218/LeetCode-Solution/tree/main/findSubstring)|Hard|HashMap|Python|[Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)|
