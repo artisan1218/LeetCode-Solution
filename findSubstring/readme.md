@@ -1,30 +1,29 @@
-# 4Sum problem
-* Given an array nums of n integers, return an array of all the unique quadruplets `[nums[a], nums[b], nums[c], nums[d]]` such that:
-```
-0 <= a, b, c, d < n
-a, b, c, and d are distinct.
-nums[a] + nums[b] + nums[c] + nums[d] == target
-```
-You may return the answer in any order.
+# Substring with Concatenation of All Words problem
+* You are given a string `s` and an array of strings `words` of the **same length**. Return all starting indices of substring(s) in `s` that is a concatenation of each `word` in words exactly once, in any order, and without any intervening characters.
 
-### Approach 1: Two Pointers, fourSumBasedOnThreeSum()
-This approach is based on [3Sum](https://github.com/artisan1218/LeetCode-Solution/tree/main/threeSum) problem. The idea is to go through the list, fix one number at a time and find corresponding three sum and append them together. We just grab threeSum() and use it in a loop to achieve this. Time complexity is simply O(n\*threeSum Complexity), which is O(n^3).\
+You can return the answer in **any order**.
+
+### Approach 1: Brute Force, findSubstringBruteForce()
+This approach is the naive approach that we slide through the input string `s` and get each word of the same length as word in `words`, then check if this word is in `words`. If not, then check the next word, if the word is in the list, then iteratively check them one by one.\
+Time complexity is O(mn^2) because we will go through each char in string `s`, which is O(m), and check each word in `words`, which is O(n), and keep a copy of the `words` because of the line ```tmpWords = words.copy()```, which is also O(n). \
 Actual running time is indeed quite slow:
 
-![image](https://user-images.githubusercontent.com/25105806/119611564-b778b600-bdaf-11eb-833d-eaa0a89855ef.png)
+![image](https://user-images.githubusercontent.com/25105806/121616947-c484de80-ca18-11eb-991f-e1d879f5dad5.png)
+
+This approach can be improved in many ways:
+1. We don't need to keep a copy of `words` everytime we check substring, just use map structure for comparsion
+2. Add early termination conditions. For example when we've checked same number of words as all number of words in the list `words`, and when a specific word has appeared more than that many times in `words`.
+3. When a word does not exist in the `words`, we can directly jump to the next char of that non-existing word because any substring before that non-existing word is not going to be valid substring.
+
+<br />
+
+### Approach 2: Two Maps, findSubstringTwoMaps()
+Credits to https://leetcode.com/problems/substring-with-concatenation-of-all-words/discuss/13658/Easy-Two-Map-Solution-(C++Java)
 
 
-### Approach 2: Two Pointers, Recursion, Solution.fourSum()
-Credits to https://leetcode.com/problems/4sum/discuss/8545/Python-140ms-beats-100-and-works-for-N-sum-(Ngreater2)
-\
-This approach considers a more generalized case of kSum. We can solve 2Sum problem really quick using two pointers, to solve 3Sum problem, simply fix a number and use 2Sum algorithm to find the rest two numbers. The idea can be extended to kSum by using recursion. 
-1. Base case: 2Sum using two pointers
-2. Recursive step: kSum = nSum(nums, k-1, k-1 result)
+We use two maps in this approach for comparsion. Since the order of words does not matter. We only need to keep track of each word and its frequency. The first map `count` is used to keep track of how many words appeared in list `words` for how many times. The second map `count` is used to keep track of seen words so far.
 
-We use recursion to reduce k down to 2 and keep the k-1 result to append it to k result. So that we always fix a number and find k-1 sum.
-
-Actual running time is quite fast:
-
-![image](https://user-images.githubusercontent.com/25105806/119612527-d9bf0380-bdb0-11eb-9bfa-f65f11284c64.png)
+Time complexity is reduced to O(mn):
+![image](https://user-images.githubusercontent.com/25105806/121617512-fa769280-ca19-11eb-9bb6-2161e77d555d.png)
 
 
