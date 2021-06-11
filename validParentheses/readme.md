@@ -9,7 +9,7 @@ If an input string is valid, then we can always match a left parenthesis with a 
 
 ![validParenthesesAnimation](https://user-images.githubusercontent.com/25105806/121675759-b068cd80-ca68-11eb-9803-d5eac138f431.gif)
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesAnimation.ppsx) to download the animation to play for yourself.**
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesStackAnimation.ppsx) to download the animation to play for yourself.**
 
 Time complexity is O(n) since we only go through the input string once. 
 ![image](https://user-images.githubusercontent.com/25105806/120406786-8d1f7f00-c300-11eb-9da1-268e17552579.png)
