@@ -26,11 +26,16 @@ We use two maps in this approach for comparsion. Since the order of words does n
 
 <img src="https://user-images.githubusercontent.com/25105806/121661746-61676c00-ca59-11eb-9a70-0c4182ed5391.gif" width="110%" height="110%">
 
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/findSubstring/findStringAnimation.ppsx) to download the animation to play for yourself.**
+
+
+<br />
+
 Time complexity is reduced to O(mn):
 ![image](https://user-images.githubusercontent.com/25105806/121617512-fa769280-ca19-11eb-9bb6-2161e77d555d.png)
 
 
 
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/findSubstring/findStringAnimation.ppsx) to download the animation to play for yourself.**
+
 
