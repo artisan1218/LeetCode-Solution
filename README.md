@@ -33,3 +33,4 @@ Records of all my solved problems on LeetCode
 |28       |[implementIndexOf](https://github.com/artisan1218/LeetCode-Solution/tree/main/implmentIndexOf())|Easy|Sliding Window, Two Pointers|True|Python|[Implement strStr()](https://leetcode.com/problems/implement-strstr/)|
 |29       |[divideTwoInts](https://github.com/artisan1218/LeetCode-Solution/tree/main/divideTwoIntegers)|Medium|Bitwise Manipulation|False|Java|[Divide Two Integers](https://leetcode.com/problems/divide-two-integers/)|
 |30       |[findSubstring](https://github.com/artisan1218/LeetCode-Solution/tree/main/findSubstring)|Hard|HashMap|True|Python|[Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)|
+|31       |[nextPermutation](https://github.com/artisan1218/LeetCode-Solution/tree/main/nextPermutation)|Medium|Math|True|Python|[Next Permutation](https://leetcode.com/problems/next-permutation/)|
