@@ -8,23 +8,22 @@ class Solution:
         """
         
         i = len(nums) - 2
-        # find the first number that is smaller than next number, going left from right-most index
-        # largest index i such that a[i] < a[i + 1]
+        # Find the largest index i such that nums[i] < nums[i + 1]. 
+        # If no such index exists, just reverse nums and we are done.
         while i>=0 and nums[i] >= nums[i+1]:
             i -= 1
         
         if i==-1:
             nums.reverse()
         else:
-            # find the first number that is greater than nums[i], going left from right-most index
-            # largest index j greater than i such that a[i] < a[j].
+            # Find the largest index j > i such that nums[i] <= nums[j].
             j = len(nums) - 1
             while j>i and nums[j] <= nums[i]:
                 j-=1
             # Swap the value of i with that of j.
             nums[i], nums[j] = nums[j], nums[i]
           
-            # Reverse the sequence from a[i + 1] up to and including the final element a[n].
+            # Reverse the sub-array nums[i + 1:].
             nums[i+1:] = nums[i+1:][::-1]
         return
 
@@ -34,9 +33,5 @@ if __name__ == "__main__":
     nums = [5, 1, 1]
     solver.nextPermutation(nums)
     print(nums)
-
-
-
-
 
 
