@@ -34,3 +34,4 @@ Records of all my solved problems on LeetCode
 |29       |[divideTwoInts](https://github.com/artisan1218/LeetCode-Solution/tree/main/divideTwoIntegers)|Medium|Bitwise Manipulation|False|Java|[Divide Two Integers](https://leetcode.com/problems/divide-two-integers/)|
 |30       |[findSubstring](https://github.com/artisan1218/LeetCode-Solution/tree/main/findSubstring)|Hard|HashMap|True|Python|[Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)|
 |31       |[nextPermutation](https://github.com/artisan1218/LeetCode-Solution/tree/main/nextPermutation)|Medium|Math|True|Python|[Next Permutation](https://leetcode.com/problems/next-permutation/)|
+|32       |[longestValidParentheses](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestValidParentheses)|Hard|Stack, Dynamic Programming|True|Python|[Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/)|
