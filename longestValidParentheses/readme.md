@@ -16,6 +16,10 @@ If a `(` is met, simply put 0 in length list because '(' can not form a valid pa
 1. if the char before current index is a `(`, which means we can pair up with it, so we should update the length list by appending length of 2. However if the parentheses before this pair is also valid, for example `()()`, we should also add the length of previous valid substring.
 2. if the char before current index is a `)`, then we should go the **beginning index of current valid substring** to check if there is more than one pair of parentheses that can be paired up. For example `()(())`, when reading the last parenthesis `)`, we should go to the index `i=2` because `(())` are two paris. Then go to the **previous index of the beginning index of current valid substring** to check if there are any valid substring connects to current one. For example we should then go to index `i=1` because `()` is also a valid substring immediately before `(())` and we should add the length of `()` as well.
 
+![longestValidParentheses](https://user-images.githubusercontent.com/25105806/121798760-fd6db080-cbdc-11eb-81fd-d01b3f8c2fbe.gif)
+
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestValidParentheses) to download the animation to play for yourself.**
+
 For the input string `s = "(()))())("`, the corresponding length list should be:
 ```
 [0]
