@@ -20,7 +20,7 @@ The idea is the same as approach 1 but use iteration to find the pivot point ins
 
 Demo:
 
-![searchRotatedSortedAry](https://user-images.githubusercontent.com/25105806/121984069-30cc4e80-cd47-11eb-860b-c0822d67db05.gif)
+<img src="https://user-images.githubusercontent.com/25105806/121984069-30cc4e80-cd47-11eb-860b-c0822d67db05.gif" height="90%" width="90%">
 
 **Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/searchRotatedSortedAry/searchRotatedSortedAry.ppsx) to download the animation to play for yourself**
 
