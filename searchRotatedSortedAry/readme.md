@@ -18,5 +18,11 @@ The time complexity is O(log n) because we merely use two binary search, which i
 ### Approach 2: Improved Binary Search, searchBinarySearch2()
 The idea is the same as approach 1 but use iteration to find the pivot point instead of recursion. This is also an O(log n) solution with two pass binary search. First to find pivot and second to find actual target.
 
+Demo:
+
+![searchRotatedSortedAry](https://user-images.githubusercontent.com/25105806/121984069-30cc4e80-cd47-11eb-860b-c0822d67db05.gif)
+
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/searchRotatedSortedAry/searchRotatedSortedAry.ppsx) to download the animation to play for yourself**
+
 Actual running time:\
 ![image](https://user-images.githubusercontent.com/25105806/121980862-8dc50600-cd41-11eb-83a7-348a00de126a.png)
