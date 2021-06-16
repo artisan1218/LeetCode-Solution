@@ -1,28 +1,25 @@
-# Search in Rotated Sorted Array problem
-* There is an integer array `nums` sorted in ascending order (with distinct values).
-* Prior to being passed to your function, `nums` is rotated at an unknown pivot index `k` (`0 <= k < nums.length`) such that the resulting array is `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed)`. For example, `[0,1,2,4,5,6,7]` might be rotated at pivot index 3 and become `[4,5,6,7,0,1,2]`.
-* Given the array `nums` **after** the rotation and an integer target, return the index of target if it is in `nums`, or `-1` if it is not in `nums`.
+# Find First and Last Position of Element in Sorted Array problem
+* Given an array of integers `nums` sorted in ascending order, find the starting and ending position of a given `target` value.
+* If target is not found in the array, return `[-1, -1]`.
 * You must write an algorithm with `O(log n)` runtime complexity.
 
 
-### Approach 1: Binary Search with Recursion, searchBinarySearch1()
-Since the arra `nums` is guaranteed to be rotated at some pivot, we can first use binary search to find the pivot point, then find the target according to the pivot point using again, binary search.\
-The function `binarySearchPivot()` is used to find pivot point with recursion. If the pivot is not presented in a subarray, it will return -1 (Note here that -1 simply means the pivot point is **NOT** in this subarray) and take the max value of the pivot of two subarrays to find the actual pivot point.\
-The function `binarySearchTarget()` is to find the actual target. It will first decide which part of the entire array does the target locate in, then just search using regular binary search.
+### Approach 1: Binary Search and Expand Around Center, searchRangeExpandAroundMiddle()
+Since the array `nums` is a non-decreasing array, we can use binary search to first find the target value. Note that there might be several target values in the array, the goal here is find one of them, then we expand to left and right around that 'center' value. 
 
-The time complexity is O(log n) because we merely use two binary search, which is O(log n) for each.
-![image](https://user-images.githubusercontent.com/25105806/121980659-30c95000-cd41-11eb-8c39-772032e4b718.png)
+The time complexity is not strictly O(log n) but O(log n + m) where m is the length of the valid targets.\
+Actual running time:
+![image](https://user-images.githubusercontent.com/25105806/122143381-39d02500-ce06-11eb-9525-0f29ef74343c.png)
 
 <br />
 
-### Approach 2: Improved Binary Search, searchBinarySearch2()
-The idea is the same as approach 1 but use iteration to find the pivot point instead of recursion. This is also an O(log n) solution with two pass binary search. First to find pivot and second to find actual target.
+### Approach 2: Two Pass Binary Search, searchRangeTwoPassBinarySearch()
+This approach is a strictly O(log n) approach where we first search for the starting index of the range using one binary search, which takes O(log n) time then use another binary search to find the ending index of the range, which is also O(log n).\
+We need to modify the standard binary search algorithm in order to find the starting or ending index of the target. The idea is:
+1. When finding the starting index, if the midpoint value is equal to target, we do not return it yet, instead, keep moving right pointer to left to check the values before the midpoint value.
+2. When finding the ending index, if the midpoint value is equal to target, we do not return it yet, instead, keep moving left pointer to the right to check the values after the midpoint value.
 
-Demo:
-
-<img src="https://user-images.githubusercontent.com/25105806/121984069-30cc4e80-cd47-11eb-860b-c0822d67db05.gif" height="90%" width="90%">
-
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/searchRotatedSortedAry/searchRotatedSortedAry.ppsx) to download the animation to play for yourself**
+The total time complexity is therefore O(2\*logn) which is O(log n)
 
 Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/121980862-8dc50600-cd41-11eb-83a7-348a00de126a.png)
+![image](https://user-images.githubusercontent.com/25105806/122143548-8582ce80-ce06-11eb-9707-ccc640010d8c.png)
