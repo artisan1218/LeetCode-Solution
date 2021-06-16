@@ -9,6 +9,7 @@ Since the array `nums` is a non-decreasing array, we can use binary search to fi
 
 The time complexity is not strictly O(log n) but O(log n + m) where m is the length of the valid targets.\
 Actual running time:
+
 ![image](https://user-images.githubusercontent.com/25105806/122143381-39d02500-ce06-11eb-9525-0f29ef74343c.png)
 
 <br />
