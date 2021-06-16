@@ -1,27 +1,32 @@
-# ZigZag Conversion problem
-* The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
-  ```
-  P   A   H   N
-  A P L S I I G
-  Y   I   R
-  ```
-  And then read line by line: `"PAHNAPLSIIGYIR"`\
-  Write the code that will take a string and make this conversion given a number of rows:
-  `string convert(string s, int numRows);`
+# Valid Sudoku problem
+Determine if a `9 x 9` Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+1. Each row must contain the digits `1-9` without repetition.
+2. Each column must contain the digits `1-9` without repetition.
+3. Each of the nine `3 x 3` sub-boxes of the grid must contain the digits `1-9` without repetition.
 
-### Approach 1: Traverse in ZigZag Order, convert()
-There is a pattern existed in the zigzag printout any string: the index of the line-by-line order string will skip two parts of the zigzag shape alternately, I call them bottom part and top part.
-* bottom part will decrease by two for each row starting from the number `2 * numRows - 2`, which is the number of skipped chars for the first row: `skippedBottom -= 2`
-* top part will increase by two for each row starting from 0: `skippedTop += 2`
+Note:
+* A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+* Only the filled cells need to be validated according to the mentioned rules.
 
-All we need to do is to control the switching of these two number and append the characters at corresponding index of `i += skippedBottom` or `i += skippedTop`.
+  ![image](https://user-images.githubusercontent.com/25105806/122307617-888dc580-cebf-11eb-8e27-20141b63e55f.png)
 
-<img src="https://user-images.githubusercontent.com/25105806/118091542-cc048980-b37f-11eb-9be4-1cff27607429.png" width="100%" height="100%">
 
-* Note: For the right-most figure, `bottom = 4` and `top = 6`, then `i = 3`, `i = 3 + 4 = 7`, `i = 3 + 4 + 6 = 13` for chars at pos 3, 7, 13, respectively.
+### Approach 1: Naive, Check All Three Rules in Three Pass, isValidSudokuThreePass()
+This approach is very straightforward. Simply use three code blocks to check all three rules respectively.\
+Time complexity is therefore O(3 \* n^2), which is O(n^2) where n is the side length of the board:
+![image](https://user-images.githubusercontent.com/25105806/122307731-c68ae980-cebf-11eb-9690-4c0383cccb5e.png)
 
-The whole process is like: charAt(i), skip bottom, charAt(i=i+bottom), skip top, charAt(i=i+top), starts at new row, charAt(i), skip bottom, ...
-Even though I used nested loop in the implemention, the time complexity is still O(n) because the outer loop will go through each row and the inner loop will will not go through all indices of the chars but only chars at that specific row, so the total number of indices visited is strictly equal to the total number of characters, thus O(n).
-We can see that the running time is indeed quite fast
+<br />
 
-![image](https://user-images.githubusercontent.com/25105806/118090743-c490b080-b37e-11eb-9d1a-9ad69a8cb5ea.png)
+### Approach 2: One Pass, isValidSudokuOnePass()
+The idea is to encode row number, column number and sub-box number along with the digit in each slot so that we can distinguish digit from different rows, columns or sub-boxes and therefore can check all three rules in one pass over the entire board.
+* digit in each row is encoded as variable 'row'
+* digit in each column is encoded as varibale 'col'
+* digit in each sub-box is encoded as variable 'box'
+* dividing i and j by 3 will give the index of sub-boxes so that we can differentiate them
+     
+     
+Time complexity is therefore O(n^2):
+
+![image](https://user-images.githubusercontent.com/25105806/122308035-66487780-cec0-11eb-81d4-d3114c4029e7.png)
+
