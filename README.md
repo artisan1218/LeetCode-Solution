@@ -40,3 +40,4 @@ Records of all my solved problems on LeetCode
 |35       |[searchInsertPos](https://github.com/artisan1218/LeetCode-Solution/tree/main/searchInsertPos)|Easy|Binary Search|False|Python|[Search Insert Position](https://leetcode.com/problems/search-insert-position/)|
 |36       |[validSudoku](https://github.com/artisan1218/LeetCode-Solution/tree/main/validSudoku)|Medium|HashSet|False|Python|[Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)|
 |37       |[solveSudoku](https://github.com/artisan1218/LeetCode-Solution/tree/main/sudokuSolver)|Hard|Backtracking|False|Python|[Sudoku Solver](https://leetcode.com/problems/sudoku-solver/)|
+|38       |[countAndSay](https://github.com/artisan1218/LeetCode-Solution/tree/main/countAndSay)|Medium|Str Traversal|False|Java|[Count and Say](https://leetcode.com/problems/count-and-say/)|
