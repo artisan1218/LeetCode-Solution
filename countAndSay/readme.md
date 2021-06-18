@@ -15,7 +15,7 @@ Given a positive integer `n`, return the nth term of the count-and-say sequence.
 Simply follow the steps of building the count-and-say sequence, by first count the numbers of characters in each group and say the character, then appending to the end of `res`. Then go to the next string until we looped for `n` times.
 
 ```
-n=1: 1
+n=1: 1, base case
 n=2: 11, because there is one 1 in case n=1
 n=3: 21, because there are two 1's in case n=2
 n=4: 1211, because there are one 2 and one 1 in case n=3
