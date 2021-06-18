@@ -1,32 +1,27 @@
-# Valid Sudoku problem
-Determine if a `9 x 9` Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
-1. Each row must contain the digits `1-9` without repetition.
-2. Each column must contain the digits `1-9` without repetition.
-3. Each of the nine `3 x 3` sub-boxes of the grid must contain the digits `1-9` without repetition.
+# Sudoku Solver problem
+Write a program to solve a Sudoku puzzle by filling the empty cells.\
+A sudoku solution must satisfy all of the following rules:
+1. Each of the digits `1-9` must occur exactly once in each row.
+2. Each of the digits `1-9` must occur exactly once in each column.
+3. Each of the digits `1-9` must occur exactly once in each of the 9 `3x3` sub-boxes of the grid.
 
-Note:
-* A Sudoku board (partially filled) could be valid but is not necessarily solvable.
-* Only the filled cells need to be validated according to the mentioned rules.
+The '.' character indicates empty cells.
+
 
   ![image](https://user-images.githubusercontent.com/25105806/122307617-888dc580-cebf-11eb-8e27-20141b63e55f.png)
 
 
-### Approach 1: Naive, Check All Three Rules in Three Pass, isValidSudokuThreePass()
-This approach is very straightforward. Simply use three code blocks to check all three rules respectively.\
-Time complexity is therefore O(3 \* n^2), which is O(n^2) where n is the side length of the board:
-![image](https://user-images.githubusercontent.com/25105806/122307731-c68ae980-cebf-11eb-9690-4c0383cccb5e.png)
+### Approach 1: Backtracking, solveSudoku()
+This approach takes idea from https://leetcode.com/problems/sudoku-solver/discuss/294215/Simple-concise-clear-Python-solution and this video expains the algorithm very well: https://www.youtube.com/watch?v=eqUwSA0xI-s
 
-<br />
+We're basically finding an empty slot denoted by `'.'` and start guessing numbers from 1 to 9 that can be filled in at this spot. If the number is valid, then we will update the `board` with this number and use recursion to find the next empty slot. If, at some point, there are no numbers can validate the sudoku, we should backtrack the filling previous by changing the slot back to `'.'`\
+I use three check lists `row_check`, `col_check` and `box_check` to make the checking faster using only constant time by storing unqiue numbers in each row, each columns and each sub-boxes in sets and update them along the way.
 
-### Approach 2: One Pass, isValidSudokuOnePass()
-The idea is to encode row number, column number and sub-box number along with the digit in each slot so that we can distinguish digit from different rows, columns or sub-boxes and therefore can check all three rules in one pass over the entire board.
-* digit in each row is encoded as variable 'row'
-* digit in each column is encoded as varibale 'col'
-* digit in each sub-box is encoded as variable 'box'
-* dividing i and j by 3 will give the index of sub-boxes so that we can differentiate them
-     
-     
-Time complexity is therefore O(n^2):
+Time complexity is O(n + 9^m) where `n` is the number of all digits in the `board` and `m` is the number of digits that we need to fill in. O(n) is to build the initial check lists and O(9^m) is to exhaust all possible combinations recursively.\
+Actual running time:
 
-![image](https://user-images.githubusercontent.com/25105806/122308035-66487780-cec0-11eb-81d4-d3114c4029e7.png)
+![image](https://user-images.githubusercontent.com/25105806/122506456-404fcf80-cfb3-11eb-95a7-531a2512d9ae.png)
+
+
+
 
