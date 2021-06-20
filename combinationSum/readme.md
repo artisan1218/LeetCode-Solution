@@ -4,7 +4,7 @@
 * It is guaranteed that the number of unique combinations that sum up to `target` is less than 150 combinations for the given input.
 
 
-### Approach 1: Backtrack, combinationSumBacktrack()
+### Approach 1: Backtracking, combinationSumBacktrack()
 This approach uses the technique called backtracking, which we will exhaust **every single permutation of digits** in `candidates` to cover all the possibilities that can add up to `target`. First I iterate through the `candidates` and pick a number in order, if the number plus current result is smaller than target, then we can add it safely and add another number recursively. If adding a number will exceed the `target`, we should return and backtrack the previous adding simply by removing it from the result list. This way, we can cover all possible permutations of any length of the `candidates`. Then we will remove duplicates and return the result.
 
 This is pretty similar to how we human find the combination sum: simply list all possible pairs
@@ -12,6 +12,7 @@ This is pretty similar to how we human find the combination sum: simply list all
 Actual running time:\
 ![image](https://user-images.githubusercontent.com/25105806/122658931-60a09b00-d127-11eb-8c3e-90c6f97d79b7.png)
 
+<br />
 
 ### Approach 2: Dynamic Programming, combinationSumDP()
 Credits to: https://www.youtube.com/watch?v=AUIfTelAGVc and https://leetcode.com/problems/combination-sum/discuss/16509/Iterative-Java-DP-solution
