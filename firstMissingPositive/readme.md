@@ -1,30 +1,61 @@
-# 4Sum problem
-* Given an array nums of n integers, return an array of all the unique quadruplets `[nums[a], nums[b], nums[c], nums[d]]` such that:
+# First Missing Positive problem
+* Given an unsorted integer array `nums`, find the smallest missing positive integer.
+
+You must implement an algorithm that runs in `O(n)` time and uses `constant extra space`.
+
+### Approach 1: Naive, HashSet, firstMissingPositiveHashSet()
+This not a O(1) space complexity solution, but it is the most straight-forward solution. We first cache all numbers in `nums` in hash set and iteratively check for the first non-existing positive using a loop.
+
+Since the hashset provides constant lookup time, it only takes O(n) time to check all number in the `nums`:\
+![image](https://user-images.githubusercontent.com/25105806/122690288-77a1c480-d1dd-11eb-81e8-f7804cba77d7.png)
+
+
+<br />
+
+### Approach 2: Change In-Place, firstMissingPositive()
+Credits to https://leetcode.com/problems/first-missing-positive/discuss/17214/Java-simple-solution-with-documentation
+
+This approach takes advantage of two insights:
+1. Numbers greater then length of `nums` can be ignored because the missing integer must be in the range `[1, length+1]`
+2. If each cell in the array were to contain positive integers only, we can use the negative of the stored number as a flag to mark something (in this case the flag indicates this index was found in some cell of the array)
+
+
+e.g. `nums=[2,1,7,8,9,11,12]`
+
+We first traverse the nums and keep only number within range `[1, length+1]`. For the numbers that are not in this range, we change it to length+1
 ```
-0 <= a, b, c, d < n
-a, b, c, and d are distinct.
-nums[a] + nums[b] + nums[c] + nums[d] == target
+2 1 7 8 9 11 12
+      ↓
+2 1 7 8 8 8 8
 ```
-You may return the answer in any order.
 
-### Approach 1: Two Pointers, fourSumBasedOnThreeSum()
-This approach is based on [3Sum](https://github.com/artisan1218/LeetCode-Solution/tree/main/threeSum) problem. The idea is to go through the list, fix one number at a time and find corresponding three sum and append them together. We just grab threeSum() and use it in a loop to achieve this. Time complexity is simply O(n\*threeSum Complexity), which is O(n^3).\
-Actual running time is indeed quite slow:
+Then we will change the value of a number to negtive if it is in range `[1, length+1]`, but we do not change them in same index but the index as if they were properly placed in an continuous and 0-based index array
+```
+2   1   7   8   8   8   8
+            ↓
+-2  -1  7   8   8   8   -8
+```
+Steps: 
+1. first read 2, 2 is within the range and it is **supposed** to be placed at index 1(because 2-1) of a continuous array. So set number at index 1 to be negative
+    ```
+    2  -1  7   8   8   8   8
+    ```
+2. read -1, take absolute value 1, 1 is within the range and it is **supposed** to be placed at index 0(becasue 1-1) of a continuous array. So set number at index 0 to be negative. 
+    ```
+    -2  -1  7   8   8   8   8
+    ```
+3. read 7, 7 is within the range and it is **supposed** to be placed at index 6(because 7-1) of a continuous array
+    ```
+    -2  -1  7   8   8   8   -8
+    ```
+4. read 8, 8 is not within the range, skip
+5. read 8, 8 is not within the range, skip
+6. read 8, 8 is not within the range, skip
+7. read -8, take absolute value 8, 8 is not within the range, skip
 
-![image](https://user-images.githubusercontent.com/25105806/119611564-b778b600-bdaf-11eb-833d-eaa0a89855ef.png)
+Then simply check for the first number that is positive, the index of that number plus 1 will be the answer because we've replaced any existing number in range 1 to len + 1 with negative value at it's corresponding index **as if** the array is continuous.
 
-
-### Approach 2: Two Pointers, Recursion, Solution.fourSum()
-Credits to https://leetcode.com/problems/4sum/discuss/8545/Python-140ms-beats-100-and-works-for-N-sum-(Ngreater2)
-\
-This approach considers a more generalized case of kSum. We can solve 2Sum problem really quick using two pointers, to solve 3Sum problem, simply fix a number and use 2Sum algorithm to find the rest two numbers. The idea can be extended to kSum by using recursion. 
-1. Base case: 2Sum using two pointers
-2. Recursive step: kSum = nSum(nums, k-1, k-1 result)
-
-We use recursion to reduce k down to 2 and keep the k-1 result to append it to k result. So that we always fix a number and find k-1 sum.
-
-Actual running time is quite fast:
-
-![image](https://user-images.githubusercontent.com/25105806/119612527-d9bf0380-bdb0-11eb-9bfa-f65f11284c64.png)
+Actual running time:/
+![image](https://user-images.githubusercontent.com/25105806/122690803-65755580-d1e0-11eb-835e-0f815d509726.png)
 
 
