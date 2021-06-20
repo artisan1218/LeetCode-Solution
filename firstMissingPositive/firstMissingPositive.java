@@ -7,13 +7,13 @@ public class firstMissingPositive {
 	// TODO Auto-generated method stub
 	int[] nums = { 2, 1, 7, 8, 9, 11, 12 };
 	Solution solver = new Solution();
-	System.out.println(solver.firstMissingPositive(nums));
+	System.out.println(solver.firstMissingPositiveInplaceHashing(nums));
 
     }
 
     private static class Solution {
 
-	public int firstMissingPositive(int[] nums) {
+	public int firstMissingPositiveInplaceHashing(int[] nums) {
 
 	    int len = nums.length;
 
@@ -63,7 +63,7 @@ public class firstMissingPositive {
 	/**
 	 * O(n) but not constant extra space
 	 */
-	public int firstMissingPositiveNTimeNSpace(int[] nums) {
+	public int firstMissingPositiveHashSet(int[] nums) {
 	    // cache the nums using HashSet
 	    Set<Integer> existence = new HashSet<>();
 	    for (int num : nums) {
