@@ -18,13 +18,6 @@ Actual running time:\
 Credits to: https://www.youtube.com/watch?v=AUIfTelAGVc and https://leetcode.com/problems/combination-sum/discuss/16509/Iterative-Java-DP-solution
 
 The DP idea is build a 2d array `dp` where each column represents the number from 1 up to `target` and each row represents the digits in `candidates`. Each slot in 2d array is a list combination of numbers that add up to the corresponding target number in that row. 
-
-![combinationSumAnimation](https://user-images.githubusercontent.com/25105806/122659346-1e2d8d00-d12c-11eb-9fca-6d4bbb99cd31.gif)
-
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum) to download the animation to play for yourself**
-
-<br />
-
 ```
 candidates=[1,2,3,6], target=3
 so we list target from 1 up to 3 and all candidates
@@ -35,6 +28,15 @@ so we list target from 1 up to 3 and all candidates
 3  [1,1,1,] [2,1] [3]   []
 
 ```
+
+
+![combinationSumAnimation](https://user-images.githubusercontent.com/25105806/122659346-1e2d8d00-d12c-11eb-9fca-6d4bbb99cd31.gif)
+
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum) to download the animation to play for yourself**
+
+<br />
+
+
 
 We will build up the `dp` array from `target=1` all the way up to `target=target` and the final result will be stored in `dp[dp.size()-1]`
 
