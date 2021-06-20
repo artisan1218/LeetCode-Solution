@@ -19,6 +19,10 @@ Credits to: https://www.youtube.com/watch?v=AUIfTelAGVc and https://leetcode.com
 
 The DP idea is build a 2d array `dp` where each column represents the number from 1 up to `target` and each row represents the digits in `candidates`. Each slot in 2d array is a list combination of numbers that add up to the corresponding target number in that row. 
 
+![combinationSumAnimation](https://user-images.githubusercontent.com/25105806/122659346-1e2d8d00-d12c-11eb-9fca-6d4bbb99cd31.gif)
+
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum) to download the animation to play for yourself**
+
 ```
 candidates=[1,2,3,6], target=3
 so we list target from 1 up to 3 and all candidates
