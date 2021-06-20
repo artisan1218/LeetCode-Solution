@@ -12,7 +12,7 @@ Since the hashset provides constant lookup time, it only takes O(n) time to chec
 
 <br />
 
-### Approach 2: Change In-Place, firstMissingPositive()
+### Approach 2: Change In-Place, firstMissingPositiveInplaceHashing()
 Credits to https://leetcode.com/problems/first-missing-positive/discuss/17214/Java-simple-solution-with-documentation
 
 This approach takes advantage of two insights:
