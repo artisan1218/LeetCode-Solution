@@ -55,7 +55,7 @@ Steps:
 
 Then simply check for the first number that is positive, the index of that number plus 1 will be the answer because we've replaced any existing number in range 1 to len + 1 with negative value at it's corresponding index **as if** the array is continuous.
 
-Actual running time:/
+Actual running time:\
 ![image](https://user-images.githubusercontent.com/25105806/122690803-65755580-d1e0-11eb-835e-0f815d509726.png)
 
 
