@@ -44,7 +44,7 @@ Steps:
     ```
     -2  -1  7   8   8   8   8
     ```
-3. read 7, 7 is within the range and it is **supposed** to be placed at index 6(because 7-1) of a continuous array
+3. read 7, 7 is within the range and it is **supposed** to be placed at index 6(because 7-1) of a continuous array. So set number at index 6 to be negative. 
     ```
     -2  -1  7   8   8   8   -8
     ```
