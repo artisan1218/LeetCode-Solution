@@ -1,48 +1,31 @@
-# Combination Sum problem
-* Given an array of **distinct** integers `candidates` and a target integer `target`, return a list of all unique combinations of `candidates` where the chosen numbers sum to `target`. You may return the combinations in **any order**.
-* The **same** number may be chosen from `candidates` an **unlimited number of times**. Two combinations are unique if the frequency of at least one of the chosen numbers is different.
-* It is guaranteed that the number of unique combinations that sum up to `target` is less than 150 combinations for the given input.
+# Combination Sum II problem
+* Given a collection of candidate numbers (`andidates`) and a target number (`target`), find all unique combinations in `candidates` where the candidate numbers sum to `target`.
+* Each number in `candidates` may only be used **once** in the combination.
+
+Note: The solution set must not contain duplicate combinations.
 
 
-### Approach 1: Backtracking, combinationSumBacktrack()
-This approach uses the technique called backtracking, which we will exhaust **every single permutation of digits** in `candidates` to cover all the possibilities that can add up to `target`. First I iterate through the `candidates` and pick a number in order, if the number plus current result is smaller than target, then we can add it safely and add another number recursively. If adding a number will exceed the `target`, we should return and backtrack the previous adding simply by removing it from the result list. This way, we can cover all possible permutations of any length of the `candidates`. Then we will remove duplicates and return the result.
-
-This is pretty similar to how we human find the combination sum: simply list all possible pairs
+### Approach 1: Backtracking, combinationSum2Backtrack()
+This approach is identical to the probelm combinationSum solved [here](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum) except for the fact that this time we are only allowed using each digit not more than once. So the change here is to add a `start` index that tells the loop where should it start getting numbers from `candidates`, we simply add to `start` by 1 each time we enter a new stack using recursion, which will avoid using a digit multiple times.
 
 Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/122658931-60a09b00-d127-11eb-8c3e-90c6f97d79b7.png)
+![image](https://user-images.githubusercontent.com/25105806/122664169-82fcdd80-d154-11eb-9c26-ad77151a7ecf.png)
+
 
 <br />
 
-### Approach 2: Dynamic Programming, combinationSumDP()
-Credits to: https://www.youtube.com/watch?v=AUIfTelAGVc and https://leetcode.com/problems/combination-sum/discuss/16509/Iterative-Java-DP-solution
+### Approach 2: Dynamic Programming, combinationSum2DP()
+Again, the solution is highly similar to the DP solution in [combinationSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum)
 
-The DP idea is build a 2d array `dp` where each column represents the number from 1 up to `target` and each row represents the digits in `candidates`. Each slot in 2d array is a list combination of numbers that add up to the corresponding target number in that row. 
-```
-candidates=[1,2,3,6], target=3
-so we list target from 1 up to 3 and all candidates
+The difference is that we now use a hashmap called `count` to count the occurrence of each digit in `candidates` and use it to avoid adding digits multiple times. Besides that, instead of going over the entire original `candidates`, we now only going through the unique digits set of the `candidates` to avoid duplicate combination.
 
-    1       2     3     6
-1  [1]      []    []    []
-2  [1,1]    [2]   []    []
-3  [1,1,1,] [2,1] [3]   []
-
-```
-
-
-![combinationSumAnimation](https://user-images.githubusercontent.com/25105806/122659346-1e2d8d00-d12c-11eb-9fca-6d4bbb99cd31.gif)
-
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum) to download the animation to play for yourself**
-
-<br />
-
-
+To put another word, a digit can still be used multiple times when building the combination array but we will only add those valid combination arrays to result, which are the combination array whose occurrence of each digits does not exceed the occurrence of corresponding digits in original array
 
 We will build up the `dp` array from `target=1` all the way up to `target=target` and the final result will be stored in `dp[dp.size()-1]`
 
 Time complexity is O(n\*target\*m) where n is the size of `candidates`, target is the size of `target` and m is the size of combination array that adds up to each target from 1 to target.\
 Actual running time:
 
-![image](https://user-images.githubusercontent.com/25105806/122659149-8cbd1b80-d129-11eb-8d96-65b84bf0606b.png)
+![image](https://user-images.githubusercontent.com/25105806/122664230-01f21600-d155-11eb-82b4-f743fdb6e73d.png)
 
 
