@@ -45,3 +45,4 @@ Records of all my solved problems on LeetCode
 |40       |[combinationSum 2](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSumII)|Medium|Backtracking, Dynamic Programming|False|Java|[Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)|
 |41       |[firstMissingPositive](https://github.com/artisan1218/LeetCode-Solution/tree/main/firstMissingPositive)|Hard|In-place Hashing|True|Java|[First Missing Positive](https://leetcode.com/problems/first-missing-positive/)|
 |42       |[trappingRainWater](https://github.com/artisan1218/LeetCode-Solution/tree/main/trapRainWater)|Hard|Dynamic Programming|True|Java, Python|[Trapping Rain Water](https://github.com/artisan1218/LeetCode-Solution/tree/main/trapRainWater)|
+|43       |[multipleStrings](https://github.com/artisan1218/LeetCode-Solution/tree/main/multiplyStrings)|Medium|Math|True|Python|[Multiply Strings](https://leetcode.com/problems/multiply-strings/)|
