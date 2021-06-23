@@ -48,6 +48,6 @@ Turns out we only need to find the tallest bar from the left and tallest bar fro
 As the image below suggests, we can scan the map in two passes to obtain tallest bar from left and tallest bar from right. Then use another pass to calculate the result.
 ![trapping_rain_water](https://user-images.githubusercontent.com/25105806/123040673-fc8d0980-d3a8-11eb-8f06-fce845f8b162.png)
 
-Time complexity is therefore O(3*\n) which is O(n)\
+Time complexity is therefore O(3\*n) which is O(n)\
 ![image](https://user-images.githubusercontent.com/25105806/123040807-352ce300-d3a9-11eb-8e24-813f6cee95b9.png)
 
