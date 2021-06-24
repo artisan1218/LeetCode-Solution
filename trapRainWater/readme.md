@@ -6,6 +6,7 @@
 
 ### Approach 1: Calculate Level by Level, trapLevelByLevel(), Java
 **Note: this solution is slow and lead to TLE**
+
 The idea is simple. We scan horizontally from the highest bar in the elevation map `height`. If a bar is taller or equal to the level height, we denote it with 1, otherwise with 0, then for each level, we compute the amount of water trapped and sum them up for the final answer.
 
 <img src="https://user-images.githubusercontent.com/25105806/123038940-21cc4880-d3a6-11eb-9e83-e75940ba8ca7.png" height="80%" width="80%">
