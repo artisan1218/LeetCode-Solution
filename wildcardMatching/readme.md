@@ -42,9 +42,9 @@ Then we can start the real DP part, there are 4 cases:
 2. we read a `*`. The `*` can match empty string or one/more string. If it matches empty string, which is equivalent to 'remove' the current `*` by looking at `dp[i][j-1]`; if it matches more string, which is equivalent to 'remove' the current char by looking at `dp[i-1][j]`
     ```
     p = "a?c*"
-    s = "abc"
+    s = "abcd"
     ```
-    we read a `*` and we need to check if `p = "a?c"` and s = `"abc"` is a valid matching(`*` matches none) or if `p = "a?c*"` and s = `"ab"` is a valid matching(`*` matches `c`)
+    we read a `*` and we need to check if `p = "a?c"` and s = `"abcd"` is a valid matching(`*` matches none) or if `p = "a?c*"` and s = `"abc"` is a valid matching(`*` matches `d`)
 3. If the string char matches the pattern char, again we can 'remove' this pattern char and the string char by looking at `dp[i-1][j-1]`
     ```
     p = "abc"
