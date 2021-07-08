@@ -1,26 +1,28 @@
-# Longest Palindromic Substring problem
-* Given a string `s`, return the longest palindromic substring in `s`.
+# Jump Game II problem
+* Given an array of non-negative integers `nums`, you are initially positioned at the first index of the array.
+* Each element in the array represents your maximum jump length at that position.
+* Your goal is to reach the last index in the minimum number of jumps.
+* You can assume that you can always reach the last index.
 
-### Approach 1: Brute Force, skipped
-The obvious brute force solution is to pick all possible starting and ending positions for a substring, and verify if it is a palindrome.\
-Finding all substrings of `s` uses O(n^2) time and verifying it uses O(n), so the final time complexity is O(n^3).
+### Approach 1: Greedy Algorithm, jumpGreedy(), jumpGreedy2()
+The idea is to choose the optimal index of jumping for the next jump at each jump and achieve the overall optimal solution.
 
-### Approach 2: Dynamic Programming, longestPalindromeMethodDP()
-Basic idea of this approach is to go through the list of characters of string `s`, for each of the character in s, expand the candidate result to left and right one character a time until left and right are not equal, keep the intermediate result and compare it with the next candidate result and keep the longest one.\
-<img src="https://user-images.githubusercontent.com/25105806/118064919-d9eee600-b350-11eb-8410-1a667e34b2ec.png" width="85%" height="85%">
+For example:
+```
+2, 3, 1, 2, 4, 2, 3
+```
 
+We start at index 0 with value 2, we can jump to 3 or 1. Since `3+1` is greater than `1+2`, we choose 3 to be the next jumping index.
+Note here the try to optimize `i+nums[i]` instead of just `nums[i]`, this is similar to heuristic search, where we take both length of path that takes us to current spot and the length of next path into account.
 
-Since we first go through the entire string, and for each character we expand at most len(s)/2 times, the worst case is when the entire string is a panlidorme, because we have to expand to both ends for each of the characters in the string and the time complexity is O(n^2).\
-![image](https://user-images.githubusercontent.com/25105806/118066893-5df69d00-b354-11eb-87a6-7f89288afd1f.png)
+If we only consider `nums[i]`, think about this example: `5, 4, 3, 2, 1, 1, 0`
 
-### Approach 3: Improved Dynamic Programming, longestPalindromeMethodCleanDP()
-The basic idea is the same as approach 2, but with improved data structure and logic structure. This solution has better readability.\
-The time complexity is the same as approach 2, which is O(n^2), the actual running time is as follows:
+Since 4 is the greatest one that we can jump from 5, we choose 4,\
+Since 3 is the greatest one that we can jump from 4, we choose 3,\
+Since 2 is the greatest one that we can jump from 3, we choose 2,\
+...\
+This will take more steps than the optimal solution
 
-![image](https://user-images.githubusercontent.com/25105806/118085398-35cc6580-b377-11eb-82a9-4da9c5bca99b.png)
+Time complexity is O(n):
+![image](https://user-images.githubusercontent.com/25105806/124996915-a520a780-dffe-11eb-8335-b67b7fa2a3ed.png)
 
-We can see that it is indeed a little bit faster.
-
-
-### Approach 4: Manacher's Algorithm, skipped
-There is indeed a solution with linear time complexity, but since it is specific to this longest palindrome question and thus not an universal idea like dynamic programming, it is skipped due to complexity.
