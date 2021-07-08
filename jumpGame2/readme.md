@@ -13,7 +13,9 @@ For example:
 ```
 
 We start at index 0 with value 2, we can jump to 3 or 1. Since `3+1` is greater than `1+2`, we choose 3 to be the next jumping index.
-Note here the try to optimize `i+nums[i]` instead of just `nums[i]`, this is similar to heuristic search, where we take both length of path that takes us to current spot and the length of next path into account.
+Note here the try to optimize `i+nums[i]` instead of just `nums[i]`, this is similar to heuristic search, where we take both length of path that takes us to current spot and the length of next path into account.\
+At index 1 with value 3, we can jump to 1, 2, or 4. Since 4 has the greatest value of `i+nums[i]`, we choose 4.\
+Then at 4 we can jump to the end.
 
 If we only consider `nums[i]`, think about this example: `5, 4, 3, 2, 1, 1, 0`
 
