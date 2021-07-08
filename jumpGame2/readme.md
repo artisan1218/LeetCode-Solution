@@ -23,6 +23,9 @@ Since 2 is the greatest one that we can jump from 3, we choose 2,\
 ...\
 This will take more steps than the optimal solution
 
+
+<br />
 Time complexity is O(n):
+
 ![image](https://user-images.githubusercontent.com/25105806/124996915-a520a780-dffe-11eb-8335-b67b7fa2a3ed.png)
 
