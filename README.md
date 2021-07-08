@@ -47,3 +47,4 @@ Records of all my solved problems on LeetCode
 |42       |[trappingRainWater](https://github.com/artisan1218/LeetCode-Solution/tree/main/trapRainWater)|Hard|Dynamic Programming|True|Java, Python|[Trapping Rain Water](https://github.com/artisan1218/LeetCode-Solution/tree/main/trapRainWater)|
 |43       |[multiplyStrings](https://github.com/artisan1218/LeetCode-Solution/tree/main/multiplyStrings)|Medium|Math|True|Python|[Multiply Strings](https://leetcode.com/problems/multiply-strings/)|
 |44       |[wildcardMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/wildcardMatching)|Hard|Backtracking, Dynamic Programming|True|Python|[Wildcard Matching](https://leetcode.com/problems/wildcard-matching/)|
+|45       |[jumpGame2](https://github.com/artisan1218/LeetCode-Solution/tree/main/jumpGame2)|Medium|Greedy Algorithm|True|Java|[Jump Game II](https://leetcode.com/problems/jump-game-ii/)|
