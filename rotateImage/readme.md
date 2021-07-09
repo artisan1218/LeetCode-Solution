@@ -1,23 +1,41 @@
-# Roman to Integer problem
-* Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
+# Rotate Image problem
+* You are given an `n x n` 2D `matrix` representing an image, rotate the image by 90 degrees (clockwise).
+* You have to rotate the image in-place, which means you have to modify the input 2D matrix directly. DO NOT allocate another 2D matrix and do the rotation.
+
+  ![image](https://user-images.githubusercontent.com/25105806/125137755-2ee57900-e0c2-11eb-83b2-ac03ffc25329.png)
+
+
+<br />
+
+### Approach 1: List Comprehension, rotateListComprehension()
+Use list compresion to do the conversion: `[[1,2,3],[4,5,6],[7,8,9]]` will be rotated to `[[7,4,1],[8,5,2],[9,6,3]]`. That is, the first element in each row in the original `matrix` in reverse order, then second element, then third element.
+
+Running time:\
+![image](https://user-images.githubusercontent.com/25105806/125138371-643e9680-e0c3-11eb-8620-33fa35c67aca.png)
+
+
+
+
+
+### Approach 2: Zip, rotateZip()
+This approach is similar to approach 1, but use the built-in `zip` function of python to obtain the vertical row of the matrix.
+
+Running time:\
+![image](https://user-images.githubusercontent.com/25105806/125138405-6dc7fe80-e0c3-11eb-9710-1b3722c1c11d.png)
+
+
+### Approach 3: Common Method for Rotating, rotate()
+Credits to: https://leetcode.com/problems/rotate-image/discuss/18872/A-common-method-to-rotate-the-image
+
+Turns out we can first flip the matrix upside down and swap the elements along the diagonal
 ```
-Symbol       Value
-I             1
-V             5
-X             10
-L             50
-C             100
-D             500
-M             1000
+first reverse up to down, then swap the symmetry 
+1 2 3     7 8 9     7 4 1
+4 5 6  => 4 5 6  => 8 5 2
+7 8 9     1 2 3     9 6 3
 ```
-Given a roman numeral, convert it to an integer.
+Running time:\
+![image](https://user-images.githubusercontent.com/25105806/125138419-74567600-e0c3-11eb-8aeb-d18b0e47a180.png)
 
 
-### Approach 1: Math, romanToInt()
-Simply iterate through the given String `s`, convert the single character to corresponding integer value and compare it with its immediate preceeding value. 
-1. If the current value is smaller than the preceedingt value, then we're good by simply adding the value to `result`
-2. If the current value is greater than the preceeding value, e.g. `IV`, 4 is smaller than 1, we need to do a little math here by adding `digit - 2 * preceedingDigit`, which is `4-2*1=2` in this case. So the final value will be `1+2=3`.
-
-Time complexity is O(n) since we iterate over each char of the given string `s`.
-![image](https://user-images.githubusercontent.com/25105806/118631228-23da3080-b784-11eb-9a7f-93ff46d97a44.png)
 
