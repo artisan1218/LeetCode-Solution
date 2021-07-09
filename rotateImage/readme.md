@@ -34,7 +34,7 @@ first reverse up to down, then swap the symmetry
 4 5 6  => 4 5 6  => 8 5 2
 7 8 9     1 2 3     9 6 3
 ```
-Running time:\
+Time complexity is O(m) where m is the number of digits in the matrix, running time:\
 ![image](https://user-images.githubusercontent.com/25105806/125138419-74567600-e0c3-11eb-8aeb-d18b0e47a180.png)
 
 
