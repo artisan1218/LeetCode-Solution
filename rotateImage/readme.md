@@ -15,6 +15,7 @@ Running time:\
 
 
 
+<br />
 
 
 ### Approach 2: Zip, rotateZip()
@@ -23,6 +24,7 @@ This approach is similar to approach 1, but use the built-in `zip` function of p
 Running time:\
 ![image](https://user-images.githubusercontent.com/25105806/125138405-6dc7fe80-e0c3-11eb-9710-1b3722c1c11d.png)
 
+<br />
 
 ### Approach 3: Common Method for Rotating, rotate()
 Credits to: https://leetcode.com/problems/rotate-image/discuss/18872/A-common-method-to-rotate-the-image
