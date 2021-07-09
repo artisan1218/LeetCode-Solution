@@ -49,3 +49,4 @@ Records of all my solved problems on LeetCode
 |44       |[wildcardMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/wildcardMatching)|Hard|Backtracking, Dynamic Programming|True|Python|[Wildcard Matching](https://leetcode.com/problems/wildcard-matching/)|
 |45       |[jumpGame2](https://github.com/artisan1218/LeetCode-Solution/tree/main/jumpGame2)|Medium|Greedy Algorithm|True|Java|[Jump Game II](https://leetcode.com/problems/jump-game-ii/)|
 |46       |[permutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutations)|Medium|DFS|True|Python|[Permutations](https://leetcode.com/problems/permutations/)|
+|47       |[permutations2](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutations2)|Medium|DFS|False|Python|[Permutations II](https://leetcode.com/problems/permutations-ii/)|
