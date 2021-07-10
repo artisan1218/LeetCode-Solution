@@ -51,3 +51,4 @@ Records of all my solved problems on LeetCode
 |46       |[permutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutations)|Medium|DFS|True|Python|[Permutations](https://leetcode.com/problems/permutations/)|
 |47       |[permutations2](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutations2)|Medium|DFS|False|Python|[Permutations II](https://leetcode.com/problems/permutations-ii/)|
 |48       |[rotateImage](https://github.com/artisan1218/LeetCode-Solution/tree/main/rotateImage)|Medium|List Manipulation|True|Python|[Rotate Image](https://leetcode.com/problems/rotate-image/)|
+|49       |[groupAnagrams](https://github.com/artisan1218/LeetCode-Solution/tree/main/groupAnagrams)|Medium|HashMap|False|Python|[Group Anagrams](https://leetcode.com/problems/group-anagrams/)|
