@@ -19,7 +19,7 @@ n%2==0, result = 3*81, n=n//2=0, break
 return result=243
 ```
 
-Running time:
+Time complexity is O(logn), actual running time:
 
 ![image](https://user-images.githubusercontent.com/25105806/125179669-3df12780-e1a5-11eb-8976-141d1be7002a.png)
 
