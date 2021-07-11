@@ -2,7 +2,7 @@
 * Implement `pow(x, n)`, which calculates `x` raised to the power `n` (i.e., x^n).
 
 
-### Approach 1: Math, myPow()
+### Approach 1: Binary Exponentiation, myPow()
 
 2^3 can be written as `2*2*2`. If we simply use a loop to do the multiplication, the running time will be very long and lead to TLE. Instead, it can be written as `2*4`, where 4 is equal to `2*2` and we only loop twice. More specifically, every time we multiply the result, we also multiply `x` by itself and halve the `n`.
 
