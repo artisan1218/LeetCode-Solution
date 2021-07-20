@@ -24,19 +24,19 @@ class Solution:
             if self.isSafe2Place(col, row, board):
                 # fill in the current board
                 current[col][row] = 'Q'
-                self.updateBoard(col, row, board, 'add')
+                self.updateBoard(col, row, n, board, 'add')
                 # check next row
                 # if there is a solution, will append this board to result
                 self.backtracking(row+1, board, current, result, n)
                 # backtrack
                 current[col][row] = '.'
-                self.updateBoard(col, row, board, 'remove')
+                self.updateBoard(col, row, n, board, 'remove')
 
             
     def isSafe2Place(self, x, y, board):
         return board[x][y][-1]
 
-    def updateBoard(self, x, y, board, mode):
+    def updateBoard(self, x, y, n, board, mode):
         # new queen will be placed at x, y
 
         if mode=='add':
