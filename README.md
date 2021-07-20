@@ -53,3 +53,4 @@ Records of all my solved problems on LeetCode
 |48       |[rotateImage](https://github.com/artisan1218/LeetCode-Solution/tree/main/rotateImage)|Medium|List Manipulation|True|Python|[Rotate Image](https://leetcode.com/problems/rotate-image/)|
 |49       |[groupAnagrams](https://github.com/artisan1218/LeetCode-Solution/tree/main/groupAnagrams)|Medium|HashMap|False|Python|[Group Anagrams](https://leetcode.com/problems/group-anagrams/)|
 |50       |[pow(x, n)](https://github.com/artisan1218/LeetCode-Solution/tree/main/pow(x%2C%20n))|Medium|Binary Exponentiation|True|Python|[Pow(x, n)](https://leetcode.com/problems/powx-n/)|
+|51       |[n-queens](https://github.com/artisan1218/LeetCode-Solution/tree/main/n-queens)|Hard|Backtracking|False|Python|[N-Queens](https://leetcode.com/problems/n-queens/)|
