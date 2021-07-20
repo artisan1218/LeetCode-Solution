@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[21]:
+# In[2]:
 
 
 from typing import List
@@ -18,9 +18,6 @@ class Solution:
         if row == n:
             current_result = [''.join(rowList) for rowList in current]
             result.append(current_result)
-            current = [['.' for _ in range(n)] for _ in range(n)]
-            board = [[[True] for _ in range(n)] for _ in range(n)]
-            placedQueen = 0
             return
             
         for col in range(n):
@@ -114,4 +111,8 @@ if __name__ == "__main__":
     print(result)
 
 
-# 
+# In[ ]:
+
+
+
+
