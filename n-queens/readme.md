@@ -15,5 +15,5 @@ The idea is to use recursion to try each possible spot to place the queen. If a 
 Reference: https://leetcode.com/problems/n-queens/discuss/243428/Python-solution and https://www.youtube.com/watch?v=xouin83ebxE
 
 Time complexity is O(n!) where n is the number of queens.
-![image](https://user-images.githubusercontent.com/25105806/126276495-766e476e-1977-4bad-bdd4-43d6187aa854.png)
+![image](https://user-images.githubusercontent.com/25105806/126394168-788ab572-cc4d-4e09-ab15-db86bef07918.png)
 
