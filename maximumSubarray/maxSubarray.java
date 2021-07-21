@@ -4,12 +4,12 @@ public class maxSubarray {
 	// TODO Auto-generated method stub
 	int[] nums = new int[] { 1, 2, -1, -2, 2, 1, -2, 1, 4, -5, 4 };
 	Solution solver = new Solution();
-	System.out.println(solver.maxSubArray(nums));
+	System.out.println(solver.maxSubArrayDP(nums));
     }
 
     static class Solution {
 
-	public int maxSubArray(int[] nums) {
+	public int maxSubArrayDP(int[] nums) {
 	    // dp[i] is the maximum sum of subarray up to index i
 	    int[] dp = new int[nums.length];
 	    dp[0] = nums[0];
