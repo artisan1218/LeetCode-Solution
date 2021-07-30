@@ -58,3 +58,4 @@ Records of all my solved problems on LeetCode
 |53       |[maximumSubarray](https://github.com/artisan1218/LeetCode-Solution/tree/main/maximumSubarray)|Easy|Dynamic Programming|True|Java|[Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)|
 |54       |[spiralMatrix](https://github.com/artisan1218/LeetCode-Solution/tree/main/spiralMatrix)|Medium|List Traversal|False|Python|[Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)|
 |55       |[jumpGame](https://github.com/artisan1218/LeetCode-Solution/tree/main/jumpGame)|Medium|Greedy Algorithm, Backtracking|False|Python|[Jump Game](https://leetcode.com/problems/jump-game/)|
+|56       |[mergeIntervals](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeIntervals)|Medium|List Traversal|False|Python|[Merge Intervals](https://leetcode.com/problems/merge-intervals/)|
