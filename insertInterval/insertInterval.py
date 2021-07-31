@@ -106,28 +106,4 @@ if __name__ == "__main__":
     print(result)
 
 
-# In[116]:
-
-
-intervals = [[0,2]]
-newInterval = [4,8]
-
-s, e = newInterval[0], newInterval[1]
-left = [i for i in intervals if i[1] < s]
-right = [i for i in intervals if i[0] > e]
-
-
-left
-
-
-# In[117]:
-
-
-right
-
-
-# In[ ]:
-
-
-
 
