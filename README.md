@@ -59,3 +59,4 @@ Records of all my solved problems on LeetCode
 |54       |[spiralMatrix](https://github.com/artisan1218/LeetCode-Solution/tree/main/spiralMatrix)|Medium|List Traversal|False|Python|[Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)|
 |55       |[jumpGame](https://github.com/artisan1218/LeetCode-Solution/tree/main/jumpGame)|Medium|Greedy Algorithm, Backtracking|False|Python|[Jump Game](https://leetcode.com/problems/jump-game/)|
 |56       |[mergeIntervals](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeIntervals)|Medium|List Traversal|False|Python|[Merge Intervals](https://leetcode.com/problems/merge-intervals/)|
+|57       |[insertIntervals](https://github.com/artisan1218/LeetCode-Solution/tree/main/insertInterval)|Medium|List Traversal|False|Python|[Insert Interval](https://leetcode.com/problems/insert-interval/)|
