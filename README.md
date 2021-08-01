@@ -61,3 +61,4 @@ Records of all my solved problems on LeetCode
 |56       |[mergeIntervals](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeIntervals)|Medium|List Traversal|False|Python|[Merge Intervals](https://leetcode.com/problems/merge-intervals/)|
 |57       |[insertIntervals](https://github.com/artisan1218/LeetCode-Solution/tree/main/insertInterval)|Medium|List Traversal|False|Python|[Insert Interval](https://leetcode.com/problems/insert-interval/)|
 |58       |[lengthOfLastWord](https://github.com/artisan1218/LeetCode-Solution/tree/main/lengthOfLastWord)|Easy|Str Traversal|False|Python|[Length of Last Word](https://leetcode.com/problems/length-of-last-word/)|
+|59       |[spiralMatrix II](https://github.com/artisan1218/LeetCode-Solution/tree/main/spiralMatrix%20II)|Medium|List Traversal|False|Python|[Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/)|
