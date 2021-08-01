@@ -60,3 +60,4 @@ Records of all my solved problems on LeetCode
 |55       |[jumpGame](https://github.com/artisan1218/LeetCode-Solution/tree/main/jumpGame)|Medium|Greedy Algorithm, Backtracking|False|Python|[Jump Game](https://leetcode.com/problems/jump-game/)|
 |56       |[mergeIntervals](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeIntervals)|Medium|List Traversal|False|Python|[Merge Intervals](https://leetcode.com/problems/merge-intervals/)|
 |57       |[insertIntervals](https://github.com/artisan1218/LeetCode-Solution/tree/main/insertInterval)|Medium|List Traversal|False|Python|[Insert Interval](https://leetcode.com/problems/insert-interval/)|
+|58       |[lengthOfLastWord](https://github.com/artisan1218/LeetCode-Solution/tree/main/lengthOfLastWord)|Easy|Str Traversal|False|Python|[Length of Last Word](https://leetcode.com/problems/length-of-last-word/)|
