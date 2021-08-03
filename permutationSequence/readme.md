@@ -42,4 +42,5 @@ If `n=4, k=2` and we are solving the outer most digit, which means we need to kn
 There are `factorial(n-1)` permutations that start with same digit, so we calcualte `(k-1)//factorial(n-1)` to get the ith number of permutations, which is the outer digit. Then remove the added digit from digit set, update `k` with `k = k % factorial(n-1)` and calculate again until we've added all `n` numbers.
 
 Running time:
+
 ![3ef5bdb91c83a39ab5b5e40bb5d1e30](https://user-images.githubusercontent.com/25105806/128087973-627b8357-33d5-4319-9eda-fd03cd0e222a.png)
