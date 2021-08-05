@@ -1,12 +1,15 @@
-# Search Insert Position problem
-* Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
-* You must write an algorithm with `O(log n)` runtime complexity.
+# Rotate List problem
+* Given the head of a linked list, rotate the list to the right by `k` places.
+  ![image](https://user-images.githubusercontent.com/25105806/128293111-5722a2c3-a1a9-4d67-8fed-57503e8cf190.png)
 
+<br />
 
-### Approach 1: Binary Search, searchInsert()
-This nothing but a regular binary search. The only tricky thing is that: if the target does not exist in the array `nums`, the place where it would be if it were inserted in order is exactly the place where `left` and `right` meet because they narrow down the range in searching for target and they meet before finding the target, so, just return `left` if it were not found.
+### Approach 1: Create Circle and Move, rotateRight()
+The idea of this solution is to first connect the tail to `head` so that we form a circle. Then we will move the `head` to correct index by subtract `k` from the length of the linked list, finally cut the circle at index before `head`.
+Note that `k` is updated by `k%length of linked list` because if k is longer than the length of the linked list, we can simply get the mod because rotating 7 times of a length 6 linked list is no difference than rotating once
 
-Time complexity is O(log n) for binary search:
-![image](https://user-images.githubusercontent.com/25105806/122149655-47d77300-ce11-11eb-86df-c404f0796066.png)
+Time complexity is O(n):
+
+![8ffc16572bcd6bc6f02ee411ae874c7](https://user-images.githubusercontent.com/25105806/128293291-95fec2ce-fcef-425e-9cf4-b42762a552ee.png)
 
 
