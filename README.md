@@ -64,3 +64,4 @@ Records of all my solved problems on LeetCode
 |59       |[spiralMatrix II](https://github.com/artisan1218/LeetCode-Solution/tree/main/spiralMatrix%20II)|Medium|List Traversal|False|Python|[Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/)|
 |60       |[permutationSequence](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutationSequence)|Hard|Math|True|Python|[Permutation Sequence](https://leetcode.com/problems/permutation-sequence/)|
 |61       |[rotateList](https://github.com/artisan1218/LeetCode-Solution/tree/main/rotateList)|Medium|LinkedList|False|Python|[Rotate List](https://leetcode.com/problems/rotate-list/)|
+|62       |[uniquePaths](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniquePaths)|Medium|DFS, Recursion|False|Python|[Unique Paths](https://leetcode.com/problems/unique-paths/)|
