@@ -65,3 +65,4 @@ Records of all my solved problems on LeetCode
 |60       |[permutationSequence](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutationSequence)|Hard|Math|True|Python|[Permutation Sequence](https://leetcode.com/problems/permutation-sequence/)|
 |61       |[rotateList](https://github.com/artisan1218/LeetCode-Solution/tree/main/rotateList)|Medium|LinkedList|False|Python|[Rotate List](https://leetcode.com/problems/rotate-list/)|
 |62       |[uniquePaths](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniquePaths)|Medium|DFS, Recursion|False|Python|[Unique Paths](https://leetcode.com/problems/unique-paths/)|
+|63       |[uniquePaths II](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniquePaths%20II)|Medium|Dynamic Programming|True|Python|[Unique Paths II](https://leetcode.com/problems/unique-paths-ii/)|
