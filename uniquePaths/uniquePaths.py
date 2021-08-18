@@ -28,7 +28,7 @@ class Solution:
         if m==1 or n==1:
             return 1
         else:
-            result += self.uniquePathsMath(m-1, n) + self.uniquePathsMath(m, n-1)
+            result += self.uniquePathsMathNaive(m-1, n) + self.uniquePathsMath(m, n-1)
             return result 
         
     def uniquePathsMathOptimized(self, m: int, n: int) -> int:
