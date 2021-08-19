@@ -1,16 +1,17 @@
-# Multiply Strings problem
-* Given two non-negative integers `num1` and `num2` represented as strings, return the product of `num1` and `num2`, also represented as a string.
-* Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
+# Minimum Path Sum problem
+* Given a `m x n` `grid` filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
+* Note: You can only move either down or right at any point in time.
 
 
-### Approach 1: Math, multiply()
-This approach is really the very definition of multiplication, we can divide a multiplication into this:
+### Approach 1: Brute Force, Skipped
+Since we can compute all unique paths using dfs recursion, we can sum up the values along the path and take the minimum sum as the result. But this approach is not time efficient. Skipped.
 
-`123 * 456` can be splited into `100*400 + 100*50 + 100*6 + 20*400 + 20*50 + 20*6 + 3*400 + 3*50 + 3*6`. That is, each digit with its magnitude in `num1` multiply each digit with magnitude in `num2` and we sum them up to get the result\
-We simply use two for-loop to do this, outer loop is to iterate through each digit of the longer number, inner loop is to iterate through each digit of the shorter number, then we multiply them together
+### Approach 2: Dynamic Programming, minPathSum()
+This solution is similar to the DP solution in [uniquePaths II](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniquePaths%20II), we first work out the sum of path for the first row and first column, then from (1, 1), sum up the cell value with the minimum sum of cell value above it or left of it, this way we can make sure that at each cell, the value is the minimum sum of path value so far. The final result is therefore at `grid[-1][-1]`
 
-Time complexity is O(m\*n) where m is the length of `num1` and n is the length of `num2`:
-![image](https://user-images.githubusercontent.com/25105806/123171061-26d5da00-d430-11eb-8965-29e608bd82f3.png)
+Running time complexity is O(n):\
+![572526aec123063f4e91c22c405b1fd](https://user-images.githubusercontent.com/25105806/130027535-03e13f53-ed21-4464-a3d0-9d3af22296a1.png)
+
 
     
 
