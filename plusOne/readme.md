@@ -1,26 +1,15 @@
-# Pow(x, n) problem
-* Implement `pow(x, n)`, which calculates `x` raised to the power `n` (i.e., x^n).
+# Plus One problem
+* Given a **non-empty** array of decimal digits representing a non-negative integer, increment one to the integer.
+* The digits are stored such that the most significant digit is at the head of the list, and each element in the array contains a single digit.
+* You may assume the integer does not contain any leading zero, except the number 0 itself.
 
 
-### Approach 1: Binary Exponentiation, myPow()
+### Approach 1: Math, plusOne()
+This approach is same as how we manually plus one to a digit. Starting from the least digit, add 1 to it and take care of carry on digit if the sum exceeds 10.
 
-2^3 can be written as `2*2*2`. If we simply use a loop to do the multiplication, the running time will be very long and lead to TLE. Instead, it can be written as `2*4`, where 4 is equal to `2*2` and we only loop twice. More specifically, every time we multiply the result, we also multiply `x` by itself and halve the `n`.
+Time complexity is O(n):
 
-So 3^5 can be written as `3*81` because:
+![7e59b64e1930fae438e26a48556f583](https://user-images.githubusercontent.com/25105806/130334530-8735046f-04de-4097-975d-5f9c19fb839a.png)
 
-```
-x = 3
-n = 5
-
-n%2==1, result = 3, x=3*3=9, n=n//2=2
-n%2==0, result = 3, x=9*9=81, n=n//2=1
-n%2==0, result = 3*81, n=n//2=0, break
-
-return result=243
-```
-
-Time complexity is O(logn), actual running time:
-
-![image](https://user-images.githubusercontent.com/25105806/125179669-3df12780-e1a5-11eb-8976-141d1be7002a.png)
 
 
