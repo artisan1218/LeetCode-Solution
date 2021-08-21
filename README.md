@@ -67,3 +67,4 @@ Records of all my solved problems on LeetCode
 |62       |[uniquePaths](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniquePaths)|Medium|DFS, Recursion|False|Python|[Unique Paths](https://leetcode.com/problems/unique-paths/)|
 |63       |[uniquePaths II](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniquePaths%20II)|Medium|Dynamic Programming|True|Python|[Unique Paths II](https://leetcode.com/problems/unique-paths-ii/)|
 |64       |[minPathSum](https://github.com/artisan1218/LeetCode-Solution/blob/main/minimumPathSum/readme.md)|Medium|Dynamic Programming|False|Python|[Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/)|
+|65       |[validNumber](https://github.com/artisan1218/LeetCode-Solution/tree/main/validNumber)|Hard|DFA|True|Python|[Valid Number](https://leetcode.com/problems/valid-number/)|
