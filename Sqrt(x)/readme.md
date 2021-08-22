@@ -1,27 +1,30 @@
-# Sudoku Solver problem
-Write a program to solve a Sudoku puzzle by filling the empty cells.\
-A sudoku solution must satisfy all of the following rules:
-1. Each of the digits `1-9` must occur exactly once in each row.
-2. Each of the digits `1-9` must occur exactly once in each column.
-3. Each of the digits `1-9` must occur exactly once in each of the 9 `3x3` sub-boxes of the grid.
+# Sqrt(x) problem
+* Given a non-negative integer `x`, compute and return the square root of `x`.
+* Since the return type is an integer, the decimal digits are truncated, and only the integer part of the result is returned.
+* Note: You are not allowed to use any built-in exponent function or operator, such as `pow(x, 0.5)` or `x ** 0.5`.
 
-The '.' character indicates empty cells.
+### Approach 1: Bruth Force, mySqrtIncrementOne()
+This approach simply will test all possible answers from 1 and increment 1 each time until we find the correct square root. 
 
+Time complexity is O(sqrt(n)) because we will loop for sqrt(n) times to find the correct root:\
+![dc98fa160c123617e32bf4db53a0d94](https://user-images.githubusercontent.com/25105806/130344946-8cc1dc1d-0acc-4af0-ad1e-25d053895b91.png)
 
-  ![image](https://user-images.githubusercontent.com/25105806/122307617-888dc580-cebf-11eb-8e27-20141b63e55f.png)
+<br />
 
+### Approach 2: Binary Search, mySqrtBinarySearch()
+This is similar to approach 1 but we first use binary search to narrow down the range for the possible answers by doubling the answer each time in the loop. Then use same strategy as approach 1 to find the correct square root by testing all numbers in the range. This will save us some time when the correct answer is large because doubling will use log() time.
 
-### Approach 1: Backtracking, solveSudoku()
-This approach takes idea from https://leetcode.com/problems/sudoku-solver/discuss/294215/Simple-concise-clear-Python-solution and this video expains the algorithm very well: https://www.youtube.com/watch?v=eqUwSA0xI-s
-
-We basically find an empty slot denoted by `'.'` row by row  and start guessing numbers from 1 to 9 that can be filled in at this spot. If the number is valid(meet all three requirements mentioned above), then we will update the `board` with this number and use recursion to find the next empty slot. If, at some point, there are no numbers can validate the sudoku, we should quit the current recursion stack and backtrack the digit filled previously by changing the slot back to `'.'`\
-I use three check lists `row_check`, `col_check` and `box_check` to make the checking faster using only constant time by storing unqiue numbers in each row, each columns and each sub-boxes in sets and update them along the way.
-
-Time complexity is O(n + 9^m) where `n` is the number of all digits in the `board` and `m` is the number of digits that we need to fill in. O(n) is to build the initial check lists and O(9^m) is to exhaust all possible combinations recursively.\
-Actual running time:
-
-![image](https://user-images.githubusercontent.com/25105806/122506456-404fcf80-cfb3-11eb-95a7-531a2512d9ae.png)
+Actual running time, we can see that the running time is indeed a lot faster:\
+![c47758c2e02c041c6919ed00bfbf774](https://user-images.githubusercontent.com/25105806/130345057-2b33fdd7-d663-4301-b08b-8f864139b62c.png)
 
 
+<br />
 
+### Approach 3: Newton's method, mySqrtNewton()
+This approach is based on Newton's method to approximate square root. The formula is shown below:\
+![image](https://user-images.githubusercontent.com/25105806/130345122-7d86394a-e727-4f5e-84b3-2bba130f688f.png)
+
+
+Actual running time is the fastest among all three approaches:\
+![image](https://user-images.githubusercontent.com/25105806/130345134-9d1bb0f1-57c4-4dbf-9b2e-1674bc1c9328.png)
 
