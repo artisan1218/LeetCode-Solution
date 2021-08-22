@@ -70,3 +70,4 @@ Records of all my solved problems on LeetCode
 |65       |[validNumber](https://github.com/artisan1218/LeetCode-Solution/tree/main/validNumber)|Hard|DFA|True|Python|[Valid Number](https://leetcode.com/problems/valid-number/)|
 |66       |[plusOne](https://github.com/artisan1218/LeetCode-Solution/tree/main/plusOne)|Easy|Math|False|Python|[Plus One](https://leetcode.com/problems/plus-one/)|
 |67       |[addBinary](https://github.com/artisan1218/LeetCode-Solution/tree/main/addBinary)|Easy|Math|False|Python|[Add Binary](https://leetcode.com/problems/add-binary/)|
+|68       |[textJustification](https://github.com/artisan1218/LeetCode-Solution/tree/main/textJustification)|Hard|List Traversal|False|Python|[Text Justification](https://leetcode.com/problems/text-justification/)|
