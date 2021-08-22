@@ -71,3 +71,4 @@ Records of all my solved problems on LeetCode
 |66       |[plusOne](https://github.com/artisan1218/LeetCode-Solution/tree/main/plusOne)|Easy|Math|False|Python|[Plus One](https://leetcode.com/problems/plus-one/)|
 |67       |[addBinary](https://github.com/artisan1218/LeetCode-Solution/tree/main/addBinary)|Easy|Math|False|Python|[Add Binary](https://leetcode.com/problems/add-binary/)|
 |68       |[textJustification](https://github.com/artisan1218/LeetCode-Solution/tree/main/textJustification)|Hard|List Traversal|False|Python|[Text Justification](https://leetcode.com/problems/text-justification/)|
+|69       |[Sqrt(x)](https://github.com/artisan1218/LeetCode-Solution/tree/main/Sqrt(x))|Easy|Math|False|Python|[Sqrt(x)](https://leetcode.com/problems/sqrtx/)|
