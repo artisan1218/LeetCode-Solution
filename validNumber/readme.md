@@ -1,4 +1,4 @@
-#Valid Number problem
+# Valid Number problem
 * A valid number can be split up into these components (in order):
   1. A decimal number or an integer.
   2. (Optional) An 'e' or 'E', followed by an integer.
