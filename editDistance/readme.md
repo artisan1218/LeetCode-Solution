@@ -1,11 +1,11 @@
-# Divide Two Integers problem
-* Given two integers `dividend` and `divisor`, divide two integers without using multiplication, division, and mod operator.
-* Return the quotient after dividing `dividend` by `divisor`.
-* The integer division should truncate toward zero, which means losing its fractional part. For example, `truncate(8.345) = 8` and `truncate(-2.7335) = -2`.
-
-Note: Assume we are dealing with an environment that could only store integers within the **32-bit** signed integer range: `[−2^31, 2^31 − 1]`. For this problem, assume that your function returns `2^31 − 1` **when the division result overflows**.
-
-### Approach 1: Naive, Skipped()
+# Edit Distance problem
+* Given two strings word1 and word2, return the minimum number of operations required to convert `word1` to `word2`.
+* You have the following three operations permitted on a word:
+  1. Insert a characte.
+  2. Delete a character.
+  3. Replace a character
+ 
+### Approach 1: Dynamic Programming, minDistance()
 The idea is very straightforward and comes from the definition of 'dividing': that is, how many `divisors` are contained in `dividend`. We simply subtract divisor from dividend once a time until `dividend` is smaller than `divisor`, which means `dividend` does not contain `divisor` anymore. \
 For example: we divide 5000 by 14:
 * We can subtract 14 from 5000 for 357 times: 14\*357=4998 and 5000-4998=2 and 2<14. quotient = 357
@@ -22,30 +22,19 @@ Note that this approach definitely works, but this will lead to ETL on leetcode.
 
 ### Approach 2, Bit-wise Manipulation, divide()
 
-Credits to:
-1. https://leetcode.com/problems/divide-two-integers/discuss/142849/C%2B%2BJavaPython-Should-Not-Use-%22long%22-Int
-2. https://leetcode.com/problems/divide-two-integers/discuss/13407/C%2B%2B-bit-manipulations
-3. https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html
+Credits to: https://www.youtube.com/watch?v=We3YDTzNXEk
 
-The idea of how bitwise manipulation works is similar to approach 1, but instead of subtract strictly `divisor` from `dividend` every time, we subtract `divisor * 2^x` from `dividend` where `x` is a multiplier that grows by 1 each time.
+The dynamic programming will build 2-d matrix from `word1` and `word2`. Each slot represents the number of edits needed to convert from word1 to word2:\
+For example, the top-left corner has a value of 0, which means converting `''` to `''` requires 0 edit, while 2 at the first row means converting `'hor'` to `''` requires 3 edits.
 
-For example:
-Suppose dividend = 15 and divisor = 3, 15 - 3 > 0.\
-We now try to subtract more by shifting 3 to the left by 1 bit (6). Since 15 - 6 > 0, shift 6 again to 12. Now 15 - 12 > 0, shift 12 again to 24, which is larger than 15. \
-So we can at most subtract 12 from 15. Since 12 is obtained by shifting 3 to left twice, it is 1 << 2 = 4 times of 3. We add 4 to an answer variable (initialized to be 0).\
-The above process is like 15 = 3 * 4 + 3. We now get part of the quotient (4), with a remaining dividend 3.\
-Then we repeat the above process by subtracting divisor = 3 from the remaining dividend = 3 and obtain 0. \
-We are done. In this case, no shift happens. We simply add 1 << 0 = 1 to the answer variable.
+<img src="https://user-images.githubusercontent.com/25105806/130541915-9dc25d56-92f3-4846-babe-9f2aad4d04d6.jpg" width="50%" height="50%">
 
--2^31 divide by -1 is the only edge case that we need to worry about. This will make result to be 2^31 which overflows the Integer.MAX_VALUE. We can simply return 2^31-1 when `dividend=-2^31` and `divisor=-1`.
+We can initialize first row and first column easily. Starting from position `[1][1]`, there are two cases to consider:
+1. If the character `c1` corresponding to row and character `c2` corresponding to column is the same, then it requires no more extra edit to convert, we can simply set the value as `matrix[row-1][col-1]`. For example converting from `'ho'` to `'ro'` requires the same amount of edits as to converting from `'h'` to `'r'` because they both share `'o'`
+2. If the character `c1` and `c2` are not the same, then the value should be the minimum edit distances among all three neighbors plus one. 1 here means we need one more edit than whatever the smallest edit distance is. 
 
-Note that the in the code, the line ```absDivisor << x << 1``` can not be replaced with ```absDivisor << x + 1```. They may seem the same statement but will perform differently when overflow happens.
-For example, in Java: ```1 << 31 << 1``` is `0` while ```1 << 32``` is `1`.
+Keep filling out the matrix and return the `dp[-1[-1]`
 
-Time complexity is O(logN^2) because we will double the `divisor` every time we can subtract it from `dividend`, resulting in a much faster 'convergence'.
-
-![image](https://user-images.githubusercontent.com/25105806/121135050-f6176300-c7e8-11eb-85dd-f8adb7130443.png)
-
-
-
+Time complexity is O(mn) where `m` is the size of `word1` and `n` is the size of `word2`:\
+![image](https://user-images.githubusercontent.com/25105806/130542771-16f019d7-4d00-4944-a1cc-73531e3fc30c.png)
 
