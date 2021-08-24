@@ -74,3 +74,4 @@ Records of all my solved problems on LeetCode
 |69       |[Sqrt(x)](https://github.com/artisan1218/LeetCode-Solution/tree/main/Sqrt(x))|Easy|Math|False|Python|[Sqrt(x)](https://leetcode.com/problems/sqrtx/)|
 |70       |[climbStairs](https://github.com/artisan1218/LeetCode-Solution/tree/main/climbStairs)|Easy|Math|False|Python|[Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)|
 |71       |[simplifyPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/simplifyPath)|Medium|Str Traversal|False|Python|[Simplify Path](https://leetcode.com/problems/simplify-path/)|
+|72       |[editDistance](https://github.com/artisan1218/LeetCode-Solution/tree/main/editDistance)|Hard|Dynamic Programming|True|Python|[Edit Distance](https://leetcode.com/problems/edit-distance/)|
