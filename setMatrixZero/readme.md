@@ -1,28 +1,41 @@
-# Search in Rotated Sorted Array problem
-* There is an integer array `nums` sorted in ascending order (with distinct values).
-* Prior to being passed to your function, `nums` is rotated at an unknown pivot index `k` (`0 <= k < nums.length`) such that the resulting array is `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed)`. For example, `[0,1,2,4,5,6,7]` might be rotated at pivot index 3 and become `[4,5,6,7,0,1,2]`.
-* Given the array `nums` **after** the rotation and an integer target, return the index of target if it is in `nums`, or `-1` if it is not in `nums`.
-* You must write an algorithm with `O(log n)` runtime complexity.
+# Set Matrix Zeroes problem
+* Given an `m x n` integer matrix matrix, if an element is `0`, set its entire row and column to `0`'s, and return the matrix.
+* You must do it in place.
 
 
-### Approach 1: Binary Search with Recursion, searchBinarySearch1()
-Since the arra `nums` is guaranteed to be rotated at some pivot, we can first use binary search to find the pivot point, then find the target according to the pivot point using again, binary search.\
-The function `binarySearchPivot()` is used to find pivot point with recursion. If the pivot is not presented in a subarray, it will return -1 (Note here that -1 simply means the pivot point is **NOT** in this subarray) and take the max value of the pivot of two subarrays to find the actual pivot point.\
-The function `binarySearchTarget()` is to find the actual target. It will first decide which part of the entire array does the target locate in, then just search using regular binary search.
+### Approach 1: Naive, Space(M\*N), setZeroesSpaceMN()
+The challenge of this problem is that changing one row and column to zero's without remembering all the places of zero will affect the remaining numbers. The simplest way to do this is to store all the positions of zeros and set the corresponding row and column to 0's one by one.
+This therefore requires O(m\*n) space complexity
 
-The time complexity is O(log n) because we merely use two binary search, which is O(log n) for each.
-![image](https://user-images.githubusercontent.com/25105806/121980659-30c95000-cd41-11eb-8c39-772032e4b718.png)
+![image](https://user-images.githubusercontent.com/25105806/131763395-59175464-e258-4bb3-83df-d99dfdef1ede.png)
+
 
 <br />
 
-### Approach 2: Improved Binary Search, searchBinarySearch2()
-The idea is the same as approach 1 but use iteration to find the pivot point instead of recursion. This is also an O(log n) solution with two pass binary search. First to find pivot and second to find actual target.
+### Approach 2: Space(M+N), setZeroesSpaceMPlusN()
+Turns out it only requires one 0 in each row, each column to set all numbers of that row and column to 0. So we can only store the number of rows and columns that contains 0 and change them one by one because storing more than one 0 in each row or column does not change the result, so only store one 0 to save space. The worst case is we store M+N 0's. So the space complexity is O(M+N)
+![image](https://user-images.githubusercontent.com/25105806/131763633-0155c1ae-c037-4af1-a7ae-6b168919f8c1.png)
 
-Demo:
+<br />
 
-<img src="https://user-images.githubusercontent.com/25105806/121984069-30cc4e80-cd47-11eb-860b-c0822d67db05.gif" height="90%" width="90%">
+### Approach 3: Constant Space, setZeroesConstantSpace()
+The most space efficient way to do this is to first determine whether there are 0's in the first row and first column by using two boolean variables.\
+Consider the matrix below, there is a 0 in the first column and there is no 0 at the first row:\
+<img src="https://user-images.githubusercontent.com/25105806/131764345-b1d9a74e-077f-4a05-b9d8-eaddb4ec7b62.jpg" width="50%" height="50%">
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/searchRotatedSortedAry/searchRotatedSortedAry.ppsx) to download the animation to play for yourself**
+Go over the entire matirx, if the current value is 0, then that means we need to change the entire row and column to be 0, but in order to mantain the matrix so that the remaining numbers will not be confused by the 0's set by us and 0's come with the matrix, we only set the first element in that row and column to be 0. Since we've already remembered whether there are 0's in the first row and column, this will not affect the first row and column.\
+Note that the blue 0's are all in the first row or column corresponed to the 0's in the matrix.\
+<img src="https://user-images.githubusercontent.com/25105806/131764673-27ed6218-e8a8-4474-8114-97dd760df46c.jpg" width="50%" height="50%">
 
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/121980862-8dc50600-cd41-11eb-83a7-348a00de126a.png)
+Then at starting at position `[1,1]` of the `matrix` (skipping first row and column and we will deal with them later), go over the entire matirx, if the first element of the corresponding row and column is 0, change this value to be 0.\
+The green 0's are set because there is a 0 either at the first element of that row or first element of that column.\
+<img src="https://user-images.githubusercontent.com/25105806/131764843-a8ea04a6-cd11-4ad0-8ca8-3c90fcc7618f.jpg" width="50%" height="50%">
+
+Finally, check if there are zero's in the first column or row by looking at the boolean value of the two variables. If true, then set the entire row or column to be zero's as well.\
+Yellow 0's are set because there is at least one 0 at the first column, this is known by checking the boolean variable `colZero`.\
+<img src="https://user-images.githubusercontent.com/25105806/131764939-55888fc6-2012-4b7c-91fc-bb552cde90bb.jpg" width="50%" height="50%">
+
+
+Since we do not store any positional information about the 0's, we use only constant space:\
+![image](https://user-images.githubusercontent.com/25105806/131764106-ff5ebfc5-4e31-4af7-bd19-925e5908326f.png)
+
