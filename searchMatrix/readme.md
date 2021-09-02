@@ -1,26 +1,25 @@
-# Find First and Last Position of Element in Sorted Array problem
-* Given an array of integers `nums` sorted in ascending order, find the starting and ending position of a given `target` value.
-* If target is not found in the array, return `[-1, -1]`.
-* You must write an algorithm with `O(log n)` runtime complexity.
+# Search a 2D Matrix problem
+* Write an efficient algorithm that searches for a value in an `m x n` matrix. This matrix has the following properties:
+* Integers in each row are sorted from left to right.
+* The first integer of each row is greater than the last integer of the previous row.
+* Return `True` if `target` is found in the matrix, otherwise `False`
 
+### Approach 1: Column First, then Row, searchMatrixColRow()
+Since the matrix is sorted, we can first search by the first element in each row, starting at row number 0 until we found a element that is bigger than the  `target`, then the row number will be the previous row index. Then simply search through that row to find the `target`.
 
-### Approach 1: Binary Search and Expand Around Center, searchRangeExpandAroundMiddle()
-Since the array `nums` is a non-decreasing array, we can use binary search to first find the target value. Note that there might be several target values in the array, the goal here is find one of them, then we expand to left and right around that 'center' value. 
+Time complexity O(M+N) where M is the number of rows and N is the number of columns:\
+![image](https://user-images.githubusercontent.com/25105806/131790088-e53057d3-6735-49e4-9606-0b9dc8ca0817.png)
 
-The time complexity is not strictly O(log n) but O(log n + m) where m is the length of the valid targets.\
-Actual running time:
-
-![image](https://user-images.githubusercontent.com/25105806/122143381-39d02500-ce06-11eb-9525-0f29ef74343c.png)
 
 <br />
 
-### Approach 2: Two Pass Binary Search, searchRangeTwoPassBinarySearch()
-This approach is a strictly O(log n) approach where we first search for the starting index of the range using one binary search, which takes O(log n) time then use another binary search to find the ending index of the range, which is also O(log n).\
-We need to modify the standard binary search algorithm in order to find the starting or ending index of the target. The idea is:
-1. When finding the starting index, if the midpoint value is equal to target, we do not return it yet, instead, keep moving right pointer to left to check the values before the midpoint value.
-2. When finding the ending index, if the midpoint value is equal to target, we do not return it yet, instead, keep moving left pointer to the right to check the values after the midpoint value.
+### Approach 2: Binary Search, searchMatrixBinarySearch()
+Credits to: https://leetcode.com/problems/search-a-2d-matrix/discuss/26220/Don't-treat-it-as-a-2D-matrix-just-treat-it-as-a-sorted-list
 
-The total time complexity is therefore O(2\*logn) which is O(log n)
+Turns out we can treat the sorted matrix as a sorted list in ascending order, each element is greater than the previous value. We only need to convert the index number in the sorted list to coordinates in terms of row index and column index in the matrix.\
+`rowIndex = listIndex//rowLen` and `colIndex = listIndex%rowLen`.\
+Then simply use binary search to find the `target`
 
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/122143548-8582ce80-ce06-11eb-9707-ccc640010d8c.png)
+Time complexity is O(logN) where N is the total number of elements in the matrix:\
+![image](https://user-images.githubusercontent.com/25105806/131790577-2e9a10c7-79b3-4e76-923e-48f1bea8258d.png)
+
