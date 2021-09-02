@@ -76,3 +76,4 @@ Records of all my solved problems on LeetCode
 |71       |[simplifyPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/simplifyPath)|Medium|Str Traversal|False|Python|[Simplify Path](https://leetcode.com/problems/simplify-path/)|
 |72       |[editDistance](https://github.com/artisan1218/LeetCode-Solution/tree/main/editDistance)|Hard|Dynamic Programming|True|Python|[Edit Distance](https://leetcode.com/problems/edit-distance/)|
 |73       |[setMatrixZero](https://github.com/artisan1218/LeetCode-Solution/tree/main/setMatrixZero)|Medium|List Traversal|True|Python|[Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)|
+|74       |[searchMatrix](https://github.com/artisan1218/LeetCode-Solution/tree/main/searchMatrix)|Medium|Binary Search, List Traversal|False|Python|[Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)|
