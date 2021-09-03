@@ -3,7 +3,7 @@ Records of all my solved problems on LeetCode
 
 |Problem #|Solution Link                                                                        |Difficulty|Category|Demo|Language|LeetCode Link|
 | :----:  | :---------------------------------------------------------------------------------: | :-------:|:-------:|:------:|:------:|:-----------:|
-|1        |[twoSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/twoSum)     |Easy      |HashMap     |False|Java    |[Two Sum](https://leetcode.com/problems/two-sum/)|
+|1        |[Sum](https://github.com/artisan1218/LeetCode-Solution/tree/main/twoSum)     |Easy      |HashMap     |False|Java    |[Two Sum](https://leetcode.com/problems/two-sum/)|
 |2        |[addTwoNums](https://github.com/artisan1218/LeetCode-Solution/tree/main/addTwoNums)|Medium |Math     |False|Java    |[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|
 |3        |[lngestSubstrW/ORptingChar](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestSubstringWithoutRepeating)|Medium|Sliding Window|True|Java|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|
 |4        |[medianOfTwoSortedAry](https://github.com/artisan1218/LeetCode-Solution/tree/main/medianOfTwoSortedArys)|Hard|Binary Search|True|Java|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|
@@ -77,3 +77,5 @@ Records of all my solved problems on LeetCode
 |72       |[editDistance](https://github.com/artisan1218/LeetCode-Solution/tree/main/editDistance)|Hard|Dynamic Programming|True|Python|[Edit Distance](https://leetcode.com/problems/edit-distance/)|
 |73       |[setMatrixZero](https://github.com/artisan1218/LeetCode-Solution/tree/main/setMatrixZero)|Medium|List Traversal|True|Python|[Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)|
 |74       |[searchMatrix](https://github.com/artisan1218/LeetCode-Solution/tree/main/searchMatrix)|Medium|Binary Search, List Traversal|False|Python|[Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)|
+|75       |[sortColors](https://github.com/artisan1218/LeetCode-Solution/tree/main/sortColors)|Medium|Two Pointers, Sorting|False|Python|[Sort Colors](https://leetcode.com/problems/sort-colors/)|
+|76       |[minWindow](https://github.com/artisan1218/LeetCode-Solution/tree/main/minWindow)|Hard|Two Pointers|False|Python|[Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)|
