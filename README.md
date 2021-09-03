@@ -78,3 +78,4 @@ Records of all my solved problems on LeetCode
 |73       |[setMatrixZero](https://github.com/artisan1218/LeetCode-Solution/tree/main/setMatrixZero)|Medium|List Traversal|True|Python|[Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)|
 |74       |[searchMatrix](https://github.com/artisan1218/LeetCode-Solution/tree/main/searchMatrix)|Medium|Binary Search, List Traversal|False|Python|[Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)|
 |75       |[sortColors](https://github.com/artisan1218/LeetCode-Solution/tree/main/sortColors)|Medium|Two Pointers, Sorting|False|Python|[Sort Colors](https://leetcode.com/problems/sort-colors/)|
+|76       |[minWindow](https://github.com/artisan1218/LeetCode-Solution/tree/main/minWindow)|Hard|Two Pointers|False|Python|[Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)|
