@@ -12,7 +12,7 @@ class Solution:
         current = []
         for length in range(1, len(nums)+1):
             self.backtrack(nums, current, result, 0, length)
-        return result
+        return [[]] + result
         
     def backtrack(self, nums, current, result, start, length):
         if len(current) == length:
