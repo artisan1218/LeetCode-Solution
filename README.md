@@ -1,4 +1,4 @@
-# LeetCode-Solution
+# LeetCode Solution
 Records of all my solved problems on LeetCode
 
 |Problem #|Solution Link                                                                        |Difficulty|Category|Demo|Language|LeetCode Link|
