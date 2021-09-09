@@ -81,3 +81,4 @@ Records of all my solved problems on LeetCode
 |76       |[minWindow](https://github.com/artisan1218/LeetCode-Solution/tree/main/minWindow)|Hard|Two Pointers|False|Python|[Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)|
 |77       |[combinations](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinations)|Medium|Backtracking|False|Python|[Combinations](https://leetcode.com/problems/combinations/)|
 |78       |[subsets](https://github.com/artisan1218/LeetCode-Solution/tree/main/subsets)|Medium|Backtracking, Cascading|True|Python|[Subsets](https://leetcode.com/problems/subsets/)|
+|79       |[wordSearch](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordSearch)|Medium|Backtracking|False|Python|[Word Search](https://leetcode.com/problems/word-search/)|
