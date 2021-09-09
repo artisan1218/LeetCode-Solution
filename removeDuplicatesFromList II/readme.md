@@ -26,6 +26,9 @@ We will allow maximum of two duplicates elements in the array, so the key here i
 Note: 2 is greater than the element two indices before *, which is 1. So update element ^
 
 1 1 2 2 2 3 3
+    ^ *
+      
+1 1 2 2 2 3 3
       ^ *
       
 1 1 2 2 2 3 3
