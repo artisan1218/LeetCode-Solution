@@ -1,9 +1,48 @@
 # Remove Duplicates from Sorted Array II problem
-* Given a sorted array nums, remove the duplicates in-place such that each element appears only once and returns the new length.
-* Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+![image](https://user-images.githubusercontent.com/25105806/132615584-cf3801fe-4d5d-450a-9495-74925438523b.png)
+
 
 ### Approach 1: Two Pointers, removeDuplicates()
-The key point is that the given array `nums` is sorted in ascending order. We can use two pointers, one fast mover and one slow mover, to check the elements from left to right. The slow mover `modifier` is to modify the element in the array `nums` so that the array contains only unique elements. The fast mover `cursor` is to read every elements and check if the element is already added.\
+Use two pointers both starting at index 0, one for modify the array, another one for getting new values. The `checkCursor` will travel faster than `modCursor` because `checkCursor` will move to the right by one in each iteration.\
+We will allow maximum of two duplicates elements in the array, so the key here is to check the elements two indices before the current `checkCursor`, since the array is sorted in acsending order, if the current element is greater than elements 2 indices before it, then we should assign the current value to the index pointed by `modCursor`. Basically, we are overwriting the first k elements with maximum of two repeating characters while keep the remaining part unchanged.
+
+```
+^ is modCursor and * is checkCursor
+
+1 1 1 2 2 3 3
+^ 
+*
+
+1 1 1 2 2 3 3
+  ^ 
+  *
+
+1 1 1 2 2 3 3
+    ^ 
+    *
+
+1 1 1 2 2 3 3
+    ^ *
+Note: 2 is greater than the element two indices before *, which is 1. So update element ^
+
+1 1 2 2 2 3 3
+      ^ *
+      
+1 1 2 2 2 3 3
+        ^ *
+Note: 3 is greater than the element two indices before *, which is 2. So update element ^
+
+1 1 2 2 3 3 3
+        ^ *
+        
+1 1 2 2 3 3 3
+          ^ *
+
+1 1 2 2 3 3 3
+            ^ *
+Done
+```
+
 We will only read the array once, so the time complexity is O(n)
 
-![image](https://user-images.githubusercontent.com/25105806/120942324-13f7a180-c6dd-11eb-9281-49715af99163.png)
+![b8b725e518481931c451d44acc3399f](https://user-images.githubusercontent.com/25105806/132616264-e167cf3a-3a4f-4967-a893-979f442272ac.png)
