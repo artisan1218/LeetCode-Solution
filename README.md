@@ -91,5 +91,5 @@ Records of all my solved problems on LeetCode
 # Other Problems
 |Problem |Solution Link                                                                        |Category|Demo|Language|
 | :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|
-|Permutation of if blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|
+|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|
 
