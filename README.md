@@ -84,7 +84,7 @@ Records of all my solved problems on LeetCode
 |79       |[wordSearch](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordSearch)|Medium|Backtracking|False|Python|[Word Search](https://leetcode.com/problems/word-search/)|
 |80       |[removeDuplicates II](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromList%20II)|Medium|Two Pointers|True|Python|[Remove Duplicates from Sorted Array II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)|
 |81       |[searchRotatedSortedAry II](https://github.com/artisan1218/LeetCode-Solution/blob/main/searchRotatedSortedAry%20II)|Medium|Binary Search|False|Python|[Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)|
-|82       |[removeDuplicatesFromSortedList II](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromSortedList%20II)|Medium|Two Pointers|False|Python|[Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)|
+|82       |[rmDuplicatesFromSortedList II](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromSortedList%20II)|Medium|Two Pointers|False|Python|[Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)|
 
 
 <br />
