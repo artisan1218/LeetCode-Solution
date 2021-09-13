@@ -1,18 +1,16 @@
-# Length of Last Word problem
-* Given a string `s` consists of some words separated by spaces, return the length of the last word in the string. If the last word does not exist, return `0`.
-* A **word** is a maximal substring consisting of non-space characters only.
+# Largest Rectangle in Histogram problem
+* Given an array of integers `heights` representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.
 
-### Approach 1: Trim Trailing White Spaces and Split, lengthOfLastWordStripAndSplit()
-Since a word is considered as non-space characters only, we cannot directly use `.split(' ')` function to split the word because for `s='a '`, there will be an empty character `''` at the end. Instead, use `.strip()` function to remove any white spaces at the end of `s` and then split, then return the length of the last word. We can use `rstrip()` to only remove the white spaces at the right side of `s` since we will only deal with trailing white spaces. 
-
-Time complexity is O(n):
-
-![c5755379fa949bbf45b3abeb708dbe7](https://user-images.githubusercontent.com/25105806/127754356-35af67b4-fe77-4e88-9b33-cc45699262fa.png)
+<img width="611" alt="image" src="https://user-images.githubusercontent.com/25105806/133164438-29b0084b-d72a-4097-8791-667f9196993b.png">
 
 
-### Approach 2: Looping, lengthOfLastWordLoop()
-The idea is same as approach 1 but we use loop to achieve it instead. Start from the end, count only non-space characters until we meet a space that marks the end of last word.
+
+### Approach 1: Monotonic Stack, largestRectangleArea()
+Credits to: https://www.youtube.com/watch?v=zx5Sw9130L0
+
+This solution utilized monotonic stack where we only append new pair of elements (index, height) when the height of current bar is higher than the height of last bar in stack, that's why it is monotonic increasing. When we have a bar that is lower than the height of bar on top of stack we pop the lower bar out of the stack and calculate the area of max rectangle. Then we check the remaining the bar in the stack after all bars have been visited. Since the remaining bar are guranteed to be in increasing order, the width is simply the total length of the heights.
 
 Time complexity is O(n):
 
-![c5755379fa949bbf45b3abeb708dbe7](https://user-images.githubusercontent.com/25105806/127754356-35af67b4-fe77-4e88-9b33-cc45699262fa.png)
+<img width="666" alt="image" src="https://user-images.githubusercontent.com/25105806/133164866-716f757e-e134-49cd-9a5a-cc0b6f2febde.png">
+
