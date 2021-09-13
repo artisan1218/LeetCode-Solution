@@ -1,9 +1,30 @@
-# Remove Duplicates from Sorted Array problem
-* Given a sorted array nums, remove the duplicates in-place such that each element appears only once and returns the new length.
-* Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+# Remove Duplicates from Sorted List problem
+* Given the `head` of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
 
-### Approach 1: Two Pointers, removeDuplicates()
-The key point is that the given array `nums` is sorted in ascending order. We can use two pointers, one fast mover and one slow mover, to check the elements from left to right. The slow mover `modifier` is to modify the element in the array `nums` so that the array contains only unique elements. The fast mover `cursor` is to read every elements and check if the element is already added.\
-We will only read the array once, so the time complexity is O(n)
+### Approach 1: Iteration 1, deleteDuplicates1()
+Use two pointers `pred` and `head` to iterate through the list. `head` will be used to check the next element an `pred` will be used to compare the value and skip duplicates
 
-![image](https://user-images.githubusercontent.com/25105806/120942324-13f7a180-c6dd-11eb-9281-49715af99163.png)
+Time complexity is O(n):\
+<img width="807" alt="image" src="https://user-images.githubusercontent.com/25105806/133155830-d0a0556c-e2e0-4905-8ddf-d63545e44694.png">
+
+
+### Approach 2: Iteration 2, deleteDuplicates2()
+Since idea but much concise code. The key part is we skip one duplicate a time, skip all duplicates after the loop
+```
+while cur.next!=None and cur.val==cur.next.val:
+    cur.next = cur.next.next # skip one duplicate a time, skip all duplicates after the loop
+```
+
+Time complexity is O(n):\
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/25105806/133156080-fd532bf8-2baf-4f5a-907c-74c880a8f1c1.png">
+
+
+### Approach 3: Recursion, deleteDuplicates3()
+Credits to: https://leetcode.com/problems/remove-duplicates-from-sorted-list/discuss/28625/3-Line-JAVA-recursive-solution
+
+This might not be the most efficient solution, but the idea is simple:\
+<img width="1002" alt="image" src="https://user-images.githubusercontent.com/25105806/133156260-ece0e662-4143-423c-9953-62750de1cd16.png">
+
+
+We will keep entering the recursion stack with next element, so the linked list in each recursion stack is one less element than previous one. Then simply return the `head` of the linked list if the `head.val` is not same as `head.next.val` and return `head.next` if they are the same. This way we can ensure that the returned linked list is always unique with no duplicates.
+
