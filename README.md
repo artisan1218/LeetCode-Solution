@@ -1,4 +1,4 @@
-# LeetCode-Solution
+# LeetCode Solution
 Records of all my solved problems on LeetCode
 
 |Problem #|Solution Link                                                                        |Difficulty|Category|Demo|Language|LeetCode Link|
@@ -80,3 +80,17 @@ Records of all my solved problems on LeetCode
 |75       |[sortColors](https://github.com/artisan1218/LeetCode-Solution/tree/main/sortColors)|Medium|Two Pointers, Sorting|False|Python|[Sort Colors](https://leetcode.com/problems/sort-colors/)|
 |76       |[minWindow](https://github.com/artisan1218/LeetCode-Solution/tree/main/minWindow)|Hard|Two Pointers|False|Python|[Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)|
 |77       |[combinations](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinations)|Medium|Backtracking|False|Python|[Combinations](https://leetcode.com/problems/combinations/)|
+|78       |[subsets](https://github.com/artisan1218/LeetCode-Solution/tree/main/subsets)|Medium|Backtracking, Cascading|True|Python|[Subsets](https://leetcode.com/problems/subsets/)|
+|79       |[wordSearch](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordSearch)|Medium|Backtracking|False|Python|[Word Search](https://leetcode.com/problems/word-search/)|
+|80       |[removeDuplicates II](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromList%20II)|Medium|Two Pointers|True|Python|[Remove Duplicates from Sorted Array II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)|
+|81       |[searchRotatedSortedAry II](https://github.com/artisan1218/LeetCode-Solution/blob/main/searchRotatedSortedAry%20II)|Medium|Binary Search|False|Python|[Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)|
+|82       |[rmDuplicatesFromSortedList II](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromSortedList%20II)|Medium|Two Pointers|False|Python|[Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)|
+
+
+<br />
+
+# Other Problems
+|Problem |Solution Link                                                                        |Category|Demo|Language|
+| :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|
+|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|
+
