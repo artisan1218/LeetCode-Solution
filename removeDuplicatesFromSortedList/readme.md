@@ -28,3 +28,6 @@ This might not be the most efficient solution, but the idea is simple:\
 
 We will keep entering the recursion stack with next element, so the linked list in each recursion stack is one less element than previous one. Then simply return the `head` of the linked list if the `head.val` is not same as `head.next.val` and return `head.next` if they are the same. This way we can ensure that the returned linked list is always unique with no duplicates.
 
+Actual running time:\
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/25105806/133156873-6311db41-071d-4ee9-96fc-d685dea70f60.png">
+
