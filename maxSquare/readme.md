@@ -1,23 +1,11 @@
-# Maximum Subarray problem
-* Given an integer array `nums`, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+# Maximal Square problem
+* Given an `m x n` binary matrix filled with `0's` and `1's`, find the largest square containing only `1's` and return its area.
 
 
-### Approach 1: Bruth Force, maxSubArrayBruteForce()
-This solution leads to TLE\
-The idea is to exhaust all possible subarrays of the `nums` array and calculate sum and return the maximum sum. Time complexity is therefore O(n^3) where finding all possible subarrays will take O(n^2) and calculate sum of subarray will take O(n)
+### Approach 1: Dynamic Programming, maximalSquare()
+Credits to: https://www.youtube.com/watch?v=_Lf1looyJMU&list=PLPF7kEFdTM01pt_t39BC5nWdju4eskICf&index=3
 
+The idea is to build a dp matrix, first row and first column is simply copy of the first row and first column of `matrix`. Starting at position (1,1), each cell is dependent on the minimal value of the three neighbors around it, namely, `min(dp[row-1][col], dp[row][col-1], dp[row-1][col-1]) + 1`. Then simply return the square of the maximal value.
 
-
-### Approach 2: Dynamic Programming, maxSubArrayDP()
-Algorithm credits to https://leetcode.com/problems/maximum-subarray/discuss/20193/DP-solution-and-some-thoughts
-
-The main idea is to use an array `dp` to holds the maximum sum of subarray up to index `i`: For example `dp[i]=3` means the maximum sum subarrays ending at index `i` is 3.\
-We will only pass the `nums` once, for each of the new element, if the previous element in `dp` is greater than 0, which means the maximum sum if greater than 0, we can then sum up the current value with `dp[i-1]` because adding previous value will make our sum bigger. However, if the previous value in `dp` array is 0 or smaller than 0, we should add current value directly to `dp` array because adding previous value will make our sum smaller, so we will be better off if ignoring all values before current one. Then we can simply maintain a variable to hold the maximum sum seen so far and return it at the end.
-
-![maxSubarrayAnimation](https://user-images.githubusercontent.com/25105806/126414463-64f0ff28-791c-44b3-ad80-2f9de23b135f.gif)
-
-
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/maximumSubarray/maxSubarrayAnimation.ppsx) to download the animation to play for yourself.**
-
-Time complexity is O(n)\
-![image](https://user-images.githubusercontent.com/25105806/126412809-138d3f81-764c-4fe8-99dd-b23eec194138.png)
+Time complexity is O(mn) where m and n is the height and width of the `matrix`:
+![image](https://user-images.githubusercontent.com/25105806/133669677-3ab85f80-52e8-436b-b538-d5c9c013e60a.png)
