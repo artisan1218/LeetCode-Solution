@@ -87,6 +87,7 @@ Records of all my solved problems on LeetCode
 |82       |[rmDuplicatesFromSortedList II](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromSortedList%20II)|Medium|Two Pointers|False|Python|[Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)|
 |83       |[rmDuplicatesFromSortedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeDuplicatesFromSortedList)|Easy|LinkedList, Recursion|True|Python|[Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)|
 |84       |[largestRecInHist](https://github.com/artisan1218/LeetCode-Solution/blob/main/largestRecInHist)|Hard|Stack|False|Python|[Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)|
+|85       |[maxRec](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxRec)|Hard|Dynamic Programming|False|Python|[Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 
 
