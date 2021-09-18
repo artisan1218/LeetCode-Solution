@@ -96,7 +96,7 @@ Records of all my solved problems on LeetCode
 <br />
 
 # Other Problems
-|Problem |Solution Link                                                                        |Category|Demo|Language|
-| :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|
-|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|
+|Problem |Solution Link                                                                        |Category|Demo|Language|Company|
+| :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|:------:|
+|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|Facebook|
 
