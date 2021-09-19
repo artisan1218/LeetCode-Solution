@@ -48,7 +48,7 @@ since gr = rg and eat = tea, this is valid
 To speed up, we use memorization to avoid checking already checked pairs of (s1, s2)
 
 
-Actual running time:
+Actual running time:\
 ![image](https://user-images.githubusercontent.com/25105806/133915499-a87786d8-a3dc-4d11-a006-9758c2d6a036.png)
 
 
