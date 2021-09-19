@@ -5,8 +5,8 @@
 * For example given two 3x3 grids:
 ```
 G1:	111		G2: 111
-	   100			 100
-	   100			 101
+	100		    100
+	100		    101
 ```
 * There are two regions in G2: {(0,0), (0,1), (0,2), (1,0), (2,0)} and {(2,2)}. Regions in G1 cover the first region in G2 but not the second region. Thus, there is only one matching region.
 
