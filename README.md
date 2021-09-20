@@ -1,7 +1,7 @@
 # LeetCode Solution
 Records of all my solved problems on LeetCode
 
-|Problem #|Solution Link                                                                        |Difficulty|Category|Demo|Language|LeetCode Link|
+|Question #|Solution Link                                                                        |Difficulty|Category|Demo|Language|LeetCode Link|
 | :----:  | :---------------------------------------------------------------------------------: | :-------:|:-------:|:------:|:------:|:-----------:|
 |1        |[Sum](https://github.com/artisan1218/LeetCode-Solution/tree/main/twoSum)     |Easy      |HashMap     |False|Java    |[Two Sum](https://leetcode.com/problems/two-sum/)|
 |2        |[addTwoNums](https://github.com/artisan1218/LeetCode-Solution/tree/main/addTwoNums)|Medium |Math     |False|Java    |[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|
@@ -97,8 +97,8 @@ Records of all my solved problems on LeetCode
 
 <br />
 
-# Other Problems
-|Problem |Solution Link                                                                        |Category|Demo|Language|Source|
+# Other Questions
+|Question |Solution Link                                                                        |Category|Demo|Language|Source|
 | :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|:------:|
 |Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|Facebook|
 |Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|TuSimple, Twitter|
