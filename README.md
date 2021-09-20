@@ -91,6 +91,7 @@ Records of all my solved problems on LeetCode
 |86       |[partitionList](https://github.com/artisan1218/LeetCode-Solution/tree/main/partitionList)|Medium|LinkedList, Two Pointers|False|Python|[Partition List](https://leetcode.com/problems/partition-list/)|
 |87       |[scrambleString](https://github.com/artisan1218/LeetCode-Solution/tree/main/scrambleString)|Hard|Recursion|True|Python|[Scramble String](https://leetcode.com/problems/scramble-string/)|
 |88       |[mergeSortedAry](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeSortedAry)|Easy|List Traversal|False|Python|[Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)|
+|89       |[grayCode](https://github.com/artisan1218/LeetCode-Solution/tree/main/grayCode)|Medium|Bit Manipulation|False|Python|[Gray Code](https://leetcode.com/problems/gray-code/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 
 
