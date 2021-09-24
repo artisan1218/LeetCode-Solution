@@ -94,6 +94,7 @@ Records of all my solved problems on LeetCode
 |89       |[grayCode](https://github.com/artisan1218/LeetCode-Solution/tree/main/grayCode)|Medium|Bit Manipulation|False|Python|[Gray Code](https://leetcode.com/problems/gray-code/)|
 |90       |[subsets II](https://github.com/artisan1218/LeetCode-Solution/tree/main/subsets%20II)|Medium|DFS|False|Python|[Subsets II](https://leetcode.com/problems/subsets-ii/)|
 |91       |[decodeWays](https://github.com/artisan1218/LeetCode-Solution/tree/main/decodeWays)|Medium|DFS, Dynamic Programming|True|Python|[Decode Ways](https://leetcode.com/problems/decode-ways/)|
+|92       |[reverseLinkedList II](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList%20II)|Medium|LinkedList|False|Python|[Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 
