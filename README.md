@@ -93,6 +93,7 @@ Records of all my solved problems on LeetCode
 |88       |[mergeSortedAry](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeSortedAry)|Easy|List Traversal|False|Python|[Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)|
 |89       |[grayCode](https://github.com/artisan1218/LeetCode-Solution/tree/main/grayCode)|Medium|Bit Manipulation|False|Python|[Gray Code](https://leetcode.com/problems/gray-code/)|
 |90       |[subsets II](https://github.com/artisan1218/LeetCode-Solution/tree/main/subsets%20II)|Medium|DFS|False|Python|[Subsets II](https://leetcode.com/problems/subsets-ii/)|
+|91       |[decodeWays](https://github.com/artisan1218/LeetCode-Solution/tree/main/decodeWays)|Medium|DFS, Dynamic Programming|True|Python|[Decode Ways](https://leetcode.com/problems/decode-ways/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 
 
