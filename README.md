@@ -107,5 +107,5 @@ Records of all my solved problems on LeetCode
 | :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|:------:|
 |Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|Facebook|
 |Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|TuSimple, Twitter|
-|Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|Recursion|False|Python|Google|
+|Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|Google|
 
