@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[17]:
+# In[19]:
 
 
 # Definition for a binary tree node.
@@ -16,9 +16,9 @@ class TreeNode:
 class Solution:
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
         nList = list(range(1, n+1))
-        return self.dfs(nList)
+        return self.helper(nList)
     
-    def dfs(self, nList):
+    def helper(self, nList):
         # if all values are used, return an empty branch of [None], not a None value!
         if len(nList)==0:
             return [None]
@@ -26,8 +26,8 @@ class Solution:
             # result that holds all branches under current root
             result = []
             for i in range(len(nList)):
-                leftBranches = self.dfs(nList[:i]) # get all left branches
-                rightBranches = self.dfs(nList[i+1:]) # get all right branches
+                leftBranches = self.helper(nList[:i]) # get all left branches
+                rightBranches = self.helper(nList[i+1:]) # get all right branches
                 
                 # go through each combination of left and right branch
                 for leftBranch in leftBranches:
