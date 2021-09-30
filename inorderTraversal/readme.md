@@ -1,31 +1,8 @@
-# Implement strStr() problem
-* Implement strStr()/indexOf().
-* Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
-* For the purpose of this problem, we will return 0 when needle is an empty string. This is consistent to C's strstr() and Java's indexOf().
+#  Binary Tree Inorder Traversal problem
+* Given the `root` of a binary tree, return the inorder traversal of its nodes' values.
 
-### Approach 1: Sliding Window, strStrSlidingWindow()
-The idea is to fix a window size of `len(needle)`, slide the window from the beginning of the `haystack` one char by one char and check if the `needle` is equal to this window.
+### Approach 1: DFS, inorderTraversalDFS()
 
-```
-haystack = h e l l o w o r l d
-needle = l l o
-
-1. h e l l o w o r l d
-   ^---^
-   h e l != l l o, check next one
-   
-2. h e l l o w o r l d
-     ^---^
-   e l l != l l o, check next one 
-   
-3. h e l l o w o r l d
-       ^---^
-   l l o == l l o, return 
-```
-
-Since we will iterate over the string `haystack` and use slicing to check equality, which is also a O(n) operation, the time complexity is O(kn) where k is the window size, which is equal to `len(needle)`.
-
-![image](https://user-images.githubusercontent.com/25105806/120944435-4f986880-c6e9-11eb-914e-10aa43b60c73.png)
 
 
 <br />
