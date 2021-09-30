@@ -1,24 +1,16 @@
-# Unique Paths problem
-* A robot is located at the top-left corner of a `m x n` grid (marked `'Start'` in the diagram below).
-* The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked `'Finish'` in the diagram below).
-* How many possible unique paths are there?
-  
-  ![image](https://user-images.githubusercontent.com/25105806/128464614-2974f9f3-3bc7-4bca-9c0e-5442547cda48.png)
+# Unique Binary Search Trees problem
+![image](https://user-images.githubusercontent.com/25105806/135387175-511bad80-5fa9-4eb8-b362-976c02a8a0ac.png)
 
 
-### Approach 1: DFS, uniquePathsDFS()
-The idea is that we can explore different paths in a tree structure using DFS algorithm. That is, for any given point in the grid, we can first go to right, then go down and repeat the process recursively until we hit the finish point.
-This DFS approach is simple but it is slow and lead to TLE :(
+### Approach 1: Dynamic Programming, numTrees()
+We can find the pattern as follows:
 
+![image](https://user-images.githubusercontent.com/25105806/135387595-dc41348f-7a88-4c59-aa74-053627a32123.png)
 
-### Approach 2: Math, uniquePathsMathNaive()
-If we denote a grid using a tuple of `m` and `n`, for example `(5,3)`, then there is a pattern for us to utilize: the number of paths in grid `(5,3) = (4,3) + (5,2)`, and we can solve this equation recursively until one of the `m` and `n` is 1, which is the base case because `(1, n)` or `(m, 1)` is 1. The structure of this solution is also simple but since we do not store/cache any calculated value, which means we have to calculate each grid separately using recursion, this is also very slow and lead to TLE. But the good news is we can optimize it.
+`count[n]` means the number of unique BSTs with `n` nodes. Therefore, we can convert this problem to many subproblems.
 
+The key lien of code to solve this is `cur += result[j] * result[i-j-1]`, where we iteratively calculate the number of sub-BSTs given different node as root. We will go through the case where each node between `[1,n]` is the root
 
-### Approach 3: Math 2, uniquePathsMathOptimized()
-Instead of calculating each possible grid separately, we can use a python dict to store the seen grid tuple and use it rightaway if needed. This may use more space but saves lots of time. 
+Actual running time:
 
-Actual running time:\
-![c0cf1bd1abd857e43d1f8a133130740](https://user-images.githubusercontent.com/25105806/128465383-d395f041-b7ed-403a-89d4-8afe618cdf10.png)
-
-
+![image](https://user-images.githubusercontent.com/25105806/135387965-96f15b5f-86f6-4683-b8cb-a4fe114aca41.png)
