@@ -2,113 +2,11 @@
 * Given the `root` of a binary tree, return the inorder traversal of its nodes' values.
 
 ### Approach 1: DFS, inorderTraversalDFS()
+The standard in-order traversal of a binary tree:
 
+![image_1556551007](https://user-images.githubusercontent.com/25105806/135376395-0ffc3d36-0f59-4d2d-a134-58f15e3bb831.png)
 
 
 <br />
 
-### Approach 2: Sliding Window Improved, strStrImprovedSlidingWindow()
-The comparsion using slicing is too expensive, turns out we can simplify this process by only checking the first char of the `needle` with every char in `haystack`, if the first char matches, then we can proceed to check the remaining char in `needle`. This way, the comparsion using slicing only happens when the first char matches.
-
-```
-haystack = h e l l o w o r l d
-needle = l l o
-
-1. h e l l o w o r l d
-   ^
-   h != l, check next one
-   
-2. h e l l o w o r l d
-     ^
-   e != l, check next one 
-   
-3. h e l l o w o r l d
-       ^
-   l == l, check if l o == l o
-   l o == l o, return
-```
-
-Time complexity reduces to O(n+k\*a), k is the length of window, a is the number of char in `haystack` that matches the first char of `needle`, n is simply the length of `haystack`.
-
-![image](https://user-images.githubusercontent.com/25105806/120944565-0dbbf200-c6ea-11eb-8a53-da53f124b176.png)
-
-<br />
-
-### Approach 3: Two Pointers, strStrTwoPointers()
-We can also use two pointers to solve this. One pointer points to the `haystack` and the other one points to `needle`. We will check equality one char a time. The idea is to first compare the first char of the `needle` with `haystack`, if they match, then check the second char of `needle` with the next char in `haystack`, if they still match, then check the next one, if not, then reset pointer in `needle` back to first char and reset pointer in `haystack` back to the next char of machting char. Repeat this process until we reach the end of `haystack` or `needle`.
-
-```
-haystack = t h i s i s a t e s t
-needle = i s a
-
-1. t h i s i s a t e s t
-   ^
-   i s a
-   ^
-   t != i, check next one in haystack
-   
-2. t h i s i s a t e s t
-     ^
-   i s a
-   ^
-   h != i, check next one in haystack
-   
-3. t h i s i s a t e s t
-       ^
-   i s a
-   ^
-   i == i, check next one in haystack and needle
-
-4. t h i s i s a t e s t
-         ^
-   i s a
-     ^
-   s == s, check next one in haystack and needle
-   
-5. t h i s i s a t e s t
-           ^
-   i s a
-       ^
-   i != a, reset two pointers
-
-6. t h i s i s a t e s t
-         ^
-   i s a
-   ^
-   s != i, check next one in haystack
-   
-7. t h i s i s a t e s t
-           ^
-   i s a
-   ^
-   i == i, check next one in haystack and needle
-   
-8. t h i s i s a t e s t
-             ^
-   i s a
-     ^
-   s == s, check next one in haystack and needle
-   
-9. t h i s i s a t e s t
-               ^
-   i s a
-       ^
-   a == a, reached the end of needle, return
-```
-
-Time complexity is O((n-k)\*n)
-
-![image](https://user-images.githubusercontent.com/25105806/120944703-caae4e80-c6ea-11eb-9ca5-535039fb30d2.png)
-
-<br />
-
-### Approach 4: KMP Algorithm, strStrKMP()
-
-Credits to: https://www.youtube.com/watch?v=GTJr8OvyEVQ and https://github.com/mission-peace/interview/blob/master/src/com/interview/string/SubstringSearch.java
-
-There is even a O(n+k) algorithm called KMP algorithm. The idea is pretty similar to approach 3 except that when a bad match happens, that is, when two chars does not match, KMP algorithm will move the pointer to the next char of common prefix/suffix to avoid checking some of the common prefix/suffix twice, while the two pointers solution will always go the next position of the same char, which will check duplicating chars more than one time. \
-Time complexity is O(n+k) where n is size of `haystack` and k is the size of `needle`. First of all, we generate the `nextList` array to show any possible duplicates of prefix and postfix within needle. Then we go through haystack. Every time we see a bad match, move `ndlPtr(needle pointer)` to `nextList[ndlPtr-1]` and keep `strPtr(haystack pointer)` in current position; otherwise, move both of them to next position.\
-Actual running time:
-
-![image](https://user-images.githubusercontent.com/25105806/120967315-2b09b400-c71c-11eb-987c-e9e4a3cb0f61.png)
-
+### Approach 2: Iteration, inorderTraversalIteration()
