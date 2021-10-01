@@ -1,45 +1,40 @@
-# Integer to Roman problem
-* Given an integer, convert it to a roman numeral. Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
-```
-Symbol       Value
-I             1
-V             5
-X             10
-L             50
-C             100
-D             500
-M             1000
-```
+# Interleaving String problem
+![image](https://user-images.githubusercontent.com/25105806/135661455-24d6246a-7602-45a8-a5a9-ed0f681e236f.png)
 
-### Approach 1: Naive, intToRomanLoop()
-This approach is to go through the given `num` digit by digit and append the corresponding symbols to the `result`. The corresponding symbol of the given digit is determined by the value of the digit and the `fold`, which keepk track of multiple that we're currently dealing with, ranges from 1, 10, 100, 1000.
-1. The fold is 1, then the symbols can only be `I`, `V`, `X`
-2. The fold is 10, then the symbols can be `X`, `L`, `C`
-3. The fold is 100, then the symbols can be `C`, `D`, `M`
-4. The fold is 1000, then the symbols can be `M`
+<br />
 
-Running time is fairly slow due to the String concatenations
-![image](https://user-images.githubusercontent.com/25105806/118616818-e58a4480-b776-11eb-9a51-41573aa689b8.png)
+### Approach 1: Backtrack, isInterleaveBacktrack()
+The idea is to explore every possible combinations of the cut position at `s1` and `s2`. This is a exhaustive solution so the running time is relatively slow. We can use memorization (`@lru_cache()`) to speed up.
+
+Time complexity is O(2^(m+n)) where m is the length of `s1` and n is the length of `s2`
+![image](https://user-images.githubusercontent.com/25105806/135661878-a7c86ee2-84cf-4d73-975a-2e0d0d0d1efa.png)
 
 
+<br />
 
-### Approach 2: Math, intToRomanMath()
-Credits to https://leetcode.com/problems/integer-to-roman/discuss/6274/Simple-Solution
+### Approach 2: Dynamic Programming with Recursion, isInterleaveDP1()
+Credits to https://www.youtube.com/watch?v=3Rw3p9LrgvE
 
-Since each multiple out of 1, 10, 100, 1000 can only have certain symbols, we can list them all and store them as arrays. Then use simple math to match each of the symbols. This method is probably the most elegant way of solving this probelm. 
+This is somehow similar to approach 1, but this time we simply use two ints `i` and `j` to represent the cut position, and use a dict `dp` to cache the seen cases so that we do not calculate again.
 
-Running time is better than approach 1 because we've avoided using String concatenations, logic is also much clear.
-![image](https://user-images.githubusercontent.com/25105806/118619003-0bb0e400-b779-11eb-976a-541ec8a3b0d6.png)
+Time complexity is O(m\*n):
 
-
-
-### Approach 3: Math, intToRomanMath2()
-Credits to https://leetcode.com/problems/integer-to-roman/discuss/6310/My-java-solution-easy-to-understand
-
-Similar to approach 2, we can list symbols for each multiple out of 1, 10, 100, 1000, but this time we only list unique symbols but not all of them. For example `III` is just `I` repeating for 3 times and we can use a loop to denoting this. This way, we can save some uncessary spaces. 
-
-Running time is roughly the same, but memory usage is better.
-![image](https://user-images.githubusercontent.com/25105806/118618106-2171d980-b778-11eb-8dc2-4d1a9319e755.png)
+![image](https://user-images.githubusercontent.com/25105806/135662332-bb11ccdf-ef69-4a5d-bcf1-b00530a52e91.png)
 
 
+<br />
+
+### Approach 3: Dynamic Programming with Iteration, isInterleaveDP2()
+Credits to https://www.youtube.com/watch?v=ih2OZ9-M3OM
+
+Instead of using recursion, we can also construct a 2d dp array to solve this question. Similar to other dp questions, we use `s1` and `s2` as row and column, each position `(i, j)` at the 2d array `dp` represent whether we can form the first `(i+j)` substring using `s1[:i] and s2[:j]`. Then simply return `dp[-1][-1]`
+
+The rules for updating dp is as follows:
+1.  If `s1[i]` matches `s3[i+j]`, then we need to check whether `s2[j-1]` is valid. If both of them are `True`, we can update `dp[i][j]` to `True`
+2.  If `s2[j]` matches `s3[i+j]`, then we need to check whether `s1[i-1]` is valid. If both of them are `True`, we can update `dp[i][j]` to `True`
+
+
+Time complexity is O(m\*n):
+
+![image](https://user-images.githubusercontent.com/25105806/135662988-e64fc8b1-1a0f-40ef-b220-8e8e27195c7c.png)
 
