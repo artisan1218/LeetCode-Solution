@@ -1,30 +1,30 @@
-# Valid Number problem
-* A valid number can be split up into these components (in order):
-  1. A decimal number or an integer.
-  2. (Optional) An 'e' or 'E', followed by an integer.
-
-* A decimal number can be split up into these components (in order):
-  1. (Optional) A sign character (either '+' or '-').
-  2. One of the following formats:
-     a. One or more digits, followed by a dot '.'.
-     b. One or more digits, followed by a dot '.', followed by one or more digits.
-     c. A dot '.', followed by one or more digits.
-
-* An integer can be split up into these components (in order):
-  1. (Optional) A sign character (either '+' or '-').
-  2. One or more digits.
-* For example, all the following are valid numbers: `["2", "0089", "-0.1", "+3.14", "4.", "-.9", "2e10", "-90E3", "3e+7", "+6e-1", "53.5e93", "-123.456e789"]`, while the following are not valid numbers: `["abc", "1a", "1e", "e3", "99e2.5", "--6", "-+3", "95a54e53"]`.
-
-Given a string `s`, return true if `s` is a valid number.
+# Validate Binary Search Tree problem
+![image](https://user-images.githubusercontent.com/25105806/135770320-2a106846-a750-44fd-bd2f-479e12fcbc73.png)
 
 
-### Approach 1: DFA, isNumber()
-This solution is based on Deterministic Finite Automata, we can represent the logic using state machine below and implement the state machine complete
-![image](https://user-images.githubusercontent.com/25105806/130333840-1174d28c-7847-4b54-93f9-acf1c0b71db6.png)
+### Approach 1: BFS Inorder Traversal, isValidBSTInorderBFS()
+This solution uses BFS traversal, we will maintain a stack that stores the node in in-order order and check if each node is within the valid range. We will update the valid range for each node as we explore the nodes
 
-Note that start state is state 0 in code. State with double circle is the accept state.
-
-Time complexity is O(n) because we will only go over the string `s` once:
-![0a3fabe91808b5b345433a9a93b0da1](https://user-images.githubusercontent.com/25105806/130333855-93c1a8d8-ce26-4916-a1a7-903e4a22204b.png)
+Time complexity O(n) where n is the number of nodes in the BST:
+![image](https://user-images.githubusercontent.com/25105806/135770394-36ff1f7e-d160-4c9f-9517-fd58f14ccb42.png)
 
 
+<br />
+
+### Approach 2: DFS, isValidBSTInorderDFS()
+Credits to: https://leetcode.com/problems/validate-binary-search-tree/discuss/32112/Learn-one-iterative-inorder-traversal-apply-it-to-multiple-tree-questions-(Java-Solution)
+
+Similar to approach 1, we still use a stack to store the nodes as we explore the tree. But this time we also main another node called `pre`. `pre` is always the immediate left of the current node `root` so we only need to make sure `root.val` is greater than `pre.val`
+
+Time complexity is O(n):
+
+![image](https://user-images.githubusercontent.com/25105806/135770462-ffe1b1f7-5a2b-42ca-9ef9-56b8593d3b6e.png)
+
+### Approach 2: DFS, isValidBSTDFS()
+Credits to: https://leetcode.com/problems/validate-binary-search-tree/discuss/32193/1-ms-Java-Solution-using-Recursion
+
+This is a recursive solution, we main two variables `minVal` and `maxVal` that bounds each node and update these two variables as we explore more nodes:
+`helper(root.left, minVal, root.val) and helper(root.right, root.val, maxVal)`
+
+Time complexity O(n):
+![image](https://user-images.githubusercontent.com/25105806/135770597-987c86ec-afa0-41ce-8c43-497bba70d755.png)
