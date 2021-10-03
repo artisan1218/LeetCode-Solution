@@ -100,6 +100,7 @@ Records of all my solved problems on LeetCode
 |95       |[uniqueBST II](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniqueBST%20II)|Medium|Binary Tree, Recursion|True|Python|[Unique Binary Search Trees II](https://leetcode.com/problems/unique-binary-search-trees-ii/)|
 |96       |[uniqueBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniqueBST)|Medium|Dynamic Programming, Binary Tree|True|Python|[Unique Binary Search Trees](https://leetcode.com/problems/unique-binary-search-trees/)|
 |97       |[interleavingStr](https://github.com/artisan1218/LeetCode-Solution/tree/main/interleavingStr)|Medium|Dynamic Programming, Backtracking, DFS|False|Python|[Interleaving String](https://leetcode.com/problems/interleaving-string/)|
+|98       |[validateBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/validateBST)|Medium|DFS, BFS, BST|False|Python|[Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 
