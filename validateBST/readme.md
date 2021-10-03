@@ -20,6 +20,8 @@ Time complexity is O(n):
 
 ![image](https://user-images.githubusercontent.com/25105806/135770462-ffe1b1f7-5a2b-42ca-9ef9-56b8593d3b6e.png)
 
+<br />
+
 ### Approach 2: DFS, isValidBSTDFS()
 Credits to: https://leetcode.com/problems/validate-binary-search-tree/discuss/32193/1-ms-Java-Solution-using-Recursion
 
