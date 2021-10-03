@@ -26,5 +26,5 @@ Credits to: https://leetcode.com/problems/validate-binary-search-tree/discuss/32
 This is a recursive solution, we main two variables `minVal` and `maxVal` that bounds each node and update these two variables as we explore more nodes:
 `helper(root.left, minVal, root.val) and helper(root.right, root.val, maxVal)`
 
-Time complexity O(n):
+Time complexity O(n):\
 ![image](https://user-images.githubusercontent.com/25105806/135770597-987c86ec-afa0-41ce-8c43-497bba70d755.png)
