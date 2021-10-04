@@ -19,3 +19,17 @@ The idea is to two a stack and a list to complete the inorder traversal. The sta
 Actual running time:
 
 ![image](https://user-images.githubusercontent.com/25105806/135376885-f3429c20-26b0-496b-a480-43100dda248c.png)
+
+
+<br />
+
+### Approach 3: Morris Traversal, inorderTraversalMorris()
+
+Credits to: https://www.youtube.com/watch?v=wGXB9OWhPTg&t=1s
+
+Instead of using a stack or recursio to keep track of the path, Morris basically creates a bridge whenever we've reached the end of predecessor of a node. This enables us to traval back to the root node from left subtree. 
+
+Time complexity is O(n) and space complexity is O(1):
+
+<img width="638" alt="image" src="https://user-images.githubusercontent.com/25105806/135798306-ca466c0c-87d6-4f16-ba9a-64c6bf48de8f.png">
+
