@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
+# In[1]:
 
 
 from typing import List, Optional
@@ -46,7 +46,33 @@ class Solution:
             root = node.right
         
         return result
-        
+    
+    def inorderTraversalMorris(self, root: Optional[TreeNode]) -> List[int]:
+        current = root
+        result = list()
+        while current!=None:
+            # if left is null, visit current and go to right
+            if current.left==None:
+                result.append(current.val)
+                # either go to the actual right, or its immediate right through the bridge
+                current = current.right 
+            else:
+                # if left is not null, find the predecessor
+                pre = current.left # first go to left
+                # then go all the way to right, make sure pre.right!=current so that we don't enter loop
+                while pre.right!=current and pre.right!=None:
+                    pre = pre.right
+                
+                if pre.right == None:
+                    # create a bridge that connects current node and its predecessor
+                    pre.right = current
+                    current = current.left # visit left
+                else:
+                    pre.right = None # unbridge the link
+                    result.append(current.val)
+                    current = current.right
+        return result
+                    
         
 if __name__ == '__main__':
     solver = Solution()
@@ -59,7 +85,7 @@ if __name__ == '__main__':
     root.right.left = TreeNode(6)
     root.right.right = TreeNode(7)
     
-    result = solver.inorderTraversalIteration(root)
+    result = solver.inorderTraversalMorris(root)
     print(result)
 
 
