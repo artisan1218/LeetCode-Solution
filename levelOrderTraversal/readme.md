@@ -3,7 +3,7 @@
 
 <br />
 
-### Approach 1: DFS, levelOrder1()
+### Approach 1: BFS, levelOrder1()
 The approach uses two list `level` and `nextLevel` to hold the nodes in current level and next level, so that we don't mix them together. 
 
 Time complexity is O(n):\
@@ -11,7 +11,7 @@ Time complexity is O(n):\
 
 <br />
 
-### Approach 2: DFS, levelOrder2()
+### Approach 2: BFS, levelOrder2()
 Instead of using two list, we can instead using only one queue. But we need to get the length of each level at the beginning of loop so that we don't mix them up with the nodes on the next level
 
 Time complexity is O(n):\
