@@ -107,6 +107,7 @@ Records of all my solved problems on LeetCode
 |102       |[levelOrderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/levelOrderTraversal)|Mediumn|BFS, BST|False|Python|[Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)|
 |103       |[zigzagLevelOrderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/zigzagLevelOrderTraversal)|Mediumn|BFS, BST|False|Python|[Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)|
 |104      |[maxDepthBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxDepthBST)|Easy|DFS, BST|False|Python|[Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)|
+|105      |[buildTreeFromPreorderAndInorderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/buildTreeFromPreorderAndInorder)|Medium|BST|False|Python|[Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 
