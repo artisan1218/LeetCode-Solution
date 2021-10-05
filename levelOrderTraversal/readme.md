@@ -1,26 +1,18 @@
-# Longest Palindromic Substring problem
-* Given a string `s`, return the longest palindromic substring in `s`.
+# Binary Tree Level Order Traversal problem
+![image](https://user-images.githubusercontent.com/25105806/135959044-2e29e7f5-0ff8-4524-b092-7bcc5a8d91df.png)
 
-### Approach 1: Brute Force, skipped
-The obvious brute force solution is to pick all possible starting and ending positions for a substring, and verify if it is a palindrome.\
-Finding all substrings of `s` uses O(n^2) time and verifying it uses O(n), so the final time complexity is O(n^3).
+<br />
 
-### Approach 2: Dynamic Programming, longestPalindromeMethodDP()
-Basic idea of this approach is to go through the list of characters of string `s`, for each of the character in s, expand the candidate result to left and right one character a time until left and right are not equal, keep the intermediate result and compare it with the next candidate result and keep the longest one.\
-<img src="https://user-images.githubusercontent.com/25105806/118064919-d9eee600-b350-11eb-8410-1a667e34b2ec.png" width="85%" height="85%">
+### Approach 1: DFS, levelOrder1()
+The approach uses two list `level` and `nextLevel` to hold the nodes in current level and next level, so that we don't mix them together. 
 
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/135959177-22711919-b83c-4649-a66e-5a43a7bd7cf4.png)
 
-Since we first go through the entire string, and for each character we expand at most len(s)/2 times, the worst case is when the entire string is a panlidorme, because we have to expand to both ends for each of the characters in the string and the time complexity is O(n^2).\
-![image](https://user-images.githubusercontent.com/25105806/118066893-5df69d00-b354-11eb-87a6-7f89288afd1f.png)
+<br />
 
-### Approach 3: Improved Dynamic Programming, longestPalindromeMethodCleanDP()
-The basic idea is the same as approach 2, but with improved data structure and logic structure. This solution has better readability.\
-The time complexity is the same as approach 2, which is O(n^2), the actual running time is as follows:
+### Approach 2: DFS, levelOrder2()
+Instead of using two list, we can instead using only one queue. But we need to get the length of each level at the beginning of loop so that we don't mix them up with the nodes on the next level
 
-![image](https://user-images.githubusercontent.com/25105806/118085398-35cc6580-b377-11eb-82a9-4da9c5bca99b.png)
-
-We can see that it is indeed a little bit faster.
-
-
-### Approach 4: Manacher's Algorithm, skipped
-There is indeed a solution with linear time complexity, but since it is specific to this longest palindrome question and thus not an universal idea like dynamic programming, it is skipped due to complexity.
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/135959285-5c415451-324c-4e50-9957-152bfb79ee48.png)
