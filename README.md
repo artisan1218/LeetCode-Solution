@@ -3,7 +3,7 @@ Records of all my solved problems on LeetCode
 
 |Question #|Solution Link                                                                        |Difficulty|Category|Demo|Language|LeetCode Link|
 | :----:  | :---------------------------------------------------------------------------------: | :-------:|:-------:|:------:|:------:|:-----------:|
-|1        |[Sum](https://github.com/artisan1218/LeetCode-Solution/tree/main/twoSum)     |Easy      |HashMap     |False|Java    |[Two Sum](https://leetcode.com/problems/two-sum/)|
+|1        |[twoSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/twoSum)     |Easy      |HashMap     |False|Java    |[Two Sum](https://leetcode.com/problems/two-sum/)|
 |2        |[addTwoNums](https://github.com/artisan1218/LeetCode-Solution/tree/main/addTwoNums)|Medium |Math     |False|Java    |[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)|
 |3        |[lngestSubstrW/ORptingChar](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestSubstringWithoutRepeating)|Medium|Sliding Window|True|Java|[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)|
 |4        |[medianOfTwoSortedAry](https://github.com/artisan1218/LeetCode-Solution/tree/main/medianOfTwoSortedArys)|Hard|Binary Search|True|Java|[Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)|
