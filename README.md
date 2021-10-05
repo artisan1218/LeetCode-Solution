@@ -104,8 +104,9 @@ Records of all my solved problems on LeetCode
 |99       |[recoverBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/recoverBST)|Medium|DFS, BST|False|Python|[Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/)|
 |100       |[sameTree](https://github.com/artisan1218/LeetCode-Solution/tree/main/sameTree)|Medium|DFS, BST|False|Python|[Same Tree](https://leetcode.com/problems/same-tree/)|
 |101       |[symmetricTree](https://github.com/artisan1218/LeetCode-Solution/tree/main/sameTree)|Easy|DFS, BST|False|Python|[Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)|
-|102       |[levelOrderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/levelOrderTraversal)|Mediumn|DFS, BST|False|Python|[Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)|
-|103       |[zigzagLevelOrderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/zigzagLevelOrderTraversal)|Mediumn|DFS, BST|False|Python|[Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)|
+|102       |[levelOrderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/levelOrderTraversal)|Mediumn|BFS, BST|False|Python|[Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)|
+|103       |[zigzagLevelOrderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/zigzagLevelOrderTraversal)|Mediumn|BFS, BST|False|Python|[Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)|
+|104      |[maxDepthBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxDepthBST)|Easy|DFS, BST|False|Python|[Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 
