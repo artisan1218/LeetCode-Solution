@@ -1,10 +1,11 @@
-# Construct Binary Tree from Preorder and Inorder Traversal problem
-![image](https://user-images.githubusercontent.com/25105806/135960196-d35fd783-254b-46fc-91a6-12bd390e645b.png)
+# Construct Binary Tree from Inorder and Postorder Traversal problem
+![image](https://user-images.githubusercontent.com/25105806/135960716-7a25d3bf-f84f-49a5-bf04-d2d1533f5e93.png)
 
 <br />
 
 ### Approach 1: buildTree()
-We have `preorder` and `inorder` traversal list. Since we know that the first element in the `preorder` traversal list is always going to be the root value. So we can find the root value for the tree. Then we will find the index of root value in `inorder` traversal to get the range of left subtree and right subtree. We do this recursively for each subtree until we've explored all values in the list
+The idea is similar to previous question [buildTreeFromPreorderAndInorderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/buildTreeFromPreorderAndInorder). The difference is that, instead of getting root value from the start of `preorder` list, we now getting root value from the back of `postorder`, then do the similar thing by finding the index of root in `inorder` list to decide what is the value range in the left subtree and wwhat is the value range in the right subtree
 
-Time complexity is O(n^2) since we use `.index()` function and list slicing in recusion:\
-![image](https://user-images.githubusercontent.com/25105806/135960488-87cf60cf-82b3-4a43-8c8b-d25efeba2653.png)
+Time complexity is O(n^2):\
+![image](https://user-images.githubusercontent.com/25105806/135960993-fe4fcea6-358e-41e6-94f5-fd2ba6e77090.png)
+
