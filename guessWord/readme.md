@@ -28,6 +28,9 @@ class Solution:
         
         
     def match(self, w1, w2):
-        return sum(i == j for i, j in zip(w1, w2))
-        
+        return sum(i == j for i, j in zip(w1, w2))  
 ```
+
+Time complexity is O(n):
+![image](https://user-images.githubusercontent.com/25105806/136274625-090e323e-72c1-4d9e-b578-f577d2f95562.png)
+
