@@ -1,29 +1,20 @@
-# Convert Sorted Array to Binary Search Tree problem
-![image](https://user-images.githubusercontent.com/25105806/135961637-a05d3ff5-32c0-401e-9800-41374a022bed.png)
+# Convert Sorted List to Binary Search Tree problem
+![image](https://user-images.githubusercontent.com/25105806/136265678-ea7faf58-ea09-45af-9e0e-0d76e35ed259.png)
 
 <br />
 
-### Approach 1: List Slicing, sortedArrayToBST1()
-The idea is to first find the middle point of the sorted array, since the middle point value will be the root of the constructed BST. Then we will slice the sorted ary `nums` into two parts, corresponding to the left subtree and right subtree respectively. We do this recursively by calling:
-```
-root.left = self.sortedArrayToBST1(nums[0:mid])
-root.right = self.sortedArrayToBST1(nums[mid+1:])
-```
-
-Time complexity is O(n^2) since we use list slicing recursively:\
-![image](https://user-images.githubusercontent.com/25105806/135961884-8beb40a5-aa0c-4d53-a930-21de8ff0ea63.png)
-
-<br />
-
-### Approach 2: Use Index, sortedArrayToBST2()
-Instead of use slicing to actually cut the sorted array `nums`, we can simply to index to bound the array. Then taking the middle value, simply calcualte by `mid=(low+high)//2`
-and get left subtree and right subtree by
-```
-root.left = helper(nums, low, mid-1)
-root.right= helper(nums, mid+1, high)
-```
+### Approach 1: Convert to List, sortedListToBST()
+The idea is based on [convertSortedAryToBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/convertSortedAryToBST) and easy to think of. Simply convert the linked list to a list, and use the same approach as convertSortedAryToBST to solve this.
 
 Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/135962122-7f7a3ae9-19d0-4c32-8898-403b393f6794.png)
+![image](https://user-images.githubusercontent.com/25105806/136265953-7bba2928-f03a-423b-bb37-d5950a6fb318.png)
 
 
+### Approach 1: Inorder Simulation, sortedListToBST()
+
+![image](https://user-images.githubusercontent.com/25105806/136266096-9aface95-4183-4447-80b7-97e68aaec3d1.png)
+![image](https://user-images.githubusercontent.com/25105806/136266159-3c261487-e44a-4dd8-ba2d-47e4ab013239.png)
+![image](https://user-images.githubusercontent.com/25105806/136266184-99df86e0-ac06-4b28-9639-34a59b9be04d.png)
+
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/136266353-a0709edf-0e0c-4ae8-8828-f6ded9d6a2a4.png)
