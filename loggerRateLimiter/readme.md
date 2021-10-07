@@ -1,6 +1,9 @@
 # Logger Rate Limiter problem
 ![image](https://user-images.githubusercontent.com/25105806/136318512-8151eb55-3899-4c29-a504-ded82f258063.png)
 
+
+Leetcode link: https://leetcode.com/problems/logger-rate-limiter/
+
 <br />
 
 ### Approach 1: shouldPrintMessage()
