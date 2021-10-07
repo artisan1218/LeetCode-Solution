@@ -117,6 +117,7 @@ Records of all my solved problems on LeetCode
 |359       |[loggerRateLimiter](https://github.com/artisan1218/LeetCode-Solution/tree/main/loggerRateLimiter)|Easy|Hash|False|Python|[Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/)|
 |735       |[asteroidCollision](https://github.com/artisan1218/LeetCode-Solution/tree/main/asterolidCollision)|Medium|Stack|False|Python|[Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)|
 |843       |[guessWord](https://github.com/artisan1218/LeetCode-Solution/tree/main/guessWord)|Hard|Game Theory|False|Python|[Guess the Word](https://leetcode.com/problems/guess-the-word/)|
+|1048       |[longestStrChain](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestStringChain)|Medium|Dynamic Programming, DFS|False|Python|[Longest String Chain](https://leetcode.com/problems/longest-string-chain/)|
 |1509       |[minDiffBetweenMaxAndMin](https://github.com/artisan1218/LeetCode-Solution/tree/main/minDiffBetweenMinAndMax)|Medium|Backtracking|False|Python|[Minimum Difference Between Largest and Smallest Value in Three Moves](https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/)|
 
 
