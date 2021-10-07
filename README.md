@@ -115,6 +115,7 @@ Records of all my solved problems on LeetCode
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 |843       |[guessWord](https://github.com/artisan1218/LeetCode-Solution/tree/main/guessWord)|Hard|Game Theory|False|Python|[Guess the Word](https://leetcode.com/problems/guess-the-word/)|
+|1509       |[minDiffBetweenMaxAndMin](https://github.com/artisan1218/LeetCode-Solution/tree/main/minDiffBetweenMinAndMax)|Medium|Backtracking|False|Python|[Minimum Difference Between Largest and Smallest Value in Three Moves](https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/)|
 
 
 
