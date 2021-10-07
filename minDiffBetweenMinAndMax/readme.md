@@ -1,17 +1,62 @@
-# Merge Two Sorted Lists problem
-* Merge two sorted linked lists and return it as a **sorted** list. The list should be made by splicing together the nodes of the first two lists.
-<img src="https://user-images.githubusercontent.com/25105806/120598322-fc799980-c3fa-11eb-8eeb-d543dfb00a41.png" width="60%" height="60%">
+# Minimum Difference Between Largest and Smallest Value in Three Moves problem
+![image](https://user-images.githubusercontent.com/25105806/136305954-cfdb7231-924b-42fe-ae08-247e91ea3dcb.png)
+
+Leetcode link: https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/
+
+<br />
+
+### Approach 1: Brute Force, minDifferenceBruteForce()
+The idea is to first sort the list in ascending order. Since we only remove 3 elements to make the difference smallest, we have to remove either smallest elements or biggest elements. We then try all four different possibilities of removing:\
+1. Removing 3 smallest elements
+2. Removing 3 biggest elements
+3. Removing 2 smallest and 1 biggest
+4. Removing 1 smallest and 2 biggest
+
+Then simply return the smallest one.
 
 
+```python
+def minDifferenceBruteForce(self, nums: List[int]) -> int:
+    if len(nums)>4:
+        left = 0
+        right = len(nums)-1
+        nums.sort()
 
-### Approach 1: Switching, mergeTwoLists1()
-This approach is simply get two least elements from the given two arrays `l1` and `l2`, compare them and append the smaller element to a new ListNode and finally return it.\
-Time complexity is simply O(m+n) where `m` is the length of `l1` and `n` is the length of `l2`.
-![image](https://user-images.githubusercontent.com/25105806/120598711-7447c400-c3fb-11eb-8689-6c7968cab35f.png)
+        lll = nums[right] - nums[left+3] # cut 3 smallest elements
+        rrr = nums[right-3] - nums[left] # cut 3 biggest elements
+        llr = nums[right-1] - nums[left+2] # cut 2 smallest and 1 biggest
+        lrr = nums[right-2] - nums[left+1] # cut 1 smallest and 2 biggest
 
+        return min(lll, rrr, llr, lrr)
+    else:
+        return 0
+```
 
-### Approach 2: Switching, break when either one reaches end, mergeTwoLists2()
-This approach is based on approach 1, the only difference is that, when either one array reaches the end, we can simply append the rest of the other array to the result ListNode because there is only one element left for comparsion and there is no need for comparsion. This way we can skip the unnecessary comparsion.\
-Time complexity is therefore O(min(m, n)) because we only read the shorter array to the end. We can see from the running time that it is indeed faster.
+Time complexity is O(nlogn) because of the sorting:
+![image](https://user-images.githubusercontent.com/25105806/136305839-5921d98e-1de1-4111-8df9-de4fa5c45f27.png)
 
-![image](https://user-images.githubusercontent.com/25105806/120599038-dbfe0f00-c3fb-11eb-975b-dc3a8e98a82c.png)
+<br />
+
+### Approach 2: Backtracking, minDifferenceBacktrack()
+Instead of manually list all four possibilities, we use backtrack to explore. At each stage, we can either remove the smallest(left-most) one or biggest(right-most) one. By using backtracking we can adapt different number of removing instead of just 3.
+
+```python
+def minDifferenceBacktrack(self, nums: List[int]) -> int:
+    def backtrack(nums, remainingNum, left, right):
+        if remainingNum!=0:
+            cutFromLeft = backtrack(nums, remainingNum-1, left+1, right)
+            cutFromRight = backtrack(nums, remainingNum-1, left, right-1)
+            return min(cutFromLeft, cutFromRight)
+        else:
+            return nums[right]-nums[left]
+
+    if len(nums)>4:
+        nums.sort()
+        return backtrack(nums, 3, 0, len(nums)-1)
+    else:
+        return 0
+```
+
+Time complexity is O(nlogn):\
+![image](https://user-images.githubusercontent.com/25105806/136306135-1dbdbd39-57bb-4985-955e-fb03013b27ad.png)
+
