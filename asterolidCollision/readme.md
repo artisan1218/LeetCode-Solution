@@ -1,21 +1,44 @@
-# Add Two Numebrs problem
-* You are given two non-empty linked lists representing two non-negative integers. 
-* The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
-* You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+# Asteroid Collision problem
+![image](https://user-images.githubusercontent.com/25105806/136440943-364a841c-4b73-46d3-9e61-bcd1b5d45fac.png)
 
-All three approaches have time complexity of O(m+n)
-### Approach 1: addTwoNumbersMathSlow()
-Iterate through both linked list at the same time, add the corresponding digits at same position, keep the carryover digit and compute the next digit. This pretty straight-forward. But several egde cases to consider: 
-* two numbers are not the same length
-* carryover digit is the last digit, which means one more digit it needed to generate the answer
+Leetcode link: https://leetcode.com/problems/asteroid-collision/
 
-### Approach 2: addTwoNumbersMathQuick()
-Similar to approach 1 but improve the logic, remove uncessary blocks and make it faster. 
+<br />
 
-![image](https://user-images.githubusercontent.com/25105806/118186463-9ea4f380-b3f2-11eb-9dff-25e5bbcd933f.png)
+### Approach 1: Stack, asteroidCollision()
+The idea is simply, we use stack to simulate the collision with incoming asteroid. If both asteroids are the same size, pop the top asteroid from stack and break the loop, if incoming asteroid is bigger, pop the top asteroid from stack and check the new top asteroid from the stack, if incoming asteroid is smaller, simply break the loop to simulate the exploded incoming asteroid.
+
+```python
+def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+    stack = list()
+    for asteroid in asteroids:
+        if len(stack)==0:
+            stack.append(asteroid)
+        else:
+            # same dir
+            if (stack[-1] > 0 and asteroid > 0) or (stack[-1] < 0 and asteroid < 0):
+                stack.append(asteroid)
+            else:
+                # different dir
+                if stack[-1]<0 and asteroid>0:
+                    # will not meet
+                    stack.append(asteroid)
+                else:
+                    asteroidExploded = False
+                    while len(stack)>0 and asteroidExploded==False and stack[-1]>0 and asteroid<0:
+                        if stack[-1] == abs(asteroid):
+                            stack.pop()
+                            asteroidExploded = True
+                        elif stack[-1] < abs(asteroid):
+                            stack.pop()
+                        else:
+                            asteroidExploded = True
+
+                    if not asteroidExploded:
+                        stack.append(asteroid)
+    return stack
+```
 
 
-### Approach 3: addTwoNumbersConversion()
-Can also read the two linked list first, convert them to java BigInteger, do the math and convert the BigInteger back to linked list. This approach requires the use of BigInteger because the number might be too large for regular int in java. Thus the running time is slower than approach 2.
-
-![image](https://user-images.githubusercontent.com/25105806/118186596-c4ca9380-b3f2-11eb-9290-0937f89b8116.png)
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/136441278-84495b2b-044b-41ff-9220-ed016b4429e6.png)
