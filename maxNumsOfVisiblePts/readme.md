@@ -1,23 +1,44 @@
-# Maximum Subarray problem
-* Given an integer array `nums`, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+# Maximum Number of Visible Points problem
+![image](https://user-images.githubusercontent.com/25105806/136468456-19059f8d-4930-438c-ac48-671e1927c896.png)
+![image](https://user-images.githubusercontent.com/25105806/136468484-cce6dbed-d22e-4cb0-b2d4-b58909759d79.png)
 
+Leetcode link: https://leetcode.com/problems/maximum-number-of-visible-points/
 
-### Approach 1: Bruth Force, maxSubArrayBruteForce()
-This solution leads to TLE\
-The idea is to exhaust all possible subarrays of the `nums` array and calculate sum and return the maximum sum. Time complexity is therefore O(n^3) where finding all possible subarrays will take O(n^2) and calculate sum of subarray will take O(n)
+<br />
 
+### Approach 1: Convert to Polar Coordinates, visiblePoints()
+The solution involves a little bit of geometry, we need to first convert the points in `[x, y]` coordinates to polar coordinates so that we can easily compare it with the field of view `angle`.
 
+Then simply use a sliding window to count the max number of points in side the range of `angle`.
 
-### Approach 2: Dynamic Programming, maxSubArrayDP()
-Algorithm credits to https://leetcode.com/problems/maximum-subarray/discuss/20193/DP-solution-and-some-thoughts
+```python
+def visiblePoints(self, points: List[List[int]], angle: int, location: List[int]) -> int:
+    pointsAngle = list()
+    same = 0
+    for point in points:
+        if point[0]==location[0] and point[1]==location[1]:
+            same+=1
+        else:
+            # convert each point to its polar coordinates
+            convertedAngle = math.atan2(point[1]-location[1], point[0]-location[0])
+            pointsAngle.append(convertedAngle)
 
-The main idea is to use an array `dp` to holds the maximum sum of subarray up to index `i`: For example `dp[i]=3` means the maximum sum subarrays ending at index `i` is 3.\
-We will only pass the `nums` once, for each of the new element, if the previous element in `dp` is greater than 0, which means the maximum sum if greater than 0, we can then sum up the current value with `dp[i-1]` because adding previous value will make our sum bigger. However, if the previous value in `dp` array is 0 or smaller than 0, we should add current value directly to `dp` array because adding previous value will make our sum smaller, so we will be better off if ignoring all values before current one. Then we can simply maintain a variable to hold the maximum sum seen so far and return it at the end.
+    # scale points in the converted coordinates and viewing angle
+    pointsAngle.sort()
+    pointsAngle = pointsAngle + [point + 2.0 * math.pi for point in pointsAngle]
+    angle = math.pi * angle / 180
 
-![maxSubarrayAnimation](https://user-images.githubusercontent.com/25105806/126414463-64f0ff28-791c-44b3-ad80-2f9de23b135f.gif)
+    # use a sliding window to calculate the max number of visible points
+    result = same # we always see the points that are on the same spot as ourselves
+    left = 0
+    for right in range(len(pointsAngle)):
+        while pointsAngle[right] - pointsAngle[left] > angle:
+            # we cannot see all points with the range [left, right], so we have to move left pointer to right
+            left += 1
+        result = max(result, same+right-left+1)
 
+    return result
+```
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/maximumSubarray/maxSubarrayAnimation.ppsx) to download the animation to play for yourself.**
-
-Time complexity is O(n)\
-![image](https://user-images.githubusercontent.com/25105806/126412809-138d3f81-764c-4fe8-99dd-b23eec194138.png)
+Actual running time:\
+![image](https://user-images.githubusercontent.com/25105806/136468833-0955fe73-9216-49a8-8395-d1fd2419e227.png)
