@@ -114,6 +114,7 @@ Records of all my solved problems on LeetCode
 |109      |[convertSortedLinkedListToBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/convertSortedLinkedListToBST)|Medium|BST|False|Python|[Convert Sorted List to Binary Search Tree](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
+|359       |[loggerRateLimiter](https://github.com/artisan1218/LeetCode-Solution/tree/main/loggerRateLimiter)|Easy|Hash|False|Python|[Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/)|
 |843       |[guessWord](https://github.com/artisan1218/LeetCode-Solution/tree/main/guessWord)|Hard|Game Theory|False|Python|[Guess the Word](https://leetcode.com/problems/guess-the-word/)|
 |1509       |[minDiffBetweenMaxAndMin](https://github.com/artisan1218/LeetCode-Solution/tree/main/minDiffBetweenMinAndMax)|Medium|Backtracking|False|Python|[Minimum Difference Between Largest and Smallest Value in Three Moves](https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/)|
 
