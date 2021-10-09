@@ -46,7 +46,7 @@ class Solution:
         result = sum(cardPoints[right:])
         curSum = sum(cardPoints[right:])
 
-        for _ in range(right, len(cardPoints)):
+        for _ in range(k):
             # move the sliding window to right by one pos
             curSum = curSum - cardPoints[right] + cardPoints[left]
             result = max(result, curSum)
