@@ -26,7 +26,7 @@ class Solution:
         
         return minNum
     
-    def minNumberOperations(self, target: List[int]) -> int:
+    def minNumberOperationsDP(self, target: List[int]) -> int:
         result = target[0]
         prev = target[0]
         for i in range(1, len(target)):
@@ -38,7 +38,7 @@ class Solution:
 if __name__ == '__main__':
     solver = Solution()
     target = [3,1,5,4,2]
-    result = solver.minNumberOperations(target)
+    result = solver.minNumberOperationsDP(target)
     print(result)
 
 
