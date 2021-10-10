@@ -38,6 +38,9 @@ Time complexity is O(h*\n) where h is the value of largest element in `target` a
 ### Approach 2: Dynamic Programming, minNumberOperationsDP()
 This solution will only go over the array `target` once. We maintain a variable `result` that keeps track of the answer. `result` is initialized to the first element of the `target`, if the current value in `target` is smaller than the previous, we should not update `result`, however if its greater than previous value, we should update the `result` to `result = result + currentVal - prev` because the height of previous value `prev` is the number of increment we can share with current value, but since current value is greater than previous value, we also have to take account in the height difference between current value and previous value: `currentVal - prev`.
 
+![image](https://user-images.githubusercontent.com/25105806/136676773-39592db1-b845-4551-82d0-2ec4daf5d964.png)
+
+
 ```python
 def minNumberOperations(self, target: List[int]) -> int:
     result = target[0]
