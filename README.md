@@ -126,6 +126,7 @@ Records of all my solved problems on LeetCode
 |1525       |[numOfWaysToSplitStr](https://github.com/artisan1218/LeetCode-Solution/tree/main/numOfGoodWaysToSplitStr)|Medium|HashMap|False|Python|[Number of Good Ways to Split a String](https://leetcode.com/problems/number-of-good-ways-to-split-a-string/)|
 |1526       |[minNumOfIncrement](https://github.com/artisan1218/LeetCode-Solution/tree/main/minNumOfIncrement)|Hard|Dynamic Programming|True|Python|[Minimum Number of Increments on Subarrays to Form a Target Array](https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/)|
 |1610       |[maxNumVisiblePts](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxNumsOfVisiblePts)|Hard|Sliding Window, Geometry|False|Python|[Maximum Number of Visible Points](https://leetcode.com/problems/maximum-number-of-visible-points/)|
+|1937       |[maxPointsWithCost](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxPointsWithCost)|Medium|Dynamic Programming|False|Python|[Maximum Number of Points with Cost](https://leetcode.com/problems/maximum-number-of-points-with-cost/)|
 
 
 
