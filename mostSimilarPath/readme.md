@@ -7,6 +7,8 @@ Leetcode link: https://leetcode.com/problems/the-most-similar-path-in-a-graph/
 <br />
 
 ### Approach 1: Dynamic Programming, mostSimilar()
+Credits to: https://leetcode.com/problems/the-most-similar-path-in-a-graph/discuss/929493/Python-Bottom-up-dp-one-pass
+
 We will initialize a 2d `dp` array to store the edit distance and path that ending at node `i` and `targetPath` ending at `j`.
 
 For the input 
