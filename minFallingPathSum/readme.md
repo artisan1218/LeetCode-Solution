@@ -1,16 +1,33 @@
-# Minimum Path Sum problem
-* Given a `m x n` `grid` filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
-* Note: You can only move either down or right at any point in time.
+# Minimum Falling Path Sum problem
+![image](https://user-images.githubusercontent.com/25105806/136836197-22d4a379-3ac4-425a-8aec-f1949c501325.png)
 
+Leetcode link: https://leetcode.com/problems/minimum-falling-path-sum/
 
-### Approach 1: Brute Force, Skipped
-Since we can compute all unique paths using dfs recursion, we can sum up the values along the path and take the minimum sum as the result. But this approach is not time efficient. Skipped.
+<br />
 
-### Approach 2: Dynamic Programming, minPathSum()
-This solution is similar to the DP solution in [uniquePaths II](https://github.com/artisan1218/LeetCode-Solution/tree/main/uniquePaths%20II), we first work out the sum of path for the first row and first column, then from (1, 1), sum up the cell value with the minimum sum of cell value above it or left of it, this way we can make sure that at each cell, the value is the minimum sum of path value so far. The final result is therefore at `grid[-1][-1]`
+### Approach 1: Dynamic Programming, minFallingPathSum()
+The idea is to iterate through each element in the `matrix`, calculate the minimal path they can take from previous row, sum up the path values and go to next row. Since we only need to consider 3 elements in previous row each time, we can use `min(left, mid, right)` in O(1) time to get the min path for each node.
 
-Running time complexity is O(n):\
-![572526aec123063f4e91c22c405b1fd](https://user-images.githubusercontent.com/25105806/130027535-03e13f53-ed21-4464-a3d0-9d3af22296a1.png)
+```python
+def minFallingPathSum(self, matrix: List[List[int]]) -> int:
+    rows = len(matrix)
+    cols = len(matrix[0])
+
+    pre = matrix[0].copy()
+    dp = matrix[0].copy()
+    for r in range(1, rows):
+        for c in range(cols):
+            left = pre[max(0, c-1)] # max(0, c-1) is to bound the range when c=0
+            mid = pre[c]
+            right = pre[min(cols-1, c+1)] # min(cols-1, c+1) is to bound the range when c=cols
+            dp[c] = matrix[r][c] + min(left, mid, right)
+        pre = dp.copy()
+
+    return min(dp)
+```
+
+Time complexity is O(m\*n) where m is the length of `matrix` and n is the length of each row in `matrix`:\
+![image](https://user-images.githubusercontent.com/25105806/136836577-a23beb06-73c0-4468-9184-ad8fbe5031ff.png)
 
 
     
