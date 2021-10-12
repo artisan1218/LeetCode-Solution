@@ -1,22 +1,43 @@
-# Climbing Stairs problem
-* You are climbing a staircase. It takes `n` steps to reach the top.
-* Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?
+# Car Fleet II problem
+![image](https://user-images.githubusercontent.com/25105806/137035455-141e409f-e578-4870-8bc4-f4af5f35bf2d.png)
 
+Leetcode link: https://leetcode.com/problems/car-fleet-ii/
 
-### Approach 1: Brute Force, climbStairsRecursion()
-This is a brute force solution where we consider all possible paths that we can take to get to the top. At each step, we can either climb 1 step or 2 steps, if we've reach the top, increment the result counter and explore the next possible path.
-This solution leads to TLE :(, not surprisingly
+<br />
 
+### Approach 1: Scan from Right to Left, getCollisionTimes()
+Credits to: https://www.youtube.com/watch?v=fH_hCzKNaGM and https://leetcode.com/problems/car-fleet-ii/discuss/1085987/JavaC%2B%2BPython-O(n)-Stack-Solution
 
-### Approach 2: Fibonacci, Recursion, climbStairsMath()
-This solution is based on the calculation of fibonacci series. Because each value is equal to the sum of previous two values, we can use recursion with memorization to calculate the final result.\
-![d2b2ae0820e71112812efd5c2220019](https://user-images.githubusercontent.com/25105806/130372380-a4d89d2c-9dd7-4a52-989c-b3fd97659c46.png)
+Similar to [carFleet](https://github.com/artisan1218/LeetCode-Solution/tree/main/carFleet), we still going from right to left. Then we calculate the collsion time for each car with the car ahead of it. If the speed of current car is slower or equal to the car ahead of it, we should `pop` the head car and check for the next car until we found a car that's slower than current car. If the collision time of current car with the head car is greater than the collsion time of head car, we should also pop `pop` the head car because the collision with head car will happen after the head car collide with its head car. Since the head car's speed won't change, we can use the new head car's speed to calculate the collision time. 
 
-### Approach 3: Fibonacci, Iteration1, climbStairsIteration1()
-Instead of using recursion to calculate Fibonacci, we can also use iteration to calcualte. This approach stores all calculated values in the list.\
-![c4cd90fa4eeb4d263b15558b8fd162a](https://user-images.githubusercontent.com/25105806/130372424-5832ee65-b7ee-4998-abdb-aa55b8b243c5.png)
+```python
+def getCollisionTimes(self, cars: List[List[int]]) -> List[float]:
+    stack = list()
+    n = len(cars)
+    result = [-1] * n
 
-### Approach 4: Fibonacci, Iteration2, climbStairsIteration2()
-It is not hard to find out that the only two values matter are the immediate previous two values, all values in the past need not to be stored, so we can only use two variables `a` and `b` to store the previous two values and exchange value when calculating new value.\
-![bba600022cd328a5b254c5bb614d8bd](https://user-images.githubusercontent.com/25105806/130372457-386eeb77-6335-44f0-b524-e10b989b1932.png)
+    # scan from right to left
+    for i in range(n-1, -1, -1):
+        pos, speed = cars[i]
+        # monotonic stack
+        while len(stack)!=0:
+            headCarSpeed = stack[-1][2]
+            if speed<=headCarSpeed:
+                stack.pop()
+            else:
+                collisionTime = (stack[-1][1] - pos) / (speed - headCarSpeed)
+                if collisionTime >= result[stack[-1][0]] > 0:
+                    stack.pop()
+                else:
+                    break
 
+        if len(stack)!=0:
+            result[i] = (stack[-1][1] - pos) / (speed - stack[-1][2])
+
+        stack.append((i, pos, speed))
+
+    return result
+```
+
+Actual running time:\
+![image](https://user-images.githubusercontent.com/25105806/137036001-87c6a857-69e4-4bb6-89cc-ead05c44c90a.png)
