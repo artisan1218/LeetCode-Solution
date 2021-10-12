@@ -1,22 +1,31 @@
-# Climbing Stairs problem
-* You are climbing a staircase. It takes `n` steps to reach the top.
-* Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?
+# Car Fleet problem
+![image](https://user-images.githubusercontent.com/25105806/137034682-85f2741c-0c93-448a-b131-7568083b6e8c.png)
 
+Leetcode link: https://leetcode.com/problems/car-fleet/
 
-### Approach 1: Brute Force, climbStairsRecursion()
-This is a brute force solution where we consider all possible paths that we can take to get to the top. At each step, we can either climb 1 step or 2 steps, if we've reach the top, increment the result counter and explore the next possible path.
-This solution leads to TLE :(, not surprisingly
+<br />
 
+### Approach 1: Scan from Right to Left, carFleet()
+Credits to: https://leetcode.com/problems/car-fleet/discuss/139850/C%2B%2BJavaPython-Straight-Forward and https://www.youtube.com/watch?v=H5w6doOXz10
 
-### Approach 2: Fibonacci, Recursion, climbStairsMath()
-This solution is based on the calculation of fibonacci series. Because each value is equal to the sum of previous two values, we can use recursion with memorization to calculate the final result.\
-![d2b2ae0820e71112812efd5c2220019](https://user-images.githubusercontent.com/25105806/130372380-a4d89d2c-9dd7-4a52-989c-b3fd97659c46.png)
+The idea is to first calculate the time needed for each car to reach `target` point, then going from right to left of the time list, check for the new max time and count the number.
+The key point is that the speed of head car of each fleet does not change, so we only need to consider the speed of head car. Since each fleet will not collide, the fleet to the left will be slower or equal to the fleet on the right. So we go from right to left, check the number of greater time needed to reach the `target`.
 
-### Approach 3: Fibonacci, Iteration1, climbStairsIteration1()
-Instead of using recursion to calculate Fibonacci, we can also use iteration to calcualte. This approach stores all calculated values in the list.\
-![c4cd90fa4eeb4d263b15558b8fd162a](https://user-images.githubusercontent.com/25105806/130372424-5832ee65-b7ee-4998-abdb-aa55b8b243c5.png)
+```python
+def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+    # calculate the time needed for each car to reach target point
+    time = [float(target - p) / s for p, s in sorted(zip(position, speed))]
 
-### Approach 4: Fibonacci, Iteration2, climbStairsIteration2()
-It is not hard to find out that the only two values matter are the immediate previous two values, all values in the past need not to be stored, so we can only use two variables `a` and `b` to store the previous two values and exchange value when calculating new value.\
-![bba600022cd328a5b254c5bb614d8bd](https://user-images.githubusercontent.com/25105806/130372457-386eeb77-6335-44f0-b524-e10b989b1932.png)
+    # the key point is that the speed of head car in each fleet WON'T change
+    # so when going from back to beginning, we only need to consider the greater time than current time
+    fleets = 0
+    curTime = 0
+    for t in time[::-1]:
+        if t > curTime:
+            fleets += 1
+            curTime = t
+    return fleets
+```
 
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/137035218-59548320-8f71-472f-979b-eb9ff8c60fe6.png)
