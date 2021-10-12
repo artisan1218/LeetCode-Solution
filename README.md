@@ -129,6 +129,7 @@ Records of all my solved problems on LeetCode
 |1526       |[minNumOfIncrement](https://github.com/artisan1218/LeetCode-Solution/tree/main/minNumOfIncrement)|Hard|Dynamic Programming|True|Python|[Minimum Number of Increments on Subarrays to Form a Target Array](https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/)|
 |1548       |[mostSimilarPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/mostSimilarPath)|Hard|Dynamic Programming|True|Python|[The Most Similar Path in a Graph](https://leetcode.com/problems/the-most-similar-path-in-a-graph/)|
 |1610       |[maxNumVisiblePts](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxNumsOfVisiblePts)|Hard|Sliding Window, Geometry|False|Python|[Maximum Number of Visible Points](https://leetcode.com/problems/maximum-number-of-visible-points/)|
+|1776       |[carFleet II](https://github.com/artisan1218/LeetCode-Solution/tree/main/carFleet%20II)|Hard|Stack, Monotonic Stack|False|Python|[Car Fleet II](https://leetcode.com/problems/car-fleet-ii/)|
 |1937       |[maxPointsWithCost](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxPointsWithCost)|Medium|Dynamic Programming|False|Python|[Maximum Number of Points with Cost](https://leetcode.com/problems/maximum-number-of-points-with-cost/)|
 
 
