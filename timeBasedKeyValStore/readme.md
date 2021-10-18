@@ -1,5 +1,5 @@
 # Time Based Key-Value Store problem
-<img width="710" alt="image" src="https://user-images.githubusercontent.com/25105806/137699829-7d1cba08-3e35-4ea8-b677-7c9d86acf528.png">
+<img width="1116" alt="image" src="https://user-images.githubusercontent.com/25105806/137700504-52ff0d6a-c1d6-4600-8b5b-bc6bd717e79c.png">
 
 Leetcode link: https://leetcode.com/problems/time-based-key-value-store/
 
