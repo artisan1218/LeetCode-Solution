@@ -1,17 +1,49 @@
-# Merge Two Sorted Lists problem
-* Merge two sorted linked lists and return it as a **sorted** list. The list should be made by splicing together the nodes of the first two lists.
-<img src="https://user-images.githubusercontent.com/25105806/120598322-fc799980-c3fa-11eb-8eeb-d543dfb00a41.png" width="60%" height="60%">
+# Time Based Key-Value Store problem
+<img width="710" alt="image" src="https://user-images.githubusercontent.com/25105806/137699829-7d1cba08-3e35-4ea8-b677-7c9d86acf528.png">
+
+Leetcode link: https://leetcode.com/problems/time-based-key-value-store/
+
+<br />
 
 
+### Approach 1: Binary Search
+The idea is to store the `key` as dict key and `value`, `timestamp` tuple as value. Then use binary search to search through a list given a `key`
 
-### Approach 1: Switching, mergeTwoLists1()
-This approach is simply get two least elements from the given two arrays `l1` and `l2`, compare them and append the smaller element to a new ListNode and finally return it.\
-Time complexity is simply O(m+n) where `m` is the length of `l1` and `n` is the length of `l2`.
-![image](https://user-images.githubusercontent.com/25105806/120598711-7447c400-c3fb-11eb-8689-6c7968cab35f.png)
+```python
+class TimeMap:
 
+    def __init__(self):
+        self.dict = dict()
 
-### Approach 2: Switching, break when either one reaches end, mergeTwoLists2()
-This approach is based on approach 1, the only difference is that, when either one array reaches the end, we can simply append the rest of the other array to the result ListNode because there is only one element left for comparsion and there is no need for comparsion. This way we can skip the unnecessary comparsion.\
-Time complexity is therefore O(min(m, n)) because we only read the shorter array to the end. We can see from the running time that it is indeed faster.
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key in self.dict:
+            self.dict[key].append((value, timestamp))
+        else:
+            self.dict[key] = [(value, timestamp)]
+        
+    def get(self, key: str, timestamp: int) -> str:  
+        
+        pairList = self.dict.get(key, [])
+        
+        ans = -1
+        left = 0
+        right = len(pairList)-1
+        while left<=right:
+            mid = (left+right)//2
+            if pairList[mid][1] <= timestamp:
+                ans = mid
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return '' if ans==-1 else pairList[ans][0]
+        
+        
+# Your TimeMap object will be instantiated and called as such:
+# obj = TimeMap()
+# obj.set(key,value,timestamp)
+# param_2 = obj.get(key,timestamp)
+```
 
-![image](https://user-images.githubusercontent.com/25105806/120599038-dbfe0f00-c3fb-11eb-975b-dc3a8e98a82c.png)
+Time complexity is o
+        while left<=right: 
