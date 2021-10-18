@@ -45,5 +45,6 @@ class TimeMap:
 # param_2 = obj.get(key,timestamp)
 ```
 
-Time complexity is o
-        while left<=right: 
+Time complexity is O(logn):\
+<img width="727" alt="image" src="https://user-images.githubusercontent.com/25105806/137700413-4ae00c87-f150-4a40-a3ee-4c78a1f1bf84.png">
+
