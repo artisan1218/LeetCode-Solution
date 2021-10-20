@@ -6,6 +6,21 @@
 
 from typing import List
 class Solution:
+    
+    def wordsTypingBruteForce(self, sentence: List[str], rows: int, cols: int) -> int:
+        wordIdx = 0
+        result = 0
+        for row in range(rows):
+            usedCol = 0
+            while (usedCol + len(sentence[wordIdx])) <= cols:
+                usedCol += len(sentence[wordIdx]) + 1
+                wordIdx += 1
+                if wordIdx == len(sentence):
+                    result += 1
+                    wordIdx = 0
+        return result
+    
+    
     def wordsTyping(self, sentence: List[str], rows: int, cols: int) -> int:
         sentenceStr = ' '.join(sentence) + ' '
         pos = 0
@@ -19,6 +34,7 @@ class Solution:
                 while pos>0 and sentenceStr[(pos-1)%l]!=' ':
                     pos-=1
         return pos//l
+    
     
 if __name__ == '__main__':
     solver = Solution()
