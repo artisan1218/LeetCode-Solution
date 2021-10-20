@@ -115,6 +115,7 @@ Records of all my solved problems on LeetCode
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 |359       |[loggerRateLimiter](https://github.com/artisan1218/LeetCode-Solution/tree/main/loggerRateLimiter)|Easy|Hash|False|Python|[Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/)|
+|366       |[findLeavesOfBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/findLeavesOfBST)|Medium|Binary Tree, DFS|False|Python|[Find Leaves of Binary Tree](https://leetcode.com/problems/find-leaves-of-binary-tree/)|
 |418       |[screenSentenceFitting](https://github.com/artisan1218/LeetCode-Solution/tree/main/sentenceScreenFitting)|Medium|List Traversal|False|Python|[Sentence Screen Fitting](https://leetcode.com/problems/sentence-screen-fitting/)|
 |690       |[employeeImportance](https://github.com/artisan1218/LeetCode-Solution/tree/main/employeeImportance)|Easy|BFS, DFS|False|Python|[Employee Importance](https://leetcode.com/problems/employee-importance/)|
 |735       |[asteroidCollision](https://github.com/artisan1218/LeetCode-Solution/tree/main/asterolidCollision)|Medium|Stack|False|Python|[Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)|
