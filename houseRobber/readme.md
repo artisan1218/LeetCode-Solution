@@ -56,6 +56,7 @@ def robDP1(self, nums: List[int]) -> int:
 Time complexity is O(n):\
 <img width="668" alt="image" src="https://user-images.githubusercontent.com/25105806/138203857-07f858b6-b32d-4039-93fb-ac025f6bf1ab.png">
 
+<br />
 
 ### Approach 3: Dynamic Programming, robDP2()
 Same as approach 2, but since the result at each house only depends on the previous two houses, we can then only use two variable `pre` and `cur` to calculate the result.
