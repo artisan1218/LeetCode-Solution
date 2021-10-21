@@ -23,18 +23,21 @@ class Solution:
                     return mem[i] 
         return dfs(nums, 0, mem)
     
-    def robDP(self, nums: List[int]) -> int:
-        dp = [0 for _ in range(len(nums))]
-        dp[0] = nums[0]
-        dp[1] = max(dp[0], nums[1])
-        
-        for i in range(2, len(nums)):
-            # for each num at i, we found the max value of i-1 or i-2 + nums[i]
-            # dp[i-1] means rob the previous one, so that we cannot rob the current
-            # dp[i-2] + num means rob the current one and the one before previous one
-            dp[i] = max(dp[i-1], dp[i-2]+nums[i])
-        
-        return dp[-1]
+    def robDP1(self, nums: List[int]) -> int:
+        if len(nums)==1:
+            return nums[0]
+        else:
+            dp = [0 for _ in range(len(nums))]
+            dp[0] = nums[0]
+            dp[1] = max(dp[0], nums[1])
+
+            for i in range(2, len(nums)):
+                # for each num at i, we found the max value of i-1 or i-2 + nums[i]
+                # dp[i-1] means rob the previous one, so that we cannot rob the current
+                # dp[i-2] + num means rob the current one and the one before previous one
+                dp[i] = max(dp[i-1], dp[i-2]+nums[i])
+
+            return dp[-1]
     
     def robDP2(self, nums: List[int]) -> int:
         pre = 0
