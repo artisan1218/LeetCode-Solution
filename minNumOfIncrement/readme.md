@@ -30,7 +30,7 @@ def minNumberOperationsBruteForce(self, target: List[int]) -> int:
     return minNum
 ```
 
-Time complexity is O(h*\n) where h is the value of largest element in `target` and n is the length of `target`
+Time complexity is O(h\*n) where h is the value of largest element in `target` and n is the length of `target`
 
 
 <br />

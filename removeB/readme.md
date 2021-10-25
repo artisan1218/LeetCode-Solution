@@ -16,3 +16,19 @@ string S consists only of the characters 'a' and/or 'b'
 
 ### Approach 1: Recursion, solution()
 The idea is to first find left-most `b` and right-most `b`. Since we don't know where there are more `b`'s in the middle, we use recursion to exhaust all possible ways of removing current `b`: `cost += min(solution(optionOne)+2, solution(optionTwo)+firstIdx+1, solution(optionThree)+lenS-lastIdx)` and pick the way with smallest cost
+
+```python
+def solution(S):
+    cost = 0
+    firstIdx = S.find('b') 
+    lastIdx = S.rfind('b') # rfind to get last index of b
+    lenS = len(S)
+    if firstIdx==-1 and lastIdx==-1:
+        return 0
+    else:
+        optionOne = S[:firstIdx] + S[firstIdx+1:] # pop from center
+        optionTwo = S[firstIdx+1:] # pop left from side
+        optionThree = S[:lastIdx] # pop right from side
+        cost += min(solution(optionOne)+2, solution(optionTwo)+firstIdx+1, solution(optionThree)+lenS-lastIdx)
+        return cost
+```
