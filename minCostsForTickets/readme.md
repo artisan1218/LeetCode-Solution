@@ -1,17 +1,96 @@
-# Merge Two Sorted Lists problem
-* Merge two sorted linked lists and return it as a **sorted** list. The list should be made by splicing together the nodes of the first two lists.
-<img src="https://user-images.githubusercontent.com/25105806/120598322-fc799980-c3fa-11eb-8eeb-d543dfb00a41.png" width="60%" height="60%">
+# Minimum Cost For Tickets problem
+![image](https://user-images.githubusercontent.com/25105806/138777920-3bde1d62-e6c6-4874-a598-3f58b552d701.png)
 
+Leetcode link: https://leetcode.com/problems/minimum-cost-for-tickets/
 
+<br />
 
-### Approach 1: Switching, mergeTwoLists1()
-This approach is simply get two least elements from the given two arrays `l1` and `l2`, compare them and append the smaller element to a new ListNode and finally return it.\
-Time complexity is simply O(m+n) where `m` is the length of `l1` and `n` is the length of `l2`.
-![image](https://user-images.githubusercontent.com/25105806/120598711-7447c400-c3fb-11eb-8689-6c7968cab35f.png)
+### Approach 1: DFS with Memorization, mincostTicketsDFS()
+This approach uses DFS to explore all possible ways of purchasing tickets at each day and find the minimum cost among all. We use memorization to store the calculated result and avoid recomputing to speed up.
 
+```python
+def mincostTicketsDFS(self, days: List[int], costs: List[int]) -> int:
+    cache = dict()
+    def dfs(i):
+        if i>=len(days):
+            return 0
+        else:
+            if i in cache:
+                return cache[i] # cache
+            else:
+                minCost = float('inf')
+                # for each day, go over all three possible ways of purchasing tickets
+                # and choose the one with min cost
+                for day, cost in zip([1, 7, 30], costs):
+                    # find the index of the next day that we need purchase ticket for
+                    nextDayIdx = i
+                    while nextDayIdx < len(days) and days[nextDayIdx] < days[i] + day:
+                        nextDayIdx += 1
+                    minCost = min(minCost, dfs(nextDayIdx) + cost)
+                cache[i] = minCost # cache    
+                return cache[i]
 
-### Approach 2: Switching, break when either one reaches end, mergeTwoLists2()
-This approach is based on approach 1, the only difference is that, when either one array reaches the end, we can simply append the rest of the other array to the result ListNode because there is only one element left for comparsion and there is no need for comparsion. This way we can skip the unnecessary comparsion.\
-Time complexity is therefore O(min(m, n)) because we only read the shorter array to the end. We can see from the running time that it is indeed faster.
+    return dfs(0)  
+```
 
-![image](https://user-images.githubusercontent.com/25105806/120599038-dbfe0f00-c3fb-11eb-975b-dc3a8e98a82c.png)
+Time complexity is O(w) where w is the max traveling day in `days`:\
+![image](https://user-images.githubusercontent.com/25105806/138778177-551d2209-b9a3-4abe-ae48-4c3ee828c0c7.png)
+
+<br />
+
+### Approach 2: Dynamic Programming Bottom-Up, mincostTicketsDPFromBack()
+This solution is derived from approach 1 but we use iteration instead of recursion to explore all possibilities. Since for each traveling day in `days`, which ticket should me purchase depends on the future days, so we can go from back to beginning and only check for days after current day.
+
+```python
+def mincostTicketsDPFromBack(self, days: List[int], costs: List[int]) -> int:
+    dp = dict()
+    # scan from the back to beginning because today's choice depends on the future days
+    for i in range(len(days)-1, -1, -1):
+        dp[i] = float('inf')
+        # for each day, go over all three possible ways of purchasing tickets
+        # and choose the one with min cost
+        for day, cost in zip([1, 7, 30], costs):
+            # find the index of the next day that we need purchase ticket for
+            nextDayIdx = i
+            while nextDayIdx < len(days) and days[nextDayIdx] < days[i] + day:
+                nextDayIdx += 1
+            dp[i] = min(dp[i], dp.get(nextDayIdx, 0) + cost)
+
+    return dp[0] 
+```
+
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/138778556-75401944-b699-406c-b882-36f469bf8d93.png)
+
+<br />
+
+### Approach 3: Dynamic Programming Top-Down, mincostTicketsDPFromStart()
+We can also scan from the beginning. We will initialize the `dp` array with length equal to number of days between the start day and ending day in `days`, so we cover each possible day between this range. Then we simply go to each day and check for days before this day:
+1. If today is not traveling day, the cost stays the same as previous day
+2. If today is traveling day, we should look back 1 day, 7 days and 30 days to see which one has the min cost if we purchase a 1 day pass 1 day ago, or we purchase a 7 day pass 7 days ago, or we purchase a 30 day pass 30 days ago.
+
+```python
+def mincostTicketsDPFromStart(self, days: List[int], costs: List[int]) -> int:
+    # DP Table, record for minimum cost of ticket to travel
+    dp = [0] + [-1 for _ in range(days[0], days[-1]+1)]
+
+    for day in days:
+        dp[day-days[0]+1] = 0 # initialized to 0 for traverling days
+
+    # dp starts here, we will look back to see because the best choice of today depends on the future days
+    for i in range(1, len(dp)):
+        if dp[i] == -1: # today is not traveling day
+            dp[i] = dp[i - 1] # no extra cost
+        else: # today is traveling day
+            # compute optimal cost by DP
+            one = dp[max(i-1, 0)] + costs[0] # look back one day, what's the cost if we purchase a 1 day ticket yesterday?
+            seven = dp[max(i-7, 0)] + costs[1] # look back 7 days, what's the cost if we purchase a 7 day ticket 7 days ago?
+            thirty = dp[max(i-30, 0)] + costs[2] # look back 30 days, what's the cost if we purchase a 30 day ticket 30 days ago?
+            dp[i] = min(one, seven, thirty)
+
+    return dp[-1]
+```
+
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/138778925-b1d6b763-dd9d-494b-b940-ef239e922893.png)
+
