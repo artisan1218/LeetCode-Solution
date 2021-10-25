@@ -5,22 +5,9 @@
   2. Delete a character.
   3. Replace a character
  
-### Approach 1: Dynamic Programming, minDistance()
-The idea is very straightforward and comes from the definition of 'dividing': that is, how many `divisors` are contained in `dividend`. We simply subtract divisor from dividend once a time until `dividend` is smaller than `divisor`, which means `dividend` does not contain `divisor` anymore. \
-For example: we divide 5000 by 14:
-* We can subtract 14 from 5000 for 357 times: 14\*357=4998 and 5000-4998=2 and 2<14. quotient = 357
-
-
-The main downside of this approach is:
-1. When the dividend(2^31-1) is large and divisor is small(1), the running time is slow because we simply subtract 1 from 2^31-1 2^31-1 times.
-2. Hard to handle overflow issue
-
-Time complexity is therefore O(n/m) where n is the value of `dividend` and m is the value of `divisor`.\
-Note that this approach definitely works, but this will lead to ETL on leetcode.com
-
 <br />
-
-### Approach 2, Bit-wise Manipulation, divide()
+ 
+### Approach 1: Dynamic Programming, minDistance()
 
 Credits to: https://www.youtube.com/watch?v=We3YDTzNXEk
 
