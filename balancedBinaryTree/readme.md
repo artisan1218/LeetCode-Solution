@@ -1,11 +1,13 @@
-# Construct Binary Tree from Inorder and Postorder Traversal problem
-![image](https://user-images.githubusercontent.com/25105806/135960716-7a25d3bf-f84f-49a5-bf04-d2d1533f5e93.png)
+# Balanced Binary Tree problem
+![image](https://user-images.githubusercontent.com/25105806/140280620-86c928c8-3b96-4dda-bcf7-f4d398ad9765.png)
+
+Leetcode Link: https://leetcode.com/problems/balanced-binary-tree/
 
 <br />
 
-### Approach 1: buildTree()
-The idea is similar to previous question [buildTreeFromPreorderAndInorderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/buildTreeFromPreorderAndInorder). The difference is that, instead of getting root value from the start of `preorder` list, we now getting root value from the back of `postorder`, then do the similar thing by finding the index of root in `inorder` list to decide what is the value range in the left subtree and wwhat is the value range in the right subtree
+### Approach 1: DFS, getDepth(), isBalanced()
+The idea is to use DFS at each node of the `root` and find the depth of left branch and right branch of each node. Then compare the difference and check for the next node using DFS.
 
-Time complexity is O(n^2):\
-![image](https://user-images.githubusercontent.com/25105806/135960993-fe4fcea6-358e-41e6-94f5-fd2ba6e77090.png)
+Time complexity is O(nlogn) as we will calculate depth for each node, which is `n`, and the depth calculation costs `logn`:\
+![image](https://user-images.githubusercontent.com/25105806/140281093-bbafb925-36d1-44a9-9720-34e8b01745e4.png)
 
