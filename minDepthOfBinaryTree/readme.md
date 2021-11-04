@@ -1,96 +1,59 @@
-# Minimum Cost For Tickets problem
-![image](https://user-images.githubusercontent.com/25105806/138777920-3bde1d62-e6c6-4874-a598-3f58b552d701.png)
+# Minimum Depth of Binary Tree problem
+![image](https://user-images.githubusercontent.com/25105806/140287305-d24bc143-1f9f-4be5-9546-f0536b865eba.png)
 
-Leetcode link: https://leetcode.com/problems/minimum-cost-for-tickets/
+Leetcode link: https://leetcode.com/problems/minimum-depth-of-binary-tree/
 
 <br />
 
-### Approach 1: DFS with Memorization, mincostTicketsDFS()
-This approach uses DFS to explore all possible ways of purchasing tickets at each day and find the minimum cost among all. We use memorization to store the calculated result and avoid recomputing to speed up.
+### Approach 1: DFS, minDepth1()
+This approach is a kind of brute force solution. We will explore the tree using DFS and update the minimal depth of current subtree every time we reach a leaf node. We use a list `depthList` with only one element to keep track of the minimal depth so far.
 
 ```python
-def mincostTicketsDFS(self, days: List[int], costs: List[int]) -> int:
-    cache = dict()
-    def dfs(i):
-        if i>=len(days):
-            return 0
+def minDepth1(self, root: Optional[TreeNode]) -> int:
+    def depth(root, curDepth, depthList):
+        if root.left==None and root.right==None: # this is a leaf node
+            depthList[0] = min(depthList[0], curDepth)
         else:
-            if i in cache:
-                return cache[i] # cache
-            else:
-                minCost = float('inf')
-                # for each day, go over all three possible ways of purchasing tickets
-                # and choose the one with min cost
-                for day, cost in zip([1, 7, 30], costs):
-                    # find the index of the next day that we need purchase ticket for
-                    nextDayIdx = i
-                    while nextDayIdx < len(days) and days[nextDayIdx] < days[i] + day:
-                        nextDayIdx += 1
-                    minCost = min(minCost, dfs(nextDayIdx) + cost)
-                cache[i] = minCost # cache    
-                return cache[i]
+            if root.left!=None:
+                left = depth(root.left, curDepth+1, depthList)
+            if root.right!=None:
+                right = depth(root.right, curDepth+1, depthList)
 
-    return dfs(0)  
-```
-
-Time complexity is O(w) where w is the max traveling day in `days`:\
-![image](https://user-images.githubusercontent.com/25105806/138778177-551d2209-b9a3-4abe-ae48-4c3ee828c0c7.png)
-
-<br />
-
-### Approach 2: Dynamic Programming Bottom-Up, mincostTicketsDPFromBack()
-This solution is derived from approach 1 but we use iteration instead of recursion to explore all possibilities. Since for each traveling day in `days`, which ticket should me purchase depends on the future days, so we can go from back to beginning and only check for days after current day.
-
-```python
-def mincostTicketsDPFromBack(self, days: List[int], costs: List[int]) -> int:
-    dp = dict()
-    # scan from the back to beginning because today's choice depends on the future days
-    for i in range(len(days)-1, -1, -1):
-        dp[i] = float('inf')
-        # for each day, go over all three possible ways of purchasing tickets
-        # and choose the one with min cost
-        for day, cost in zip([1, 7, 30], costs):
-            # find the index of the next day that we need purchase ticket for
-            nextDayIdx = i
-            while nextDayIdx < len(days) and days[nextDayIdx] < days[i] + day:
-                nextDayIdx += 1
-            dp[i] = min(dp[i], dp.get(nextDayIdx, 0) + cost)
-
-    return dp[0] 
+    if root==None:
+        return 0
+    else:
+        depthList = [float('inf')]
+        depth(root, 1, depthList)
+        return depthList[0]
 ```
 
 Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/138778556-75401944-b699-406c-b882-36f469bf8d93.png)
+![image](https://user-images.githubusercontent.com/25105806/140287691-a8302041-8b0c-44ab-b214-2e35f872d711.png)
 
 <br />
 
-### Approach 3: Dynamic Programming Top-Down, mincostTicketsDPFromStart()
-We can also scan from the beginning. We will initialize the `dp` array with length equal to number of days between the start day and ending day in `days`, so we cover each possible day between this range. Then we simply go to each day and check for days before this day:
-1. If today is not traveling day, the cost stays the same as previous day
-2. If today is traveling day, we should look back 1 day, 7 days and 30 days to see which one has the min cost if we purchase a 1 day pass 1 day ago, or we purchase a 7 day pass 7 days ago, or we purchase a 30 day pass 30 days ago.
+### Approach 2: DFS, minDepth2()
+Credits to: https://leetcode.com/problems/minimum-depth-of-binary-tree/solution/210711
+
+This is solution is similar to approach 1 but more concise. The structure is similar to the code of calculating 'maxDepth' of a binary tree. The difference is that we need to consider the case where a node has only left subtree or right subtree, otherwise the minimal depth will just be 1 since we're taking the minimal of all subtrees. The workaround is just skip those cases.
 
 ```python
-def mincostTicketsDPFromStart(self, days: List[int], costs: List[int]) -> int:
-    # DP Table, record for minimum cost of ticket to travel
-    dp = [0] + [-1 for _ in range(days[0], days[-1]+1)]
-
-    for day in days:
-        dp[day-days[0]+1] = 0 # initialized to 0 for traverling days
-
-    # dp starts here, we will look back to see because the best choice of today depends on the future days
-    for i in range(1, len(dp)):
-        if dp[i] == -1: # today is not traveling day
-            dp[i] = dp[i - 1] # no extra cost
-        else: # today is traveling day
-            # compute optimal cost by DP
-            one = dp[max(i-1, 0)] + costs[0] # look back one day, what's the cost if we purchase a 1 day ticket yesterday?
-            seven = dp[max(i-7, 0)] + costs[1] # look back 7 days, what's the cost if we purchase a 7 day ticket 7 days ago?
-            thirty = dp[max(i-30, 0)] + costs[2] # look back 30 days, what's the cost if we purchase a 30 day ticket 30 days ago?
-            dp[i] = min(one, seven, thirty)
-
-    return dp[-1]
+def minDepth2(self, root: Optional[TreeNode]) -> int:
+    if root==None:
+        return 0
+    else:
+        if root.left==None:
+            return self.minDepth2(root.right) + 1 # left node is none, only counting right node
+        elif root.right==None:
+            return self.minDepth2(root.left) + 1 # right node is none, only counting left node
+        else:
+            # counting both and take minimal if both left and right are non-null
+            left = self.minDepth2(root.left) + 1
+            right = self.minDepth2(root.right) + 1
+            return min(left, right)
 ```
 
 Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/138778925-b1d6b763-dd9d-494b-b940-ef239e922893.png)
+![image](https://user-images.githubusercontent.com/25105806/140288146-a8404de6-1d6d-47af-b356-7a42f7a1a68d.png)
+
 
