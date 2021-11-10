@@ -1,28 +1,105 @@
-# Permutations problem
-* Given an array `nums` of distinct integers, return all the possible permutations. You can return the answer in any order.
+# Path Sum problem
+![image](https://user-images.githubusercontent.com/25105806/141026405-d81de4f6-8f54-4d1d-8dc7-999dbded132c.png)
 
-### Approach 1: DFS, permute()
-The idea is simple, we will see the problem as a tree structure. We solve this using recursion:
+Leetcode Link: https://leetcode.com/problems/path-sum/
 
+<br />
+
+### Approach 1: DFS, hasPathSum()
+Use DFS to explore the tree and store every path sum to a set `result` then simply return true if the `targetSum` exists in the set `result`
+
+```python
+def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+   def dfs(root, result, curSum):
+       if root!=None:
+         if root.left==None and root.right==None:
+             result.add(curSum + root.val)
+
+         if root.left!=None:
+             dfs(root.left, result, curSum + root.val)
+
+         if root.right!=None:
+             dfs(root.right, result, curSum + root.val)
+
+   result = set()
+   dfs(root, result, 0)
+   return targetSum in result          
 ```
-dfs(nums = [1, 2, 3] , path = [] , result = [] )
-|____ dfs(nums = [2, 3] , path = [1] , result = [] )
-|      |___dfs(nums = [3] , path = [1, 2] , result = [] )
-|      |    |___dfs(nums = [] , path = [1, 2, 3] , result = [[1, 2, 3]] ) # added a new permutation to the result
-|      |___dfs(nums = [2] , path = [1, 3] , result = [[1, 2, 3]] )
-|           |___dfs(nums = [] , path = [1, 3, 2] , result = [[1, 2, 3], [1, 3, 2]] ) # added a new permutation to the result
-|____ dfs(nums = [1, 3] , path = [2] , result = [[1, 2, 3], [1, 3, 2]] )
-|      |___dfs(nums = [3] , path = [2, 1] , result = [[1, 2, 3], [1, 3, 2]] )
-|      |    |___dfs(nums = [] , path = [2, 1, 3] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3]] ) # added a new permutation to the result
-|      |___dfs(nums = [1] , path = [2, 3] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3]] )
-|           |___dfs(nums = [] , path = [2, 3, 1] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1]] ) # added a new permutation to the result
-|____ dfs(nums = [1, 2] , path = [3] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1]] )
-       |___dfs(nums = [2] , path = [3, 1] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1]] )
-       |    |___dfs(nums = [] , path = [3, 1, 2] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2]] ) # added a new permutation to the result
-       |___dfs(nums = [1] , path = [3, 2] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2]] )
-            |___dfs(nums = [] , path = [3, 2, 1] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]] ) # added a new permutation to the result
+
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/141026666-eaaba32b-a0b6-4ffd-847f-c04abfc1b090.png)
+
+<br />
+
+### Approach 2: DFS, hasPathSum2()
+Similar to approach 1, but this time we update `targetSum` every time we found a new node in a path. We will still explore every path using DFS but we only store whether the path sum is equal to `targetSum` instead of the exact sum value. 
+
+```python
+def hasPathSum2(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    def dfs(root, result, target):
+        if root!=None:
+            if root.left==None and root.right==None and target==root.val:
+                result.append(True)
+
+            if root.left!=None:
+                dfs(root.left, result, target - root.val)
+
+            if root.right!=None:
+                dfs(root.right, result, target - root.val)
+
+    result = list()
+    dfs(root, result, targetSum)
+    return any(result)
 ```
 
-Actual running time:
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/141026925-2e07f756-a7a1-423f-afe0-b31c48bc7fe0.png)
 
-![image](https://user-images.githubusercontent.com/25105806/125020993-a8338c00-e02e-11eb-99e5-903145ffbd94.png)
+
+<br />
+
+### Approach 3: DFS, hasPathSum3()
+It's possible to stop the algorithm early if we already found the valid path. So we use the early stopping condition in the code to test if we've already found the valid path.
+
+```python
+def hasPathSum3(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    def dfs(root, curSum):
+        result = False
+        if root!=None:
+            if root.left==None and root.right==None and curSum + root.val == targetSum:
+                return True
+
+            if root.left!=None:
+                result = result or dfs(root.left, curSum + root.val)
+
+            if root.right!=None:
+                result = result or dfs(root.right, curSum + root.val)
+
+            return result
+
+    return dfs(root, 0)
+```
+
+Time complexity is O(n) in worst case:\
+![image](https://user-images.githubusercontent.com/25105806/141027131-0a1dddec-b7e0-4c53-83d9-896fe278e761.png)
+
+<br />
+
+### Approach 4: DFS, hasPathSum4()
+Similar to approach 3 but different implementation
+
+```python
+def hasPathSum4(self, root: Optional[TreeNode], targetSum: int) -> bool:
+    if root==None:
+        return False
+    elif root.left==None and root.right==None and targetSum==root.val:
+        return True
+    else:
+        left = self.hasPathSum4(root.left, targetSum-root.val)
+        right = self.hasPathSum4(root.right, targetSum-root.val)
+        return left or right
+```
+
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/141027302-4c276c18-5d7d-4ef1-8e55-0f5ed7e53313.png)
+
