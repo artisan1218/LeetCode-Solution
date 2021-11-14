@@ -116,6 +116,7 @@ Records of all my solved problems on LeetCode
 |111      |[minDepthOfBinaryTree](https://github.com/artisan1218/LeetCode-Solution/tree/main/minDepthOfBinaryTree)|Easy|DFS|False|Python|[Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)|
 |112      |[pathSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/pathSum)|Easy|DFS|False|Python|[Path Sum](https://leetcode.com/problems/path-sum/)|
 |113      |[pathSum II](https://github.com/artisan1218/LeetCode-Solution/tree/main/pathSum%20II)|Medium|DFS|False|Python|[Path Sum II](https://leetcode.com/problems/path-sum-ii/)|
+|114      |[flattenBT2LinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/flattenBT2LinkedList)|Medium|Binary Tree|True|Python|[Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
