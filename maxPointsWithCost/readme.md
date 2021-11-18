@@ -28,7 +28,7 @@ Time complexity is O(m\*n^2) where m is the number of rows and n is the number o
 <br />
 
 ### Approach 2: Dynamic Programming, maxPointsDP()
-Reference: https://www.youtube.com/watch?v=STEJHYc9rMw and https://www.youtube.com/watch?v=QKu8NQcC6zs and 
+Reference: https://www.youtube.com/watch?v=STEJHYc9rMw and https://www.youtube.com/watch?v=QKu8NQcC6zs 
 
 We can find that for each value in a certain row, we only need to consider three values in previous row: the max value on the left side of current value's index, the value right above current value, and the max value on the right side of current value's index.
 
