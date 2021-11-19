@@ -1,51 +1,87 @@
-# Divide Two Integers problem
-* Given two integers `dividend` and `divisor`, divide two integers without using multiplication, division, and mod operator.
-* Return the quotient after dividing `dividend` by `divisor`.
-* The integer division should truncate toward zero, which means losing its fractional part. For example, `truncate(8.345) = 8` and `truncate(-2.7335) = -2`.
+# Distinct Subsequences problem
+![image](https://user-images.githubusercontent.com/25105806/142576858-8a441fb6-7384-415c-85aa-44fc64292c69.png)
 
-Note: Assume we are dealing with an environment that could only store integers within the **32-bit** signed integer range: `[−2^31, 2^31 − 1]`. For this problem, assume that your function returns `2^31 − 1` **when the division result overflows**.
+Leetcode link: https://leetcode.com/problems/distinct-subsequences/
 
-### Approach 1: Naive, Skipped()
-The idea is very straightforward and comes from the definition of 'dividing': that is, how many `divisors` are contained in `dividend`. We simply subtract divisor from dividend once a time until `dividend` is smaller than `divisor`, which means `dividend` does not contain `divisor` anymore. \
-For example: we divide 5000 by 14:
-* We can subtract 14 from 5000 for 357 times: 14\*357=4998 and 5000-4998=2 and 2<14. quotient = 357
+### Approach 1: Backtrack, numDistinctBacktrack()
+The idea is to use backtrack to exhaust all possible permutations of the sub-sequence. When the index `ti` reaches the end of target `t`, then we've found a solution and we should increment the counter by 1, otherwise just keeping iterating through all matches at the current position.
 
+```python
+def numDistinctBacktrack(self, s: str, t: str) -> int:
+    def helper(s, t, si, ti):
+        result = 0
+        if ti==len(t):
+            return 1
+        else:
+            for i in range(si, len(s)):
+                if s[i] == t[ti]:
+                    result += helper(s, t, i+1, ti+1)
+            return result
 
-The main downside of this approach is:
-1. When the dividend(2^31-1) is large and divisor is small(1), the running time is slow because we simply subtract 1 from 2^31-1 2^31-1 times.
-2. Hard to handle overflow issue
+    return helper(s, t, 0, 0)
+```
 
-Time complexity is therefore O(n/m) where n is the value of `dividend` and m is the value of `divisor`.\
-Note that this approach definitely works, but this will lead to ETL on leetcode.com
+This solution leads to TLE :(
 
 <br />
 
-### Approach 2, Bit-wise Manipulation, divide()
+### Approach 2, DFS, numDistinctDFS()
+Credits to: https://www.youtube.com/watch?v=-RDzMJ33nx8&list=WL&index=1
 
-Credits to:
-1. https://leetcode.com/problems/divide-two-integers/discuss/142849/C%2B%2BJavaPython-Should-Not-Use-%22long%22-Int
-2. https://leetcode.com/problems/divide-two-integers/discuss/13407/C%2B%2B-bit-manipulations
-3. https://docs.oracle.com/javase/tutorial/java/nutsandbolts/op3.html
+The key idea is the two possible actions we can take when the two characters at `s` and `t` are the same. 
+1.  We can either 'match' this character and go to check the next character at position `s[si+1]` and `t[ti+1]`
+2.  Or we can skip this character as it is possible that there are more characters in the following substring that matches the character at current index `ti`. This way we should only check the next character in the `s` and keep the index `ti` unchanged.
 
-The idea of how bitwise manipulation works is similar to approach 1, but instead of subtract strictly `divisor` from `dividend` every time, we subtract `divisor * 2^x` from `dividend` where `x` is a multiplier that grows by 1 each time.
+We do this recursively in a DFS so at each matching index, we have two choices and this will cover all possible permutations. We need to use memorization technique to reduce the running time complexity.
 
-For example:
-Suppose dividend = 15 and divisor = 3, 15 - 3 > 0.\
-We now try to subtract more by shifting 3 to the left by 1 bit (6). Since 15 - 6 > 0, shift 6 again to 12. Now 15 - 12 > 0, shift 12 again to 24, which is larger than 15. \
-So we can at most subtract 12 from 15. Since 12 is obtained by shifting 3 to left twice, it is 1 << 2 = 4 times of 3. We add 4 to an answer variable (initialized to be 0).\
-The above process is like 15 = 3 * 4 + 3. We now get part of the quotient (4), with a remaining dividend 3.\
-Then we repeat the above process by subtracting divisor = 3 from the remaining dividend = 3 and obtain 0. \
-We are done. In this case, no shift happens. We simply add 1 << 0 = 1 to the answer variable.
+```python
+def numDistinctDFS(self, s: str, t: str) -> int:
+    mem = dict()
 
--2^31 divide by -1 is the only edge case that we need to worry about. This will make result to be 2^31 which overflows the Integer.MAX_VALUE. We can simply return 2^31-1 when `dividend=-2^31` and `divisor=-1`.
+    def dfs(si, ti):
+        if (si, ti) in mem:
+            return mem[(si, ti)]
+        else:
+            if ti==len(t):
+                return 1
+            elif si==len(s):
+                return 0
+            else:
+                if s[si]==t[ti]:
+                    mem[(si, ti)] = dfs(si+1, ti+1) + dfs(si+1, ti)
+                else:
+                    mem[(si, ti)] = dfs(si+1, ti)
+                return mem[(si, ti)]
 
-Note that the in the code, the line ```absDivisor << x << 1``` can not be replaced with ```absDivisor << x + 1```. They may seem the same statement but will perform differently when overflow happens.
-For example, in Java: ```1 << 31 << 1``` is `0` while ```1 << 32``` is `1`.
+    return dfs(0, 0) # si and ti starts at 0
+```
 
-Time complexity is O(logN^2) because we will double the `divisor` every time we can subtract it from `dividend`, resulting in a much faster 'convergence'.
-
-![image](https://user-images.githubusercontent.com/25105806/121135050-f6176300-c7e8-11eb-85dd-f8adb7130443.png)
-
+Time complexity is O(m\*n) where `m` and `n` are the length of `s` and `t`:\
+![image](https://user-images.githubusercontent.com/25105806/142577861-468a40ee-8b2d-469d-b772-1779e9806cc3.png)
 
 
+<br />
+
+### Approach 3, Dynamic Programming, numDistinctDP()
+The idea is similar to approach 2 but this time we use a 2d array `dp` to represent the memorization. The key idea is still the same: we have two choices at each matching index.
+
+
+```python
+def numDistinctDP(self, s: str, t: str) -> int:
+    dp = [[0] * (len(s)+1) for _ in range(len(t) + 1)]
+
+    for i in range(len(s)+1):
+        dp[0][i] = 1
+
+    for row in range(1, len(t)+1):
+        for col in range(1, len(s)+1):
+            if t[row-1]==s[col-1]:
+                dp[row][col] = dp[row][col-1] + dp[row-1][col-1]
+            else:
+                dp[row][col] = dp[row][col-1]
+    return dp[-1][-1]
+```
+
+Time complexity is O(m\*n):\
+![image](https://user-images.githubusercontent.com/25105806/142578122-68717fef-1ef4-4711-939a-fd318c15b26a.png)
 
