@@ -138,8 +138,6 @@ public static double findMedianSortedArraysOptimal(int[] nums1, int[] nums2) {
 	} else {
 	    return findMedianSortedArraysOptimal(nums2, nums1);
 	}
-
-	// return median;
     }
 ```
 
