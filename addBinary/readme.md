@@ -1,6 +1,10 @@
 # Add Binary problem
 * Given two binary strings `a` and `b`, return their sum as a binary string.
 
+Leetcode link: https://leetcode.com/problems/add-binary/
+
+<br />
+
 ### Approach 1: Math, addBinary()
 Since `a` and `b` are given as strings and they might have different length, we first pad the shorter string with 0 to make it as long as the longer string. Then simply use python `zip()` function to add the digits vertically.
 
