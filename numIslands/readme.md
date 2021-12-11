@@ -1,91 +1,60 @@
-# Number of Good Ways to Split a String problem
-![image](https://user-images.githubusercontent.com/25105806/136476432-4e973f6e-e04c-4e82-a925-292ca7052176.png)
+# Number of Islands
+Given an `m x n` 2D binary grid grid which represents a map of `'1'`s (land) and `'0'`s (water), return the number of islands.
 
-Leetcode link: https://leetcode.com/problems/number-of-good-ways-to-split-a-string/
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
 
-<br />
+ 
+```
+Example 1:
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1
 
-### Approach 1: Brute Force, numSplitsBruteForce()
-The idea is simple, we cut the string `s` into two parts and check for the number of unique characters in each part `p` and `q`.
-
-```python
-def numSplitsBruteForce(self, s: str) -> int:
-    def isGoodWay(p, q):
-        return len(set(p)) == len(set(q))
-
-    count = 0
-    for i in range(1, len(s)):
-        print(s[0:i], s[i:])
-        if isGoodWay(s[0:i], s[i:]):
-            count+=1
-    return count
+Example 2:
+Input: grid = [
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3
 ```
 
-Time complexity is O(n^3), iteration over the string is O(n), string slicing is O(n) and checking for unique characters is also O(n):\
-This solution leads to TLE
+Leetcode link: https://leetcode.com/problems/number-of-islands/
 
 <br />
 
-### Approach 2: Cache, numSplitsCache1()
-The idea is to use two dict and two sets to store the number of unique characters from left and from right. `i` is the index of `s` and the corresponding value stands for the number of unique characters up to index `i`. 
+### Approach 1: DFS, numIslands()
+Explore all cells in the matrix line by line and for each land(`1`) we meet, enter a DFS to explore all its connected neighbor and change all visited cells to `0` so that we don't visit them again. Then simply increase the counter by 1 and check for the next cell.
 
 ```python
-def numSplitsCache1(self, s: str) -> int:
-    leftUnique = dict()    
-    rightUnique = dict()    
-    leftSeen = set()
-    rightSeen = set()
-    sLen = len(s)
-    for i in range(0, len(s)):
-        if s[i] not in leftSeen:
-            leftSeen.add(s[i])
-            leftUnique[i] = leftUnique.get(i-1, 0) + 1
+def numIslands(self, grid: List[List[str]]) -> int:
+    def helper(grid, r, c):
+        if r < 0 or r >= len(grid) or c < 0 or c >= len(grid[0]):
+            return
         else:
-            leftUnique[i] = leftUnique[i-1]
-
-        if s[sLen-i-1] not in rightSeen:
-            rightSeen.add(s[sLen-i-1])
-            rightUnique[sLen-i-1] = rightUnique.get(sLen-i, 0) + 1
-        else:
-            rightUnique[sLen-i-1] = rightUnique[sLen-i]
+            if grid[r][c] == '1':
+                grid[r][c] = '0' # we have visited this cell, mark it as visited
+                helper(grid, r+1, c)
+                helper(grid, r-1, c)
+                helper(grid, r, c+1)
+                helper(grid, r, c-1)
+            return
 
     count = 0
-    for i in range(0, len(s)-1):
-        if leftUnique[i] == rightUnique[i+1]:
-            count+=1
-
+    for r in range(len(grid)):
+        for c in range(len(grid[r])):
+            if grid[r][c] == '1':
+                count+=1
+                helper(grid, r, c)
+                print(grid)
     return count
 ```
 
-Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/136476814-1b0c295b-bede-4537-b797-feed7db37dd5.png)
-
-<br />
-
-### Approach 3: Cache, numSplitsCache2()
-Same idea, but uses two list instead of two dict to store the number of unique characters at index `i`
-
-```python
-def numSplitsCache2(self, s: str) -> int:
-    leftUnique = list()    
-    rightUnique = list()    
-    leftSeen = set()
-    rightSeen = set()
-    sLen = len(s)
-    for i in range(0, len(s)):
-        leftSeen.add(s[i])
-        rightSeen.add(s[sLen-i-1])
-        leftUnique.append(len(leftSeen))
-        rightUnique.append(len(rightSeen))
-
-    count = 0
-    for i in range(0, len(s)-1):
-        if leftUnique[i] == rightUnique[sLen-i-2]:
-            count+=1
-
-    return count
-```
-
-Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/136476912-22e180a2-2676-41a8-a937-a046d37fb61d.png)
+Time complexity is O(n+m) where `n` is the total number of cells in the matrix `grid` and `m` is the total number of lands:\
+![image](https://user-images.githubusercontent.com/25105806/145692741-da367c37-9b49-425b-a9ae-615fff1996ad.png)
 
