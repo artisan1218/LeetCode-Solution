@@ -21,7 +21,6 @@ class Solution:
                 if grid[r][c] == '1':
                     count+=1
                     helper(grid, r, c)
-                    print(grid)
         return count
 
 if __name__ == '__main__':
