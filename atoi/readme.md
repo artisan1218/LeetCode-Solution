@@ -13,7 +13,7 @@ Leetcode link: https://leetcode.com/problems/string-to-integer-atoi/
 <br />
 
 ### Approach 1: String Traversal, myAtoiNaive()
-This approach is the native solution, which is easily to come up with, simply go through the string `s`, check each char and make corresponding actions.\
+This approach is the native solution, which is easily to come up with, simply go through the string `s`, check each char and make corresponding actions.
 
 ```java
 public static int myAtoi(String s) {
@@ -63,6 +63,8 @@ public static int myAtoi(String s) {
 
 Time complexity is simply O(n) because we only visit each of the chars in the string `s` once.\
 ![image](https://user-images.githubusercontent.com/25105806/118205932-63b4b700-b416-11eb-9dd8-32adf6f0119d.png)
+
+<br />
 
 ### Approach 2: DFA(Deterministic Finite Automaton), myAtoiDFA()
 Credits to: https://leetcode.com/problems/string-to-integer-atoi/discuss/798380/Fast-and-simpler-DFA-approach-(Python-3)
