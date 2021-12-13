@@ -55,14 +55,14 @@ Turns out we can use recursion to solve this. The sub-problem is *swapping two n
 public ListNode swapPairsRecursion(ListNode head) {
     // base case
     if (head == null || head.next == null) {
-  return head;
+      return head;
     } else {
-  // recursive step
-  // sub-problem is swapping two pairs
-  ListNode newHead = head.next;
-  head.next = swapPairsRecursion(newHead.next);
-  newHead.next = head;
-  return newHead;
+      // recursive step
+      // sub-problem is swapping two pairs
+      ListNode newHead = head.next;
+      head.next = swapPairsRecursion(newHead.next);
+      newHead.next = head;
+      return newHead;
     }
 }
 ```
