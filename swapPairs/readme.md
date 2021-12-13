@@ -12,35 +12,35 @@ We need to swap the node in each pair, which means swapping per two nodes. The i
 
 ```java
 public ListNode swapPairsOnePass(ListNode head) {
-    if (head == null || head.next == null) {
-  return head;
-    } else {
-  ListNode result = new ListNode();
-  ListNode cursor = result;
+	    if (head == null || head.next == null) {
+		return head;
+	    } else {
+		ListNode result = new ListNode();
+		ListNode cursor = result;
 
-  ListNode left = head;
-  ListNode right = head.next;
-  while (left != null && right != null) {
-      cursor.next = new ListNode(right.val);
-      cursor = cursor.next;
-      cursor.next = new ListNode(left.val);
-      cursor = cursor.next;
-      if (right.next == null) {
-    break;
-      } else {
-    left = left.next.next;
-    right = right.next.next;
-      }
+		ListNode left = head;
+		ListNode right = head.next;
+		while (left != null && right != null) {
+		    cursor.next = new ListNode(right.val);
+		    cursor = cursor.next;
+		    cursor.next = new ListNode(left.val);
+		    cursor = cursor.next;
+		    if (right.next == null) {
+			break;
+		    } else {
+			left = left.next.next;
+			right = right.next.next;
+		    }
 
-  }
-  // there is one extra element at the end yet to add
-  if (right == null) {
-      cursor.next = new ListNode(left.val);
-      cursor = cursor.next;
-  }
-  return result.next;
-    }
-}
+		}
+		// there is one extra element at the end yet to add
+		if (right == null) {
+		    cursor.next = new ListNode(left.val);
+		    cursor = cursor.next;
+		}
+		return result.next;
+	    }
+	}
 ```
 
 Time complexity is O(n).\
