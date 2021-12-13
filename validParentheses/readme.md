@@ -4,6 +4,12 @@
    1. Open brackets must be closed by the same type of brackets.
    2. Open brackets must be closed in the correct order.
 
+![image](https://user-images.githubusercontent.com/25105806/145903847-44262d5d-6aa0-4dd2-9498-6a75194fcda4.png)
+
+Leetcode link: https://leetcode.com/problems/valid-parentheses/
+
+<br/>
+
 ### Approach 1: Stack, isValid(), Python
 If an input string is valid, then we can always match a left parenthesis with a right one, then these two cancel out and we do this multiple times untill all left and right parentheses are canceled out. The idea is to go over the input string, then use a FIFO stack to store the seen char and try to match it with the last element of the stack, if they match, we can remove these two and go to the next char. If the length of the stack is 0 at the end, that means we've matched all pairs and the string is valid, otherwise it is not valid.\
 
@@ -11,10 +17,24 @@ If an input string is valid, then we can always match a left parenthesis with a 
 
 **Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesStackAnimation.ppsx) to download the animation to play for yourself.**
 
+```python
+def isValid(self, s: str) -> bool:
+  checkList = list()
+
+  for char in s:
+      if len(checkList)>0 and self.isValidPair(checkList[-1], char):
+          checkList.pop(-1)
+      else:
+          checkList.append(char)
+  return len(checkList)==0
+
+def isValidPair(self, left, right):
+  return left=='(' and right==')' or left=='[' and right ==']' or left=='{' and right=='}'
+
+```
+
 Time complexity is O(n) since we only go through the input string once. 
 ![image](https://user-images.githubusercontent.com/25105806/120406786-8d1f7f00-c300-11eb-9da1-268e17552579.png)
-
-
 
 <br />
 
@@ -31,6 +51,6 @@ We will replace `()` with `XX`, `[]` with `YY` and `{}` with `ZZ`. For example, 
 
 **Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesTManimation.ppsx) to download the animation to play for yourself.**
 
-Actual running time is:
 
+Actual running time is:\
 ![image](https://user-images.githubusercontent.com/25105806/120407287-b096f980-c301-11eb-824b-98642c0ea1b3.png)
