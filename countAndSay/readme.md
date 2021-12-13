@@ -10,6 +10,9 @@ For example, the saying and conversion for digit string `"3322251"`:
 
 Given a positive integer `n`, return the nth term of the count-and-say sequence.
 
+Leetcode link: https://leetcode.com/problems/count-and-say/
+
+<br/>
 
 ### Approach 1: Build the String From "1", countAndSay()
 Simply follow the steps of building the count-and-say sequence, by first count the numbers of characters in each group and say the character, then appending to the end of `res`. Then go to the next string until we looped for `n` times.
@@ -21,6 +24,37 @@ n=3: 21, because there are two 1's in case n=2
 n=4: 1211, because there are one 2 and one 1 in case n=3
 n=5: 111221, because there are one 1, one 2, two 1's in case n=4
 ...
+```
+
+```java
+public String countAndSay(int n) {
+    if (n == 1) {
+  return "1";
+    }
+    StringBuilder result = new StringBuilder("1");
+    for (int i = 1; i < n; i++) {
+  result = count(result);
+    }
+    return result.toString();
+}
+
+public StringBuilder count(StringBuilder str) {
+    StringBuilder res = new StringBuilder("");
+    int count = 1;
+    char digit = str.charAt(0);
+    for (int i = 1; i < str.length(); i++) {
+  char check = str.charAt(i);
+  if (check == digit) {
+      count++;
+  } else {
+      res.append(String.valueOf(count) + String.valueOf(digit));
+      digit = check;
+      count = 1;
+  }
+    }
+    res.append(String.valueOf(count) + String.valueOf(digit));
+    return res;
+}
 ```
 
 Time complexity is O(n\*m) where n is the positive integer `n` and `m` is the length of string built at each `n`:
