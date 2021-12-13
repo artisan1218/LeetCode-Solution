@@ -122,6 +122,7 @@ Records of all my solved problems on LeetCode
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
+|332       |[reconstructIternary](https://github.com/artisan1218/LeetCode-Solution/tree/main/reconstructIternary)|Hard|Stack, Backtracking|False|Python|[Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/)|
 |359       |[loggerRateLimiter](https://github.com/artisan1218/LeetCode-Solution/tree/main/loggerRateLimiter)|Easy|Hash|False|Python|[Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/)|
 |366       |[findLeavesOfBST](https://github.com/artisan1218/LeetCode-Solution/tree/main/findLeavesOfBST)|Medium|Binary Tree, DFS|False|Python|[Find Leaves of Binary Tree](https://leetcode.com/problems/find-leaves-of-binary-tree/)|
 |418       |[screenSentenceFitting](https://github.com/artisan1218/LeetCode-Solution/tree/main/sentenceScreenFitting)|Medium|List Traversal|False|Python|[Sentence Screen Fitting](https://leetcode.com/problems/sentence-screen-fitting/)|
