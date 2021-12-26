@@ -20,7 +20,7 @@ Records of all my solved problems on LeetCode
 |15       |[threeSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/threeSum)|Medium|Two Pointers|False|Python|[3Sum](https://leetcode.com/problems/3sum/)|
 |16       |[threeSumClosest](https://github.com/artisan1218/LeetCode-Solution/tree/main/threeSumClosest)|Medium|Two Pointers|False|Python|[3Sum Closest](https://leetcode.com/problems/3sum-closest/)|
 |17       |[phoneNumLetterComb](https://github.com/artisan1218/LeetCode-Solution/tree/main/phoneNumLetterCombinations)|Medium|Math|True|Python|[Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)|
-|18       |[fourSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/fourSum)|Medium|Two Pointers, Recursion|False|Python|[4Sum](https://leetcode.com/problems/4sum/submissions/)|
+|18       |[fourSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/fourSum)|Medium|Two Pointers, Recursion|False|Python|[4Sum](https://leetcode.com/problems/4sum/)|
 |19       |[rmNthNodeFromEnd](https://github.com/artisan1218/LeetCode-Solution/tree/main/rmNthNodeFromEnd)|Medium|LinkedList|True|Java|[Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)|
 |20       |[validParentheses](https://github.com/artisan1218/LeetCode-Solution/tree/main/validParentheses)|Easy|Stack, Turing Machine|True|Python, Java|[Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)|
 |21       |[mergeTwoSortedArys](https://github.com/artisan1218/LeetCode-Solution/tree/main/mergeTwoSortedArys)|Easy|LinkedList|False|Java|[Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)|
