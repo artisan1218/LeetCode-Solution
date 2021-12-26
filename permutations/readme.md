@@ -1,6 +1,10 @@
 # Permutations problem
 * Given an array `nums` of distinct integers, return all the possible permutations. You can return the answer in any order.
 
+Leetcode link: https://leetcode.com/problems/permutations/
+
+<br />
+
 ### Approach 1: DFS, permute()
 The idea is simple, we will see the problem as a tree structure. We solve this using recursion:
 
@@ -23,6 +27,21 @@ dfs(nums = [1, 2, 3] , path = [] , result = [] )
             |___dfs(nums = [] , path = [3, 2, 1] , result = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]] ) # added a new permutation to the result
 ```
 
-Actual running time:
+```python3
+def permute(self, nums: List[int]) -> List[List[int]]:
+    result = []
+    self.dfs(nums, [], result)
+    return result
 
+def dfs(self, nums, path, result):
+
+    if len(nums)==0:
+        result.append(path)
+    else:
+        for i in range(len(nums)):
+            self.dfs(nums[:i]+nums[i+1:], path+[nums[i]], result)
+
+```
+
+Actual running time:\
 ![image](https://user-images.githubusercontent.com/25105806/125020993-a8338c00-e02e-11eb-99e5-903145ffbd94.png)
