@@ -28,7 +28,7 @@ Time complexity is O(n) where n is the length of `sentence`
 
 <br />
 
-### Approach 1: wordsTyping()
+### Approach 2: wordsTyping()
 A better solution is to add the whole line one time instead of add word by word. This way we can reduce the time of iteration to the number of `rows`. Then we check if the ending char in each line is am empty space ` `. If it's an empty space, then we are good because that means we fit the whole line in without cutting any word in half. If it's not empty space, we should iteratively go back until we've met a empty space, this way to can avoid cutting any word in half.
 
 ```python

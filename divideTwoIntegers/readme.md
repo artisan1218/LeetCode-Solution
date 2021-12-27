@@ -5,11 +5,14 @@
 
 Note: Assume we are dealing with an environment that could only store integers within the **32-bit** signed integer range: `[−2^31, 2^31 − 1]`. For this problem, assume that your function returns `2^31 − 1` **when the division result overflows**.
 
+Leetcode link: https://leetcode.com/problems/divide-two-integers/
+
+<br />
+
 ### Approach 1: Naive, Skipped()
 The idea is very straightforward and comes from the definition of 'dividing': that is, how many `divisors` are contained in `dividend`. We simply subtract divisor from dividend once a time until `dividend` is smaller than `divisor`, which means `dividend` does not contain `divisor` anymore. \
 For example: we divide 5000 by 14:
 * We can subtract 14 from 5000 for 357 times: 14\*357=4998 and 5000-4998=2 and 2<14. quotient = 357
-
 
 The main downside of this approach is:
 1. When the dividend(2^31-1) is large and divisor is small(1), the running time is slow because we simply subtract 1 from 2^31-1 2^31-1 times.
@@ -42,8 +45,34 @@ We are done. In this case, no shift happens. We simply add 1 << 0 = 1 to the ans
 Note that the in the code, the line ```absDivisor << x << 1``` can not be replaced with ```absDivisor << x + 1```. They may seem the same statement but will perform differently when overflow happens.
 For example, in Java: ```1 << 31 << 1``` is `0` while ```1 << 32``` is `1`.
 
-Time complexity is O(logN^2) because we will double the `divisor` every time we can subtract it from `dividend`, resulting in a much faster 'convergence'.
+```java
+public int divide(int dividend, int divisor) {
+	    // Integer.MIN_VALUE / -1 is the only edge case that we need to worry about
+	    // this will make result to be 2^31 which overflows the Integer.MAX_VALUE
+	    // 1 << 31 is equal to Integer.MIN_VALUE
+	    if (dividend == 1 << 31 && divisor == -1) {
+		// Integer.MAX_VALUE
+		return (1 << 31) - 1;
+	    } else {
+		int absDividend = Math.abs(dividend);
+		int absDivisor = Math.abs(divisor);
+		int quotient = 0;
+		int x = 0;
 
+		while (absDividend - absDivisor >= 0) {
+		    x = 0;
+		    while (absDividend - (absDivisor << x << 1) >= 0) {
+			x++;
+		    }
+		    quotient += 1 << x;
+		    absDividend -= absDivisor << x;
+		}
+		return (dividend > 0) == (divisor > 0) ? quotient : -quotient;
+	    }
+	}
+```
+
+Time complexity is O(logN^2) because we will double the `divisor` every time we can subtract it from `dividend`, resulting in a much faster 'convergence':\
 ![image](https://user-images.githubusercontent.com/25105806/121135050-f6176300-c7e8-11eb-85dd-f8adb7130443.png)
 
 
