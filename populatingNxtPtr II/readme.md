@@ -1,15 +1,15 @@
-# Populating Next Right Pointers in Each Node problem
-![image](https://user-images.githubusercontent.com/25105806/147433511-bc0602cc-f28e-40ca-8cfd-4c843e766bce.png)
+# Populating Next Right Pointers in Each Node II problem 
+<img width="1043" alt="image" src="https://user-images.githubusercontent.com/25105806/147619397-d89d8725-8dd4-4814-b4d4-032a274037a3.png">
 
-Leetcode link: https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+Leetcode link: https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
 
 <br />
 
 ### Approach 1: BFS, connectBFS()
-This approach simply traverse nodes in the `root` level by level using BFS and redirect the `next` pointer one by one.
+This approach simply traverse nodes in the `root` level by level using BFS and redirect the `next` pointer one by one. This approach is the same as approach #1 in https://github.com/artisan1218/LeetCode-Solution/tree/main/populatingNxtPtr
 
 ```python3
-def connectBFS(self, root: 'Optional[Node]') -> 'Optional[Node]':
+def connectBFS(self, root: 'Node') -> 'Node':
     if root is None:
         return None
     else:
@@ -32,58 +32,36 @@ def connectBFS(self, root: 'Optional[Node]') -> 'Optional[Node]':
 ```
 
 Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/147433605-ddecf01d-c5be-451a-89e7-38cb5f327fcd.png)
+<img width="657" alt="image" src="https://user-images.githubusercontent.com/25105806/147619459-ec3be977-00fa-45ab-a0d7-a427275753ca.png">
 
 <br />
 
 ### Approach 2: BFS, connectBFS2()
-This approach is still based on level by level BFS traversal, but a different implementation that uses constant space.
+Credits to: https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/discuss/961868/Python-O(n)-solution-explained
+
+This approach is still based on level by level BFS traversal, but a different implementation that uses constant space. The key idea is to use two pointers `curr` and `nextLevel` to change the `next` pointer of nodes and hold the reference to next level respectively.
+
+We will do this level by level and at each level, check the left and right child of the current node. We will move the `curr` pointer and use it to change the `next` pointer at each node if left and right child is not `None`, then use the `next` pointer of the previous level to move the to the next node in the same level.
 
 ```python3
-def connectBFS2(self, root: 'Optional[Node]') -> 'Optional[Node]':
-    head = root # sentinel node
-    while root and root.left:
-        nextLevel = root.left # reference to the next level
-        # populating next pointer at the same level
-        while root is not None:
-            root.left.next = root.right
-            if root.next is not None: # default value for next pointer is None, so no need to change it if root.next is None
-                root.right.next = root.next.left
-            root = root.next
-        # move to the next level
-        root = nextLevel
-    return head
+def connectBFS2(self, root: 'Node') -> 'Node':
+    sentinel = root
+    while root:
+        curr = nextLevel = Node(0)
+        while root:
+            # redirect 'next' pointer
+            if root.left:
+                curr.next = root.left
+                curr = curr.next
+            if root.right:
+                curr.next = root.right
+                curr = curr.next
+            root = root.next # move to the next node in the same level
+        root = nextLevel.next
+
+    return sentinel
 ```
 
 Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/147433693-c3edbc5d-8022-4469-b9a6-cbc268d0ca9d.png)
-
-<br />
-
-### Approach 3: Recursion, connectRecursion()
-Since the next pointer always points to the next immediate node in the same level, we can use recursion on the left and right node of a root node and redirect the next pointer recursively. 
-
-1. If current root node is the left node, then point `next` pointer to the right node
-2. If current root node is the right node, then check if `next` pointer of the parent node is null. If it's null, that means the current right node is the right-most node and hence `next` pointer remains null.
-
-```python3
-def connectRecursion(self, root: 'Optional[Node]') -> 'Optional[Node]':
-    def recursion(root):
-        if root is None:
-            return None
-        else:
-            if root.left is not None:
-                root.left.next = root.right
-                if root.next is not None:
-                    root.right.next = root.next.left
-        recursion(root.left)
-        recursion(root.right)
-
-    recursion(root)
-    return root
-
-```
-
-Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/147433942-6cfce2ab-578b-464a-8fee-b43c4d0ab73e.png)
+<img width="661" alt="image" src="https://user-images.githubusercontent.com/25105806/147619611-ad8b11d5-d2b0-4962-a240-894126ef9431.png">
 
