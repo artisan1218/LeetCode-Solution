@@ -35,7 +35,7 @@ class Solution:
                     nextLevel = []
             return root
 
-    def connectBFS(self, root: 'Node') -> 'Node':
+    def connectBFS2(self, root: 'Node') -> 'Node':
         sentinel = root
         while root:
             curr = nextLevel = Node(0)
