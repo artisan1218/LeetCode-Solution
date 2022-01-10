@@ -1,12 +1,31 @@
-# Word Search problem
-* Given an `m x n` grid of characters board and a string word, return `true` if word exists in the grid.
-* The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+# Pascal's Triangle II problem
+<img width="633" alt="image" src="https://user-images.githubusercontent.com/25105806/148718901-611c0055-c70b-4d0b-952f-7f83f1d185d9.png">
 
-### Approach 1: Backtracking, exist()
-First loop through each cell in the board to find all possible starting point for the matching: if the first char is matched, then this is a potential start of the matching, which means we should call backtrack() to check.\
-In backtrack(), the exit condition is when the length of the found word `curLen` is equal to the length of target `word`. We will check all four directions to go if the index of row or column is within the range of the `board` matrix and the characters are matched and `(row, col)` is not in `visited`, which means this cell has not been visited.\
-Importantly, after trying all four directions, we should remove the current cell from the visited set because this will affect the next checking, this is where backtracking happens.
+Leetcode link: https://leetcode.com/problems/pascals-triangle-ii/
 
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/132603068-68e9ceb3-f33a-4d56-a595-c3e790024574.png)
+<br />
+
+### Approach 1: getRow()
+The idea is similar to [Pascal's Triangle](https://github.com/artisan1218/LeetCode-Solution/tree/main/Pascal's%20triangle). The only difference is that we only need to return the last row instead of all rows. Furthermore, since the current row of Pascal's triangle only depends on the previous row, it is reasonable to keep only two rows when looping through all rows until row `rowIndex`. This way, we use only `O(rowIndex)` extra space
+
+```python3
+def getRow(self, rowIndex: int) -> List[int]:
+    if rowIndex == 0:
+        return [1]
+    elif rowIndex == 1:
+        return [1, 1]
+    else:
+        prevRow = [1, 1]
+        for lvl_idx in range(2, rowIndex+1):
+            curRow = [1]
+            for j in range(1, lvl_idx):
+                curRow.append(prevRow[j-1] + prevRow[j])
+            curRow.append(1)
+            prevRow = curRow
+        return curRow
+```
+
+Time complexity is O(n):\
+<img width="643" alt="image" src="https://user-images.githubusercontent.com/25105806/148719235-214fc4ab-92b6-4173-b815-7062956548ec.png">
+
 
