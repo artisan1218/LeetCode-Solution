@@ -1,12 +1,30 @@
-# Word Search problem
-* Given an `m x n` grid of characters board and a string word, return `true` if word exists in the grid.
-* The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+# Pascal's Triangle problem
+<img width="613" alt="Screen Shot 2022-01-09 at 8 09 54 PM" src="https://user-images.githubusercontent.com/25105806/148717575-1b1dbc72-a9d8-4e4b-ab46-1db7a385d5bb.png">
 
-### Approach 1: Backtracking, exist()
-First loop through each cell in the board to find all possible starting point for the matching: if the first char is matched, then this is a potential start of the matching, which means we should call backtrack() to check.\
-In backtrack(), the exit condition is when the length of the found word `curLen` is equal to the length of target `word`. We will check all four directions to go if the index of row or column is within the range of the `board` matrix and the characters are matched and `(row, col)` is not in `visited`, which means this cell has not been visited.\
-Importantly, after trying all four directions, we should remove the current cell from the visited set because this will affect the next checking, this is where backtracking happens.
+Leetcode link: https://leetcode.com/problems/pascals-triangle/
 
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/132603068-68e9ceb3-f33a-4d56-a595-c3e790024574.png)
+<br />
+
+### Approach 1: Math, generate()
+This solution is exactly how we compute the Pascal's triangle step by step. We only keep two variables, the current row and the previous row (in order to compute the element in current row) and compute row by row.
+
+```python3
+def generate(self, numRows: int) -> List[List[int]]:
+    if numRows == 1:
+        return [[1]]
+    elif numRows == 2:
+        return [[1], [1, 1]]
+    else:
+        res = [[1], [1, 1]]
+        for lvl_idx in range(2, numRows):
+            level = [1]
+            for j in range(1, lvl_idx):
+                level.append(res[-1][j-1] + res[-1][j])
+            level.append(1)
+            res.append(level)
+        return res
+```
+
+Time complexity is O(n):\
+<img width="643" alt="image" src="https://user-images.githubusercontent.com/25105806/148717694-f9d94051-2b87-454e-8afb-20ad7f1639fd.png">
 
