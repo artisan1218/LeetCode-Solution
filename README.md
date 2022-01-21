@@ -123,6 +123,7 @@ Records of all my solved problems on LeetCode
 |118      |[Pascal's triangle](https://github.com/artisan1218/LeetCode-Solution/tree/main/Pascal's%20triangle)|Easy|Math|False|Python|[Pascal's Triangle](https://leetcode.com/problems/pascals-triangle/)|
 |119      |[Pascal's triangle II](https://github.com/artisan1218/LeetCode-Solution/tree/main/Pascal's%20triangle%20II)|Easy|Math|False|Python|[Pascal's Triangle II](https://leetcode.com/problems/pascals-triangle-ii/)|
 |120      |[minTotalTriangle](https://github.com/artisan1218/LeetCode-Solution/tree/main/triangle)|Medium|Dynamic Programming|True|Python|[Triangle](https://leetcode.com/problems/triangle/)|
+|121      |[bestTimeToBuyAndSell](https://github.com/artisan1218/LeetCode-Solution/tree/main/bestTimeToBuyAndSell)|Easy|Two Pointers|True|Python|[Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
