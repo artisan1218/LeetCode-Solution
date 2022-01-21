@@ -62,6 +62,10 @@ Credits to: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discus
 
 The idea is to compare the price between each two adjacent date. This works because `day3-day1 = (day2-day1) + (day3-day2)`. We will add the profit between different days to `cur_profit` and then compare it with `max_profit`. However, if the profit is negative, we simply make `cur_profit` 0, which means we don't trade as we won't make any profits. 
 
+<img width="432" alt="image" src="https://user-images.githubusercontent.com/25105806/150490775-676fedeb-5519-49ac-b827-0cd240b76360.png">
+
+
+
 ```python3
 def maxProfitKadaneAlgorithm(self, prices: List[int]) -> int:
     cur_profit = 0
