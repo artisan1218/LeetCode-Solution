@@ -58,6 +58,8 @@ Time complexity is O(n):\
 <br />
 
 ### Approach 3: Kadane's Algorithm, maxProfitKadaneAlgorithm()
+Credits to: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/263197/Python-2-solutions%3A-Min-So-Far-Kadane's-Algorithm-with-Picture-O(1)-in-Space
+
 The idea is to compare the price between each two adjacent date. This works because `day3-day1 = (day2-day1) + (day3-day2)`. We will add the profit between different days to `cur_profit` and then compare it with `max_profit`. However, if the profit is negative, we simply make `cur_profit` 0, which means we don't trade as we won't make any profits. 
 
 ```python3
