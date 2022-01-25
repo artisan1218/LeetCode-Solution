@@ -1,85 +1,55 @@
-# Best Time to Buy and Sell Stock problem
-<img width="813" alt="image" src="https://user-images.githubusercontent.com/25105806/150488307-3b808031-4f63-4024-b2e0-b1d57bc9d7f4.png">
+# Best Time to Buy and Sell Stock III problem
+<img width="939" alt="image" src="https://user-images.githubusercontent.com/25105806/151063611-86f3d02f-83d4-4ca2-90ec-1c3e9bdce4f7.png">
 
-Leetcode link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
-
-<br />
-
-### Approach 1: Two Pointers, maxProfitTwoPointers()
-Credits to: https://www.youtube.com/watch?v=1pkOgXD63yU
-
-The idea is to use two pointers, `buy` and `sell` to represent the day we buy in and sell, we will iterate over the `prices` array and update the buy date to be equal to sell date when sell price is lower than buy price, which means we won't be profitting, so we don't trade. But rather, move the buy date to sell date because the sell date price is lower. Move buy day to sell day is the best option to do because if there is a price in the future that is higher, we will be better off by buying at current sell day, if the there is a price in the future that is lower than current sell day, we will move current buy day to that sell day again. Then simply calculate the profit, compare it with maximum profit seen so far and update maximum profit if needed. 
-
-```python3
-def maxProfitTwoPointers(self, prices: List[int]) -> int:
-    buy = 0
-    sell = 1
-    maxProfit = 0
-    while sell < len(prices):
-        # since buy price is higher than sell price, we should move the buy day to sell day in order to profit
-        if prices[buy] > prices[sell]:
-            # move buy day to sell day is the best option to do because if there is a price in the future
-            # that is higher, we will be better off by buying at current sell day.
-            # if the there is a price in the future that is lower than current sell day,
-            # we will move current buy day to that sell day again.
-            buy = sell
-        else:
-            maxProfit = max(maxProfit, prices[sell]-prices[buy])
-        sell += 1
-    return maxProfit
-```
-
-Time complexity is O(n):\
-<img width="734" alt="image" src="https://user-images.githubusercontent.com/25105806/150489004-37108812-a07a-43a7-8c4a-36364957d1d0.png">
-
+Leetcode link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
 
 <br />
 
-### Approach 2: maxProfit2()
+### Approach 1: Dynamic Programming, maxProfitDP1()
+Reference: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/discuss/39611/Is-it-Best-Solution-with-O(n)-O(1).
 
-Credits to: https://www.youtube.com/watch?v=3RHCb8LY-X4
+Since we're only dealing with at most two transactions, we can use four variables to represent these two transactions:
+* `buy1` means the profit after we buy the first stock
+* `sell1` means the profit after we sell the first stock
+* `buy2` means the profit after we buy the second stock
+* `sell2` means the profit after we sell the second stock, which is the final answer
 
-The idea is to iterate over the `prices` and update the lowest price seen so far, then calculate the current profit by taking the difference between current price and `minPrice`. Finally, compare and store the maximum profit.
-
+Next is simply go over the `prices` array and update above four variables accordingly.
 ```python3
-def maxProfit2(self, prices: List[int]) -> int:
-    minPrice = float('inf')
-    maxProfit = 0
-    for price in prices:
-        minPrice = min(price, minPrice) # keeps the lowest price seen so far
-        maxProfit = max(maxProfit, price-minPrice) # calculate profit between current price and min price seen so far
-    return maxProfit
+def maxProfitDP1(self, prices: List[int]) -> int:
+    buy1, sell1, buy2, sell2 = float('-inf'), 0, float('-inf'), 0
+    for p in prices:
+        # we want to maximize the profit, so we take max
+        buy1 = max(buy1, -p) # we buy the first stock, which means the profit is negative
+        sell1 = max(sell1, buy1 + p) # sell the first stock, simply add the sell price to buy1
+        buy2 = max(buy2, sell1 - p) # buy the second stock, so deduct the price from the first sell profit
+        sell2 = max(sell2, buy2 + p) # sell the second stock, add the sell price to buy2
+    return sell2
 ```
 
 Time complexity is O(n):\
-<img width="753" alt="image" src="https://user-images.githubusercontent.com/25105806/150489463-b86fd42f-64b5-4da4-b6e6-0539ec2b0bba.png">
+<img width="791" alt="image" src="https://user-images.githubusercontent.com/25105806/151064386-454f0848-83a8-4151-bde9-d7572ef6b1ce.png">
 
 
 <br />
 
-### Approach 3: Kadane's Algorithm, maxProfitKadaneAlgorithm()
-Credits to: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/263197/Python-2-solutions%3A-Min-So-Far-Kadane's-Algorithm-with-Picture-O(1)-in-Space
-
-The idea is to compare the price between each two adjacent date. This works because `day3-day1 = (day2-day1) + (day3-day2)`. We will add the profit between different days to `cur_profit` and then compare it with `max_profit`. However, if the profit is negative, we simply make `cur_profit` 0, which means we don't trade as we won't make any profits. 
-
-<img width="432" alt="image" src="https://user-images.githubusercontent.com/25105806/150490775-676fedeb-5519-49ac-b827-0cd240b76360.png">
-
-
+### Approach 2: Dynamic Programming, maxProfitDP2()
+The second solution is similar to the first one, but we use cost instead of profit when updating all four variables:
+* `buy1` means the price we pay to buy the first stock, **NOT** the profit
+* `sell1` means the profit we can make by selling the first stock at price `p`
+* `buy2` means the price we pay to buy the second stock. This price should be `p-sell1` because `sell1` is the profit of the first trade, which means our cost for second stock is not price `p` but `p`-'profit'
+* `sell2` means the profit we can make by selling the second stock at price `p`
 
 ```python3
-def maxProfitKadaneAlgorithm(self, prices: List[int]) -> int:
-    cur_profit = 0
-    max_profit = 0
-    for i in range(len(prices)-1):
-        # calculate the profit between two adjacent days and add the profit to cur_profit
-        # only calculate the price difference between two adjacent days because day3-day1 = (day2-day1) + (day3-day2)
-        cur_profit += prices[i+1] - prices[i]
-        # always keep profit positive, which means we don't trade if sell price is lower than buy price
-        cur_profit = max(cur_profit, 0)
-        max_profit = max(max_profit, cur_profit)
-    return max_profit
+def maxProfitDP2(self, prices: List[int]) -> int:
+    buy1, sell1, buy2, sell2 = float('inf'), 0, float('inf'), 0
+    for p in prices:
+        buy1 = min(buy1, p) # minimize the buy-in price
+        sell1 = max(sell1, p-buy1) # maximize the profit of first sell
+        buy2 = min(buy2, p-sell1) # minimize the price, since we've already made profit of sell1, the buy-in price should be p-sell1
+        sell2 = max(sell2, p-buy2) # calculate profit
+    return sell2
 ```
 
 Time complexity is O(n):\
-<img width="762" alt="image" src="https://user-images.githubusercontent.com/25105806/150490083-c72d3b98-40bb-40de-84f1-2ade4db1ffcc.png">
-
+<img width="797" alt="image" src="https://user-images.githubusercontent.com/25105806/151064938-f996f9f0-f255-4c3b-9315-09c746a2ae99.png">
