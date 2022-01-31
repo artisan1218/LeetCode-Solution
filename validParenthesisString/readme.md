@@ -1,56 +1,115 @@
-# Valid Parentheses problem
-* Given a string s containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
-* An input string is valid if:
-   1. Open brackets must be closed by the same type of brackets.
-   2. Open brackets must be closed in the correct order.
+# Valid Parenthesis String problem
+![image](https://user-images.githubusercontent.com/25105806/151871354-8850c6cc-bf75-4ae7-8f98-487aaa6f70f2.png)
 
-![image](https://user-images.githubusercontent.com/25105806/145903847-44262d5d-6aa0-4dd2-9498-6a75194fcda4.png)
-
-Leetcode link: https://leetcode.com/problems/valid-parentheses/
+Leetcode link: https://leetcode.com/problems/valid-parenthesis-string/
 
 <br/>
 
-### Approach 1: Stack, isValid(), Python
-If an input string is valid, then we can always match a left parenthesis with a right one, then these two cancel out and we do this multiple times untill all left and right parentheses are canceled out. The idea is to go over the input string, then use a FIFO stack to store the seen char and try to match it with the last element of the stack, if they match, we can remove these two and go to the next char. If the length of the stack is 0 at the end, that means we've matched all pairs and the string is valid, otherwise it is not valid.\
+### Approach 1: DFS with memorization, checkValidStringDFS()
+If there is no wildcard operator, the whole process of validating parentheses string will be simply comparing the number of open and close parenthesis in order. The presence of wildcard operator introduces three possibilities every time we meet a `*`. So we can handle this by using DFS to traverse all possible branchs of the possibilities. `left` marks the number of opening parenthesis that has not been paired up with a closing parenthesis. When we meet a `*`, three cases can happen:
+1. We treat the `*` as `(`, so `left` should be increased by one
+2. We treat the `*` as `)`, so `left` should be decreased by one
+3. We treat the `*` as empty string, so `left` remains unchanged
 
-![validParenthesesAnimation](https://user-images.githubusercontent.com/25105806/121675759-b068cd80-ca68-11eb-9803-d5eac138f431.gif)
+But pure DFS is not efficient enough because it will check duplicate invalid substrings of `s`. So we can add memorization to speed up. 
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesStackAnimation.ppsx) to download the animation to play for yourself.**
+The memorization is a 2-d array, where each row represents the `i`th index of the `s` and each column represents the number of open parenthesis we have at that place. 
 
 ```python
-def isValid(self, s: str) -> bool:
-  checkList = list()
-
-  for char in s:
-      if len(checkList)>0 and self.isValidPair(checkList[-1], char):
-          checkList.pop(-1)
-      else:
-          checkList.append(char)
-  return len(checkList)==0
-
-def isValidPair(self, left, right):
-  return left=='(' and right==')' or left=='[' and right ==']' or left=='{' and right=='}'
-
+def checkValidStringDFS(self, s: str) -> bool:
+    cache = [[None for _ in range(len(s))] for _ in range(len(s))]
+    def dfs(s, i, left):
+        if left<0:
+            return False
+        else:
+            if i==len(s):
+                return left==0
+            else:
+                if cache[i][left] != None:
+                    return cache[i][left]
+                else:
+                    if s[i]=='(':
+                        cache[i][left] = dfs(s, i+1, left+1)
+                        return cache[i][left]
+                    elif s[i]==')':
+                        cache[i][left] = dfs(s, i+1, left-1)
+                        return cache[i][left]
+                    else: # wildcard *
+                        cache[i][left] = dfs(s, i+1, left+1) or dfs(s, i+1, left-1) or dfs(s, i+1, left)
+                        return cache[i][left]
+    return dfs(s, 0, 0)
 ```
 
-Time complexity is O(n) since we only go through the input string once. 
-![image](https://user-images.githubusercontent.com/25105806/120406786-8d1f7f00-c300-11eb-9da1-268e17552579.png)
+Time complexity is O(n^2):\
+![image](https://user-images.githubusercontent.com/25105806/151872979-207588f1-bec5-4fe4-a179-2c6be4981895.png)
 
 <br />
 
-### Approach 2: Turing Machine, valid(), Java
-Turing Machine is a very powerful machine that can be used to compute anything that can be computed according to Church-Turing thesis. Turns out we can construct a TM to check the input string. If the input string is valid, then this TM will accept it otherwise it will reject it. The construction of the TM is EXTREMELY complicated and very inefficient and should be avoided in practice. I implement this approach just for fun and verify it's viable.\
-The constructed TM is shown below:
+### Approach 2: Two Pass Scan, checkValidStringTwoPass()
+Credits to: https://leetcode.com/problems/valid-parenthesis-string/discuss/107581/O(n)-time-O(1)-space-no-Recursion-just-scan-from-left-and-then-scan-from-right
 
-<img src="https://user-images.githubusercontent.com/25105806/120407064-38303880-c301-11eb-948d-425737be43cf.png" height="60%" width="60%">
+The idea is to scan the string `s` twice, once from left and once from right. The result must be valid in both ways to ensure the `s` is valid. When scanning from left, we count `(` as open parenthesis and compare the number of open parthesis, close parenthesis and star in each iteration. We scanning from right, we should reverse the string `s` and treat ')' as open parenthesis.
 
-We will replace `()` with `XX`, `[]` with `YY` and `{}` with `ZZ`. For example, the denotation of `'((R'` means read a `'('`, change it to `'('` and move head to right. \
+```python
+def checkValidStringTwoPass(self, s: str) -> bool:
+    def scan(dir, s):
+        open, close, star = 0, 0, 0
+        # we will need to reverse the string when scanning from right
+        if dir=='right':
+            s = s[::-1]
 
-<img src="https://user-images.githubusercontent.com/25105806/121680023-e5c3ea00-ca6d-11eb-8c52-8eff0f8e0823.gif" height="105%" width="105%">
+        for c in s:
+            if c=='(':
+                open+=1
+            elif c==')':
+                close+=1
+            else:
+                star+=1
 
+            # when scanning from right, we should treat ) as open parenthesis, but we don't
+            # need to rewrite the code block, simply swap the open and close when comparing them
+            if (dir=='left' and close > (open + star)) or (dir=='right' and open > (close + star)):
+                return False 
+        return True
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesTManimation.ppsx) to download the animation to play for yourself.**
+    return scan('left', s) and scan('right', s)
+```
 
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/151873538-f0fd2932-facb-489a-9eb0-2e146babc3af.png)
 
-Actual running time is:\
-![image](https://user-images.githubusercontent.com/25105806/120407287-b096f980-c301-11eb-824b-98642c0ea1b3.png)
+<br />
+
+### Approach 3: One Pass Scan, Greedy, checkValidStringOnePass()
+Credits to: https://www.youtube.com/watch?v=QhPdNS143Qg
+
+The idea is similar to validate parenthesis string without wildcard operators. The only difference is that, when we have a `*`, the possible branches goes up, which means we have more possibilities on the number of left parenthesis `left`. So we can have two variables `leftMin` and `leftMax` to represent the upper and lower boundary of the possibilities. The string `s` will be valid as long as 0 falls in beween `leftMin` and `leftMax`. 
+
+```python3
+def checkValidStringOnePass(self, s: str) -> bool:
+    leftMin, leftMax = 0, 0
+    for c in s:
+        if c=='(': 
+            # if (, then the left open parenthesis is counted one more, which means we need one more closing parenthesis to validate the string
+            leftMin+=1 
+            leftMax+=1
+        elif c==')':
+            # if ), then the left open parenthesis is counted one less, which means we need one less closing parenthesis to validate the string
+            leftMin-=1
+            leftMax-=1
+        else:
+            # if *, then we can have one more open OR one less open parenthesis OR nothing. 
+            # leftMin and leftMax marks the boundary of number of open parenthesis we can have based on different choices of wildcard character
+            leftMin-=1
+            leftMax+=1
+        leftMin = max(0, leftMin) # leftMin cannot be negative, reset it 0 once it drops below 0
+        if leftMax < 0:
+            # if leftMax is below 0, which means we have more closing parenthesis than open parenthesis. 
+            # We will never recover from this state, so it's immediately invalid. consider ))(())
+            return False 
+    return leftMin==0
+```
+
+Time complexity is O(n):\
+![image](https://user-images.githubusercontent.com/25105806/151874121-95ff8829-749c-4bdf-a778-b8bab76e0952.png)
+
