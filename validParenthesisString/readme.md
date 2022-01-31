@@ -48,7 +48,7 @@ Time complexity is O(n^2):\
 ### Approach 2: Two Pass Scan, checkValidStringTwoPass()
 Credits to: https://leetcode.com/problems/valid-parenthesis-string/discuss/107581/O(n)-time-O(1)-space-no-Recursion-just-scan-from-left-and-then-scan-from-right
 
-The idea is to scan the string `s` twice, once from left and once from right. The result must be valid in both ways to ensure the `s` is valid. When scanning from left, we count `(` as open parenthesis and compare the number of open parthesis, close parenthesis and star in each iteration. We scanning from right, we should reverse the string `s` and treat ')' as open parenthesis.
+The idea is to scan the string `s` twice, once from left and once from right. The result must be valid in both ways to ensure the `s` is valid. When scanning from left, we count `(` as open parenthesis and compare the number of open parthesis, close parenthesis and star in each iteration. We scanning from right, we should reverse the string `s` and treat `)` as open parenthesis.
 
 ```python
 def checkValidStringTwoPass(self, s: str) -> bool:
