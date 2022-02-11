@@ -69,4 +69,69 @@ Time complexity is O(nm^2) where n is the number of words in `wordList` and m is
 <br />
 
 ### Approach 2: Bidirectional BFS, ladderLengthBiBFS()
+Reference: https://leetcode.com/problems/word-ladder/discuss/40711/Two-end-BFS-in-Java-31ms and https://leetcode-cn.com/problems/word-ladder/solution/suan-fa-shi-xian-he-you-hua-javashuang-xiang-bfs23/
 
+The idae as bidirectional BFS is to search from the `beginWord` and `endWord` at the same time. We will find the shortest path when two end overlaps with each other. 
+```
+"The idea behind bidirectional search is to run two simultaneous searches—one forward from
+the initial state and the other backward from the goal—hoping that the two searches meet in
+the middle. The motivation is that b^(d/2) + b^(d/2) is much less than b^d. b is branch factor, d is depth. "
+
+----- section 3.4.6 in Artificial Intelligence - A modern approach by Stuart Russel and Peter Norvig
+```
+
+```python3
+def ladderLengthBiBFS(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+    if endWord not in wordList:
+        return 0
+    else:
+        wordList.append(beginWord)
+        # creating adjDictacency list
+        # adjDict stores every possible pattern of each word as key and the corresponding word as value
+        adjDict = dict()
+        wordList.append(beginWord)
+        for word in wordList:
+            for i in range(len(word)):
+                pattern = word[:i] + '*' + word[i+1:] # pattern = '*ot', 'h*t' and 'ho*' for word 'hot'
+                if pattern not in adjDict:
+                    adjDict[pattern] = [word]
+                else:
+                    adjDict[pattern].append(word)
+
+        # Bidirectional BFS
+        beginVisited, endVisited = set([beginWord]), set([endWord])
+        beginQ, endQ = [beginWord], [endWord]
+        result = 1
+        while beginQ and endQ:
+            # always search from the end with fewer explored node
+            # beginQ always represent the queue with fewer node, not necessarily the top-down queue
+            if len(beginQ) > len(endQ):
+                beginQ, endQ = endQ, beginQ
+                beginVisited, endVisited = endVisited, beginVisited
+
+            # explore the graph level by level
+            for _ in range(len(beginQ)):
+                word = beginQ.pop(0)
+                for i in range(len(word)):
+                    pattern = word[:i] + '*' + word[i+1:]
+                    for neighbor in adjDict.get(pattern, []):
+                        # both visited sets have this node, which means we've reached an overlapping word
+                        # we can simply return the result
+                        if neighbor in endVisited:
+                            return result + 1
+
+                        if neighbor not in beginVisited:
+                            beginVisited.add(neighbor)
+                            beginQ.append(neighbor)
+            result += 1
+        return 0
+```
+
+The image below shows the time complexity difference between BFS and bidirectional BFS:\
+<img src="https://user-images.githubusercontent.com/25105806/153685293-38383506-6ab4-45e5-9621-82c883c5ffb2.jpg" height="80%" width="80%">
+
+The red shadow on the left represent the time complexity is unidirectional BFS, while the green shadow on the right represent the time complexity is bidirectional BFS. The yellow shadow represents the time complexity we saved by applying bidirectional BFS. Because we'll stop the search as soon as the two cone from both side meet each other.
+
+
+Actual running time:\
+![image](https://user-images.githubusercontent.com/25105806/153685668-7768d347-6e6c-42cb-b49e-fdf6f28514cf.png)
