@@ -128,6 +128,7 @@ Records of all my solved problems on LeetCode
 |123      |[bestTimeToBuyAndSell III](https://github.com/artisan1218/LeetCode-Solution/tree/main/bestTimeToBuyAndSell%20III)|Hard|Dynamic Programming|False|Python|[Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/)|
 |124      |[binaryTreeMaxPathSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/binaryTreeMaxPathSum)|Hard|Recursion|False|Python|[Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)|
 |125      |[validPalindrome](https://github.com/artisan1218/LeetCode-Solution/tree/main/validPalindrome)|Easy|Two Pointers|False|Python|[Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)|
+|127      |[wordLadder](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordLadder)|Hard|BFS, Bidirectional BFS|True|Python|[Word Ladder](https://leetcode.com/problems/word-ladder/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
