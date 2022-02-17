@@ -5,7 +5,7 @@ Leetcode Link: https://leetcode.com/problems/word-ladder-ii/
 
 <br />
 
-### Approach 1: BFS, ladderLengthBFS1()
+### Approach 1: BFS, ladderLengthBFS1(), ladderLengthBFS2()
 Reference: https://leetcode.com/problems/word-ladder-ii/discuss/490116/Three-Python-solutions%3A-Only-BFS-BFS%2BDFS-biBFS%2B-DFS
 
 The basic idea and structure of the solution is mostly based on [Word Ladder](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordLadder) problem. We still use BFS as the data structure because we are going to find the shortest path. The difference is that we need to keep track of the path we take to get to each word in the graph. So the `queue` contains a list of list instead of list of word. The list represent the path we take to get to this word. 
