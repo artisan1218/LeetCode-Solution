@@ -1,6 +1,9 @@
 # Unique Binary Search Trees problem
 ![image](https://user-images.githubusercontent.com/25105806/135387175-511bad80-5fa9-4eb8-b362-976c02a8a0ac.png)
 
+Leetcode link: https://leetcode.com/problems/unique-binary-search-trees/
+
+<br />
 
 ### Approach 1: Dynamic Programming, numTrees()
 We can find the pattern as follows:
