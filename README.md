@@ -42,7 +42,7 @@ Records of all my solved problems on LeetCode
 |37       |[solveSudoku](https://github.com/artisan1218/LeetCode-Solution/tree/main/sudokuSolver)|Hard|Backtracking|False|Python|[Sudoku Solver](https://leetcode.com/problems/sudoku-solver/)|
 |38       |[countAndSay](https://github.com/artisan1218/LeetCode-Solution/tree/main/countAndSay)|Medium|Str Traversal|True|Java|[Count and Say](https://leetcode.com/problems/count-and-say/)|
 |39       |[combinationSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum)|Medium|Backtracking, Dynamic Programming|True|Java|[Combination Sum](https://leetcode.com/problems/combination-sum/)|
-|40       |[combinationSum II](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSumII)|Medium|Backtracking, Dynamic Programming|False|Java|[Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)|
+|40       |[combinationSum II](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum%20II)|Medium|Backtracking, Dynamic Programming|False|Java|[Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)|
 |41       |[firstMissingPositive](https://github.com/artisan1218/LeetCode-Solution/tree/main/firstMissingPositive)|Hard|In-place Hashing|True|Java|[First Missing Positive](https://leetcode.com/problems/first-missing-positive/)|
 |42       |[trappingRainWater](https://github.com/artisan1218/LeetCode-Solution/tree/main/trapRainWater)|Hard|Dynamic Programming|True|Java, Python|[Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)|
 |43       |[multiplyStrings](https://github.com/artisan1218/LeetCode-Solution/tree/main/multiplyStrings)|Medium|Math|True|Python|[Multiply Strings](https://leetcode.com/problems/multiply-strings/)|
