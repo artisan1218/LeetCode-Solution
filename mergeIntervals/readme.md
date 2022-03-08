@@ -34,7 +34,7 @@ def overlap(self, interval1, interval2):
     return not(interval1[1] < interval2[0])
 ```
 
-Actual running time:\
+Time complexity is O(nlogn):\
 ![e8c6610265705c842e39354f8f7cd61](https://user-images.githubusercontent.com/25105806/127718009-772dcf43-eb13-42bc-a412-141fa7745909.png)
 
 
