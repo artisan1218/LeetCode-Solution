@@ -1,172 +1,106 @@
-# Integer to Roman problem
-* Given an integer, convert it to a roman numeral. Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
-```
-Symbol       Value
-I             1
-V             5
-X             10
-L             50
-C             100
-D             500
-M             1000
-```
+# Intersection of Two Linked Lists problem
+![image](https://user-images.githubusercontent.com/25105806/157149100-303b6b81-d90e-4a69-8ad9-52a81fd080a5.png)
 
-Leetcode link: https://leetcode.com/problems/integer-to-roman/
+![image](https://user-images.githubusercontent.com/25105806/157149144-06632216-8e59-422d-b05f-ecb0c86c9dab.png)
+
+![image](https://user-images.githubusercontent.com/25105806/157149169-3ba48816-97a8-447a-ae30-cb5888d2288c.png)
+
+
+Leetcode link: https://leetcode.com/problems/intersection-of-two-linked-lists/
 
 <br/>
 
-### Approach 1: Naive, intToRomanLoop()
-This approach is to go through the given `num` digit by digit and append the corresponding symbols to the `result`. The corresponding symbol of the given digit is determined by the value of the digit and the `fold`, which keepk track of multiple that we're currently dealing with, ranges from 1, 10, 100, 1000.
-1. The fold is 1, then the symbols can only be `I`, `V`, `X`
-2. The fold is 10, then the symbols can be `X`, `L`, `C`
-3. The fold is 100, then the symbols can be `C`, `D`, `M`
-4. The fold is 1000, then the symbols can be `M`
+### Approach 1: Hash, getIntersectionNodeHash()
+The idea is to first traverse a linked list, either one is ok, add all its nodes to a hash set `seen`, then traverse another linked list, compare the current node with seen nodes to see if the current node is an intersection. We will return the first intersection node.
 
+```python3
+def getIntersectionNodeHash(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+	seen = set()
+	while headA is not None:
+		seen.add(headA)
+		headA = headA.next
 
-```java
-public static String intToRomanLoop(int num) {
-	String one = "I", five = "V", ten = "X", fifty = "L", hundred = "C", fiveHundred = "D", thousand = "M";
-	String result = "";
-
-	// fold is the multiple that we're currently dealing with, ranges from 1, 10,
-	// 100, etc
-	int fold = 1;
-	while (num != 0) {
-	    int digit = num % 10;
-	    if (digit > 0 && digit < 4) { // I, II, III
-		for (int i = 0; i < digit; i++) {
-		    switch (fold) {
-		    case 1:
-			result = one + result;
-			break;
-		    case 10:
-			result = ten + result;
-			break;
-		    case 100:
-			result = hundred + result;
-			break;
-		    case 1000:
-			result = thousand + result;
-			break;
-		    }
-		}
-	    } else if (digit == 4) {
-		switch (fold) {
-		case 1:
-		    result = one + five + result;
-		    break;
-		case 10:
-		    result = ten + fifty + result;
-		    break;
-		case 100:
-		    result = hundred + fiveHundred + result;
-		    break;
-		}
-	    } else if (digit > 4 && digit < 9) { // 5, 6, 7, 8
-		String tmp = "";
-		switch (fold) {
-		case 1:
-		    tmp = five;
-		    break;
-		case 10:
-		    tmp = fifty;
-		    break;
-		case 100:
-		    tmp = fiveHundred;
-		    break;
-		}
-		for (int i = 0; i < digit - 5; i++) {
-		    switch (fold) {
-		    case 1:
-			tmp = tmp + one;
-			break;
-		    case 10:
-			tmp = tmp + ten;
-			break;
-		    case 100:
-			tmp = tmp + hundred;
-			break;
-		    case 1000:
-			tmp = tmp + thousand;
-			break;
-		    }
-		}
-
-		result = tmp + result;
-
-	    } else if (digit == 9) {
-		switch (fold) {
-		case 1:
-		    result = one + ten + result;
-		    break;
-		case 10:
-		    result = ten + hundred + result;
-		    break;
-		case 100:
-		    result = hundred + thousand + result;
-		    break;
-		}
-	    }
-
-	    num /= 10;
-	    fold *= 10;
-	}
-
-	return result;
-    }
+	while headB is not None:
+		if headB in seen:
+			return headB
+		else:
+			headB = headB.next
+	return None
 ```
 
-
-Running time is fairly slow due to the String concatenations:\
-![image](https://user-images.githubusercontent.com/25105806/118616818-e58a4480-b776-11eb-9a51-41573aa689b8.png)
+Time complexity is O(m+n) where `m` and `n` are the length of linked list A and B and space complexity is O(n) or O(m):\
+![image](https://user-images.githubusercontent.com/25105806/157149588-b26d964f-92e4-417f-8559-665eccb7e935.png)
 
 <br/>
 
-### Approach 2: Math, intToRomanMath()
-Credits to https://leetcode.com/problems/integer-to-roman/discuss/6274/Simple-Solution
+### Approach 2: Count, getIntersectionNodeCount()
+This solution will first get the length of linked list A and B. We'll then find the longer linked list, first traverse the difference length between A and B so that the two pointers for two linked list are aligned. Then simply compare the nodes and return the first same node.
 
-Since each multiple out of 1, 10, 100, 1000 can only have certain symbols, we can list them all and store them as arrays. Then use simple math to match each of the symbols. This method is probably the most elegant way of solving this probelm. 
+The key observation is that two intersected linked list share the back portion of the linked list, but not the front portion. What we can do is to align the pointer of the front portion by adjusting the 'offset' calculated by the difference in length to make sure that two pointers meet at the first intersection node.
 
-```java
-public static String intToRomanMath(int num) {
-	String M[] = { "", "M", "MM", "MMM" };
-	String C[] = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
-	String X[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
-	String I[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-	StringBuilder result = new StringBuilder("");
-	result.append(M[num / 1000]).append(C[(num % 1000) / 100]).append(X[(num % 100) / 10]).append(I[num % 10]);
-	return result.toString();
-    }
+```python3
+def getIntersectionNodeCount(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+	# calculate length of headA
+	lenA = 0
+	counterA = headA
+	while counterA is not None:
+		counterA = counterA.next
+		lenA += 1
+
+	# calculate length of headB
+	lenB = 0
+	counterB = headB
+	while counterB is not None:
+		counterB = counterB.next
+		lenB += 1
+
+	# swap A and B if B is longer than A, make sure A is always the longer one
+	if lenB > lenA:
+		headA, headB = headB, headA
+		lenA, lenB = lenB, lenA
+
+	# move the longer pointer to the same position as the shorter one
+	lenDiff = lenA - lenB
+	while lenDiff > 0:
+		headA = headA.next
+		lenDiff -= 1
+
+	# start comparing, if they share an intersection, the pointers must be equal
+	while headA != headB:
+		headA = headA.next
+		headB = headB.next
+
+	return headA # headB is also ok because they are same
 ```
 
-Running time is better than approach 1 because we've avoided using String concatenations, logic is also much clear:\
-![image](https://user-images.githubusercontent.com/25105806/118619003-0bb0e400-b779-11eb-976a-541ec8a3b0d6.png)
+Time complexity is O(m+n) and space complexity is O(1):\
+![image](https://user-images.githubusercontent.com/25105806/157150256-a71445c8-64a2-4f90-8003-300ebd526a19.png)
 
 <br/>
 
-### Approach 3: Math, intToRomanMath2()
-Credits to https://leetcode.com/problems/integer-to-roman/discuss/6310/My-java-solution-easy-to-understand
+### Approach 3: Count, getIntersectionNodeCount2()
+Instead of calculating the length difference and adjust the position of pointer of the longer linked list, we can directly traverse both pointer til the end of linked list A and B, then for pointer A, move the pointer to the begining of linked list B and for pointer B, move pointer B to the begining of linked list A. Thia way, we make sure that ptrA and ptrB, after reaching the end of A and B, are aligned, which means they will reach the intersection node at the same time.
 
-Similar to approach 2, we can list symbols for each multiple out of 1, 10, 100, 1000, but this time we only list unique symbols but not all of them. For example `III` is just `I` repeating for 3 times and we can use a loop to denoting this. This way, we can save some uncessary spaces. 
+This is the same idea as approach 2, but with a different implementation
 
-```java
-public static String intToRomanMath2(int num) {
-	int[] values = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
-	String[] symbols = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
-	StringBuilder result = new StringBuilder();
+```python3
+def getIntersectionNodeCount2(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+	ptrA, ptrB = headA, headB
+	while ptrA != ptrB:
+		# traverse A til the end, then points A to headB, do the same for B
+		# this will make sure that ptrA and ptrB, after reaching the end of A and B,
+		# are aligned, which means they will reach the intersection node at the same time
+		if ptrA is None:
+			ptrA = headB
+		else:
+			ptrA = ptrA.next
 
-	for (int i = 0; i < values.length; i++) {
-	    while (num >= values[i]) {
-		num -= values[i];
-		result.append(symbols[i]);
-	    }
-	}
-	return result.toString();
-    }
+		if ptrB is None:
+			ptrB = headA
+		else:
+			ptrB = ptrB.next
+	return ptrA
 ```
 
-Running time is roughly the same, but memory usage is better:\
-![image](https://user-images.githubusercontent.com/25105806/118618106-2171d980-b778-11eb-8dc2-4d1a9319e755.png)
-
-
-
+Time complexity is O(m+n) and space complexity is O(1):\
+![image](https://user-images.githubusercontent.com/25105806/157150581-e7b6ca94-7a5e-4726-8d57-96a3f33e6f3f.png)
