@@ -131,6 +131,7 @@ Records of all my solved problems on LeetCode
 |126      |[wordLadder II](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordLadder%20II)|Hard|BFS|False|Python|[Word Ladder II](https://leetcode.com/problems/word-ladder-ii/)|
 |127      |[wordLadder](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordLadder)|Hard|BFS, Bidirectional BFS|True|Python|[Word Ladder](https://leetcode.com/problems/word-ladder/)|
 |128      |[longestConsecutiveSeq](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestConsecutiveSeq)|Medium|List Traversal|True|Python|[Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)|
+|160      |[intersectionOfTwoLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/intersectionOfTwoLinkedList)|Easy|Linked List|False|Python|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
