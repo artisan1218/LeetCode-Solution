@@ -1,30 +1,59 @@
-# Pascal's Triangle problem
-<img width="613" alt="Screen Shot 2022-01-09 at 8 09 54 PM" src="https://user-images.githubusercontent.com/25105806/148717575-1b1dbc72-a9d8-4e4b-ab46-1db7a385d5bb.png">
+# Palindrome Partitioning problem
+<img width="547" alt="image" src="https://user-images.githubusercontent.com/25105806/161417246-137a44ae-1776-4bd3-bc3a-4325934eb374.png">
 
-Leetcode link: https://leetcode.com/problems/pascals-triangle/
+Leetcode link: https://leetcode.com/problems/palindrome-partitioning/
 
 <br />
 
-### Approach 1: Math, generate()
-This solution is exactly how we compute the Pascal's triangle step by step. We only keep two variables, the current row and the previous row (in order to compute the element in current row) and compute row by row.
+### Approach 1: Backtracking, partition(), dfs(), isPalindrome()
 
-```python3
-def generate(self, numRows: int) -> List[List[int]]:
-    if numRows == 1:
-        return [[1]]
-    elif numRows == 2:
-        return [[1], [1, 1]]
-    else:
-        res = [[1], [1, 1]]
-        for lvl_idx in range(2, numRows):
-            level = [1]
-            for j in range(1, lvl_idx):
-                level.append(res[-1][j-1] + res[-1][j])
-            level.append(1)
-            res.append(level)
-        return res
+Reference: https://www.youtube.com/watch?v=3jvWodd7ht0 and https://leetcode.com/problems/palindrome-partitioning/solution/
+
+The idea is to first generate all possible ways of partitioning the string `s`. This can be done by using dfs. Then after each possible partitioning, check if the substring is a valid palindrome by calling isPalindrome(). If the substring is valid, then we first add it to a temp vector, then calling dfs on the remaining substring of `s`, then we backtrack the current substring by removing it from the temp vector, so that it will not affect the next possible way of partition.
+<img width="887" alt="image" src="https://user-images.githubusercontent.com/25105806/161417358-66492000-a878-44ff-9fc6-7e485d38832f.png">
+
+```cpp
+class Solution {
+private:
+    vector<vector<string>> result;
+    vector<string> curList;
+
+public:
+    vector<vector<string>> partition(string s) {
+        dfs(s, result, curList, 0);
+        return result;
+    }
+
+    void dfs(string s, vector<vector<string>> &result, vector<string> &curList, int i) {
+        if (i == s.length()) {
+            result.push_back(curList);
+        } else {
+            for (int j = i; j < s.length(); j++) {
+                string substr = s.substr(i, j - i + 1);
+                if (isPalindrome(substr)) {
+                    curList.push_back(substr);
+                    dfs(s, result, curList, j + 1);
+                    curList.pop_back(); // backtrack
+                }
+            }
+        }
+    }
+
+    bool isPalindrome(string s) {
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right) {
+            if (s[left] == s[right]) {
+                left++;
+                right--;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+};
 ```
 
-Time complexity is O(n):\
-<img width="643" alt="image" src="https://user-images.githubusercontent.com/25105806/148717694-f9d94051-2b87-454e-8afb-20ad7f1639fd.png">
-
+Time complexity is O(n\*2^n) because there are 2^n ways to partition the string and each of them takes O(n) to check for palindrome:\
+<img width="673" alt="image" src="https://user-images.githubusercontent.com/25105806/161418210-4c642152-3752-49f1-8503-cebe196db444.png">
