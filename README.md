@@ -132,6 +132,7 @@ Records of all my solved problems on LeetCode
 |127      |[wordLadder](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordLadder)|Hard|BFS, Bidirectional BFS|True|Python|[Word Ladder](https://leetcode.com/problems/word-ladder/)|
 |128      |[longestConsecutiveSeq](https://github.com/artisan1218/LeetCode-Solution/tree/main/longestConsecutiveSeq)|Medium|List Traversal|True|Python|[Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)|
 |129      |[root2LeafNumSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/root2LeafSumNum)|Medium|DFS|False|Python, C++|[Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/)|
+|130      |[surroundedRegions](https://github.com/artisan1218/LeetCode-Solution/tree/main/surroundedRegions)|Medium|DFS|False|C++|[Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)|
 |160      |[intersectionOfTwoLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/intersectionOfTwoLinkedList)|Easy|Linked List|False|Python|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
