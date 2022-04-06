@@ -44,7 +44,7 @@ The constructed TM is shown below:
 
 <img src="https://user-images.githubusercontent.com/25105806/120407064-38303880-c301-11eb-948d-425737be43cf.png" height="60%" width="60%">
 
-We will replace `()` with `XX`, `[]` with `YY` and `{}` with `ZZ`. For example, the denotation of `'((R'` means read a `'('`, change it to `'('` and move head to right. \
+We will replace `()` with `XX`, `[]` with `YY` and `{}` with `ZZ`. For example, the denotation of `'((R'` means read a `'('`, change it to `'('` and move head to right. 
 
 <img src="https://user-images.githubusercontent.com/25105806/121680023-e5c3ea00-ca6d-11eb-8c52-8eff0f8e0823.gif" height="105%" width="105%">
 
