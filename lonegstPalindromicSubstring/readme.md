@@ -1,5 +1,6 @@
 # Longest Palindromic Substring problem
-![image](https://user-images.githubusercontent.com/25105806/162558297-c2e550c4-40af-4ef0-8fa5-93a59faf32d6.png)
+
+<img src="https://user-images.githubusercontent.com/25105806/162558297-c2e550c4-40af-4ef0-8fa5-93a59faf32d6.png" width="50%" height="50%">
 
 Leetcode link: https://leetcode.com/problems/longest-palindromic-substring/
 
