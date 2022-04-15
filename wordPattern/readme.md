@@ -1,12 +1,87 @@
-# Word Search problem
-* Given an `m x n` grid of characters board and a string word, return `true` if word exists in the grid.
-* The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+# Word Pattern problem
+<img width="724" alt="image" src="https://user-images.githubusercontent.com/25105806/163648454-165f95bb-189b-4270-8d36-6895d9930ee7.png">
 
-### Approach 1: Backtracking, exist()
-First loop through each cell in the board to find all possible starting point for the matching: if the first char is matched, then this is a potential start of the matching, which means we should call backtrack() to check.\
-In backtrack(), the exit condition is when the length of the found word `curLen` is equal to the length of target `word`. We will check all four directions to go if the index of row or column is within the range of the `board` matrix and the characters are matched and `(row, col)` is not in `visited`, which means this cell has not been visited.\
-Importantly, after trying all four directions, we should remove the current cell from the visited set because this will affect the next checking, this is where backtracking happens.
+Leetcode link: https://leetcode.com/problems/word-pattern/
 
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/132603068-68e9ceb3-f33a-4d56-a595-c3e790024574.png)
+<br />
 
+### Approach 1: Two Maps/Dict, wordPattern(), Python3, CPP
+
+The idea is to first split the input string `s` by space so that we can work on individual words. Then simply use two maps to store the pattern-word and word-pattern relations in two maps because it requires a bijection, which means each word has to be mapped to an unique pattern and vice versa. 
+
+Python implementation is simpler because we can use the built-in `.split()` function:
+```python3
+def wordPattern(self, pattern: str, s: str) -> bool:
+    wordList = s.split(' ')
+    if len(wordList) == len(pattern):
+        word2p = dict()
+        p2word = dict()
+        for word, p in zip(wordList, pattern):
+            if word not in word2p:
+                word2p[word] = p
+            elif word2p[word] != p:
+                    return False
+
+            if p not in p2word:
+                p2word[p] = word
+            elif p2word[p] != word:
+                    return False
+        return True
+    else:
+        return False
+```
+
+In CPP:
+```cpp
+bool wordPattern(string pattern, string s) {
+  // split the string by space
+  vector<string> strSplits;
+  int start = 0;
+  int end = 0;
+  while (end < s.length()) {
+      if (s[end] == ' ') {
+          strSplits.push_back(s.substr(start, end - start));
+          start = end + 1;
+      }
+      end++;
+  }
+  strSplits.push_back(s.substr(start, end - start + 1));
+
+  if (strSplits.size() == pattern.length()) {
+      unordered_map<char, string> char2Str;
+      unordered_map<string, char> str2Char;
+
+      for (int i = 0; i < strSplits.size(); i++) {
+          char p = pattern.at(i);
+          string str = strSplits.at(i);
+
+          if (char2Str.find(p) != char2Str.end()) {
+              if (char2Str[p] != str) {
+                  return false;
+              }
+          } else {
+              char2Str[p] = str;
+          }
+
+          if (str2Char.find(str) != str2Char.end()) {
+              if (str2Char[str] != p) {
+                  return false;
+              }
+          } else {
+              str2Char[str] = p;
+          }
+      }
+      return true;
+  } else {
+      return false;
+  }
+}
+```
+
+Time complexity is O(n):\
+<img width="625" alt="image" src="https://user-images.githubusercontent.com/25105806/163648758-7138ebb6-bda3-467b-b904-0f3fcbbfecca.png">
+
+
+<img width="651" alt="image" src="https://user-images.githubusercontent.com/25105806/163648779-544c00e8-05ff-41ef-98a5-d84a314e3120.png">
+
+      
