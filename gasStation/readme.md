@@ -1,113 +1,113 @@
-# Generate Parentheses problem
-* Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+# Gas Station problem
+<img width="842" alt="image" src="https://user-images.githubusercontent.com/25105806/165003349-5d06c733-d1a2-4fba-8a02-fac9699b81ab.png">
+<img width="850" alt="image" src="https://user-images.githubusercontent.com/25105806/165003360-10fc1fc1-95cd-466a-947b-aa2966635922.png">
 
-![image](https://user-images.githubusercontent.com/25105806/145904187-6c113690-d64d-4b05-acf6-3391aa5b990a.png)
 
-Leetcode link: https://leetcode.com/problems/generate-parentheses/
-
-<br/>
-
-### Approach 1: Dynamic Programming, generateParenthesisDP1()
-The idea is to build the result from the start and add 1 more pair step by step. For example if `n=3`, we start with `n=1` and build `n=2`, and based on `n=2` we build `n=3`.\
-If we only see the opening parenthesis `(`, we can find a pattern that when adding 1 more pair of `()`, the new position of the `(` must be greater than the previous right-most `(` and smaller than the right-most `)` of current n. That is, the new pos of `(` when adding a new pair must be in the range of `range(prev[-1]+1, 2*(i+1)-1)`, where `prev[-1]` is the right-most `(` of `n-1` and `i` is n.\
-For example, if current `n=2` and we are building `n=3` from it. When adding 1 more pair, for previous index `0, 1` we have new index of `2, 3, 4` because the new index has to be greater than 1 and smaller than 5 (2\*3-1)\
-The image below can better demonstrate it:
-
-<img src="https://user-images.githubusercontent.com/25105806/120617728-3fde0300-c40f-11eb-9fea-5f940d3f875e.png" height="50%" width="55%">
-
-```python
-def generateParenthesisDP1(self, n: int) -> List[str]:
-    idx_result = [[0]]
-    tmp_res = []
-    for i in range(1, n):
-        for prev in idx_result: # [0]
-            # the new pos of the opening parenthesis can only be greater than the current right-most one
-            # and smaller than the right-most closing parenthesis  
-            for newPos in range(prev[-1]+1, 2*(i+1)-1):
-                # form new idx result by appending new position of the opening parenthesis to the 
-                # end of each previous result
-                tmp_res.append(prev + [newPos])
-        idx_result = tmp_res
-        tmp_res = []
-        # we can simply replace the above two nested loop with the statement below
-        #idx_result = [prev+[newPos] for prev in idx_result for newPos in range(prev[-1]+1, 2*(i+1)-1)]
-
-    # turn idx_result in to actual string
-    str_result = []
-    for res in idx_result:
-        # default char is closing parenthesis, we will replace ')' at given index with '('
-        template = [')'] * 2 * n
-        for pos in res:
-            template[pos] = '('
-        str_result.append(''.join(template))
-    return str_result
-```
-
-We can use the above logic to first gain the indices of all possible `(` and convert them into final string.\
-The actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/120618587-1376b680-c410-11eb-8836-a5001a44458e.png)
+Leetcode link: https://leetcode.com/problems/gas-station/
 
 <br/>
 
-### Approach 2: Dynamic Programming, generateParenthesisDP2()
-This approach also uses dynamic programming, but in a different way than approach 1. The basic idea is similar: we divide the `n=n` problem into sub-problems: `n=1`, `n=2`, etc. and build up the final answer out of the sub-problems.\
-We start with `n=0`, which means the answer is just empty string `''`, this is will serve as the base case and we will build `n=1` from this. The template we use is `( x ) y`, in which `x` and `y` are answers of the sub-problems. When `n=1`, the sub-problem answer is simply `''`, so the result when `n=1` is simply `()`.\
-A more complicated case is when building `n=3` from `n=2`, in which `x` will range from answers of `n=1, 2, 3` and `y` will range from answers of `n=2, 1, 0`. Simply get all combinations of `x` and `y`.\
-The image below demonstrates the logic:
-<img src="https://user-images.githubusercontent.com/25105806/120749805-0f9f6e80-c4ba-11eb-8ca5-5255cd1296e5.png" height="80%" width="80%">
+### Approach 1: Brute Force, canCompleteCircuitBruteForce()
+This solution leads to TLE.
 
-```python
-def generateParenthesisDP2(self, n: int) -> List[str]:
-    dp = [[] for i in range(n + 1)]
-    dp[0].append('')
+The idea is simply to try each gas station, see if them can complete a circuit. Thus uses nested loop.
 
-    # increase n by 1 each time, solve sub-problems one by one
-    for curr_n in range(n + 1):
-        # for each of the result in previous n, which is the 'sub-problem'
-        for prev in range(curr_n):
-            # get all permutations of sub problem solutions and form new solution
-            for x in dp[prev]:
-                for y in dp[curr_n - prev - 1]:
-                    dp[curr_n] += ['(' + x + ')' + y ]
-            # the above nested loop can be replaced with this statement
-            #dp[i] += ['(' + x + ')' + y for x in dp[j] for y in dp[i - j - 1]]
-    # dp contains of solutions to all sub-problems, we only want the solution for n
-    return dp[-1]
+```cpp
+int canCompleteCircuitBruteForce(vector<int>& gas, vector<int>& cost) {
+    int n = gas.size();
+    int result = -1;
+    // try all possible starting index
+    for (int start = 0; start < n; start++) {
+        int tank = 0;
+        // we have to iterate n times to complete circuit
+        for (int i = start; i < n + start; i++) {
+            if (tank < 0) {
+                break;
+            } else {
+                tank += gas.at(i % n);
+                tank -= cost.at(i % n);
+            }
+        }
+        if (tank >= 0) {
+            result = start;
+            break;
+        }
+    }
+    return result;
+}
 ```
 
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/120749934-483f4800-c4ba-11eb-8234-5dea0037bfed.png)
+Time complexity is O(n^2)
 
 <br/>
 
-### Approach 3: Backtracking, generateParenthesisBacktrack()
-This approach again, divide the problem into sub-problems and build up the final result out of the sub-problems. The only difference is that this approach utilizes recursion to get all combinations of the parentheses. The idea is to count the number of openning parenthesis(`openP`) and closing parenthesis(`closeP`), if `openP` is less than `n`, then it is ok and safe to add one more `(` to the string, if `closeP` is less than `openP` then it is also ok and safe to add one more `)` to the string. We will use recursion to get all of these logic done. \
-The image below demonstrates the logic:
-<img src="https://user-images.githubusercontent.com/25105806/120751281-a10fe000-c4bc-11eb-8142-1553bca5d08e.png" height="80%" width="80%">
+### Approach 2: Greedy, canCompleteCircuitGreedy()
+Credits to: https://www.youtube.com/watch?v=lJwbPZGo05A
 
-```python
-def generateParenthesisBacktrack(self, n: int) -> List[str]:
-    result = []
-    self.backtrack(result, '', 0, 0, n)
-    return result
+From the question statement we can see that if the sum of gas is smaller than the sum of cost, then there is no solution. If the sum of gas is greater than the sum of cost, there must be a solution and it's unique.
 
-def backtrack(self, result, string, openP, closeP, n):
-    if len(string)==2*n:
-        result.append(string)
-        return  
+The idea is to go through the `gas` list only once, calculate the current volume in the tank as we go from one station to the next. If at some stations, the `tank` value dips below 0, which means we cannot go any further and we have not yet completed a circuit, then this means the current start position is not a valid solution. We should update the `start` position to be `i+1` where `i` is the traversal index. 
 
-    # if openning parenthesis is less than n, then we can add more openning parenthesis
-    if openP < n:
-        self.backtrack(result, string+'(', openP+1, closeP, n)
+Our task is to find the starting index where the remaining (to the end of list) sum of cost is smaller than the sum of gas, which means we can complete a circuit, because there must be one unique solution and at any point the tank volume cannot dip below 0. 
 
-    # if closing parenthesis is less than opening parenthesis, then we can one more closing 
-    # parenthesis to match up the openning parenthesis
-    if closeP < openP:
-        self.backtrack(result, string+')', openP, closeP+1, n)
+```CPP
+int canCompleteCircuitGreedy(vector<int>& gas, vector<int>& cost) {
+    int gasSum = accumulate(gas.begin(), gas.end(), 0);
+    int costSum = accumulate(cost.begin(), cost.end(), 0);
+    if (gasSum < costSum) {
+        // make sure sum of gas is greater than sum of cost
+        // otherwise we must not complete
+        return -1;
+    } else {
+        // it is guaranteed that there is an unique solution
+        int result = 0;
+        int tank = 0;
+        // we only need to go through the list once because we only need to
+        // find the starting index of gas that will not make the sum of tank dips below 0
+        // since we made sure that gasSum >= costSum, the remaining sum must be smaller than current tank
+        // which means we can complete a circuit
+        for (int i = 0; i < gas.size(); i++) {
+            tank += (gas.at(i) - cost.at(i));
+            if (tank < 0) {
+                // current result is not valid, we should update the result
+                result = i + 1;
+                tank = 0;
+            }
+        }
+        return result;
+    }
+}
 ```
 
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/120750262-ecc18a00-c4ba-11eb-8437-84f64b455bf6.png)
+Time complexity is O(n):\
+<img width="628" alt="image" src="https://user-images.githubusercontent.com/25105806/165004070-e11d1a08-c161-4099-85b4-ed12ee45a0a8.png">
+
+<br />
+
+### Approach 3: Greedy, canCompleteCircuitGreedy2()
+This solution has identical idea as approach 2 but uses different implementation: `totalSurplus` is used to see if sum of gas is greater than sum of cost, turns out we don't need to calculate this separately, but calculate it in the loop. The logic of `totalSurplus` is independent from the remaining of the code in the loop.
+
+```cpp
+int canCompleteCircuitGreedy2(vector<int>& gas, vector<int>& cost) {
+    int result = 0;
+    int tank = 0;
+    // totalSurplus is used to see if sum of gas is greater than sum of cost
+    // turns out we don't need to calculate this separately, but in the loop
+    int totalSurplus = 0;
+    for (int i = 0; i < gas.size(); i++) {
+        tank += (gas.at(i) - cost.at(i));
+        totalSurplus += (gas.at(i) - cost.at(i));
+        if (tank < 0) {
+            // current result is not valid, we should update the result
+            result = i + 1;
+            tank = 0;
+        }
+    }
+    return totalSurplus < 0 ? -1 : result;
+}
+```
 
 
+Time complexity is O(n):\
+<img width="626" alt="image" src="https://user-images.githubusercontent.com/25105806/165004276-ad6fd6f4-1773-433b-b9e2-6a0af48b1c67.png">
 
