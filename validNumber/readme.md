@@ -17,12 +17,95 @@
 
 Given a string `s`, return true if `s` is a valid number.
 
+Leetcode link: https://leetcode.com/problems/valid-number/
+
+<br />
 
 ### Approach 1: DFA, isNumber()
 This solution is based on Deterministic Finite Automata, we can represent the logic using state machine below and implement the state machine complete
 ![image](https://user-images.githubusercontent.com/25105806/130333840-1174d28c-7847-4b54-93f9-acf1c0b71db6.png)
 
 Note that start state is state 0 in code. State with double circle is the accept state.
+
+```python3
+def isNumber(self, s: str) -> bool:
+    state = 0
+    acceptState = {3, 6, 7, 8, 10}
+    for char in s:
+        if state==0:
+            if char=='+' or char=='-':
+                state = 1
+            elif char.isnumeric():
+                state = 7
+            elif char=='.':
+                state = 9
+            else:
+                return False
+        elif state==1:
+            if char=='.':
+                state = 2
+            elif char.isnumeric():
+                state = 7
+            else:
+                return False
+        elif state==2:
+            if char.isnumeric():
+                state = 3
+            else:
+                return False
+        elif state==3:
+            if char=='e' or char=='E':
+                state = 4
+            elif char.isnumeric():
+                state = 3
+            else:
+                return False
+        elif state==4:
+            if char=='+' or char=='-':
+                state = 5
+            elif char.isnumeric():
+                state = 10
+            else:
+                return False
+        elif state==5:
+            if char.isnumeric():
+                state = 6
+            else:
+                return False
+        elif state==6:
+            if char.isnumeric():
+                state = 6
+            else:
+                return False
+        elif state==7:
+            if char.isnumeric():
+                state = 7
+            elif char=='.':
+                state = 8
+            elif char=='e' or char=='E':
+                state = 4
+            else:
+                return False
+        elif state==8:
+            if char.isnumeric():
+                state = 3
+            elif char=='e' or char=='E':
+                state = 4
+            else:
+                return False
+        elif state==9:
+            if char.isnumeric():
+                state = 8
+            else:
+                return False
+        elif state==10:
+            if char.isnumeric():
+                state = 10
+            else:
+                return False
+
+    return state in acceptState
+```
 
 Time complexity is O(n) because we will only go over the string `s` once:
 ![0a3fabe91808b5b345433a9a93b0da1](https://user-images.githubusercontent.com/25105806/130333855-93c1a8d8-ce26-4916-a1a7-903e4a22204b.png)
