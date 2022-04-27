@@ -91,30 +91,30 @@ public List<List<Integer>> combinationSumDP(int[] candidates, int target) {
 
     // currTarget begins at 1 because the condition 1 <= target <= 500
     for (int currTarget = 1; currTarget <= target; currTarget++) {
-    List<List<Integer>> row = new ArrayList<>();
-    // go over the candidates that we can choose digit from
-    for (int digit : candidates) {
-        // if a digit is smaller than the current target, we can add it to current
-        // combination and looking back for the remaining numbers by checking dp
-        if (digit < currTarget) {
-        for (List<Integer> prevAns : dp.get(currTarget - digit - 1)) {
-            // to avoid duplicates
-            if (digit <= prevAns.get(0)) {
-            List<Integer> combination = new ArrayList<>();
-            combination.add(digit);
-            combination.addAll(prevAns);
-            row.add(new ArrayList<>(combination));
+        List<List<Integer>> row = new ArrayList<>();
+        // go over the candidates that we can choose digit from
+        for (int digit : candidates) {
+            // if a digit is smaller than the current target, we can add it to current
+            // combination and looking back for the remaining numbers by checking dp
+            if (digit < currTarget) {
+                for (List<Integer> prevAns : dp.get(currTarget - digit - 1)) {
+                    // to avoid duplicates
+                    if (digit <= prevAns.get(0)) {
+                    List<Integer> combination = new ArrayList<>();
+                    combination.add(digit);
+                    combination.addAll(prevAns);
+                    row.add(new ArrayList<>(combination));
+                    }
+                }
+            } else if (digit == currTarget) {
+                // case when a single digit is equal to target
+                List<Integer> combination = new ArrayList<>();
+                combination.add(digit);
+                // add a new copy of the combination so that it will not be changed
+                row.add(new ArrayList<>(combination));
             }
         }
-        } else if (digit == currTarget) {
-        // case when a single digit is equal to target
-        List<Integer> combination = new ArrayList<>();
-        combination.add(digit);
-        // add a new copy of the combination so that it will not be changed
-        row.add(new ArrayList<>(combination));
-        }
-    }
-    dp.add(new ArrayList<>(row));
+        dp.add(new ArrayList<>(row));
     }
 
     return dp.get(target - 1);
