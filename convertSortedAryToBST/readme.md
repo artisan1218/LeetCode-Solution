@@ -1,6 +1,8 @@
 # Convert Sorted Array to Binary Search Tree problem
 ![image](https://user-images.githubusercontent.com/25105806/135961637-a05d3ff5-32c0-401e-9800-41374a022bed.png)
 
+Leetcode link: https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+
 <br />
 
 ### Approach 1: List Slicing, sortedArrayToBST1()
@@ -8,6 +10,22 @@ The idea is to first find the middle point of the sorted array, since the middle
 ```
 root.left = self.sortedArrayToBST1(nums[0:mid])
 root.right = self.sortedArrayToBST1(nums[mid+1:])
+```
+
+Full code:
+
+```python3
+def sortedArrayToBST1(self, nums: List[int]) -> Optional[TreeNode]:
+    if len(nums)==0:
+        return None
+    else:
+        # find a middle point
+        mid = len(nums)//2
+        # make middle point at the root 
+        root = TreeNode(nums[mid])
+        root.left = self.sortedArrayToBST1(nums[0:mid])
+        root.right = self.sortedArrayToBST1(nums[mid+1:])
+        return root
 ```
 
 Time complexity is O(n^2) since we use list slicing recursively:\
@@ -21,6 +39,22 @@ and get left subtree and right subtree by
 ```
 root.left = helper(nums, low, mid-1)
 root.right= helper(nums, mid+1, high)
+```
+
+Full code:
+
+```python3
+def sortedArrayToBST2(self, nums: List[int]) -> Optional[TreeNode]:
+    def helper(nums, low, high):
+        if low > high:
+            return None
+        else:
+            mid = (high+low)//2
+            root = TreeNode(nums[mid])
+            root.left = helper(nums, low, mid-1)
+            root.right= helper(nums, mid+1, high)
+            return root
+    return helper(nums, 0, len(nums)-1)
 ```
 
 Time complexity is O(n):\
