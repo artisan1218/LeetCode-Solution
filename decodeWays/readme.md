@@ -1,6 +1,10 @@
 # Decode Ways problem
 ![image](https://user-images.githubusercontent.com/25105806/134601605-477fefb5-577c-4d7f-a017-e9f7692cff1c.png)
 
+Leetcode link: https://leetcode.com/problems/decode-ways/
+
+<br />
+
 ### Approach 1: DFS, numDecodings(), dfs()
 The idea is very straightforward, for each of the char, we decide if this single char is valid (not `0`) and if the next char combined with current one is valid (smaller than `26`). Then use DFS recursion to explore all possible combinations.
 
