@@ -138,6 +138,7 @@ Records of all my solved problems on LeetCode
 |133      |[cloneGraph](https://github.com/artisan1218/LeetCode-Solution/tree/main/cloneGraph)|Medium|DFS|False|C++|[Clone Graph](https://leetcode.com/problems/clone-graph/)|
 |134      |[gasStation](https://github.com/artisan1218/LeetCode-Solution/tree/main/gasStation)|Medium|Greedy|False|C++|[Gas Station](https://leetcode.com/problems/gas-station/)|
 |135      |[candy](https://github.com/artisan1218/LeetCode-Solution/tree/main/candy)|Hard|Greedy|False|C++|[Candy](https://leetcode.com/problems/candy/)|
+|136      |[singleNumber](https://github.com/artisan1218/LeetCode-Solution/tree/main/singleNumber)|Easy|Bit Manipulation|False|C++|[Single Number](https://leetcode.com/problems/single-number/)|
 |146      |[LRUCache](https://github.com/artisan1218/LeetCode-Solution/tree/main/LRUCache)|Medium|LinkedList|False|C++|[LRUCache](https://leetcode.com/problems/lru-cache/)|
 |160      |[intersectionOfTwoLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/intersectionOfTwoLinkedList)|Easy|Linked List|False|Python|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
