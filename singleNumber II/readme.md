@@ -48,12 +48,12 @@ Time complexity is O(32n), which is O(n) and space complexity is O(1):\
 
 ### Approach 2: Construct new logic operation, singleNumberLogic()
 
-Credits to: 
+This solution is the optimal solution and not easy to understand. Credits to: 
 1. https://leetcode.cn/problems/single-number-ii/solution/gong-shui-san-xie-yi-ti-san-jie-ha-xi-bi-fku8/
 2. https://leetcode.cn/problems/single-number-ii/solution/luo-ji-dian-lu-jiao-du-xiang-xi-fen-xi-gai-ti-si-l/
 3. https://leetcode.cn/problems/single-number-ii/solution/zhi-chu-xian-yi-ci-de-shu-zi-ii-by-leetc-23t6/
 
-This solution is the optimal solution and not easy to understand.
+
 
 The idea is to think of a new logic operator such that:
 1. n \* n \* n = 0
@@ -82,18 +82,7 @@ Note that `x'` can be written as the following format, which is simpler:\
 <img src="https://user-images.githubusercontent.com/25105806/168688652-5aefcebe-8fb1-458f-bf1f-13bbbd8eb575.jpg" width="30%" height="30%">
 
 
-
 Next step is simply calculate all number in `nums` using the derived rule, `a` is `x` and `b` is `y`:
-```cpp
-int singleNumberLogic(vector<int>& nums) {
-    int a = 0, b = 0;
-    for (int num : nums) {
-        b = ~a & (b ^ num);
-        a = ~b & (a ^ num);
-    }
-    return b;
-}
-```
 
 Note that the result will be stored in `b` because if `a` and `b` are all 0 and we performan the operator on the new number, `y`(`b`) will hold a 1, which will be the answer.
 
