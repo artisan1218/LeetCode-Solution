@@ -1,7 +1,7 @@
 # Coin Change problem
 <img width="1158" alt="image" src="https://user-images.githubusercontent.com/25105806/169642926-718ebba6-867f-4a5b-9847-c3b8a91f9ba1.png">
 
-Leetcode link: [https://leetcode.com/problems/candy/](https://leetcode.com/problems/coin-change/)
+Leetcode link: https://leetcode.com/problems/coin-change/
 
 <br />
 
