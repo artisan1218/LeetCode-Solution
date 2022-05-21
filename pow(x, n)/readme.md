@@ -1,6 +1,9 @@
 # Pow(x, n) problem
 * Implement `pow(x, n)`, which calculates `x` raised to the power `n` (i.e., x^n).
 
+Leetcode link: https://leetcode.com/problems/powx-n/
+
+<br />
 
 ### Approach 1: Binary Exponentiation, myPow()
 
@@ -18,6 +21,19 @@ n%2==0, result = 3*81, n=n//2=0, break
 
 return result=243
 ```
+
+```python3
+def myPow(self, x: float, n: int) -> float:
+    absN = abs(n)
+    result = 1
+    while absN>0:
+        if absN%2==1:
+            result *= x
+        x *= x
+        absN = absN//2
+    return result if n>=0 else 1/result
+```
+
 
 Time complexity is O(logn), actual running time:
 
