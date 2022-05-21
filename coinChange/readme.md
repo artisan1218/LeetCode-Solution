@@ -8,7 +8,7 @@ Leetcode link: https://leetcode.com/problems/coin-change/
 ### Approach 1: DFS, coinChangeDFS()
 The idea is to use DFS to explore all possible ways, this is the most naive way and will lead to TLE because DFS will repeatedly calculate duplicates paths. 
 
-`dfs()` function takes `remaining` variable as the remaining amount of money we need to make up to using `coins`. 
+`dfs()` function takes `remaining` variable as the remaining amount of money we need to make up to using `coins`. Then simply loop through `coins` to make up the amount in the recursion.
 
 ```cpp
 int coinChangeDFS(vector<int>& coins, int amount) {
@@ -35,7 +35,7 @@ void dfs(vector<int>& coins, int remaining, int& result, int cur) {
 <br />
 
 ### Approach 2: DFS with memorization, coinChangeMem()
-The idea is based on the approach 1 but use a different implementation to adopt memorization. 
+The idea is based on the approach 1 but use a different implementation to adopt memorization. The map `cache` stores remaining amount as key and minimum amount of coins as value. 
 
 ```cpp
 int coinChangeMem(vector<int>& coins, int amount) {
@@ -79,6 +79,23 @@ We can use a 1d array `dp` to hold the minimum amount of coins needed to make up
 The state transition function is: `dp[i] = min(dp[i], dp[i-coin] + 1)`. We need to iterate over all coins in `coins` to see the which is the minimum way.
 
 We initialize `dp[0]` to 0 because we need 0 coins to make up the amount 0. 
+
+For example, amount = 7, coins = [1,3,4,5] and we have:
+```
+dp[0] = 0
+dp[1] = 1
+dp[2] = 2
+dp[3] = 1
+dp[4] = 1
+dp[5] = 1
+dp[6] = 2
+
+To get dp[7], we can dp[7] = min(dp[7-1]+1, dp[7-3]+1, dp[7-4]+1, dp[7-5]+1) = 2
+```
+
+
+
+Full code:
 
 ```cpp
 int coinChangeDP(vector<int>& coins, int amount) {
