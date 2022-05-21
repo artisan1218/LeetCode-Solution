@@ -2,10 +2,41 @@
 * Given an integer array `nums`, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
 
 
+Leetcode link: https://leetcode.com/problems/maximum-subarray/
+
+<br />
+
 ### Approach 1: Bruth Force, maxSubArrayBruteForce()
 This solution leads to TLE\
 The idea is to exhaust all possible subarrays of the `nums` array and calculate sum and return the maximum sum. Time complexity is therefore O(n^3) where finding all possible subarrays will take O(n^2) and calculate sum of subarray will take O(n)
 
+```java
+public int maxSubArrayBruteForce(int[] nums) {
+    int maxSum = Integer.MIN_VALUE;
+    for (int i = 0; i < nums.length; i++) {
+        for (int j = nums.length - 1; j >= i; j--) {
+            int curMax = getSum(nums, i, j);
+            if (curMax > maxSum) {
+                maxSum = curMax;
+            }
+        }
+    }
+
+    return maxSum;
+}
+
+public int getSum(int[] nums, int left, int right) {
+    int sum = 0;
+    while (left <= right) {
+        sum += nums[left];
+        left++;
+    }
+    return sum;
+}
+```
+
+
+<br />
 
 
 ### Approach 2: Dynamic Programming, maxSubArrayDP()
@@ -18,6 +49,25 @@ We will only pass the `nums` once, for each of the new element, if the previous 
 
 
 **Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/maximumSubarray/maxSubarrayAnimation.ppsx) to download the animation to play for yourself.**
+
+
+```java
+public int maxSubArrayDP(int[] nums) {
+    // dp[i] is the maximum sum of subarray up to index i
+    int[] dp = new int[nums.length];
+    dp[0] = nums[0];
+    int maxSum = dp[0];
+
+    for (int i = 1; i < nums.length; i++) {
+        // previous sum is greater than 0, we should sum nums[i] with previous value
+        // previous value is smaller or equal to 0, we should only add nums[i]
+        dp[i] = nums[i] + (dp[i - 1] > 0 ? dp[i - 1] : 0);
+        maxSum = Math.max(maxSum, dp[i]);
+    }
+
+    return maxSum;
+}
+```
 
 Time complexity is O(n)\
 ![image](https://user-images.githubusercontent.com/25105806/126412809-138d3f81-764c-4fe8-99dd-b23eec194138.png)
