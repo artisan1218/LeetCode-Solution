@@ -86,7 +86,6 @@ def trapCalculateFromTallestHeightRecursion(self, height: List[int]) -> int:
     return self.calculateInterval(height, left, right)
 
 def calculateInterval(self, height: List[int], left: int, right: int) -> int:
-
     # only calculate the volume in this interval
     interval = height[left:right+1]
 
