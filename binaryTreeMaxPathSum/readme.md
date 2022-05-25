@@ -49,7 +49,7 @@ def maxPathSumBruteForce(self, root: Optional[TreeNode]) -> int:
     return self.max
 ```
 
-This solution leads to TLE and the time complexity is O(n^2):\
+This solution leads to TLE and the time complexity is O(n^2)
 
 <br />
 

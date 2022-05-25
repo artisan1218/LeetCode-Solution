@@ -5,7 +5,7 @@ Leetcode link: https://leetcode.com/problems/permutations/
 
 <br />
 
-### Approach 1: DFS, permute()
+### Approach 1: DFS, permute(), Python3
 The idea is simple, we will see the problem as a tree structure. We solve this using recursion:
 
 ```
@@ -45,3 +45,40 @@ def dfs(self, nums, path, result):
 
 Actual running time:\
 ![image](https://user-images.githubusercontent.com/25105806/125020993-a8338c00-e02e-11eb-99e5-903145ffbd94.png)
+
+<br />
+
+### Approach 2: Iteration, permute(), CPP
+We can also use iterative approach to solve this. The iterative solution can handle larger size of input because we don't need to worry about recursion running out of stack size. 
+
+The idea is to iteratively add `num` from `nums` to the list. Each new `num` can be add at different indices of previous permutations and we just need to store them.
+
+<img src="https://user-images.githubusercontent.com/25105806/170169846-7468f819-9def-404b-b0ef-dee2ef928485.jpg" width="50%" height="50%">
+
+
+
+```cpp
+vector<vector<int>> permute(vector<int>& nums) {
+    vector<vector<int>> pre, cur;
+    for (const auto& num : nums) {
+        if (pre.size() == 0) {
+            pre.push_back({num});
+        } else {
+            for (auto permutation : pre) {
+                int size = permutation.size();
+                for (int i = 0; i <= size; i++) {
+                    permutation.insert(permutation.begin() + i, num);
+                    cur.push_back(permutation);
+                    permutation.erase(permutation.begin() + i);
+                }
+            }
+            pre = cur;
+            cur.clear();
+        }
+    }
+    return pre;
+}
+```
+
+Time complexity is O(n^2 \* x) because we first loop through all elements in `nums` which is O(n), then loop through `x` possible permutations where `x` follows the formula: `sum(n!)` and each `insert()` operation takes O(n):\
+<img width="637" alt="image" src="https://user-images.githubusercontent.com/25105806/170169743-14ace4bb-8f44-4f73-9961-f59b221124e7.png">
