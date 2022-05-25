@@ -48,7 +48,7 @@ Records of all my solved problems on LeetCode
 |43       |[multiplyStrings](https://github.com/artisan1218/LeetCode-Solution/tree/main/multiplyStrings)|Medium|Math|True|Python|[Multiply Strings](https://leetcode.com/problems/multiply-strings/)|
 |44       |[wildcardMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/wildcardMatching)|Hard|Backtracking, Dynamic Programming|True|Python|[Wildcard Matching](https://leetcode.com/problems/wildcard-matching/)|
 |45       |[jumpGame2](https://github.com/artisan1218/LeetCode-Solution/tree/main/jumpGame2)|Medium|Greedy Algorithm|True|Java|[Jump Game II](https://leetcode.com/problems/jump-game-ii/)|
-|46       |[permutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutations)|Medium|DFS|True|Python|[Permutations](https://leetcode.com/problems/permutations/)|
+|46       |[permutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutations)|Medium|DFS|True|Python, CPP|[Permutations](https://leetcode.com/problems/permutations/)|
 |47       |[permutations2](https://github.com/artisan1218/LeetCode-Solution/tree/main/permutations2)|Medium|DFS|False|Python|[Permutations II](https://leetcode.com/problems/permutations-ii/)|
 |48       |[rotateImage](https://github.com/artisan1218/LeetCode-Solution/tree/main/rotateImage)|Medium|List Manipulation|True|Python|[Rotate Image](https://leetcode.com/problems/rotate-image/)|
 |49       |[groupAnagrams](https://github.com/artisan1218/LeetCode-Solution/tree/main/groupAnagrams)|Medium|HashMap|False|Python|[Group Anagrams](https://leetcode.com/problems/group-anagrams/)|
