@@ -53,6 +53,10 @@ We can also use iterative approach to solve this. The iterative solution can han
 
 The idea is to iteratively add `num` from `nums` to the list. Each new `num` can be add at different indices of previous permutations and we just need to store them.
 
+<img src="https://user-images.githubusercontent.com/25105806/170169846-7468f819-9def-404b-b0ef-dee2ef928485.jpg" width="50%" height="50%">
+
+
+
 ```cpp
 vector<vector<int>> permute(vector<int>& nums) {
     vector<vector<int>> pre, cur;
