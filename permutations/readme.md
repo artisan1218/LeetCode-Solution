@@ -80,5 +80,5 @@ vector<vector<int>> permute(vector<int>& nums) {
 }
 ```
 
-Time complexity is O():\
+Time complexity is O(n^2 \* x) because we first loop through all elements in `nums` which is O(n), then loop through `x` possible permutations where `x` follows the formula: `sum(n!)` and each `insert()` operation takes O(n):\
 <img width="637" alt="image" src="https://user-images.githubusercontent.com/25105806/170169743-14ace4bb-8f44-4f73-9961-f59b221124e7.png">
