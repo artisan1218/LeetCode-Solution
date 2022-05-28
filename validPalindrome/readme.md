@@ -6,7 +6,7 @@ Leetcode link: https://leetcode.com/problems/valid-palindrome/
 <br/>
 
 ### Approach 1: Two Pointers, isPalindrome()
-Compared to standard palindrome validation question, the difference is that we now have to consider alphanumeric characters instead of only letters. Simply use the built-in function `.isalnum()` to test if its legal a character then compare the front character with back character.
+Compared to standard palindrome validation question, the difference is that we now have to consider alphanumeric characters instead of only letters. Simply use the built-in function `.isalnum()` to test if it's a legal character then compare the front character with back character.
 
 ```python3
 def isPalindrome(self, s: str) -> bool:
