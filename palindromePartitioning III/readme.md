@@ -84,7 +84,7 @@ The idea is to use memorization to skip duplicate calculations. Consider the cas
 
 Here are all possible 4 splits of the string `s`. Notice that when we first enter the loop and start splitting, in the first iteration(right=1, which means first split is `a`), we calculated the min costs of splitting `cde` into 2 parts(marked in red). However, in the second iteration(right=2, first split is `aa`), we calculated the min cost for `cde` and `k=2` again. This means there will be more duplicates in the even longer string and larger k. Therefore we can cache the result of the first calculation and use it right away in the second duplicate case. 
 
-The duplicate `cde` and `k=2` means we need to split substring `cde` into `k=2` parts and calculate the min cost of converting all parts to palindrome. Therefore we can use a map to store the result and use the index('left` in the code) of the substring and k as the key. We need to find a way to combine both index and k because in c++, we cannot use tuple as the map key, so we can simply concatenate the two int as a string `to_string(left) + "-" + to_string(k)`. 
+The duplicate `cde` and `k=2` means we need to split substring `cde` into `k=2` parts and calculate the min cost of converting all parts to palindrome. Therefore we can use a map to store the result and use the index(`left` in the code) of the substring and k as the key. We need to find a way to combine both index and k because in c++, we cannot use tuple as the map key, so we can simply concatenate the two int as a string `to_string(left) + "-" + to_string(k)`. 
 
 Full code:
 
