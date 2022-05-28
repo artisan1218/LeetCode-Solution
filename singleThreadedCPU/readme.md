@@ -76,6 +76,7 @@ vector<int> getOrderBruteForce(vector<vector<int>>& tasks) {
 
 The brute force solution will lead to TLE, no surprise.
 
+<br />
 
 ### Approach 2: Min-Heap, getOrderMinHeap()
 
@@ -103,7 +104,7 @@ We are comparing to values instead of one because we need to find the task first
 
 Notice that we don't push the `enqueueTime` of a task to the heap because we don't need the `enqueueTime` once we added the task to heap. So the first element of a task becomes the `processingTime` and second element is the `taskID`.
 
-Full code:\
+Full code:
 ```cpp
 vector<int> getOrderMinHeap(vector<vector<int>>& tasks) {
     // perserve the original index
@@ -158,3 +159,6 @@ vector<int> getOrderMinHeap(vector<vector<int>>& tasks) {
     return result;
 }
 ```
+
+Time complexity is O(nlogn) where sorting takes O(nlogn) and heap take O(logn):\
+![image](https://user-images.githubusercontent.com/25105806/170845145-190c7468-1342-45e5-ba32-9bd8e4a9a9b6.png)
