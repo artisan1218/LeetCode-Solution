@@ -10,7 +10,7 @@ Leetcode link: https://leetcode.com/problems/single-threaded-cpu/
 
 The idea is pretty simple: we simply simulate the whole process and find out the order. There are several things to keep in mind that the tasks might not come in order of the `enqueueTime` so we have to sort the `tasks` list. The final result is the index of the task in original unsorted `tasks` list, so we have to find a away to perserve the original indices.
 
-In this solution, the original indices of tasks are appended to each task so we can know the index even after sorting.
+In this solution, the original indices of tasks are appended to each task so we can know the index even after sorting. We use `time` variable to represent the current time and add all tasks with smaller `enqueueTime` to `availableTasks` list, which means tasks are waiting to be executed. 
 
 ```cpp
 vector<int> getOrderBruteForce(vector<vector<int>>& tasks) {
