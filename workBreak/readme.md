@@ -1,82 +1,79 @@
-# ZigZag Conversion problem
-* The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
-  ```
-  P   A   H   N
-  A P L S I I G
-  Y   I   R
-  ```
-  And then read line by line: `"PAHNAPLSIIGYIR"`\
-  Write the code that will take a string and make this conversion given a number of rows:
-  `string convert(string s, int numRows);`
-  
-Leetcode link: https://leetcode.com/problems/zigzag-conversion/
+# Word Break problem
+![image](https://user-images.githubusercontent.com/25105806/171986652-dab65881-781b-437a-93b9-55ed3868df65.png)
+
+Leetcode link: https://leetcode.com/problems/word-break/
 
 <br/>
 
-### Approach 1: Traverse in ZigZag Order, convert()
-There is a pattern existed in the zigzag printout any string: the index of the line-by-line order string will skip two parts of the zigzag shape alternately, I call them bottom part and top part.
-* bottom part will decrease by two for each row starting from the number `2 * numRows - 2`, which is the number of skipped chars for the first row: `skippedBottom -= 2`
-* top part will increase by two for each row starting from 0: `skippedTop += 2`
+### Approach 1: Dynamic Programming, wordBreakDP1()
+We can find the sub-problem relationship between substring and string `s`. For example if `leet` can be found in `wordDict`, we only need to see if `code` exists without checking the entire `leetcode`. We use a vector `dp` to store the previous result. Since we only need to get the substring starting from the next index of previous valid position up to current index, we can use a `validIdxList` vector to store all indices of `true` result in `dp`, so that we don't need to loop over the entire `dp`.
 
-All we need to do is to control the switching of these two number and append the characters at corresponding index of `i += skippedBottom` or `i += skippedTop`.
+<img src="https://user-images.githubusercontent.com/25105806/171986952-e772cf5a-4ffe-4f50-a3db-9942856b0c09.jpg" heigth="60%" width="60%">
 
-<img src="https://user-images.githubusercontent.com/25105806/118091542-cc048980-b37f-11eb-9be4-1cff27607429.png" width="100%" height="100%">
 
-* Note: For the right-most figure, `bottom = 4` and `top = 6`, then `i = 3`, `i = 3 + 4 = 7`, `i = 3 + 4 + 6 = 13` for chars at pos 3, 7, 13, respectively.
+Note that in this case, `DP[7]` is dicided by `s[0:8]` which is the entire substring up to `i` and `s[4:8]` which is the substring starting from the 'next index of preivous valid index', notice that `DP[3]==True`, the next substring we should check is `code`.
 
-The whole process is like: charAt(i), skip bottom, charAt(i=i+bottom), skip top, charAt(i=i+top), starts at new row, charAt(i), skip bottom, ...
-Even though I used nested loop in the implemention, the time complexity is still O(n) because the outer loop will go through each row and the inner loop will will not go through all indices of the chars but only chars at that specific row, so the total number of indices visited is strictly equal to the total number of characters, thus O(n).
-
-```java
-public static String convert(String s, int numRows) {
-	if (numRows == 1) {
-	    return s;
-	} else {
-	    StringBuilder result = new StringBuilder("");
-	    int row = 0;
-	    // skippedNum is the number of chars that we need to skip in order to get the
-	    // string in line-by-line order if the string is printed in zigzag order
-	    int skippedNum = 2 * numRows - 2;
-	    int i = 0;
-	    // skippedBottom is the number of chars that we need to skip at the bottom part
-	    // of the zigzag shaped string (v shape), while skippedTop is the number of
-	    // chars that we need to skip at the top part of the zigzag shaped string (^
-	    // shape).
-	    int skippedBottom = skippedNum;
-	    int skippedTop = 0;
-	    boolean switch2Bottom = true;
-
-	    while (row < numRows) {
-		i = row; // i starts at the row index, which is the first char in that row
-		switch2Bottom = true;
-		if (row == 0 || row == numRows - 1) {
-		    while (i < s.length()) {
-			result.append(s.charAt(i));
-			i += skippedNum;
-		    }
-		} else {
-		    skippedBottom -= 2;
-		    skippedTop += 2;
-		    while (i < s.length()) {
-			result.append(s.charAt(i));
-			// switching between these two different skipped number we can control the pace
-			// of i, which controls chars to be appended
-			if (switch2Bottom) {
-			    i += skippedBottom;
-			    switch2Bottom = false;
-			} else {
-			    i += skippedTop;
-			    switch2Bottom = true;
-			}
-		    }
-		}
-		row++;
-	    }
-	    return result.toString();
+Full code:
+```cpp
+bool wordBreakDP1(string s, vector<string>& wordDict) {
+	unordered_set<string> wordSet;
+	for (auto word : wordDict) {
+		wordSet.insert(word);
 	}
-    }
 
+	vector<bool> dp(s.length(), false);
+	// validIdxList stores the indices of all valid substring so far
+	// so that we don't have to iterate over all elements in dp but only valid(true) index
+	vector<int> validIdxList;
+	for (int i = 0; i < s.length(); i++) {
+		if (wordSet.find(s.substr(0, i + 1)) != wordSet.end()) {
+			dp[i] = true;
+			validIdxList.push_back(i);
+		} else {
+			// only look into valid position
+			for (auto validIdx : validIdxList) {
+				if (wordSet.find(s.substr(validIdx + 1, i - validIdx)) != wordSet.end()) {
+					dp[i] = true;
+					validIdxList.push_back(i);
+					break;
+				}
+			}
+		}
+	}
+
+	return dp[dp.size() - 1];
+}
 ```
 
-We can see that the running time is indeed quite fast:\
-![image](https://user-images.githubusercontent.com/25105806/118090743-c490b080-b37e-11eb-9d1a-9ad69a8cb5ea.png)
+Time complexity is O(n^2):\
+![image](https://user-images.githubusercontent.com/25105806/171987066-42626a23-4925-4dba-b255-6785cfc8bd86.png)
+
+
+<br/>
+
+### Approach 2: Dynamic Programming, wordBreakDP2()
+Credits to: https://www.youtube.com/watch?v=Sx9NNgInc3A
+
+This solution is similar to the first approach but we loop backward this way, and we will use a nested loop to loop through `wordDict` to see if current substring can be found in `wordDict`. By looping through `wordDict` we can know the length of substring we're looking for so there is no need to maintain another list to store the valid indices.
+
+```cpp
+bool wordBreakDP2(string s, vector<string>& wordDict) {
+	vector<bool> dp(s.length() + 1, false);
+	dp[s.length()] = true;
+
+	for (int i = s.length() - 1; i >= 0; i--) {
+		for (const auto& word : wordDict) {
+			if (i + word.length() <= s.length() && s.substr(i, word.length()) == word) {
+				dp[i] = dp[i + word.length()];
+				if (dp[i] == true) {
+					break;
+				}
+			}
+		}
+	}
+	return dp[0];
+}
+```
+
+Time complexity is O(m\*n) where m is the size of `wordDict` and n is the size of `s`:\
+![image](https://user-images.githubusercontent.com/25105806/171987202-adb04e0e-161e-404e-a985-836ec9e24ce6.png)
