@@ -19,7 +19,7 @@ bool wordBreakDP1(string s, vector<string>& wordDict) {
 	unordered_set<string> wordSet;
 	for (auto word : wordDict) {
 		wordSet.insert(word);
-	}
+	} 
 
 	vector<bool> dp(s.length(), false);
 	// validIdxList stores the indices of all valid substring so far
