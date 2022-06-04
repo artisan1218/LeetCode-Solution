@@ -55,7 +55,7 @@ Time complexity is O(n^2):\
 Credits to: https://www.youtube.com/watch?v=Sx9NNgInc3A
 
 This solution is similar to the first approach but we loop backward this way, and we will use a nested loop to loop through `wordDict` to see if current substring can be found in `wordDict`. By looping through `wordDict` we can know the length of substring we're looking for so there is no need to maintain another list to store the valid indices.
-
+ 
 ```cpp
 bool wordBreakDP2(string s, vector<string>& wordDict) {
 	vector<bool> dp(s.length() + 1, false);
