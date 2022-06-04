@@ -40,7 +40,6 @@ bool wordBreakDP1(string s, vector<string>& wordDict) {
 			}
 		}
 	}
-
 	return dp[dp.size() - 1];
 }
 ```
