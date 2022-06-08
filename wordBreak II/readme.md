@@ -65,5 +65,5 @@ void backtrack2(string s, vector<string>& wordDict, int i, string cur, vector<st
 }
 ```
 
-Actual running time:\
+Time complexity is O(n\*m): where n is the size of `s` and m is the size of `wordDict`:\
 ![image](https://user-images.githubusercontent.com/25105806/172550030-b109baa1-a7e2-4f15-8993-907c4cb7a9dc.png)
