@@ -141,7 +141,8 @@ Records of all my solved problems on LeetCode
 |136      |[singleNumber](https://github.com/artisan1218/LeetCode-Solution/tree/main/singleNumber)|Easy|Bit Manipulation|False|C++|[Single Number](https://leetcode.com/problems/single-number/)|
 |137      |[singleNumber II](https://github.com/artisan1218/LeetCode-Solution/tree/main/singleNumber%20II)|Medium|Bit Manipulation, Logic Circuit|True|C++|[Single Number II](https://leetcode.com/problems/single-number-ii/)|
 |138      |[copyListWithRandomPtr](https://github.com/artisan1218/LeetCode-Solution/tree/main/copyListWithRandomPtr)|Medium|LinkedList, Map|True|C++|[Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)|
-|139      |[wordBreak](https://github.com/artisan1218/LeetCode-Solution/tree/main/workBreak)|Medium|Dynamic Programming|True|C++|[Word Break](https://leetcode.com/problems/word-break/)|
+|139      |[wordBreak](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordBreak)|Medium|Dynamic Programming|True|C++|[Word Break](https://leetcode.com/problems/word-break/)|
+|140      |[wordBreak II](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordBreak%20II)|Hard|Backtracking|False|C++|[Word Break II](https://leetcode.com/problems/word-break-ii/)|
 |146      |[LRUCache](https://github.com/artisan1218/LeetCode-Solution/tree/main/LRUCache)|Medium|LinkedList|False|C++|[LRUCache](https://leetcode.com/problems/lru-cache/)|
 |160      |[intersectionOfTwoLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/intersectionOfTwoLinkedList)|Easy|LinkedList|False|Python|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
