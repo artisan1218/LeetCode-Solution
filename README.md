@@ -193,4 +193,5 @@ Records of all my solved problems on LeetCode
 |Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|TuSimple, Twitter|
 |Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|Google|
 |Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|Hackerrank|
+|Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|Other|
 
