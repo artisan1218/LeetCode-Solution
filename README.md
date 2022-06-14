@@ -143,6 +143,7 @@ Records of all my solved problems on LeetCode
 |138      |[copyLstW/RandomPtr](https://github.com/artisan1218/LeetCode-Solution/tree/main/copyListWithRandomPtr)|Medium|LinkedList, Map|True|C++|[Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)|
 |139      |[wordBreak](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordBreak)|Medium|Dynamic Programming|True|C++|[Word Break](https://leetcode.com/problems/word-break/)|
 |140      |[wordBreak II](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordBreak%20II)|Hard|Backtracking|False|C++|[Word Break II](https://leetcode.com/problems/word-break-ii/)|
+|141      |[linkedListCycle](https://github.com/artisan1218/LeetCode-Solution/tree/main/linkedListCycle)|Easy|LinkedList|False|C++|[Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)|
 |146      |[LRUCache](https://github.com/artisan1218/LeetCode-Solution/tree/main/LRUCache)|Medium|LinkedList|False|C++|[LRUCache](https://leetcode.com/problems/lru-cache/)|
 |160      |[intersecionOf2LL](https://github.com/artisan1218/LeetCode-Solution/tree/main/intersectionOfTwoLinkedList)|Easy|LinkedList|False|Python|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
@@ -192,4 +193,5 @@ Records of all my solved problems on LeetCode
 |Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|TuSimple, Twitter|
 |Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|Google|
 |Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|Hackerrank|
+|Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|Other|
 
