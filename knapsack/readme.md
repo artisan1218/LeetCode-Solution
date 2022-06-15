@@ -55,6 +55,8 @@ We will fill in the dp table row and row from left to right. At each spot, we an
 
 The bottom right spot of the dp table will be the max value we can get.
 
+<br />
+
 To know exacly which items we should include, we can traceback the dp table at the bottim right spot.
 1. If the current value is the same as the value above it, then this means the value is not from 'including the current item', which means we should not include current item.
 2. If the current value is not the same as the value above it, then this means the value if from 'including the current item', which means we should include the current item. Then we need to subtract the current item weight from weight limit, and keep looking for what items made up the remaining weight
