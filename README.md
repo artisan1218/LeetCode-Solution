@@ -194,4 +194,5 @@ Records of all my solved problems on LeetCode
 |Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|Google|
 |Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|Hackerrank|
 |Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|Other|
+|Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|Other|
 
