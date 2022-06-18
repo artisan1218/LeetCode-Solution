@@ -1,70 +1,70 @@
-# Linked List Cycle problem
-<img width="852" alt="image" src="https://user-images.githubusercontent.com/25105806/173220866-68df99c7-9890-40ae-ba34-24ebf97049c5.png">
+# Linked List Cycle II problem
+![image](https://user-images.githubusercontent.com/25105806/174423541-71ba9736-96b5-4ae2-8bbb-d557021ddd5b.png)
 
 
-Leetcode link: https://leetcode.com/problems/linked-list-cycle/
+Leetcode link: https://leetcode.com/problems/linked-list-cycle-ii/
 
 <br />
 
-### Approach 1: Cache with Set, hasCycleSet()
+### Approach 1: HashSet, detectCycleSet()
 
-In this solution, we use a hash set to store all seen nodes so that we can quickly know when we encounter a seen node in the cycle.
+This solution is to use a hash set to store all seen nodes so that we can know immediately if an new node has been seen before and therefore return the node.
 
 ```cpp
-bool hasCycleSet(ListNode* head) {
+ListNode* detectCycleSet(ListNode* head) {
+    auto ptr = head;
     unordered_set<ListNode*> set;
-    while (head != nullptr) {
-        if (set.count(head)) {
-            return true;
-        } else {
-            set.insert(head);
-            head = head->next;
+    while (ptr != nullptr) {
+        if (set.find(ptr) != set.end()) {
+            return ptr;
         }
+        set.insert(ptr);
+        ptr = ptr->next;
     }
-    return false;
+    return NULL;
 }
 ```
 
 Time complexity is O(n) and space complexity is O(n):\
-<img width="668" alt="image" src="https://user-images.githubusercontent.com/25105806/173220929-97fb3360-844e-4adf-ac0d-76cb40c5e745.png">
-
+![image](https://user-images.githubusercontent.com/25105806/174423581-e57bf3ec-16ef-4514-b77c-a9277c4c3973.png)
 
 <br />
 
-### Approach 2: Constant Space, hasCycleConstantSpace()
+### Approach 2: Constant Space Using Pointers, detectCycleConstantSpace()
 
-Credits to: https://leetcode.com/problems/linked-list-cycle/discuss/44489/O(1)-Space-Solution
+The solution is based on [linkedListCycle](https://github.com/artisan1218/LeetCode-Solution/tree/main/linkedListCycle) problem where we only need to detect the existence of cycle. After we've found out that there is a cycle in the linked list, our `fast` and `slow` pointers will meet at a same node inside the cycle. 
 
-The idea can be explained by an example:\
-Imagine two runners are running around a cycle palyground and they start at same position same time, but one of the runner is faster than the other runner. Then we know that at some point at the playground, the faster runner is bound to outrun the slower runner the whole cycle. 
+For example, the image below shows the state after `slow` and `fast` meet at node `M`
+![1655529151381](https://user-images.githubusercontent.com/25105806/174423816-670abf48-3e46-4863-98ee-4941647ac821.png)
 
+From this point, the trick begins:
+We can denote the path that `slow` pointer traveled as `Dslow` and the path that `fast` pointer traveled as `Dfast`. Notice that every time `slow` pointer moves one step forward, `fast` pointer will move two steps forward. So the length of `Dfast`, at any given point, is always twice as the length of `Dslow`. If we assume `Dslow = x`, then `Dfast = 2x`. 
 
-We can apply the idea to this problem by setting up two pointers, one `fast` and one `slow`. They will start at the same node (both point to `head`) and we will use a loop to simulate the running process. The `slow` pointer will only move one node further in each iteration but the `fast` pointer will move two nodes further. We can consider the difference in steps as their speed. If there is a cycle in the given linkedlist then they are bound to meet at some point. 
+We also noticed that at node `M`, `slow` pointer traveled exact `x` steps and `fast` pointer traveled exact `2x` steps, which means if `slow` keeps traveling along the linked list for another `x` steps, `slow` will end up at the node `M` again. So if we set up another pointer called `entry` that starts at `head` and let `slow` and `entry` walks along the linked list simultaneously, they will end up meeting at one node and that's the entry node of the cycle. 
 
-In fact the speed of the `fast` pointer does not matter as long as it moves faster then the `slow` pointer. 
+The path that `entry` walked would be red + yellow and the path that `slow` walked would be blue + yellow. Since we know both paths are of length `x` and they share a same part of the path (yellow), we know red = blue, so they are guranteed to meet and the first time they meet is the entry node to the cycle.
 
 
 ```cpp
-bool hasCycleConstantSpace(ListNode* head) {
-    ListNode* slow = head;
-    ListNode* fast = head;
-    while (fast != NULL && fast->next != NULL) {
+ListNode* detectCycleConstantSpace(ListNode* head) {
+    auto slow = head;
+    auto fast = head;
+    auto entry = head;
+    while (fast != nullptr && fast->next != nullptr) {
         slow = slow->next;
-        // it does not matter how fast pointer move, as long as it moves
-        // faster than slow pointer, they are guaranteed to meet at some
-        // point if the cycle exists
-        // we can also move three nodes once instead of two nodes, which will be
-        // fast->next->next->next, but also need to update while condition
         fast = fast->next->next;
         if (slow == fast) {
-            return true;
+            while (slow != entry) {
+                slow = slow->next;
+                entry = entry->next;
+            }
+            return entry;
         }
     }
-    return false;
+    return NULL;
 }
 ```
 
-
 Time complexity is O(n) and space complexity is O(1):\
-<img width="631" alt="image" src="https://user-images.githubusercontent.com/25105806/173221218-91343472-12de-4cd0-bf7f-6da5f0bd6a92.png">
+![image](https://user-images.githubusercontent.com/25105806/174424144-08c81736-bda4-473c-890f-b4bfb7b37a43.png)
 
