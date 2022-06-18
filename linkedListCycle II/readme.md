@@ -31,6 +31,7 @@ Time complexity is O(n) and space complexity is O(n):\
 <br />
 
 ### Approach 2: Constant Space Using Pointers, detectCycleConstantSpace()
+Credits to: https://leetcode.com/problems/linked-list-cycle-ii/discuss/44781/Concise-O(n)-solution-by-using-C%2B%2B-with-Detailed-Alogrithm-Description
 
 The solution is based on [linkedListCycle](https://github.com/artisan1218/LeetCode-Solution/tree/main/linkedListCycle) problem where we only need to detect the existence of cycle. After we've found out that there is a cycle in the linked list, our `fast` and `slow` pointers will meet at a same node inside the cycle. 
 
