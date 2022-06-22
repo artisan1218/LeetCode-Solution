@@ -1,91 +1,159 @@
-# Two Sum problem
-* Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-* You may assume that each input would have exactly one solution, and you may not use the same element twice.
-* You can return the answer in any order.
+# Implement Trie (Prefix Tree) problem
+![image](https://user-images.githubusercontent.com/25105806/174951066-f496f30c-7049-4a40-be39-7b36c9f3217f.png)
 
-Leetcode link: https://leetcode.com/problems/two-sum/
 
-<br />
-
-### Approach 1: Brute force, bruteForce()
-For each number in list, go through every other number in the list and test if they add up to target. 
-
-```java
-public static int[] bruteForce(int[] nums, int target) {
-	int[] result = new int[2];
-	int addend = 0;
-	int addendIt = 0;
-	boolean find = false;
-	for (int i = 0; i < nums.length && !find; i++) {
-	    addend = nums[i];
-	    for (int j = i + 1; j < nums.length && !find; j++) {
-          addendIt = nums[j];
-          if (addend + addendIt == target) {
-              result[0] = i;
-              result[1] = j;
-              find = true;
-          }
-	    }
-	}
-	return result;
-}
-```
-
-Time complexity is O(n^2):\
-![image](https://user-images.githubusercontent.com/25105806/160227036-be353df6-cd5c-4649-bc52-fd31ac32afde.png)
+Leetcode link: https://leetcode.com/problems/implement-trie-prefix-tree/
 
 <br />
 
-### Approach 2: twoPassHashMap()
-First build a HashMap that stores all number in the list, then iterate through the list to see if the target-num(complement) exists in the HashMap. 
+Reference: 
+1. https://stackoverflow.com/questions/72674344/how-should-i-write-destructor-for-this-class-in-c
+2. https://www.youtube.com/watch?v=oobqoCJlHA0
 
-```java
-public static int[] hashMapTwoPass(int[] nums, int target) {
-  Map<Integer, Integer> s = new HashMap<>();
-  for (int i = 0; i < nums.length; i++) {
-      s.put(nums[i], i);
-  }
+### Approach 1: No Extra Class, Trie
 
-  for (int j = 0; j < nums.length; j++) {
-      int complement = target - nums[j];
-      if (s.containsKey(complement) && s.get(complement) != j) {
-          return new int[] { j, s.get(complement) };
-      }
-  }
-  return null;
-}
-```
+The basic structure of the Trie tree is to store each char of the word at a node. Words that share same prefix will also share the same path of the tree. 
+For example the word 'apple' and 'application' will use the same path 'a->p->p', then split two paths for 'le' and 'lication'. We can include a hashmap and a boolean variable at each node. The hashmap is used to store the connection between two characters, so that we know the next node to take when searching and inserting. The boolean variable `isEnd` is used to store if current node is the ending character of a word. So that we can know when to stop searching when searching for a word. 
 
-Since HashMap has constant lookup time, it saves O(n), So time complexity is O(n), but use space complexity of O(n) to store the HashMap:\
-![image](https://user-images.githubusercontent.com/25105806/118185941-f98a1b00-b3f1-11eb-8ddc-d7cd8cc805fb.png)
+In this solution we build the class with no extra `TrieNode` class, instead, having a hashmap to store the `Trie` class itself as a pointer. When implementing this in C++, we need to also implement a destructor function. 
+
+Since we designed the class using hashmap, we do not need to delete the pointers recursively:
+1. Instances `a` of `Trie` class are owned by another instance of `Trie` class (lets call it owner) where `&a` appears in `owner.map`.
+2. Whenever an instance owner becomes destroyed, it has to free all instances it (directly) owns:
+3. Which means we only need to free the owner once, and it will automatically free all instances it owns.
 
 
-<br />
 
-### Approach 3: onePassHashMap()
-Turns out we can check if the complement exists in the HashMap while building the HashMap. HashMap is the element:index pair of the list. Iterate through the list, if the HashMap contains the complement, then we've found the answer, simply return the current index and the index of the complement; if the HashMap does not contain the complement, then adding this number and its index to the HashMap. 
+```cpp
+class Trie {
+public:
+    Trie() {
+    }
 
-```java
-public static int[] hashMapOnePass(int[] nums, int target) {
-    HashMap<Integer, Integer> map = new HashMap<>();
-    int[] result = new int[2];
+    void insert(string word) {
+        Trie* node = this;
+        for (int i = 0; i < word.length(); i++) {
+            if (node->map.find(word.at(i)) == node->map.end()) {
+                node->map[word.at(i)] = new Trie();
+            }
+            node = node->map[word.at(i)];
+        }
+        node->isEnd = true;
+    }
 
-    for (int i = 0; i < nums.length; i++) {
-        int addend = nums[i];
-        int complement = target - addend;
-        if (map.containsKey(complement)) {
-            result[0] = map.get(complement);
-            result[1] = i;
-            return result;
-        } else {
-            map.put(addend, i);
+    bool search(string word) {
+        Trie* node = this;
+        for (int i = 0; i < word.length(); i++) {
+            if (node->map.find(word.at(i)) == node->map.end()) {
+                return false;
+            } else {
+                node = node->map[word.at(i)];
+            }
+        }
+        return node->isEnd;
+    }
+
+    bool startsWith(string prefix) {
+        Trie* node = this;
+        for (int i = 0; i < prefix.length(); i++) {
+            if (node->map.find(prefix.at(i)) == node->map.end()) {
+                return false;
+            } else {
+                node = node->map[prefix.at(i)];
+            }
+        }
+        return true;
+    }
+
+    ~Trie() {
+        for (auto& pair : map) {
+            delete pair.second;
         }
     }
-    return result;
-}
+
+private:
+    unordered_map<char, Trie*> map = {};
+    bool isEnd = false;
+};
 ```
 
-Since the HashMap has contant lookup time, the overall time complexity is O(n) and space complexity is O(n). Best case is when the two numbers are the first two elements of the list, which will be returned when we get the second element because now the complement is the first element and it's in the HashMap already. Worst case is when either one of the two numbers is at the end of the list, which will not be found until we reach the end.
+Time complexity of `insert()`, `search()` and `startsWith()` is O(n): 
+![image](https://user-images.githubusercontent.com/25105806/174953834-0599166f-d724-45f8-9130-5a5ac7efd7f3.png)
 
-![image](https://user-images.githubusercontent.com/25105806/118185798-cb0c4000-b3f1-11eb-810c-a6b45f642959.png)
+<br />
 
+
+### Approach 2: Separating TrieNode() Class, Trie2
+
+The basic structure is the same as approach #1 but this time we use a separate `TrieNode()` class to represent a node. We can therefore reduce the memory useage because each node is now only a small class with two variables. Also it's more readable. 
+
+When writing the destructor of this class, we have to delete every instances recursively because we're now deleting the pointer of `TrieNode()` class, which is different from a hashmap.
+
+```cpp
+struct TrieNode {
+public:
+    unordered_map<char, TrieNode*> map = {};
+    bool isEnd = false;
+};
+
+class Trie {
+public:
+    Trie() {
+        root = new TrieNode();
+    }
+
+    void insert(string word) {
+        auto* node = root;
+        for (int i = 0; i < word.length(); i++) {
+            if (node->map.find(word.at(i)) == node->map.end()) {
+                node->map[word.at(i)] = new TrieNode();
+            }
+            node = node->map[word.at(i)];
+        }
+        node->isEnd = true;
+    }
+
+    bool search(string word) {
+        auto* node = root;
+        for (int i = 0; i < word.length(); i++) {
+            if (node->map.find(word.at(i)) == node->map.end()) {
+                return false;
+            } else {
+                node = node->map[word.at(i)];
+            }
+        }
+        return node->isEnd;
+    }
+
+    bool startsWith(string prefix) {
+        auto* node = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            if (node->map.find(prefix.at(i)) == node->map.end()) {
+                return false;
+            } else {
+                node = node->map[prefix.at(i)];
+            }
+        }
+        return true;
+    }
+
+    ~Trie() {
+        clear(root);
+    }
+
+    void clear(TrieNode* root) {
+        for (auto& pair : root->map) {
+            if (pair.second != nullptr) {
+                clear(pair.second);
+            }
+        }
+        delete root;
+    }
+
+private:
+    TrieNode* root;
+};
+```
+
+Time complexity is still the same:
+![image](https://user-images.githubusercontent.com/25105806/174954857-44bb6a01-03ef-4a9d-83a3-11270b7f4504.png)
