@@ -150,6 +150,7 @@ Records of all my solved problems on LeetCode
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
+|208       |[Trie](https://github.com/artisan1218/LeetCode-Solution/tree/main/trie)|Medium|Trie|False|C++|[Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/)|
 |221       |[maxSquare](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxSquare)|Medium|Dynamic Programming|False|Python|[Maximal Square](https://leetcode.com/problems/maximal-square/)|
 |290       |[wordPattern](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordPattern)|Easy|HashMap|False|Python, C++|[Word Pattern](https://leetcode.com/problems/word-pattern/)|
 |322       |[coinChange](https://github.com/artisan1218/LeetCode-Solution/tree/main/coinChange)|Medium|DFS, Dynamic Programming|False|C++|[Coin Change](https://leetcode.com/problems/coin-change/)|
