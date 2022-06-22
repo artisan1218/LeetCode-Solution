@@ -12,22 +12,22 @@ For each number in list, go through every other number in the list and test if t
 
 ```java
 public static int[] bruteForce(int[] nums, int target) {
-	int[] result = new int[2];
-	int addend = 0;
-	int addendIt = 0;
-	boolean find = false;
-	for (int i = 0; i < nums.length && !find; i++) {
-	    addend = nums[i];
-	    for (int j = i + 1; j < nums.length && !find; j++) {
-          addendIt = nums[j];
-          if (addend + addendIt == target) {
-              result[0] = i;
-              result[1] = j;
-              find = true;
-          }
-	    }
-	}
-	return result;
+    int[] result = new int[2];
+    int addend = 0;
+    int addendIt = 0;
+    boolean find = false;
+    for (int i = 0; i < nums.length && !find; i++) {
+        addend = nums[i];
+        for (int j = i + 1; j < nums.length && !find; j++) {
+            addendIt = nums[j];
+            if (addend + addendIt == target) {
+                result[0] = i;
+                result[1] = j;
+                find = true;
+            }
+        }
+    }
+    return result;
 }
 ```
 
