@@ -145,7 +145,7 @@ Records of all my solved problems on LeetCode
 |140      |[wordBreak II](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordBreak%20II)|Hard|Backtracking|False|C++|[Word Break II](https://leetcode.com/problems/word-break-ii/)|
 |141      |[linkedListCycle](https://github.com/artisan1218/LeetCode-Solution/tree/main/linkedListCycle)|Easy|LinkedList|False|C++|[Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)|
 |142      |[linkedListCycle II](https://github.com/artisan1218/LeetCode-Solution/tree/main/linkedListCycle%20II)|Medium|Two Pointers, LinkedList|True|C++|[Linked List Cycle II](https://leetcode.com/problems/linked-list-cycle-ii/)|
-|143      |[reorderList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reorderList)|Medium|LinkedList|False|C++|[Reorder List](https://leetcode.com/problems/reorder-list/)|
+|143      |[reorderList](https://github.com/artisan1218/LeetCode-Solution/tree/main/reorderList)|Medium|Two Pointers, LinkedList|False|C++|[Reorder List](https://leetcode.com/problems/reorder-list/)|
 |146      |[LRUCache](https://github.com/artisan1218/LeetCode-Solution/tree/main/LRUCache)|Medium|LinkedList|False|C++|[LRUCache](https://leetcode.com/problems/lru-cache/)|
 |160      |[intersecionOf2LL](https://github.com/artisan1218/LeetCode-Solution/tree/main/intersectionOfTwoLinkedList)|Easy|LinkedList|False|Python|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
