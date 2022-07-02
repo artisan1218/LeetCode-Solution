@@ -24,6 +24,9 @@ def threeSumBruteForce(nums: List[int]) -> List[List[int]]:
         return [list(t) for t in result]
 ```
 
+Time complexity is O(n^3) leads to TLE :(
+
+
 <br />
 
 ### Approach 2: Generating all twoSums and store, threeSum2()
@@ -56,6 +59,8 @@ def threeSum2(nums: List[int]) -> List[List[int]]:
                     result.add(tuple(sorted([nums[indicesTuple[0]], nums[indicesTuple[1]], num])))
     return [list(t) for t in result]
 ```
+
+Time complexity is O(n^3) and also leads to TLE :(
 
 <br />
 
