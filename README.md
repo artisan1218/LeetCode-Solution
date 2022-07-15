@@ -193,12 +193,12 @@ Records of all my solved problems on LeetCode
 <br />
 
 # Other Questions
-|Question |Solution Link                                                                        |Category|Demo|Language|Source|
-| :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|:------:|
-|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|Facebook|
-|Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|TuSimple, Twitter|
-|Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|Google|
-|Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|Hackerrank|
-|Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|Other|
-|Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|Other|
+|Question |Solution Link                                                                        |Category|Demo|Language|
+| :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|
+|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|
+|Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|
+|Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|
+|Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|
+|Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|
+|Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|
 
