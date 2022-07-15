@@ -82,6 +82,9 @@ Note that the final result after the algorithm is `0110`, which is the reverse o
 
 Finally, we have to append the value of initial node to our result to form the final answer because we start at the initial 'all-zeros node' and its value should be included in the solution.
 
+
+In summary, the algorithm does not use backtrack because each path we walked through, whether it is in the correct order, is part of the correct path. We don't need to backtrack it, but simply add it in the end because dead end can only be visited at the end. We can use recursion to do this and add all edges backwards.
+
 ```cpp
 string crackSafeHierholzer(int n, int k) {
     int nodeNum = pow(k, n - 1);      // not pow(k, n) because each node represent the shared portion between passwords, which has length of n-1, so total number of nodes will be k^n-1 not k^n
