@@ -1,95 +1,112 @@
-# Decode Ways problem
-![image](https://user-images.githubusercontent.com/25105806/134601605-477fefb5-577c-4d7f-a017-e9f7692cff1c.png)
+# Cracking the Safe problem
+![image](https://user-images.githubusercontent.com/25105806/179154083-3c55d53d-5612-4d11-b5e6-579c695ba20c.png)
 
-Leetcode link: https://leetcode.com/problems/decode-ways/
-
-<br />
-
-### Approach 1: DFS, numDecodings(), dfs()
-The idea is very straightforward, for each of the char, we decide if this single char is valid (not `0`) and if the next char combined with current one is valid (smaller than `26`). Then use DFS recursion to explore all possible combinations.
-
-
-![image](https://user-images.githubusercontent.com/25105806/134601811-30026aeb-af25-4a3b-8440-0684c4a3287f.png)
-
-```python3
-def numDecodings(self, s: str) -> int:
-    return self.dfs(s, 0, dict())
-
-def dfs(self, s, i, cache):
-    # we have reached the end of s, this is a valid solution
-    if i==len(s):
-        return 1
-    else:
-        result=0
-        if s[i]!='0': # single digit
-            # memorization
-            if s[i+1:] not in cache:
-                cache[s[i+1:]] = self.dfs(s, i+1, cache)
-            result += cache[s[i+1:]]
-
-        # two digits, either start with 1 or start with 2 and second digit is smaller or equal than 6
-        if i+1<len(s) and (s[i]=='1' or (s[i]=='2' and ord(s[i+1]) <= ord('6'))):
-            # memorization
-            if s[i+2:] not in cache:
-                cache[s[i+2:]] = self.dfs(s, i+2, cache)
-            result += cache[s[i+2:]]
-
-        return result
-```
-
-
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/134601856-2d4c0016-716b-4a6c-a310-bda8c50cde3c.png)
+Leetcode link: https://leetcode.com/problems/cracking-the-safe/
 
 <br />
 
-### Approach 2: Dynamic Programming with O(N) Space, numDecodingsDP1()
-This question is similar to Fibonacci series where current value is only depend on previous two. We can then use a dp array to represent all possible decode ways at index `i`. If the current value is not `0`, then there are at least `dp[i-1]` ways of decoding. If the previous value is `1` OR (previous value is `0` and current value is within the range 1 to 6), then we should add `dp[i-2]` to current `dp[i]` as well.
+### Approach 1: Backtracking, backtrack()
 
-```python3
-def numDecodingsDP1(self, s: str) -> int:
-    dp = [0 for _ in range(len(s))]
+The idea is to use backtrack to explore all possible ways of appending new characters. However, we need to make sure we don't add duplicate passwords in our path, so we have to maintain a hashset of seen passwords. When certain path does not contain all passwords, we backtrack.
 
-    if s[0]!='0':
-        dp[0] = 1
+The stopping condition for the recursion function is when the size of seen hashset contains `pow(k, n)` number of unique passwords.
 
-    for i in range(1, len(s)):
-        if s[i]!='0':
-            dp[i] += dp[i-1]
+```cpp
+string crackSafeBacktrack(int n, int k) {
+    string result(n, '0');
+    set<string> seen = {result};
+    bakctrack(n, k, result, seen);
+    return result;
+}
 
-        if s[i-1]=='1' or (s[i-1]=='2' and ord(s[i])<=ord('6')):
-            if i-2>=0:
-                dp[i] += dp[i-2]
-            else:
-                dp[i] += 1
+bool bakctrack(int n, int k, string& cur, set<string>& seen) {
+    if (seen.size() == pow(k, n)) {
+        return true;
+    }
 
-    return dp[-1]
+    for (int i = 0; i < k; i++) {
+        cur.append(to_string(i));                          // append the new char
+        string password = cur.substr(cur.length() - n, n); // get the newly formed password
+        if (seen.count(password) == 0) {
+            // newly formed password is not seen before, we can add it to the set and append next one recursively
+            seen.insert(password);
+            if (bakctrack(n, k, cur, seen)) {
+                return true;
+            }
+            cur.pop_back();       // backtrack
+            seen.erase(password); // backtrack
+        } else {
+            // the newly formed password is seen, we should try appending another char
+            cur.pop_back();
+        }
+    }
+    return false;
+}
 ```
 
-Time complexity is O(N):\
-![1632444802(1)](https://user-images.githubusercontent.com/25105806/134602242-eb5b7a23-afeb-4172-9160-2605dd0a16e4.png)
+Time complexity is O(k^n) because we will explore every possible way and space complexity is also O(k^n), which is the callstack:
+![image](https://user-images.githubusercontent.com/25105806/179309249-90e9a4d7-299d-4186-b3a9-d3462c039749.png)
+
 
 <br />
 
-### Approach 3: Dynamic Programming with O(1) Space, numDecodingsDP2()
-Since we can treat the problem as Fibonacci series, then we can simply usee two variables `left` and `right` to represent previous two values and one temp variable to calcualte current value. Exchange and update `left` and `right` and return `right` at the end.
+### Approach 2: Hierholzer Algorithm, hierholzer()
 
-```python3
-def numDecodingsDP2(self, s: str) -> int:
-    left = 1 
-    right = 1 if s[0]!='0' else 0
+Credits to: https://leetcode.cn/problems/cracking-the-safe/solution/zhuan-hua-wei-ou-la-hui-lu-wen-ti-hierholzer-suan-/
 
-    for i in range(1, len(s)):
-        newRight = 0
-        if s[i]!='0':
-            newRight = right
+If we consider the passwords as a graph, each node represents the shared portion between passwords, which has length of `n-1` and each edge represents the new character we add to our next passwords, then the valid solution is simply an Eulerian cycle. We can use Hierholzer algorithm to find the Eulerian cycle.
 
-        if s[i-1]=='1' or (s[i-1]=='2' and ord(s[i])<=ord('6')):
-            newRight += left
-        left, right = right, newRight
+We can assume the solution exists and start at the 'all-zero node' and choose next edge to go based on edge index, everytime we choose an edge to go, we have to delete it from our graph representation to avoid duplicate visiting. If at an certain edge we don't find any available edges to go, which means we've reached a dead end, we can now put the previous edge we choose to our result, because dead end must be visited at the end, that's why we enter the recursion function first, then store the result. Then simply explore the next possible edge and add it to our result backwards(equivalent to popping from callstack).
 
-    return right
+In actual coding, we use a vector of 0/1 to represent the visited status of each edge. We use
+
+1. `currNode = edgeIdx % nodeNum` to convert edge index to node index
+2. `edgeIdx = currNode * k + outboundIdx` to convert node index to edge index
+
+
+For example, `n=2, k=2`
+
+The graph can look like this:
+
+<img src="https://user-images.githubusercontent.com/25105806/179312017-59704b88-89bf-41e2-9da6-f15c446f4d94.jpg" height="20%" width="20%">
+
+We can see that the graph has two nodes of value 0 and 1 and 4 edges of 0 and 1. We will form a password by one node and one edge.
+
+The Hierholzer algorithm will explore the graph starting at node `0` and in this order:
+![ec8484714b0b4c4f16991337981bd5b](https://user-images.githubusercontent.com/25105806/179312387-1a1dd232-0e13-404a-9ab3-1bee9c22eaa0.jpg)
+
+
+From left to right, every time we've visited an edge, we will remove it from the graph and add the edge to the callstack down below. When we hit the third callstack, we found that we've reached a dead end at node 0 because node 0 has no more outbounds, so we start adding previous edge to our result (pop from callstack). Next, we can visit the last edge at node 1 and add it to callstack. After this, all edges have been visited and all we need to do is simply get the edge value from callstack to our `result` variable.
+
+Note that the final result after the algorithm is `0110`, which is the reverse of the actual Eulerian cycle, but the order of the solution does not matter in the context of this problem, so we don't need to flip it. 
+
+Finally, we have to append the value of initial node to our result to form the final answer because we start at the initial 'all-zeros node' and its value should be included in the solution.
+
+
+In summary, the algorithm does not use backtrack because each path we walked through, whether it is in the correct order, is part of the correct path. We don't need to backtrack it, but simply add it in the end because dead end can only be visited at the end. We can use recursion to do this and add all edges backwards.
+
+```cpp
+string crackSafeHierholzer(int n, int k) {
+    int nodeNum = pow(k, n - 1);      // not pow(k, n) because each node represent the shared portion between passwords, which has length of n-1, so total number of nodes will be k^n-1 not k^n
+    vector<int> side(nodeNum * k, 0); // each node has k out-degrees, so total of node*k edges
+    string result;
+    hierholzer(side, k, 0, result, nodeNum);
+    result += string(n - 1, '0'); // append the starting string
+    return result;
+}
+
+void hierholzer(vector<int>& side, int k, int edgeIdx, string& res, int nodeNum) {
+    int currNode = edgeIdx % nodeNum;                           // convert edge index to node index
+    for (int outboundIdx = 0; outboundIdx < k; outboundIdx++) { // iterate over all outdegree edges of each node
+        int edgeIdx = currNode * k + outboundIdx;               // convert node idx and outdegree idx to edge idx
+        if (side[edgeIdx] == 0) {                               // we haven't explored this edge yet
+            side[edgeIdx]++;
+            hierholzer(side, k, edgeIdx, res, nodeNum);
+            res += to_string(outboundIdx);
+        }
+    }
+}
 ```
 
-This way we ensure the O(1) space complexity:\
-![image](https://user-images.githubusercontent.com/25105806/134602406-e98d1b9b-4d3e-4ae0-9ea6-5fb00094fab1.png)
+Time complexity is O(k^n) which is the number of edges we explored, space complexity is also O(k^n), which is the callstack:
+![image](https://user-images.githubusercontent.com/25105806/179313754-48c1753e-aa18-49e1-9987-4a3d04f4eb0a.png)

@@ -165,6 +165,7 @@ Records of all my solved problems on LeetCode
 |690       |[employeeImportance](https://github.com/artisan1218/LeetCode-Solution/tree/main/employeeImportance)|Easy|BFS, DFS|False|Python|[Employee Importance](https://leetcode.com/problems/employee-importance/)|
 |696       |[countBinarySubstr](https://github.com/artisan1218/LeetCode-Solution/blob/main/countBinarySubtr)|Easy|Two Pointers|True|Python|[Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/)|
 |735       |[asteroidCollision](https://github.com/artisan1218/LeetCode-Solution/tree/main/asterolidCollision)|Medium|Stack|False|Python|[Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)|
+|753       |[crackSafe](https://github.com/artisan1218/LeetCode-Solution/tree/main/crackSafe)|Hard|Backtracking, Hierholzer Algorithm, Eulerian Cycle|True|C++|[Cracking the Safe](https://leetcode.com/problems/cracking-the-safe/)|
 |787       |[cheapestFlights](https://github.com/artisan1218/LeetCode-Solution/tree/main/cheapestFlights)|Medium|Bellman Ford's Algorithm, Dijkstra's Algorithm, Dynamic Programming|False|C++|[Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)|
 |792       |[numOfMatchingSubseq](https://github.com/artisan1218/LeetCode-Solution/tree/main/numOfMatchingSubseq)|Medium|Binary Search, Pointer|False|Python|[Number of Matching Subsequences](https://leetcode.com/problems/number-of-matching-subsequences/)|
 |833       |[find&ReplaceInStr](https://github.com/artisan1218/LeetCode-Solution/tree/main/find%26ReplaceInStr)|Medium|String Manipulation|False|Python|[Find And Replace in String](https://leetcode.com/problems/find-and-replace-in-string/)|
@@ -193,12 +194,12 @@ Records of all my solved problems on LeetCode
 <br />
 
 # Other Questions
-|Question |Solution Link                                                                        |Category|Demo|Language|Source|
-| :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|:------:|
-|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|Facebook|
-|Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|TuSimple, Twitter|
-|Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|Google|
-|Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|Hackerrank|
-|Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|Other|
-|Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|Other|
+|Question |Solution Link                                                                        |Category|Demo|Language|
+| :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|
+|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|
+|Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|
+|Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|
+|Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|
+|Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|
+|Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|
 
