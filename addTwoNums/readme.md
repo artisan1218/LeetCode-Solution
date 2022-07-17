@@ -85,6 +85,8 @@ public static ListNode addTwoNumbersMathSlow(ListNode l1, ListNode l2) {
 	return resultHead;
     }
 ```
+![image](https://user-images.githubusercontent.com/25105806/179429985-88125922-9095-441f-b3d6-f1bcabf35936.png)
+
 
 <br />
 
