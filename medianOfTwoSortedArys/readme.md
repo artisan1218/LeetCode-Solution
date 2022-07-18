@@ -10,63 +10,63 @@ Since the two given arrays are sorted, we should utilize this sorted structure i
 
 ```java
 public static double findMedianSortedArraysBruteForce(int[] nums1, int[] nums2) {
-	int sumLen = nums1.length + nums2.length;
-	double median = 0;
-	if (sumLen % 2 == 0) {
-	    int medianPos1 = sumLen / 2 - 1;
-	    int medianPos2 = sumLen / 2;
-	    double median2 = 0;
-	    int nums1Pos = 0;
-	    int nums2Pos = 0;
-	    for (int i = 0; i <= medianPos2; i++) {
-		int comp1 = Integer.MAX_VALUE;
-		int comp2 = Integer.MAX_VALUE;
-		if (nums1Pos < nums1.length)
-		    comp1 = nums1[nums1Pos];
-		if (nums2Pos < nums2.length)
-		    comp2 = nums2[nums2Pos];
+    int sumLen = nums1.length + nums2.length;
+    double median = 0;
+    if (sumLen % 2 == 0) {
+        int medianPos1 = sumLen / 2 - 1;
+        int medianPos2 = sumLen / 2;
+        double median2 = 0;
+        int nums1Pos = 0;
+        int nums2Pos = 0;
+        for (int i = 0; i <= medianPos2; i++) {
+            int comp1 = Integer.MAX_VALUE;
+            int comp2 = Integer.MAX_VALUE;
+            if (nums1Pos < nums1.length)
+                comp1 = nums1[nums1Pos];
+            if (nums2Pos < nums2.length)
+                comp2 = nums2[nums2Pos];
 
-		if (comp1 < comp2) {
-		    nums1Pos++;
-		    median = comp1;
-		} else {
-		    nums2Pos++;
-		    median = comp2;
-		}
+            if (comp1 < comp2) {
+                nums1Pos++;
+                median = comp1;
+            } else {
+                nums2Pos++;
+                median = comp2;
+            }
 
-		if (i == medianPos1) {
-		    median2 = median;
-		}
-	    }
-	    median += median2;
-	    return median / 2;
-	} else {
-	    int medianPos = sumLen / 2;
-	    int nums1Pos = 0;
-	    int nums2Pos = 0;
-	    for (int i = 0; i <= medianPos; i++) {
-		int comp1 = Integer.MAX_VALUE;
-		int comp2 = Integer.MAX_VALUE;
-		if (nums1Pos < nums1.length)
-		    comp1 = nums1[nums1Pos];
-		if (nums2Pos < nums2.length)
-		    comp2 = nums2[nums2Pos];
+            if (i == medianPos1) {
+                median2 = median;
+            }
+        }
+        median += median2;
+        return median / 2;
+    } else {
+        int medianPos = sumLen / 2;
+        int nums1Pos = 0;
+        int nums2Pos = 0;
+        for (int i = 0; i <= medianPos; i++) {
+            int comp1 = Integer.MAX_VALUE;
+            int comp2 = Integer.MAX_VALUE;
+            if (nums1Pos < nums1.length)
+                comp1 = nums1[nums1Pos];
+            if (nums2Pos < nums2.length)
+                comp2 = nums2[nums2Pos];
 
-		if (comp1 < comp2) {
-		    nums1Pos++;
-		    median = comp1;
-		} else {
-		    nums2Pos++;
-		    median = comp2;
-		}
-	    }
-	    return median;
-	}
+            if (comp1 < comp2) {
+                nums1Pos++;
+                median = comp1;
+            } else {
+                nums2Pos++;
+                median = comp2;
+            }
+        }
+        return median;
     }
+}
 ```
 
-Turns out the running time is fairly good:\
-![image](https://user-images.githubusercontent.com/25105806/117776937-f1af5880-b1f0-11eb-8868-eef6363e7aae.png)
+Time complexity is O(m+n):\
+![image](https://user-images.githubusercontent.com/25105806/179430286-f63574ec-9360-4ef3-a315-0467f94745d5.png)
 
 <br/>
 
