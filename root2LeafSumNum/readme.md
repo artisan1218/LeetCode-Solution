@@ -26,6 +26,13 @@ def sumNumbers(self, root: Optional[TreeNode]) -> int:
     return self.result
 ```
 
+Time complexity is O(n):
+
+![aaea0f32fa8c0364485447b896bf2b4](https://user-images.githubusercontent.com/25105806/160011388-7ae7086e-3bcb-427f-a451-cebe096917f7.png)
+
+
+<br />
+
 C++ implementation:
 ```cpp
 class Solution{
@@ -49,7 +56,7 @@ public:
 };
 ```
 
-Time complexity is O(n):\
-![aaea0f32fa8c0364485447b896bf2b4](https://user-images.githubusercontent.com/25105806/160011388-7ae7086e-3bcb-427f-a451-cebe096917f7.png)
+Time complexity is O(n):
+
 ![image](https://user-images.githubusercontent.com/25105806/160226413-faeef38f-c5be-4c08-a073-a033938b6333.png)
 
