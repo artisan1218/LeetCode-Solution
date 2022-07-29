@@ -102,3 +102,7 @@ pair<int, int> helper(TreeNode* root) {
     }
 }
 ```
+
+Time complexity is O(n):
+
+<img width="682" alt="image" src="https://user-images.githubusercontent.com/25105806/181693209-b1d9c706-e40b-4437-a6f2-8d55c3eac754.png">
