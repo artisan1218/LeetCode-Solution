@@ -1,44 +1,100 @@
-# House Robber II problem
-![image](https://user-images.githubusercontent.com/25105806/180586660-3ab53380-e9df-4eeb-a8b9-d86c3a7f46ee.png)
+# House Robber III problem
+
+<img width="1035" alt="image" src="https://user-images.githubusercontent.com/25105806/181690151-246a41c8-c8fc-498f-bcc2-d2cba7c3b4ea.png">
 
 
-Leetcode link: https://leetcode.com/problems/house-robber-ii/
+Leetcode link: https://leetcode.com/problems/house-robber-iii/
 
 <br />
 
-### Approach 1: Dynamic Programming, rob()
-This solution is based on [House Robber I](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber). The only difference is that we have to consider the situation that the last house is connected with the first house. We don't need to modify the original dp solution, but simply run the solution twice with different starting and ending index of the `nums` array.
+### Approach 1: DFS with Memorization, robDFS()
 
-The first run is to include(rob) the first house but not including the last house: `nums[0:-1]`; The second run is to not include the first house and include the last house: `nums[1:]`.
+The idea is to use DFS to explore all possible ways exhaustedly. At any node, we have two choice:
+1. Rob the root node and jump to root's grandchildren nodes
+2. Do not rob the root and jump to root's children nodes
 
-We basically manually include two possible ways of starting robbery and let dp algorithm to solve the rest
-
-![0356f6cdaceaaa791b899af061df2dd](https://user-images.githubusercontent.com/25105806/180586992-9f1818e4-a8d2-4f74-86a2-66847848eae0.jpg)
-
+at the end we simply return the max among these two choices. However, this way of calculation will visit many duplicate nodes and thus increase time complexity. To avoid revisiting, we use memorization technique, which is a map that stores the 'root-value' kv pair.
 
 Full code:
 ```cpp
-int rob(vector<int>& nums) {
-    if (nums.size() == 1) {
-        return nums[0];
-    } else {
-        // rob second one, then we can rob the last one
-        // rob first one, then cannot rob the last one
-        return max(helper(nums, 1, nums.size()), helper(nums, 0, nums.size() - 1));
-    }
+int robDFS(TreeNode* root) {
+    unordered_map<TreeNode*, int> cache;
+    return helper(root, cache);
 }
 
-int helper(vector<int>& nums, int start, int end) {
-    int pre = 0;
-    int cur = 0;
-    for (int i = start; i < end; i++) {
-        int tmp = pre;
-        pre = cur;
-        cur = max(nums.at(i) + tmp, cur);
+int helper(TreeNode* root, unordered_map<TreeNode*, int>& cache) {
+    if (root == nullptr) {
+        return 0;
+    } else {
+        if (cache.find(root) != cache.end()) {
+            return cache[root];
+        } else {
+            int robRoot = root->val; // rob root
+            int skipRoot = 0;        // skip root and rob children
+
+            if (root->left) {
+                robRoot += helper(root->left->left, cache) + helper(root->left->right, cache); // rob grandchildren
+                skipRoot += helper(root->left, cache);                                         // rob children
+            }
+            if (root->right) {
+                robRoot += helper(root->right->left, cache) + helper(root->right->right, cache); // rob grandchildren
+                skipRoot += helper(root->right, cache);                                          // rob children
+            }
+
+            cache[root] = max(robRoot, skipRoot);
+            return cache[root];
+        }
     }
-    return cur;
 }
 ```
 
 Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/180587034-8121cc66-482b-46a9-8bf2-1916823f5766.png)
+<img width="656" alt="image" src="https://user-images.githubusercontent.com/25105806/181691130-e865c85b-8f1f-4262-8c6c-f37580227fed.png">
+
+
+### Approach 2: DFS, robOptimal()
+
+Credits to: https://www.youtube.com/watch?v=nHR8ytpzz7c
+
+We can consider this problem in this way: at any nodes, we can either rob the root or skip the root. We can denote the two choices using a pair, the first value means the value we get by robbing the root and following nodes, the second value means the value we get by not robbing the root and rob the following nodes. We can then calculate the pair node by node recursively.
+
+```
+pair<int, int> left = helper(root->left);
+pair<int, int> right = helper(root->right);
+```
+
+`left` pair includes two values: max value we can get by robbing the `root->left` and max value we can get by not robbing `root->left`. Similar for `right` pair.
+
+Next, we will simply return the paired value of robbing current `root` and not robbing:
+```
+// if we include the current root, then we should add the 'exclude root' value of next level
+int includeRoot = root->val + left.second + right.second;
+
+// if we exclude the current root, then simply choose the max value
+int excludeRoot = max(left.first, left.second) + max(right.first, right.second);
+```
+
+Full code:
+```cpp
+int robOptimal(TreeNode* root) {
+    auto [includeRoot, excludeRoot] = helper(root);
+    return max(includeRoot, excludeRoot);
+}
+
+pair<int, int> helper(TreeNode* root) {
+    if (!root) {
+        return {0, 0};
+    } else {
+        auto left = helper(root->left);
+        auto right = helper(root->right);
+
+        // if we include the current root, then we should add the 'exclude root' value of next level
+        int includeRoot = root->val + left.second + right.second;
+
+        // if we exclude the current root, then simply choose the max value
+        int excludeRoot = max(left.first, left.second) + max(right.first, right.second);
+
+        return {includeRoot, excludeRoot};
+    }
+}
+```
