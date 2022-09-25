@@ -206,4 +206,5 @@ Records of all my solved problems on LeetCode
 |Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|
 |Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|
 |Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|
+|Min Health|[getMinHealth](https://github.com/artisan1218/LeetCode-Solution/tree/main/getMinHealth)|Priority Queue|False|Python|
 

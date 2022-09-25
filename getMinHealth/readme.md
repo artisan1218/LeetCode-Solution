@@ -1,38 +1,57 @@
-# Binary Tree Zigzag Level Order Traversal problem
-![image](https://user-images.githubusercontent.com/25105806/135959482-4e9db087-7ec6-4300-beba-708fab26fe28.png)
+# Minimum Health problem
+Alex and Charlie are playing an online video game. 
 
-Leetcode link: https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+Initially, there are `m` players in the first level, and there are next `n` levels. Each level introduces a new player (along with the players from the 
+previous level). Each player has some strength which determines the difficulty of beating this player. To pass any level, select any available players and beat them. 
+
+Alex has completed the game and beaten the rank-th strongest player at every level. Now it's Charlie's turn to play. Whenever a player is beaten, Charlie's health decreases by the amount of strength of that player. So the initial health of Charlie must be greater than or equal to the sum of the strengths of players that are beaten throughout the game. Charlie does not want to lose to Alex, so Charlie decided to also beat the rank-th strongest player at each level. 
+
+What is the minimum initial health that Charlie needs to start with in order to do this?
+
+
+**Example**
+
+initial_players = [1, 2], new_players = [3, 4], rank = 2\
+Charlie needs to beat the 2nd strongest player at each level.\
+For the first level, players have strengths 1 and 2, so Charlie needs to beat the player with strength 1.\
+For the second level, strengths are1, 2, and 3, so Charlie defeats strength 2.\
+For the third level, strengths are 1, 2, 3, and 4, so Charlie defeats strength 3.\
+Total health needed = 1 + 2 + 3 = 6.
 
 <br />
 
-### Approach 1: zigzagLevelOrder()
-This solution is based on [levelOrderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/levelOrderTraversal) but use another variable to mark in which order should we add the node in current level in the `result` list, then simply alternating the order
+### Approach 1: Priority Queue, getMinHealth()
+
+The brute force solution would be sorting the strength of players everytime we add a new player to the list, which will be time consuming. Instead, we can use priority queue (min heap) to store the list of player strength, the priority queue will insert the new strength and put it in correct sorted position so we can save the multiple sortings.
+
+Note that in the first loop, we keep only the top `rank` players in the initial players list because we won't choose the rest players to beat anyway.
+
 
 ```python3
-def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-    if root!=None:
-        result = list()
-        level = [root]
-        result.append([node.val for node in level])
-        l2r = False
-        while len(level)!=0:
-            nextLevel = list()
-            for node in level:
-                if node.left!=None:
-                    nextLevel.append(node.left)
-                if node.right!=None:
-                    nextLevel.append(node.right)
-            if l2r:
-                result.append([node.val for node in nextLevel])
-            else:
-                result.append([node.val for node in reversed(nextLevel)])
-            level = nextLevel
-            l2r = not l2r
-
-        return result[:-1]
-    else:
-        return []
+import heapq
+def getMinHealth(initPlayers, nextPlayers, rank):
+    result = []
+    heap = []
+    heapq.heapify(heap) # make a heap
+    
+    # only keep the top 'rank' players in heap
+    for init_hp in initPlayers:
+        if len(heap) < rank:
+            heapq.heappush(heap, init_hp)
+        elif heap[0] < init_hp:
+            heapq.heappop(heap)
+            heapq.heappush(heap, init_hp)
+    
+    result.append(heap[0]) # initial hp
+  
+    for next_hp in nextPlayers:
+        if next_hp > heap[0]:
+            heapq.heappop(heap)
+            heapq.heappush(heap, next_hp)
+        result.append(heap[0])
+    
+    return sum(result)
 ```
 
-Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/135959603-8349b72a-e499-47a7-be5b-dd0ce965ec60.png)
+
+Time complexity is O((m+n)*log(m+n)) because we need to loop through both lists
