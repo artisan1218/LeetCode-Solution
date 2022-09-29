@@ -124,7 +124,7 @@ Records of all my solved problems on LeetCode
 |119      |[Pascal's triangle II](https://github.com/artisan1218/LeetCode-Solution/tree/main/Pascal's%20triangle%20II)|Easy|Math|False|Python|[Pascal's Triangle II](https://leetcode.com/problems/pascals-triangle-ii/)|
 |120      |[minTotalTriangle](https://github.com/artisan1218/LeetCode-Solution/tree/main/triangle)|Medium|Dynamic Programming|True|Python|[Triangle](https://leetcode.com/problems/triangle/)|
 |121      |[bestTimeToBuyAndSell](https://github.com/artisan1218/LeetCode-Solution/tree/main/bestTimeToBuyAndSell)|Easy|Two Pointers|True|Python|[Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)|
-|122      |[bestTimeToBuyAndSell II](https://github.com/artisan1218/LeetCode-Solution/tree/main/bestTimeToBuyAndSell%20II)|Medium|Greedy|True|Python|[Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)|
+|122      |[bestTimeToBuyAndSell II](https://github.com/artisan1218/LeetCode-Solution/tree/main/bestTimeToBuyAndSell%20II)|Medium|Greedy Algorithm|True|Python|[Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)|
 |123      |[bestTimeToBuyAndSell III](https://github.com/artisan1218/LeetCode-Solution/tree/main/bestTimeToBuyAndSell%20III)|Hard|Dynamic Programming|False|Python|[Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/)|
 |124      |[BTMaxPathSum](https://github.com/artisan1218/LeetCode-Solution/tree/main/binaryTreeMaxPathSum)|Hard|Recursion|False|Python|[Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)|
 |125      |[validPalindrome](https://github.com/artisan1218/LeetCode-Solution/tree/main/validPalindrome)|Easy|Two Pointers|False|Python|[Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)|
@@ -206,4 +206,6 @@ Records of all my solved problems on LeetCode
 |Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|
 |Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|
 |Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|
+|Min Health|[getMinHealth](https://github.com/artisan1218/LeetCode-Solution/tree/main/getMinHealth)|Priority Queue|False|Python|
+|Visiting Cities|[minCost](https://github.com/artisan1218/LeetCode-Solution/tree/main/visitingCities)|Dynamic Programming|False|Python|
 
