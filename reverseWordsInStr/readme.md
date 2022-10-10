@@ -11,7 +11,7 @@ This solution takes advantages of python's slicing and built-in function. Howeve
 
 ```python3
 def reverseWords(self, s: str) -> str:
-		return ' '.join(s.split()[::-1])
+    return ' '.join(s.split()[::-1])
 ```
 
 Time complexity is O(n) and space complexity is O(n):\
