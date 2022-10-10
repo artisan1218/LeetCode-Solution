@@ -55,7 +55,7 @@ string reverseWords(string s) {
 			s[slow++] = ' ';
 		}
 	}
-
+    
 	// truncate the remaining char on the right
 	s.resize(end);
 	return s;
