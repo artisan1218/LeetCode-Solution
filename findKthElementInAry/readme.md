@@ -23,7 +23,7 @@ k = 2
 
 Since we want kth largest element, the index we're looking for is actually len(nums)-k, which is 4. So this is the element index as if the array is sorted.
 
-We pick pivot point always to be the right most element, which is 4.
+We pick pivot point always to be the right most element, which is 2 in this case.
 
 i,p            pivot
 [3, 5, 1, 4, 6, 2]
