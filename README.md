@@ -152,6 +152,8 @@ Records of all my solved problems on LeetCode
 |147      |[insertionSortList](https://github.com/artisan1218/LeetCode-Solution/tree/main/insertionSortList)|Medium|LinkedList|False|C++|[Insertion Sort List](https://leetcode.com/problems/insertion-sort-list/)|
 |148      |[sortList](https://github.com/artisan1218/LeetCode-Solution/tree/main/sortList)|Medium|Merge Sort, LinkedList|False|C++|[Sort List](https://leetcode.com/problems/sort-list/)|
 |149      |[maxPtsOnLine](https://github.com/artisan1218/LeetCode-Solution/tree/main/maxPtsOnLine)|Hard|Math|False|Python|[Max Points on a Line](https://leetcode.com/problems/max-points-on-a-line/)|
+|150      |[evalRevPolishNotation](https://github.com/artisan1218/LeetCode-Solution/tree/main/evaluateReversePolishNotation)|Medium|Stack|False|Python|[Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)|
+|151      |[reverseWordsInStr](https://github.com/artisan1218/LeetCode-Solution/tree/main/reverseWordsInStr)|Medium|Str Manipulation|True|C++|[Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/)|
 |160      |[intersecionOf2LL](https://github.com/artisan1218/LeetCode-Solution/tree/main/intersectionOfTwoLinkedList)|Easy|LinkedList|False|Python|[Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
