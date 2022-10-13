@@ -37,6 +37,8 @@ i,p            pivot
   pivot         p
 [1, 2, 3, 4, 6, 5]     at this step, all elements on the LHS of pivot is smaller than pivot and all elements on RHS is greater than pivot
 
+We are ready for the next step: find the kth element in the left or right part recursively
+
 ```
 
 <br />
