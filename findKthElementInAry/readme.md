@@ -77,7 +77,9 @@ def findKthLargest(self, nums: List[int], k: int) -> int:
 	return quickSelect(0, len(nums)-1)
 ```
 
-Time complexity is O(n): the first time we swap the array is O(n), then next we only need to swap half of the array, O(n/2), then O(n/4), etc. This series sums up to O(2n) which is O(n) complexity. Space complexity is O(1) because no extra space is used:
+Time complexity is O(n): the first time we swap the array is O(n), then next we only need to swap half of the array, O(n/2), then O(n/4), etc. 
+
+This series `n + n/2 + n/4 + ...` sums up to O(2n) which is O(n) complexity. Space complexity is O(1) because no extra space is used:
 <img width="772" alt="image" src="https://user-images.githubusercontent.com/25105806/195520228-529f3b31-23e9-4fa6-9334-20138365b8ed.png">
 
 
