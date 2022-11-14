@@ -70,7 +70,7 @@ class Solution:
             tmp = curMin
             curMin = min(curMin*n, curMax*n, n)
             curMax = max(tmp*n, curMax*n, n)
-            result = max(curMin, curMax)
+            result = max(result, curMax)
         return result
             
         
