@@ -32,7 +32,7 @@ class Solution:
         
         # split by 0
         subary = []
-        result = min(nums)
+        result = max(nums)
         for i, n in enumerate(nums):
             if n==0:
                 if len(subary)!=0:
@@ -43,7 +43,7 @@ class Solution:
                 if i==len(nums)-1:
                     result = max(result, maxProductInAryWithoutZero(subary.copy()))
     
-        return max(0, result) if 0 in nums else result
+        return result
     
     def maxProductLeftAndRightScan(self, nums: List[int]) -> int:
         leftMax, rightMax = float('-inf'), float('-inf')
