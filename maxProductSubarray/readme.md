@@ -113,4 +113,5 @@ def maxProductSingleScan(self, nums: List[int]) -> int:
 ```
 
 Time complexity is O(n):
-![image](https://user-images.githubusercontent.com/25105806/201555387-c408325f-5493-4422-8153-36b6080aa56e.png)
+![image](https://user-images.githubusercontent.com/25105806/201555621-aaf07a1c-817e-47ba-ab89-5a1390f8fe09.png)
+
