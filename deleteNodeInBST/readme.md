@@ -1,84 +1,42 @@
-# Delete Nodes And Return Forest problem
-![image](https://user-images.githubusercontent.com/25105806/137052457-5b67998f-8e54-4208-9530-a4d54b85bf63.png)
+# Delete Node in a BST problem
+![image](https://user-images.githubusercontent.com/25105806/205228565-8b68d248-8413-4a4c-a2a1-e41e818b34f6.png)
 
-Leetcode link: https://leetcode.com/problems/delete-nodes-and-return-forest/
-
-<br />
-
-### Approach 1: BFS, delNodes1()
-The idea is to use BFS to explore each nodes, at each node, we have two choices: either delete the node or keep it. If we delete the node, we need to first check its left and right subtree recursively to delete any nodes in `to_delete` list. Then we simply return `None` because this means the current node has been deleted, there is nothing to add. If the node is in `to_delete`, which means we should delete the current node, we then need to check the flag `parentExist`, which tells us if the current node is the top of current subtree, the current node can be the root of the initial tree or its parent node has been deleted, if there is no parent, we can add the root to `result`. Then again, we go to its left and right subtree recursively to delete any nodes in the `to_delete` list. At the end, instead of returning None, we should return `root` becase we want to keep the current node.
-
-```python
-def delNodes1(self, root: TreeNode, to_delete: List[int]) -> List[TreeNode]:
-    delete = set(to_delete)
-    result = []
-
-    def helper(root, delete, result, parentExist):
-        if root==None:
-            return None
-        else:
-            if root.val in delete:
-                # current root is to be deleted, so return None
-                # we need to check left branch and right branch of the current root tree
-                root.left = helper(root.left, delete, result, False)
-                root.right = helper(root.right, delete, result, False)
-                return None
-            else:
-                # parent not exists, either is the root of the tree, or the parents is deleted
-                # we should add it to the forest result
-                if not parentExist:
-                    result.append(root)
-                # check left branch and right branch
-                root.left = helper(root.left, delete, result, True) # parent exists because root not in delete
-                root.right = helper(root.right, delete, result, True)
-                # root is kept, so return root itself instead of None
-                return root
-
-    # start at root, root has no parent, so False
-    helper(root, delete, result, False)
-    return result
-```
-
-Time complexity is O(n+m) where n is the number of nodes in the tree and m is the length of `to_delete` list:\
-![image](https://user-images.githubusercontent.com/25105806/137054263-4c263832-2554-4966-a9bd-3c6cee987579.png)
-
+Leetcode link: https://leetcode.com/problems/delete-node-in-a-bst/
 
 <br />
 
-### Approach 1: BFS, delNodes2()
-The idea is similar to approach 1, but this time we first delete any nodes in `to_delete` list in left and right subtree of a node then we decide if we should add the current node to `result` 
+### Approach 1: deleteNode()
 
-```python
-def delNodes2(self, root: TreeNode, to_delete: List[int]) -> List[TreeNode]:
-    delete = set(to_delete)
-    result = []
+Credits to: https://www.geeksforgeeks.org/deletion-in-binary-search-tree/
 
-    def deleteNodes(root, delete, result):
-        if root==None:
-            return None
-        else:
-            # first delete nodes in left branch and right branch
-            root.left = deleteNodes(root.left, delete, result)
-            root.right = deleteNodes(root.right, delete, result)
+The deletion can be divided into two cases:
+1. Delete a node without children or only one children: The deletion can simply be done by returning the left or right subtree, which will make target node not pointed by any reference, thus went through garbage collection(deletion). 
+2. Delete a node with left and right subtree: when both left and right subtree are presented, the first step is to find the successor of the target node, which is the smallest node at the right subtree of target. Then we will copy the value of successor to target node, this way, we 'deleted' the target node. Then for the successor, we call deleteNode() again to actually delete it in a recursive way, because we don't know whether it's a leaf node or not.
 
-            # we should not add root to result because it is to be deleted
-            if root.val in delete:
-                if root.left != None:
-                    result.append(root.left)
-                if root.right != None:
-                    result.append(root.right)
-                return None
+Code: 
+```python3
+def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+	if root is None:
+		return root
 
-            return root
-
-    deleteNodes(root, delete, result)
-    if root.val not in delete:
-        result.append(root)
-
-    return result
+	if key < root.val:
+		root.left = self.deleteNode(root.left, key)
+	elif key > root.val:
+		root.right = self.deleteNode(root.right, key)
+	else:
+		if root.left is None:
+			return root.right
+		elif root.right is None:
+			return root.left
+		else:
+			temp = root.right
+			while temp.left is not None:
+				temp = temp.left
+			root.val = temp.val
+			root.right = self.deleteNode(root.right, temp.val)
+	return root
 ```
 
-Time complexity is O(n+m) where n is the number of nodes in the tree and m is the length of `to_delete` list:\
-![image](https://user-images.githubusercontent.com/25105806/137054307-cd565c07-13d1-4436-95e5-e8c7c4ae4875.png)
-
+Time complexity is O(logn):
+![image](https://user-images.githubusercontent.com/25105806/205229985-4f700cb0-9fad-4854-af58-7ce2dca25b4d.png)
 
