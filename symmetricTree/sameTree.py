@@ -14,16 +14,17 @@ class TreeNode:
         self.right = right
         
 class Solution:
-    def isSameTreeDFS(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        
-        if p==None and q==None:
-            return True
-        elif p==None or q==None:
-            return False
-        elif p.val != q.val:
-            return False
-        else:
-            return self.isSameTreeDFS(p.left, q.left) and self.isSameTreeDFS(p.right, q.right)
+	def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def sameTree(p, q):
+            if p==None and q==None:
+                return True
+            elif p==None or q==None:
+                return False
+            elif p.val != q.val:
+                return False
+            else:
+                return sameTree(p.left, q.right) and sameTree(p.right, q.left)
+        return sameTree(root.left, root.right)
         
         
 if __name__ == '__main__':
