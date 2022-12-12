@@ -1,33 +1,52 @@
-# Find Minimum in Rotated Sorted Array problem
-<img width="735" alt="image" src="https://user-images.githubusercontent.com/25105806/206638787-c96f5106-3931-45ee-9c53-45751e536915.png">
+# Find Minimum in Rotated Sorted Array II problem
+![image](https://user-images.githubusercontent.com/25105806/206944393-9776221d-1947-411e-8757-cc55359fb2af.png)
 
-Leetcode link: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+Leetcode link: https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/description/
 
 <br />
 
-### Approach 1: Binary Search, findMin()
+### Approach 1: Recurssion, findMinRecurssion()
 
-When the required time complexity is O(logn), it's easy to think of binary search as the solution. Since the array is sorted(but rotated), which means the array can be divided into two parts, each part is sorted by itself, we can start from left and right ends and make the range smaller and smaller and finally get the min number.
-
-The idea is similar to binary search. The difference is that in this problem, we do not know the target, so the condition we use to shrink the range is the comparsion between `mid` and `right`. When `mid` is larger than `right`, this means current `mid` number is greater than the biggest number in the right array, which means the pivot point and min number must also be on the right side. So we should update `left` boundary to `mid + 1`. Otherwise, we update `right` boundary to `mid`. 
-
-Notice that `left` can be updated to `mid + 1`, +1 because current `mid` is greater than the `right`, so `mid` cannot be the min number, so we can skip this one. But we cannot do the same when updating `right`.
+The idea is based on [findMinInRotatedSortedAry I](https://github.com/artisan1218/LeetCode-Solution/tree/main/findMinInRotatedSortedAry). When there are no duplicates in the `nums`, we have two cases: when `nums[mid] > nums[right]` and else. When there are duplicates, we have to deal with an additional case where `nums[right]==nums[mid]`. In this case, there is no way to decide which side of the nums the pivot is on. So we can recursively find min in both side and choose the min one.
 
 ```python3
-def findMin(self, nums: List[int]) -> int:
+def findMinRecurssion(self, nums: List[int]) -> int:
 	left = 0
 	right = len(nums)-1
 	while right > left:
 		mid = (left+right)//2
 		if nums[mid] > nums[right]:
 			left = mid + 1
+		elif nums[mid] == nums[right]:
+			return min(self.findMin(nums[mid:right]), self.findMin(nums[left:mid+1]))
 		else:
 			right = mid
-
 	return nums[left]
 ```
 
+Running time:\
+![image](https://user-images.githubusercontent.com/25105806/206944909-0ad3ee5d-8bc7-4371-b007-7e51492e242c.png)
 
-Time complexity is O(logn): 
-<img width="852" alt="image" src="https://user-images.githubusercontent.com/25105806/206640864-fcaba1e2-8858-4709-9523-59135c808716.png">
+<br />
 
+### Approach 2: Iterative, findMinIterative()
+
+Instead of using recursion in the case where `nums[right]==nums[mid]`, we can also simply move the `right` pointer to left by 1 index, this means we will shrink the range one by one.
+
+```python3
+def findMinIterative(self, nums: List[int]) -> int:
+	left = 0
+	right = len(nums)-1
+	while right > left:
+		mid = (left+right)//2
+		if nums[mid] > nums[right]:
+			left = mid + 1
+		elif nums[mid] == nums[right]:
+			right-=1
+		else:
+			right = mid
+	return nums[left]
+```
+
+Time complexity is O(logn) with O(n) as the worst case:\
+![image](https://user-images.githubusercontent.com/25105806/206945284-c843a59e-0c41-4bb6-b338-04e9e2a7710b.png)
