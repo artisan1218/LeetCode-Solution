@@ -79,7 +79,7 @@ Time complexity is O(m+n) and space complexity is O(1):\
 <br/>
 
 ### Approach 3: Count, getIntersectionNodeCount2()
-Instead of calculating the length difference and adjust the position of pointer of the longer linked list, we can directly traverse both pointer til the end of linked list A and B, then for pointer A, move the pointer to the begining of linked list B and for pointer B, move pointer B to the begining of linked list A. Thia way, we make sure that ptrA and ptrB, after reaching the end of A and B, are aligned, which means they will reach the intersection node at the same time.
+Instead of calculating the length difference and adjust the position of pointer of the longer linked list, we can directly traverse both pointer til the end of linked list A and B, then for pointer A, move the pointer to the begining of linked list B and for pointer B, move pointer B to the begining of linked list A. This way, we make sure that ptrA and ptrB, after reaching the end of A and B, are aligned, which means they will reach the intersection node at the same time.
 
 This is the same idea as approach 2, but with a different implementation
 
