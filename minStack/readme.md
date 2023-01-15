@@ -1,56 +1,54 @@
-# Valid Parentheses problem
-* Given a string s containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
-* An input string is valid if:
-   1. Open brackets must be closed by the same type of brackets.
-   2. Open brackets must be closed in the correct order.
+# Min Stack problem
 
-![image](https://user-images.githubusercontent.com/25105806/145903847-44262d5d-6aa0-4dd2-9498-6a75194fcda4.png)
+![image](https://user-images.githubusercontent.com/25105806/212526665-c5467494-27dc-4d2c-b4ab-9833977abd77.png)
 
-Leetcode link: https://leetcode.com/problems/valid-parentheses/
+Leetcode link: https://leetcode.com/problems/min-stack/description/
 
 <br/>
 
-### Approach 1: Stack, isValid(), Python
-If an input string is valid, then we can always match a left parenthesis with a right one, then these two cancel out and we do this multiple times untill all left and right parentheses are canceled out. The idea is to go over the input string, then use a FIFO stack to store the seen char and try to match it with the last element of the stack, if they match, we can remove these two and go to the next char. If the length of the stack is 0 at the end, that means we've matched all pairs and the string is valid, otherwise it is not valid.\
+### Approach 1: Doubly LinkedList
 
-![validParenthesesAnimation](https://user-images.githubusercontent.com/25105806/121675759-b068cd80-ca68-11eb-9803-d5eac138f431.gif)
+The idea is to have a doubly linked list storing the current min value at each node. This way when popping the top node, we can remove the min value associated with that node at the same time, so min value can also be updated.
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesStackAnimation.ppsx) to download the animation to play for yourself.**
+`topNode` always points to the newly pushed node.
 
-```python
-def isValid(self, s: str) -> bool:
-  checkList = list()
-
-  for char in s:
-      if len(checkList)>0 and self.isValidPair(checkList[-1], char):
-          checkList.pop(-1)
-      else:
-          checkList.append(char)
-  return len(checkList)==0
-
-def isValidPair(self, left, right):
-  return left=='(' and right==')' or left=='[' and right ==']' or left=='{' and right=='}'
-
+```python3
+class ListNode:
+    def __init__(self, val=0):
+        self.val = val
+        self.min = float('inf')
+        self.next = None
+        self.prev = None
+        
+class minStack:
+    def __init__(self):
+        self.topNode = ListNode()
+        self.begin = self.topNode
+        
+    def push(self, val):
+        newVal = ListNode(val)
+        if val < self.topNode.min:
+            newVal.min = val
+        else:
+            newVal.min = self.topNode.min
+        self.topNode.next = newVal
+        newVal.prev = self.topNode
+        self.topNode = self.topNode.next
+        
+    def pop(self):
+        result = self.topNode
+        self.topNode = self.topNode.prev
+        self.topNode.next = None
+        result.prev = None
+        return result.val
+        
+    def top(self):
+        return self.topNode.val
+        
+    def getMin(self):
+        return self.topNode.min
+        
 ```
 
-Time complexity is O(n) since we only go through the input string once. 
-![image](https://user-images.githubusercontent.com/25105806/120406786-8d1f7f00-c300-11eb-9da1-268e17552579.png)
-
-<br />
-
-### Approach 2: Turing Machine, valid(), Java
-Turing Machine is a very powerful machine that can be used to compute anything that can be computed according to Church-Turing thesis. Turns out we can construct a TM to check the input string. If the input string is valid, then this TM will accept it otherwise it will reject it. The construction of the TM is EXTREMELY complicated and very inefficient and should be avoided in practice. I implement this approach just for fun and verify it's viable.\
-The constructed TM is shown below:
-
-<img src="https://user-images.githubusercontent.com/25105806/120407064-38303880-c301-11eb-948d-425737be43cf.png" height="60%" width="60%">
-
-We will replace `()` with `XX`, `[]` with `YY` and `{}` with `ZZ`. For example, the denotation of `'((R'` means read a `'('`, change it to `'('` and move head to right. 
-
-<img src="https://user-images.githubusercontent.com/25105806/121680023-e5c3ea00-ca6d-11eb-8c52-8eff0f8e0823.gif" height="105%" width="105%">
-
-
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesTManimation.ppsx) to download the animation to play for yourself.**
-
-
-Actual running time is:\
-![image](https://user-images.githubusercontent.com/25105806/120407287-b096f980-c301-11eb-824b-98642c0ea1b3.png)
+Complexity is O(1) for all operations:
+![image](https://user-images.githubusercontent.com/25105806/212527088-ef68e646-3778-4334-aa2e-e61a94dd840c.png)
