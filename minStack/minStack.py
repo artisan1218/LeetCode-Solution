@@ -11,7 +11,7 @@ class ListNode:
         self.next = None
         self.prev = None
         
-class minStack:
+class minStackDoublyLinkedList:
     def __init__(self):
         self.topNode = ListNode()
         self.begin = self.topNode
@@ -39,10 +39,28 @@ class minStack:
     def getMin(self):
         return self.topNode.min
         
-
-
-# In[ ]:
-
-
-
+        
+        
+class minStackTwoStack:
+    def __init__(self):
+        self.stack = list()
+        self.min = list()
+        
+    def push(self, val):
+        self.stack.append(val)
+        if len(self.min) == 0:
+            self.min.append(val)
+        else:
+            self.min.append(min(self.min[-1], val))
+        
+    def pop(self):
+        self.min.pop()
+        return self.stack.pop()
+        
+    def top(self):
+        return self.stack[-1]
+        
+    def getMin(self):
+        return self.min[-1]
+        
 
