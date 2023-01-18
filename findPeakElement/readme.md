@@ -1,130 +1,40 @@
-# Combination Sum problem
-* Given an array of **distinct** integers `candidates` and a target integer `target`, return a list of all unique combinations of `candidates` where the chosen numbers sum to `target`. You may return the combinations in **any order**.
-* The **same** number may be chosen from `candidates` an **unlimited number of times**. Two combinations are unique if the frequency of at least one of the chosen numbers is different.
-* It is guaranteed that the number of unique combinations that sum up to `target` is less than 150 combinations for the given input.
+# Find Peak Element problem
+![Screenshot 2023-01-17 at 9 49 30 PM](https://user-images.githubusercontent.com/25105806/213094583-eba0f9cf-99f0-40c2-93ba-832f6d631b89.png)
 
-![image](https://user-images.githubusercontent.com/25105806/145903163-72c1df11-4dea-4923-8a4a-970f7db8604b.png)
 
-Leetcode link: https://leetcode.com/problems/combination-sum/
+Leetcode link: https://leetcode.com/problems/find-peak-element/description/
 
 <br/>
 
-### Approach 1: Backtracking, combinationSumBacktrack()
-This approach uses the technique called backtracking, which we will exhaust **every single permutation of digits** in `candidates` to cover all the possibilities that can add up to `target`. First I iterate through the `candidates` and pick a number in order, if the number plus current result is smaller than target, then we can add it safely and add another number recursively. If adding a number will exceed the `target`, we should return and backtrack the previous adding simply by removing it from the result list. This way, we can cover all possible permutations of any length of the `candidates`. Then we will remove duplicates and return the result.
+### Approach 1: Binary Search, findPeakElement()
 
-This is pretty similar to how we human find the combination sum: simply list all possible pairs
+It's easy to think of binary search algorithm when the run time complexity is O(logn). Some obsevations we get from the problem statement:
+1. When finding the peak element, we only need to compare three elements one time: left, mid and right. These three elements corresponds to the three elements we need to compare with in the binary search
+2. It's possible that there are multiple peak elements and there must be at least one element. We only need to find one element.
 
-```java
-public List<List<Integer>> combinationSumBacktrack(int[] candidates, int target) {
-    List<List<Integer>> result = new ArrayList<>();
-    List<Integer> combination = new ArrayList<>();
-    int sum = 0;
+For example, if the `nums` is in increasing order, then the peak element is the right-most one. If the `nums` is in decreasing order, then the peak element will be the left-most one. In all other cases, peak element(s) will be in the middle(not on the side) of `nums`.
 
-    backtrack(candidates, target, result, combination, sum);
-    // this is to remove duplicates combinations
-    Set<List<Integer>> unique = new HashSet<>();
-    for (List<Integer> comb : result) {
-        Collections.sort(comb);
-        unique.add(comb);
-    }
-    return new ArrayList<>(unique);
-}
+When doing binary search, we take the mid element as usual and compare it with the elements on the left(`mid-1`) and on the right(`mid+1`) because these are the only two elements we need to check before making sure that `nums[mid]` is an peak element. If mid is smaller than its right element, then this means `nums[mid+1:]` is still increasing, so there must be at least one peak element in this subarray no matter whether it will be decreasing on the right or not, note that there still might be peak elements on the left part but we don't care about that, all we need to know is we can put our focus on the right side because it's still increasing. So we can simply nail down our search range to [mid+1, right]. Similarily, we can nail down our search range to [left, mid-1] if the current mid element is smaller than left element.
 
-public boolean backtrack(int[] candidates, int target, List<List<Integer>> result, List<Integer> combination,
-    int sum) {
 
-    // go over each digit in the list
-    for (int digit : candidates) {
-        if ((sum + digit) < target) {
-            // if adding the current digit does not exceed the target, we can add it safely
-            combination.add(digit);
-            sum += digit;
-            // keeping checking the rest of the digit until an adding exceeds the target
-            // or all digits are seen
-            if (!backtrack(candidates, target, result, combination, sum)) {
-                // an adding is not successful, start backtracking by removing the current digit
-                sum -= digit;
-                combination.remove(combination.size() - 1);
-            }
-        } else if ((sum + digit) == target) {
-            // we've found a combination, add the combination to result and check the next
-            // digit
-            combination.add(digit);
-            result.add(new ArrayList<>(combination));
-            combination.remove(combination.size() - 1);
-        }
-    }
-    return false;
-}
+```python3
+def findPeakElement(self, nums: List[int]) -> int:
+	left = 0
+	right = len(nums)-1
+	while left <= right:
+		mid = (left + right)//2
+		left_nei = nums[mid-1] if mid-1 >= 0 else float('-inf')
+		right_nei = nums[mid+1] if mid+1 <= len(nums)-1 else float('-inf')
+
+		if nums[mid] > right_nei and nums[mid] > left_nei:
+			return mid
+		elif nums[mid] < right_nei:
+			# there must exist a peak element on the right
+			# even though there also might be peak elements on the left
+			left = mid+1
+		else:
+			right = mid-1
 ```
 
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/122658931-60a09b00-d127-11eb-8c3e-90c6f97d79b7.png)
-
-<br />
-
-### Approach 2: Dynamic Programming, combinationSumDP()
-Credits to: https://www.youtube.com/watch?v=AUIfTelAGVc and https://leetcode.com/problems/combination-sum/discuss/16509/Iterative-Java-DP-solution
-
-The DP idea is build a 2d array `dp` where each column represents the number from 1 up to `target` and each row represents the digits in `candidates`. Each slot in 2d array is a list combination of numbers that add up to the corresponding target number in that row. 
-```
-candidates=[1,2,3,6], target=3
-so we list target from 1 up to 3 and all candidates
-
-    1       2     3     6
-1  [1]      []    []    []
-2  [1,1]    [2]   []    []
-3  [1,1,1,] [2,1] [3]   []
-
-```
-
-
-![combinationSumAnimation](https://user-images.githubusercontent.com/25105806/122659346-1e2d8d00-d12c-11eb-9fca-6d4bbb99cd31.gif)
-
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/tree/main/combinationSum) to download the animation to play for yourself**
-
-<br />
-
-```java
-public List<List<Integer>> combinationSumDP(int[] candidates, int target) {
-    List<List<List<Integer>>> dp = new ArrayList<>();
-
-    // currTarget begins at 1 because the condition 1 <= target <= 500
-    for (int currTarget = 1; currTarget <= target; currTarget++) {
-        List<List<Integer>> row = new ArrayList<>();
-        // go over the candidates that we can choose digit from
-        for (int digit : candidates) {
-            // if a digit is smaller than the current target, we can add it to current
-            // combination and looking back for the remaining numbers by checking dp
-            if (digit < currTarget) {
-                for (List<Integer> prevAns : dp.get(currTarget - digit - 1)) {
-                    // to avoid duplicates
-                    if (digit <= prevAns.get(0)) {
-                        List<Integer> combination = new ArrayList<>();
-                        combination.add(digit);
-                        combination.addAll(prevAns);
-                        row.add(new ArrayList<>(combination));
-                    }
-                }
-            } else if (digit == currTarget) {
-                // case when a single digit is equal to target
-                List<Integer> combination = new ArrayList<>();
-                combination.add(digit);
-                // add a new copy of the combination so that it will not be changed
-                row.add(new ArrayList<>(combination));
-            }
-        }
-        dp.add(new ArrayList<>(row));
-    }
-
-    return dp.get(target - 1);
-}
-```
-
-We will build up the `dp` array from `target=1` all the way up to `target=target` and the final result will be stored in `dp[dp.size()-1]`
-
-Time complexity is O(n\*target\*m) where n is the size of `candidates`, target is the size of `target` and m is the size of combination array that adds up to each target from 1 to target.\
-Actual running time:\
-![image](https://user-images.githubusercontent.com/25105806/122659149-8cbd1b80-d129-11eb-8d96-65b84bf0606b.png)
-
-
+Time complexity is O(logn):
+![image](https://user-images.githubusercontent.com/25105806/213096617-f2de89da-efdf-4bab-affa-1e111870a7b7.png)
