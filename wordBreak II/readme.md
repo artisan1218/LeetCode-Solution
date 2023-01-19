@@ -6,7 +6,7 @@ Leetcode Link: https://leetcode.com/problems/word-break-ii/
 
 <br />
 
-### Approach 1: Backtracking, wordBreak(), backtrack(), backtrack2()
+### Approach 1: Backtracking, backtrack(), backtrack2()
 The idea is built upon [Word Break I](https://github.com/artisan1218/LeetCode-Solution/tree/main/wordBreak), where we will loop through the `wordDict`. This way, we only need to check the substrings with correct length and thus skipping lots of invalid substring. We will solve this recursively by entering another stack of recursion everytime we find one possible substring (length is within the length range of `s` and presented in the wordDict): `i + word.length() <= s.length() && s.substr(i, word.length()) == word`.
 
 We can either use vector or string concatenation to do the backtrack. The purpose of backtracking is to revert once we found certain splits are not valid.
