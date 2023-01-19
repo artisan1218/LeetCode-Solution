@@ -8,6 +8,8 @@ Leetcode link: https://leetcode.com/problems/maximum-gap/description/
 
 ### Approach 1: Bucket Sort, maximumGap()
 
+Credits to: https://leetcode.com/problems/maximum-gap/solutions/1241681/java-python-bucket-idea-with-picture-clean-concise-o-n/
+
 Because the time complexity is O(n) and memory complexity is O(n), we can think of bucket sort to use in this question. The idea is to divide the number in `nums` into `n` buckets, each buckets will hold a range of number. Then we only calculate the gap between max number of previous bucket and min number of current bucket, this will reduce the calculations to `n-1`. Also, since we only care about the min and max in each bucket, we can only store these two numbers in each bucket. In implementation, we can use `minBuckets` and `maxBuckets` list to store the value.
 
 When calculating the gap, `maxGap` can be initialized to `bucketSize` because `maxGap` is always greater or equal to `bucketSize`, why? Because we have `n` buckets but we evenly distribute the all possible numbers(`maxNum-minNum`) in `nums` into `n-1` ranges, which means, at least one bucket must be empty according to pigeon hole's principle. So the max gap must be between two buckets and the empty bucket must be next to one of the two buckets.
