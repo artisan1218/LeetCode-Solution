@@ -1,63 +1,61 @@
-# Convert Sorted Array to Binary Search Tree problem
-![image](https://user-images.githubusercontent.com/25105806/135961637-a05d3ff5-32c0-401e-9800-41374a022bed.png)
+# Compare Version Numbers problem
+![image](https://user-images.githubusercontent.com/25105806/215246577-56ff1f7c-b2e7-4f88-b7be-d5f5ce8626c6.png)
 
-Leetcode link: https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 
-<br />
-
-### Approach 1: List Slicing, sortedArrayToBST1()
-The idea is to first find the middle point of the sorted array, since the middle point value will be the root of the constructed BST. Then we will slice the sorted ary `nums` into two parts, corresponding to the left subtree and right subtree respectively. We do this recursively by calling:
-```
-root.left = self.sortedArrayToBST1(nums[0:mid])
-root.right = self.sortedArrayToBST1(nums[mid+1:])
-```
-
-Full code:
-
-```python3
-def sortedArrayToBST1(self, nums: List[int]) -> Optional[TreeNode]:
-    if len(nums)==0:
-        return None
-    else:
-        # find a middle point
-        mid = len(nums)//2
-        # make middle point at the root 
-        root = TreeNode(nums[mid])
-        root.left = self.sortedArrayToBST1(nums[0:mid])
-        root.right = self.sortedArrayToBST1(nums[mid+1:])
-        return root
-```
-
-Time complexity is O(n^2) since we use list slicing recursively:\
-![image](https://user-images.githubusercontent.com/25105806/135961884-8beb40a5-aa0c-4d53-a930-21de8ff0ea63.png)
+Leetcode link: https://leetcode.com/problems/compare-version-numbers/description/
 
 <br />
 
-### Approach 2: Use Index, sortedArrayToBST2()
-Instead of use slicing to actually cut the sorted array `nums`, we can simply to index to bound the array. Then taking the middle value, simply calcualte by `mid=(low+high)//2`
-and get left subtree and right subtree by
-```
-root.left = helper(nums, low, mid-1)
-root.right= helper(nums, mid+1, high)
-```
+### Approach 1: `zip` Function, compareVersionZip()
 
-Full code:
+The idea is to first split the version by `.`, then iterate over two version lists at the same time using `zip` function, convert each verstion digit to int and compare them. But since `zip` only iterate both lists for the shortest length, we have to deal with the remaining longer list if they are not the same length.
 
 ```python3
-def sortedArrayToBST2(self, nums: List[int]) -> Optional[TreeNode]:
-    def helper(nums, low, high):
-        if low > high:
-            return None
-        else:
-            mid = (high+low)//2
-            root = TreeNode(nums[mid])
-            root.left = helper(nums, low, mid-1)
-            root.right= helper(nums, mid+1, high)
-            return root
-    return helper(nums, 0, len(nums)-1)
+def compareVersionZip(self, version1: str, version2: str) -> int:
+	split1 = version1.split('.')
+	split2 = version2.split('.')
+
+	for d1, d2 in zip(split1, split2):
+		if int(d1) < int(d2):
+			return -1
+		elif int(d1) > int(d2):
+			return 1
+
+	if len(split1) > len(split2):
+		for i in range(len(split2), len(split1)):
+			if int(split1[i]) > 0:
+				return 1
+	else:
+		for i in range(len(split1), len(split2)):
+			if int(split2[i]) > 0:
+				return -1
+	return 0
 ```
 
-Time complexity is O(n):\
-![image](https://user-images.githubusercontent.com/25105806/135962122-7f7a3ae9-19d0-4c32-8898-403b393f6794.png)
+Time complexity is O(n) where n is the length of the longest version:
+![image](https://user-images.githubusercontent.com/25105806/215247839-3df34bfc-0d0a-4942-b9ad-7f974424a88c.png)
 
 
+<br />
+
+### Approach 2: `zip_longest` Function, compareVersionZipLongest()
+
+Similar to Approach #1, we this time we use `zip_longest` function in `itertools`, this will iterate both lists for the longest length and shorter list will be padded with `None`. We only need a `if` for such case.
+
+```python3
+def compareVersionZipLongest(self, version1: str, version2: str) -> int:
+	split1 = version1.split('.')
+	split2 = version2.split('.')
+
+	for d1, d2 in zip_longest(split1, split2):
+		d1 = int(d1) if d1!=None else 0
+		d2 = int(d2) if d2!=None else 0
+		if d1 < d2:
+			return -1
+		elif d1 > d2:
+			return 1
+	return 0
+```
+
+Time complexity is O(n) where n is the length of longest version:
+![image](https://user-images.githubusercontent.com/25105806/215247956-824c68ef-86ea-4e22-a4c1-1d2fb76f7072.png)
