@@ -1,56 +1,75 @@
-# Group Anagrams problem
-* Given an array of strings `strs`, group the anagrams together. 
-* You can return the answer in any order.
-* An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
-* `eat` and `ate` are anagrams because they are consist of exact same letters.
+# Fraction to Recurring Decimal problem
+![image](https://user-images.githubusercontent.com/25105806/215300417-35ee0b93-2dd3-4e79-912d-c9e962c50c42.png)
 
-Leetcode link: https://leetcode.com/problems/group-anagrams/
+Leetcode link: https://leetcode.com/problems/fraction-to-recurring-decimal/
 
 <br />
 
-### Approach 1: Sort, groupAnagramsSort()
+### Approach 1: Mathmatical Division, fractionToDecimal()
 
-Since anagrams are the words that contain exactly same characters, we can sort each word so that each anagram can be represented by same word. Therefore hash them into a dict to group them.
+Credits to: https://leetcode.com/problems/fraction-to-recurring-decimal/solutions/180004/python-4-lines-32ms-beats-100-with-explanation/
+
+The challenging part is how to find the repeating/recurring pattern in decimal part. If we do the division by hand and list all intermediate result, we can see that remainder also repeats itself if there is repeating pattern:
+
+```
+       0.1234...
+    +---------
+4950|611
+       0
+     ---------
+     6110      <- remainder is 611
+     4950
+     ---------
+     11600     <- remainder is 1160
+      9900
+     ---------
+      17000    <- remainder is 1700
+      14850
+     ---------
+       21500   <- remainder is 2150
+       19800
+     ---------
+        1700   <- remainder is 1700, here we got 1700 again, so this is where repeating pattern ends
+        ...
+```
+
+So we can divide the number digit by digit and store the index of the intermediate remainder, the index is simply the position of the decimal digit in the result. The first time we see a duplicate remainder, it means we've found the end of a repeating pattern, then we can exit the loop.
 
 
 ```python3
-def groupAnagramsSort(self, strs: List[str]) -> List[List[str]]:
-    result = {}
-    for word in strs:
-        # all anagrams will have same value of sortedWord, so we can put them in a dict
-        sortedWord = tuple(sorted(word))
-        result[sortedWord] = result.get(sortedWord, []) + [word]
+def fractionToDecimal(self, numerator: int, denominator: int) -> str:
+	if numerator % denominator == 0:
+		return str(numerator//denominator)
 
-    return list(result.values())
+	res = '' if ((numerator>0) == (denominator>0)) else '-' # sign
+	num, den = map(abs, (numerator, denominator))
+	res += str(num//den) # int part
+	res += '.'
+
+	remainder = num % den
+	index_map = dict()
+	"""
+	for example: 611 ÷ 4950
+
+	 611    ÷ 4950 = 0...611
+	 611*10 ÷ 4950 = 1...1160
+	1160*10 ÷ 4950 = 2...1700
+	1700*10 ÷ 4950 = 3...2150
+	2150*10 ÷ 4950 = 4...1700 (we get 1700 again, so first the occurrence is the start of 
+	repeating pattern and this occurrence is the end of repeating pattern)
+	"""
+	# the first time we see repeated remainder is where repeating pattern ends
+	# so the loop while generate a decimal number repeating only once
+	while remainder not in index_map:
+		index_map[remainder] = len(res)
+		res += str(remainder*10 // den) # next digit
+		remainder = remainder*10 % den
+		if remainder==0:
+			return res
+
+	# index_map[remainder] is where repeating starts    
+	return res[:index_map[remainder]] + '(' + res[index_map[remainder]:] + ')'
 ```
 
-
-Time complexity is therefore O(n\*klogk) where n is the number of words in the `strs` and k is the length of the longest word in `strs`. O(klogk) is to sort each word:
-
-![image](https://user-images.githubusercontent.com/25105806/125178757-848e5400-e19c-11eb-8ec3-bc0ab3677b82.png)
-
-<br />
-
-### Approach 2: Count, groupAnagramsCount()
-
-Instead of sorting to make all anagrams to be the same word, we can also count the occurence of each letter in each word.\
-For example `eat` can be represented as `a:1, e:1, t:1` and `ate` can also be represented as `a:1, e:1, t:1`. This way, we group each anagram by their count.\
-Note that I use a list of 26 indices to represent the count list to avoid sorting.
-
-```python3
-def groupAnagramsCount(self, strs: List[str]) -> List[List[str]]:
-    result = {}
-    for word in strs:
-        count = [0] * 26
-        # count the occurence of each letter instead of sorting
-        for char in word:
-            count[ord(char)-ord('a')] += 1
-        # convert type list to tuple to hash in dict
-        result[tuple(count)] = result.get(tuple(count), []) + [word]
-
-    return list(result.values())   
-```
-
-
-Time complexity is O(n\*k\*m), where n is the number of words in `strs`, k is the length of initial count list, m is the length of longest word because we need to iterate over each word to get the count.\
-![image](https://user-images.githubusercontent.com/25105806/125178844-4e9d9f80-e19d-11eb-9788-e856374d8195.png)
+Actual running time:
+![image](https://user-images.githubusercontent.com/25105806/215300755-116cfe2c-7aea-45eb-85b6-d329a12b7970.png)
