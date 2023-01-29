@@ -214,12 +214,12 @@ Records of all my solved problems on LeetCode
 # Other Questions
 |Question |Solution Link                                                                        |Category|Demo|Language|
 | :----:  | :---------------------------------------------------------------------------------: |:-------:|:------:|:------:|
-|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/ifBlockPermutation)|DFS, Backtracking|False|Python|
-|Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/imageMatching)|Stack, DFS|False|Python|
+|Permutation of if-blocks|[ifBlockPermutations](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/ifBlockPermutation)|DFS, Backtracking|False|Python|
+|Image Matching|[imageMatching](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/imageMatching)|Stack, DFS|False|Python|
 |Remove B|[removeB](https://github.com/artisan1218/LeetCode-Solution/tree/main/removeB)|DFS|False|Python|
-|Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/inversion)|Dynamic Programming, Backtracking|False|Python|
-|Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/shortestRainbowPath)|Dijkstra's algorithm|False|Python|
-|Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|
-|Min Health|[getMinHealth](https://github.com/artisan1218/LeetCode-Solution/tree/main/getMinHealth)|Priority Queue|False|Python|
-|Visiting Cities|[minCost](https://github.com/artisan1218/LeetCode-Solution/tree/main/visitingCities)|Dynamic Programming|False|Python|
+|Inversion|[Inversion](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/inversion)|Dynamic Programming, Backtracking|False|Python|
+|Shortest Rainbow Path|[shortestRainbowPath](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/shortestRainbowPath)|Dijkstra's algorithm|False|Python|
+|Knapsack Problem|[knapsack](https://github.com/artisan1218/LeetCode-Solution/tree/solutions/main/knapsack)|Genetic Algorithm, Dynamic Programming|False|Python, C++|
+|Min Health|[getMinHealth](https://github.com/artisan1218/LeetCode-Solution/tree/solutions/main/getMinHealth)|Priority Queue|False|Python|
+|Visiting Cities|[minCost](https://github.com/artisan1218/LeetCode-Solution/tree/solutions/main/visitingCities)|Dynamic Programming|False|Python|
 
