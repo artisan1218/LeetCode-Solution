@@ -1,91 +1,51 @@
-# Two Sum problem
-* Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
-* You may assume that each input would have exactly one solution, and you may not use the same element twice.
-* You can return the answer in any order.
+# Two Sum II problem
+<img width="980" alt="image" src="https://user-images.githubusercontent.com/25105806/215598069-c37272df-69a1-431c-ac9a-d110f43a418c.png">
 
-Leetcode link: https://leetcode.com/problems/two-sum/
 
-<br />
-
-### Approach 1: Brute force, bruteForce()
-For each number in list, go through every other number in the list and test if they add up to target. 
-
-```java
-public static int[] bruteForce(int[] nums, int target) {
-    int[] result = new int[2];
-    int addend = 0;
-    int addendIt = 0;
-    boolean find = false;
-    for (int i = 0; i < nums.length && !find; i++) {
-        addend = nums[i];
-        for (int j = i + 1; j < nums.length && !find; j++) {
-            addendIt = nums[j];
-            if (addend + addendIt == target) {
-                result[0] = i;
-                result[1] = j;
-                find = true;
-            }
-        }
-    }
-    return result;
-}
-```
-
-Time complexity is O(n^2):\
-![image](https://user-images.githubusercontent.com/25105806/160227036-be353df6-cd5c-4649-bc52-fd31ac32afde.png)
+Leetcode link: https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
 <br />
 
-### Approach 2: twoPassHashMap()
-First build a HashMap that stores all number in the list, then iterate through the list to see if the target-num(complement) exists in the HashMap. 
+### Approach 1: Two Pointer, twoSumTwoPointer()
 
-```java
-public static int[] hashMapTwoPass(int[] nums, int target) {
-  Map<Integer, Integer> s = new HashMap<>();
-  for (int i = 0; i < nums.length; i++) {
-      s.put(nums[i], i);
-  }
+Since the input `numbers` is sorted, we can assure that number one the right must not be smaller than the number on the left. We can use two pointers, one points to the first element and one points to the last element, then start comparing the sum of these two with `target`. If sum is smaller than `target`, we can safely move the left pointer to right by 1 index, and move right pointer to the left by 1 index if sum is greater than `target`. Keep doing this until we find the answer.
 
-  for (int j = 0; j < nums.length; j++) {
-      int complement = target - nums[j];
-      if (s.containsKey(complement) && s.get(complement) != j) {
-          return new int[] { j, s.get(complement) };
-      }
-  }
-  return null;
-}
+```python3
+def twoSumTwoPointer(self, numbers: List[int], target: int) -> List[int]:
+	left, right = 0, len(numbers)-1
+	cur_sum = numbers[left]+numbers[right]
+	while cur_sum != target:
+		if cur_sum > target:
+			right-=1
+		else:
+			left+=1
+
+		cur_sum = numbers[left]+numbers[right]
+	return [left+1, right+1] # +1 because it's 1-based
 ```
 
-Since HashMap has constant lookup time, it saves O(n), So time complexity is O(n), but use space complexity of O(n) to store the HashMap:\
-![image](https://user-images.githubusercontent.com/25105806/118185941-f98a1b00-b3f1-11eb-8ddc-d7cd8cc805fb.png)
+Time complexity is O(n) and space complexity is O(1):
 
+<img width="597" alt="image" src="https://user-images.githubusercontent.com/25105806/215598837-5199402d-26c4-4245-be7f-8f47a639c11e.png">
 
 <br />
 
-### Approach 3: onePassHashMap()
-Turns out we can check if the complement exists in the HashMap while building the HashMap. HashMap is the element:index pair of the list. Iterate through the list, if the HashMap contains the complement, then we've found the answer, simply return the current index and the index of the complement; if the HashMap does not contain the complement, then adding this number and its index to the HashMap. 
+### Approach 2: Map, twoSumMap()
 
-```java
-public static int[] hashMapOnePass(int[] nums, int target) {
-    HashMap<Integer, Integer> map = new HashMap<>();
-    int[] result = new int[2];
+Since we are looking for sum of two numbers, we can first iterate over `numbers`, storing all numbers and its index in a map, then in another iteration over the `numbers`, looking for existence of `target-num` in the map, since map lookup time is O(1), we can do this in O(n).
 
-    for (int i = 0; i < nums.length; i++) {
-        int addend = nums[i];
-        int complement = target - addend;
-        if (map.containsKey(complement)) {
-            result[0] = map.get(complement);
-            result[1] = i;
-            return result;
-        } else {
-            map.put(addend, i);
-        }
-    }
-    return result;
-}
+```python3
+def twoSumMap(self, numbers: List[int], target: int) -> List[int]:
+	num_dict = dict()
+	for i, n in enumerate(numbers):
+		num_dict[n] = i
+
+	for i, num in enumerate(numbers):
+		target2 = target-num
+		if target2 in num_dict:
+			return [min(i+1, num_dict[target2]+1), max(i+1, num_dict[target2]+1)]
 ```
 
-Since the HashMap has contant lookup time, the overall time complexity is O(n) and space complexity is O(n). Best case is when the two numbers are the first two elements of the list, which will be returned when we get the second element because now the complement is the first element and it's in the HashMap already. Worst case is when either one of the two numbers is at the end of the list, which will not be found until we reach the end.
+Time complexity is O(n) and space complexity is O(n):
 
-![image](https://user-images.githubusercontent.com/25105806/118185798-cb0c4000-b3f1-11eb-810c-a6b45f642959.png)
-
+<img width="601" alt="image" src="https://user-images.githubusercontent.com/25105806/215599370-f1d47bfb-f90c-42c3-8a7c-930e9e434ef1.png">
