@@ -1,45 +1,39 @@
-# Container With Most Water problem
-* Given n non-negative integers `a1, a2, ..., an` , where each represents a point at coordinate `(i, ai)`. `n` vertical lines are drawn such that the two endpoints of the line `i` is at `(i, ai)` and `(i, 0)`. Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
+# Max Consecutive Ones III problem
+<img width="645" alt="image" src="https://user-images.githubusercontent.com/25105806/216861662-c3b45d6a-276c-4dad-b4f5-cb6ba497af3f.png">
 
-Leetcode link: https://leetcode.com/problems/container-with-most-water/
+
+Leetcode link: https://leetcode.com/problems/max-consecutive-ones-iii/
+
 
 <br/>
 
-### Approach 1: Brute Force, Skipped
-The most simple yet inefficient approach is to calculate every possible combinations of two lines and keep the value of max area. This approach is skipped.
+### Approach 1: Sliding Window, longestOnes()
 
-### Approach 2: Two Pointers, maxArea()
-Turns out we can use two pointers `left` and `right` to bound the sides and form a container. `left` starts at index `0` and `right` starts at index `height.length - 1`.\
-We will move `left` and `right` inward keep the max area.
+The question can be translated to `find longest sequence with at most k 0s`. Main logic is to use two pointers to frame a window, if there are less than `k` or equal number of zeros, we can move the right pointer to the right to expand the window to make it longer, otherwise we move left pointer to the right until there are less than `k` or equal number of zeros. 
 
+So we can start from `left=0` and `right=0`, if the current element at `right` is 1, then we can safely move the `right` pointer to right by 1 index, if the current element is 0, then we need to compare the number `k` we can still flip. If current `k` is greater than 0, we can subtract 1 from it and expand right pointer, otherwise we need to move `left` pointer and reclaim any `k` if the element at `left` pointer is 0, which means we no longer include that 0 in our window so we don't need to flip that 0 anymore.
 
-   ![maxAreaAnimation](https://user-images.githubusercontent.com/25105806/121755812-00797b80-cacd-11eb-80e4-129c40acb153.gif)
-
-**Note:Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/maxArea/maxAreaAnimation.ppsx) to download the animation to play for yourself**
-
-
-```java
-public static int maxArea(int[] height) {
-	int left = 0, right = height.length - 1, max = 0, bottom = height.length - 1;
-	while (left < right) {
-	    int side = Math.min(height[left], height[right]);
-	    max = Math.max(max, side * bottom);
-	    if (height[left] < height[right]) {
-		left++;
-	    } else {
-		right--;
-	    }
-	    bottom = bottom - 1;
-	}
-	return max;
-    }
+```python3
+def longestOnes(self, nums: List[int], k: int) -> int:
+	left, right = 0, 0
+	max_num = 0
+	while right<len(nums):
+		if nums[right]==1:
+			right+=1
+		else:
+			if k>0:
+				k-=1 # flip
+				right+=1
+			else:
+				# used all flips and current right is 0
+				# we need to move left pointer to left
+				left+=1
+				if nums[left]==0:
+					k+=1 # reclaim one flip chance
+		max_num = max(max_num, right-left)
+	return max_num
 ```
 
+Time complexity is O(n):
 
-<br />
-
-Time complexity is O(n) because the two pointers altogether will iterate through each side of the `height` and the program will end as soon as they meet. Space complexity is O(1) because all we need to store is the left and right side of the container.
-
-![image](https://user-images.githubusercontent.com/25105806/118609194-5c234400-b76f-11eb-9657-8a2d0b0900c8.png)
-
-
+<img width="774" alt="image" src="https://user-images.githubusercontent.com/25105806/216862885-191b5ee3-1b0a-4962-a2ff-79d998460175.png">
