@@ -48,7 +48,7 @@ We will only pass the `nums` once, for each of the new element, if the previous 
 ![maxSubarrayAnimation](https://user-images.githubusercontent.com/25105806/126414463-64f0ff28-791c-44b3-ad80-2f9de23b135f.gif)
 
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/maximumSubarray/maxSubarrayAnimation.ppsx) to download the animation to play for yourself.**
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/solutions/maximumSubarray/maxSubarrayAnimation.ppsx) to download the animation to play for yourself.**
 
 
 ```java
