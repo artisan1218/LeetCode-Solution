@@ -49,7 +49,7 @@ We will replace `()` with `XX`, `[]` with `YY` and `{}` with `ZZ`. For example, 
 <img src="https://user-images.githubusercontent.com/25105806/121680023-e5c3ea00-ca6d-11eb-8c52-8eff0f8e0823.gif" height="105%" width="105%">
 
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/validParentheses/validParenthesesTManimation.ppsx) to download the animation to play for yourself.**
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/solutions/validParentheses/validParenthesesTManimation.ppsx) to download the animation to play for yourself.**
 
 
 Actual running time is:\
