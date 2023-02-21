@@ -16,7 +16,7 @@ Use two pointer(left and right) to bound a sliding window in which each characte
 ![lengthOfLongestSubstringAnimation](https://user-images.githubusercontent.com/25105806/121754374-54826100-cac9-11eb-9dc5-2a9ca808b3c6.gif)
 
 
-**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/longestSubstringWithoutRepeating/lengthOfLongestSubstringAnimation.ppsx) to download the animation to play for yourself**
+**Note: Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/solutions/longestSubstringWithoutRepeating/lengthOfLongestSubstringAnimation.ppsx) to download the animation to play for yourself**
 
 
 ```java
