@@ -15,7 +15,7 @@ We will move `left` and `right` inward keep the max area.
 
    ![maxAreaAnimation](https://user-images.githubusercontent.com/25105806/121755812-00797b80-cacd-11eb-80e4-129c40acb153.gif)
 
-**Note:Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/maxArea/maxAreaAnimation.ppsx) to download the animation to play for yourself**
+**Note:Click [here](https://github.com/artisan1218/LeetCode-Solution/blob/main/solutions/maxArea/maxAreaAnimation.ppsx) to download the animation to play for yourself**
 
 
 ```java
