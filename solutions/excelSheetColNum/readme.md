@@ -39,7 +39,9 @@ Time complexity is O(n/26):
 <img width="828" alt="image" src="https://user-images.githubusercontent.com/25105806/220212364-0da09caf-d647-46cf-be1c-145c14776148.png">
 
 
-### Approach 1: Math, convertToTitle2()
+<br />
+
+### Approach 2: Math, convertToTitle2()
 
 Credits to: https://leetcode.com/problems/excel-sheet-column-title/solutions/441430/detailed-explanation-here-s-why-we-need-n-at-first-of-every-loop-java-python-c/?orderBy=most_votes
 
