@@ -82,7 +82,7 @@ Time complexity is O(n):
 ### Approach 3: DFS, isValidBSTDFS()
 Credits to: https://leetcode.com/problems/validate-binary-search-tree/discuss/32193/1-ms-Java-Solution-using-Recursion
 
-This is a recursive solution, we main two variables `minVal` and `maxVal` that bounds each node and update these two variables as we explore more nodes:
+This is a recursive solution, we maintain two variables `minVal` and `maxVal` that bounds each node and update these two variables as we explore more nodes:
 `helper(root.left, minVal, root.val) and helper(root.right, root.val, maxVal)`
 
 ```python3
