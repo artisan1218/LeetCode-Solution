@@ -1,32 +1,69 @@
-# Construct Binary Tree from Inorder and Postorder Traversal problem
-![image](https://user-images.githubusercontent.com/25105806/135960716-7a25d3bf-f84f-49a5-bf04-d2d1533f5e93.png)
+# Binary Search Tree Iterator problem
+<img width="804" alt="image" src="https://user-images.githubusercontent.com/25105806/223025531-bead5b0a-a584-44e8-8a65-f6132075870d.png">
 
-Leetcode link: https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
+<img width="808" alt="image" src="https://user-images.githubusercontent.com/25105806/223025548-83b37b4c-2044-4a0d-ac26-7679c017d870.png">
+
+
+Leetcode link: https://leetcode.com/problems/binary-search-tree-iterator/
 
 <br />
 
-### Approach 1: buildTree()
-The idea is similar to previous question [buildTreeFromPreorderAndInorderTraversal](https://github.com/artisan1218/LeetCode-Solution/tree/main/buildTreeFromPreorderAndInorder). The difference is that, instead of getting root value from the start of `preorder` list, we now getting root value from the back of `postorder`, then do the similar thing by finding the index of root in `inorder` list to decide what is the value range in the left subtree and wwhat is the value range in the right subtree
+### Approach 1: DFS, BSTIterator()
+
+The idea is pretty simple, we first use DFS to traverse the tree and keep all nodes in a `result` list, then pop the node out of `result` on every `next()` function call.
 
 ```python3
-def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-    if len(inorder)==0 or len(postorder)==0:
-        return None
-    else:
-        # we can get root from the last element in postorder
-        root = TreeNode(postorder[-1])
+class BSTIterator:
+    
+    def __init__(self, root: Optional[TreeNode]):
+        self.result = []
+        self.helper(root)
+    
+    def helper(self, root):
+        if root:
+            self.helper(root.left)
+            self.result.append(root.val)
+            self.helper(root.right)
+        
+    def next(self) -> int:
+        return self.result.pop(0)
 
-        # then find the root index in the inorder list, left sublist will be elements on the left subtree
-        # right sublist will be on the right substree
-        inorderRootIdx = inorder.index(postorder[-1])
-
-        # split the inorder list at the root index, do the same thing to postorder except for the last element,
-        # which is the root value, we skip that because root is already used
-        root.left = self.buildTree(inorder[0:inorderRootIdx], postorder[0:inorderRootIdx])
-        root.right = self.buildTree(inorder[inorderRootIdx+1:], postorder[inorderRootIdx:-1])
-        return root
+    def hasNext(self) -> bool:
+        return len(self.result)>0
 ```
 
-Time complexity is O(n^2):\
-![image](https://user-images.githubusercontent.com/25105806/135960993-fe4fcea6-358e-41e6-94f5-fd2ba6e77090.png)
+Time complexity for constructor is O(n), next() and hasNext() is O(1):
 
+<img width="621" alt="image" src="https://user-images.githubusercontent.com/25105806/223025965-cad3c45d-6fc1-4356-8bf7-9ae609dcf747.png">
+
+
+<br />
+
+### Approach 2: BFS, BSTIterator2()
+
+We notice that wo actually only need to get the next node when `next()` is called and thus no need to traverse the whole BST when initializing. So `next()` function is actually finding the immediate successor of current node. 
+
+```python3
+class BSTIterator2:
+    
+    def __init__(self, root: Optional[TreeNode]):
+        self.stack = list()
+        self.helper(root)
+        
+    def next(self) -> int:
+        nextNode = self.stack.pop()
+        self.helper(nextNode.right)
+        return nextNode.val
+
+    def hasNext(self) -> bool:
+        return len(self.stack)>0
+    
+    def helper(self, node):
+        while node:
+            self.stack.append(node)
+            node = node.left
+```
+
+Average time complexity is O(1) because we only get the element when we actually need to:
+
+<img width="630" alt="image" src="https://user-images.githubusercontent.com/25105806/223026547-baf085c1-c9b0-4f1d-b199-7865ef9bc727.png">
