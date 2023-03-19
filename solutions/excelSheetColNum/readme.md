@@ -1,62 +1,46 @@
 # Excel Sheet Column Number problem
-<img width="812" alt="image" src="https://user-images.githubusercontent.com/25105806/220211524-ecfc44b5-10dc-4693-90fe-5eaa462f9f62.png">
+<img width="624" alt="image" src="https://user-images.githubusercontent.com/25105806/222935892-f6940d43-324e-44da-9d31-3f1f9eccb827.png">
 
-Leetcode link: https://leetcode.com/problems/excel-sheet-column-title/description/
+
+Leetcode link: https://leetcode.com/problems/excel-sheet-column-number/
  
 <br />
  
-### Approach 1: Math, convertToTitle()
+### Approach 1: Math, titleToNumber()
 
-This is similar to a 26-nary number system. We can simply divide the number by 26, calculate the corresponding character of the remainder, and keep dividing the number until it's smaller than 26. The only special case is when the number is a multiple of 26, we need some special handling, that is:
+The idea is same as converting binary number to decimal number. Each char corresponds to a number from 1 to 26 and depnding on their position in the given string, we need to multiply a power of 26 with that number, then sum all the numbers together.
 
+For example
+
+`ZCY -> 26(Z) * 26^2 + 3(C) * 26^1 + 25(Y) * 26^0 = 17679`
+
+Python code:
 ```python3
-if r==0:
-	result += 'Z'
-	columnNumber = (columnNumber // 26) - 1 
+def titleToNumber(self, columnTitle: str) -> int:
+	n = len(columnTitle)
+	result = 0
+	for c in columnTitle:
+		result += (ord(c) - 64) * (26 ** (n-1))
+		n -= 1
+	return result
+```
+
+<br />
+
+C++ code:
+```c++
+int titleToNumber(std::string columnTitle) {
+	int n = columnTitle.length();
+	int result = 0;
+	for (char c : columnTitle) {
+		result += (int(c) - 64) * pow(26, n - 1);
+		n--;
+	}
+	return result;
+}
 ```
 
 
-Because the number system is not 0 based, so instead of 10 after 9, it's 11, as in decimal system.
+Time complexity is O(n):
 
-
-Full code:
-```python3
-def convertToTitle(self, columnNumber: int) -> str:
-	result = ''
-	while columnNumber > 26:
-		r = columnNumber % 26
-		if r==0:
-			result += 'Z'
-			columnNumber = (columnNumber // 26) - 1 
-		else:
-			result += chr(r + 64)
-			columnNumber = columnNumber // 26
-	result += chr(columnNumber + 64)
-	return result[::-1]
-```
-
-Time complexity is O(n/26):
-<img width="828" alt="image" src="https://user-images.githubusercontent.com/25105806/220212364-0da09caf-d647-46cf-be1c-145c14776148.png">
-
-
-### Approach 1: Math, convertToTitle2()
-
-Credits to: https://leetcode.com/problems/excel-sheet-column-title/solutions/441430/detailed-explanation-here-s-why-we-need-n-at-first-of-every-loop-java-python-c/?orderBy=most_votes
-
-
-Since the number system is 1-based instead of 0-based, we can decrement the number by 1 everytime before we dividing 26. This is like making the number 0 based. So we don't need the special case anymore.
-
-```python3
-def convertToTitle(self, columnNumber: int) -> str:
-	result = ''
-	while columnNumber > 0:
-		columnNumber -= 1
-		r = columnNumber % 26
-		result += chr(r + 65)
-		columnNumber = columnNumber // 26
-	return result[::-1]
-```
-
-Time complexity is the same O(n):
-<img width="828" alt="image" src="https://user-images.githubusercontent.com/25105806/220212859-4eab7cca-d349-424e-a65c-4c9b8b4e8be6.png">
-
+<img width="808" alt="image" src="https://user-images.githubusercontent.com/25105806/222936027-71484547-23e6-4ea5-a337-518aef09179f.png">
