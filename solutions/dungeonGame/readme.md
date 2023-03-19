@@ -1,112 +1,84 @@
-# Cracking the Safe problem
-![image](https://user-images.githubusercontent.com/25105806/179154083-3c55d53d-5612-4d11-b5e6-579c695ba20c.png)
+# Dungeon Game problem
+![image](https://user-images.githubusercontent.com/25105806/226208838-40d1e298-bf12-482f-b85a-8fd045ca9d04.png)
 
-Leetcode link: https://leetcode.com/problems/cracking-the-safe/
 
-<br />
-
-### Approach 1: Backtracking, backtrack()
-
-The idea is to use backtrack to explore all possible ways of appending new characters. However, we need to make sure we don't add duplicate passwords in our path, so we have to maintain a hashset of seen passwords. When certain path does not contain all passwords, we backtrack.
-
-The stopping condition for the recursion function is when the size of seen hashset contains `pow(k, n)` number of unique passwords.
-
-```cpp
-string crackSafeBacktrack(int n, int k) {
-    string result(n, '0');
-    set<string> seen = {result};
-    bakctrack(n, k, result, seen);
-    return result;
-}
-
-bool bakctrack(int n, int k, string& cur, set<string>& seen) {
-    if (seen.size() == pow(k, n)) {
-        return true;
-    }
-
-    for (int i = 0; i < k; i++) {
-        cur.append(to_string(i));                          // append the new char
-        string password = cur.substr(cur.length() - n, n); // get the newly formed password
-        if (seen.count(password) == 0) {
-            // newly formed password is not seen before, we can add it to the set and append next one recursively
-            seen.insert(password);
-            if (bakctrack(n, k, cur, seen)) {
-                return true;
-            }
-            cur.pop_back();       // backtrack
-            seen.erase(password); // backtrack
-        } else {
-            // the newly formed password is seen, we should try appending another char
-            cur.pop_back();
-        }
-    }
-    return false;
-}
-```
-
-Time complexity is O(k^n) because we will explore every possible way and space complexity is also O(k^n), which is the callstack:
-![image](https://user-images.githubusercontent.com/25105806/179309249-90e9a4d7-299d-4186-b3a9-d3462c039749.png)
-
+Leetcode link: https://leetcode.com/problems/dungeon-game/
 
 <br />
 
-### Approach 2: Hierholzer Algorithm, hierholzer()
+### Approach 1: DFS, calculateMinimumHP()
 
-Credits to: https://leetcode.cn/problems/cracking-the-safe/solution/zhuan-hua-wei-ou-la-hui-lu-wen-ti-hierholzer-suan-/
+The idea is to use DFS to search every possible ways exhausitively, the record the minimum HP required to get to princess. This solution leads to TLE because the complexity is just too high.
 
-If we consider the passwords as a graph, each node represents the shared portion between passwords, which has length of `n-1` and each edge represents the new character we add to our next passwords, then the valid solution is simply an Eulerian cycle. We can use Hierholzer algorithm to find the Eulerian cycle.
+```python3
+def calculateMinimumHP(self, dungeon: List[List[int]]) -> int:
+        
+	def helper(dungeon, x, y, minHP, curHP):
+		if x<len(dungeon) and y<len(dungeon[x]):
+			# reached the bottom-right corner
+			if x==len(dungeon)-1 and y==len(dungeon[x])-1:
+				curHP += dungeon[x][y]
+				minHP = min(minHP, curHP)
+				self.result = max(self.result, minHP)
+			else:
+				curHP += dungeon[x][y]
+				minHP = min(minHP, curHP)
+				if curHP < self.result:
+					return
+				helper(dungeon, x, y+1, minHP, curHP) # rightward
+				helper(dungeon, x+1, y, minHP, curHP) # downward
 
-We can assume the solution exists and start at the 'all-zero node' and choose next edge to go based on edge index, everytime we choose an edge to go, we have to delete it from our graph representation to avoid duplicate visiting. If at an certain edge we don't find any available edges to go, which means we've reached a dead end, we can now put the previous edge we choose to our result, because dead end must be visited at the end, that's why we enter the recursion function first, then store the result. Then simply explore the next possible edge and add it to our result backwards(equivalent to popping from callstack).
-
-In actual coding, we use a vector of 0/1 to represent the visited status of each edge. We use
-
-1. `currNode = edgeIdx % nodeNum` to convert edge index to node index
-2. `edgeIdx = currNode * k + outboundIdx` to convert node index to edge index
-
-
-For example, `n=2, k=2`
-
-The graph can look like this:
-
-<img src="https://user-images.githubusercontent.com/25105806/179312017-59704b88-89bf-41e2-9da6-f15c446f4d94.jpg" height="20%" width="20%">
-
-We can see that the graph has two nodes of value 0 and 1 and 4 edges of 0 and 1. We will form a password by one node and one edge.
-
-The Hierholzer algorithm will explore the graph starting at node `0` and in this order:
-![ec8484714b0b4c4f16991337981bd5b](https://user-images.githubusercontent.com/25105806/179312387-1a1dd232-0e13-404a-9ab3-1bee9c22eaa0.jpg)
-
-
-From left to right, every time we've visited an edge, we will remove it from the graph and add the edge to the callstack down below. When we hit the third callstack, we found that we've reached a dead end at node 0 because node 0 has no more outbounds, so we start adding previous edge to our result (pop from callstack). Next, we can visit the last edge at node 1 and add it to callstack. After this, all edges have been visited and all we need to do is simply get the edge value from callstack to our `result` variable.
-
-Note that the final result after the algorithm is `0110`, which is the reverse of the actual Eulerian cycle, but the order of the solution does not matter in the context of this problem, so we don't need to flip it. 
-
-Finally, we have to append the value of initial node to our result to form the final answer because we start at the initial 'all-zeros node' and its value should be included in the solution.
-
-
-In summary, the algorithm does not use backtrack because each path we walked through, whether it is in the correct order, is part of the correct path. We don't need to backtrack it, but simply add it in the end because dead end can only be visited at the end. We can use recursion to do this and add all edges backwards.
-
-```cpp
-string crackSafeHierholzer(int n, int k) {
-    int nodeNum = pow(k, n - 1);      // not pow(k, n) because each node represent the shared portion between passwords, which has length of n-1, so total number of nodes will be k^n-1 not k^n
-    vector<int> side(nodeNum * k, 0); // each node has k out-degrees, so total of node*k edges
-    string result;
-    hierholzer(side, k, 0, result, nodeNum);
-    result += string(n - 1, '0'); // append the starting string
-    return result;
-}
-
-void hierholzer(vector<int>& side, int k, int edgeIdx, string& res, int nodeNum) {
-    int currNode = edgeIdx % nodeNum;                           // convert edge index to node index
-    for (int outboundIdx = 0; outboundIdx < k; outboundIdx++) { // iterate over all outdegree edges of each node
-        int edgeIdx = currNode * k + outboundIdx;               // convert node idx and outdegree idx to edge idx
-        if (side[edgeIdx] == 0) {                               // we haven't explored this edge yet
-            side[edgeIdx]++;
-            hierholzer(side, k, edgeIdx, res, nodeNum);
-            res += to_string(outboundIdx);
-        }
-    }
-}
+	self.result = float('-inf')
+	helper(dungeon, 0, 0, 0, 0)
+	return abs(self.result)+1
 ```
 
-Time complexity is O(k^n) which is the number of edges we explored, space complexity is also O(k^n), which is the callstack:
-![image](https://user-images.githubusercontent.com/25105806/179313754-48c1753e-aa18-49e1-9987-4a3d04f4eb0a.png)
+<br />
+
+### Approach 2: DP, calculateMinimumHPDP()
+
+Credits to: https://www.youtube.com/watch?v=xdFzPCa9g4A
+
+If regular DFS leads to TLE, then it means there must be some ways to speed this up like memorization. A common way of thinking is to use a 2-d dp array where each cell represents the minimum HP required to get from upper-left corner to current cell. But since we're not only caring about the minimum HP at the final cell, but also making sure HP does not fall below zero at any given cell along the path. So if we start at the upper-left corner and work our way down to destination, we have to maintain an extra piece of information, namely currentHP and minimumHP, which will the dp array 3-d instead of 2-d. This is just too complicated and hard to validate. So instead of top-down, we can try bottom-up approach, where we start at the bottom-right corner and work our way up to the begining point. 
+
+In the 2-d array, each cell still represents the minimum HP required to get to princess from current cell. So the minHP required at the destination cell is just `1-dungeon[-1][-1]`. Note that since we want to keep it minimum, which means if `dungeon[-1][-1]` is positive, we actually do not need to have any more HP than 1, so we can set a max limit of HP at 1.
+
+Then for each cell in the middle(not on the edge), there are two possible ways to get here, either from top(go down) or left(go right), so we want to get the minimum HP of these two ways. Thus the dp formula for each cell is 
+
+```python3
+right = max(dp[x][y+1] - dungeon[x][y], 1)
+down = max(dp[x+1][y] - dungeon[x][y], 1)
+dp[x][y] = min(right, down)
+```
+
+Full code:
+```python3
+def calculateMinimumHPDP(self, dungeon: List[List[int]]) -> int:
+	# dp[x][y] = minimum HP needed at this cell to get to princess
+	# we trace back from princess to starting point
+	dp = [[0 for i in range(len(dungeon[0]))] for i in range(len(dungeon))]
+	dp[-1][-1] = max(1 - dungeon[-1][-1], 1)
+
+	# since we can only go rightward or downward, when tracing back, we can only go leftward or upward
+	# fill in last row from right to left
+	for y in range(len(dungeon[-1])-2, -1, -1):
+		dp[-1][y] = max(dp[-1][y+1] - dungeon[-1][y], 1)
+
+	# fill in last column from bottom to top
+	for x in range(len(dungeon)-2, -1, -1):
+		dp[x][-1] = max(dp[x+1][-1] - dungeon[x][-1], 1)
+
+	# dp
+	for x in range(len(dungeon)-2, -1, -1):
+		for y in range(len(dungeon[x])-2, -1, -1):
+			right = max(dp[x][y+1] - dungeon[x][y], 1)
+			down = max(dp[x+1][y] - dungeon[x][y], 1)
+			dp[x][y] = min(right, down)
+
+	return dp[0][0]
+```
+
+
+Time complexity is O(m*n) where m and n are height and width of the dungeon map:
+
+![image](https://user-images.githubusercontent.com/25105806/226210554-98872a12-c900-4cf9-ad23-ce555c8f3e90.png)
