@@ -1,64 +1,21 @@
-# Search in Rotated Sorted Array II problem
-![image](https://user-images.githubusercontent.com/25105806/132747051-fa5cdaf3-64ab-4bbf-8fdd-8465cba2664b.png)
+# Second Highest Salary problem
+![Screenshot 2023-07-04 at 9 41 47 PM](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/74c979cd-1588-4f70-8dab-32af06247c3f)
 
-Leetcode link: https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+
+Leetcode link: https://leetcode.com/problems/second-highest-salary/description/
 
 <br />
 
-### Approach 1: Binary Search, search()
-The idea is same as [searchRotatedSortedAry](https://github.com/artisan1218/LeetCode-Solution/tree/main/searchRotatedSortedAry), first find the pivot point using a binary search, then find the `target` using another binary search in the correct subarray that contains the `target`. The only difference is that we need to handle the duplicates in the `nums` while using binary search to find the pivot point:
-```
-#handle the duplicates
-while left<right and nums[mid]==nums[left]:
-  left+=1
-```
+### Approach 1: 
 
-Complete code:
+We want the second highest salary, which is the highest salary excluding the highest salary from `Employee` table. We can just use a sub query to get the highest salary and only select those not equal to highest salary, then pick the highest among them.
 
-```python3
-def search(self, nums: List[int], target: int) -> bool:
-    # find the pivot point using binary search
-    left = 0
-    right = len(nums)-1
-    while left < right:
-        mid = (left + right)//2
-        # incase we hit the target, early stopping
-        if nums[mid]==target:
-            return True
 
-        # handle the duplicates
-        while left<right and nums[mid]==nums[left]:
-            left+=1
-
-        if nums[right] < nums[mid]:
-            left = mid + 1
-        else:
-            # right is greater than middle, meaning middle is at the rotated part of the array
-            right = mid
-
-    # update left and right to make sure left and right bound the correct subarray that contains target
-    pivot = left
-    left = 0
-    right = len(nums)-1
-    if target>=nums[pivot] and target<=nums[right]:
-        left = pivot
-    else:
-        right = pivot
-
-    # regular binary search
-    while left<=right:
-        mid = (left + right)//2
-        if nums[mid]==target:
-            return True
-        elif nums[mid]>target:
-            right = mid-1
-        else:
-            left = mid+1
-
-    return False
+```code
+SELECT MAX(salary) AS SecondHighestSalary
+FROM Employee
+WHERE salary != (SELECT MAX(salary) FROM Employee)
 ```
 
-Time complexity is O(logn), worst case is O(n) --- when all elements are duplicates\
-![image](https://user-images.githubusercontent.com/25105806/132747553-e3ebc633-4734-408e-bbfa-909c9fce7e4e.png)
-
-
+Running time:
+![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/c6eed949-3e20-4fc6-89f6-9556d7e16432)
