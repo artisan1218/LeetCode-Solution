@@ -175,6 +175,7 @@ Records of all my solved problems on LeetCode
 |177      |[NthHighestSalary](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/NthHighestSalary)|Medium|SQL|False|SQL|[Nth Highest Salary](https://leetcode.com/problems/nth-highest-salary/description/)|
 |178      |[rankScores](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/rankScores)|Medium|SQL|False|SQL|[Rank Scores](https://leetcode.com/problems/rank-scores/description/)|
 |179      |[largestNumber](https://github.com/artisan1218/LeetCode-Solution/blob/main/solutions/largestNumber)|Medium|Sorting|False|Python|[Largest Number](https://leetcode.com/problems/largest-number/description/)|
+|180      |[consecutiveNumbers](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/consecutiveNumbers)|Medium|SQL|False|SQL|[Consecutive Numbers](https://leetcode.com/problems/consecutive-numbers/description/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
