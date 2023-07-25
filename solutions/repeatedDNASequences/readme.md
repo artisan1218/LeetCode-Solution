@@ -1,35 +1,29 @@
-# Duplicate Emails problem
-![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/08112370-ecc0-44e8-b57c-9b8eb9793f23)
+# Repeated DNA Sequences problem
+![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/1c903946-e99f-4d41-a5aa-f1be09e6367a)
 
-Leetcode link: https://leetcode.com/problems/duplicate-emails/description/
 
-<br />
-
-### Approach 1: 
-
-Duplicate emails in `Person` table is just rows with different id than other rows but with same email. We can simply select from `Person` twice, then constructing conditions to find rows with different id and same email:
-
-```sql
-SELECT DISTINCT(p1.Email) AS Email
-FROM Person AS p1, Person AS p2
-WHERE p1.id != p2.id AND p1.email = p2.email;
-```
-
-Running time:
-![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/5a13667c-fc17-45bb-a07f-1045f4da06de)
+Leetcode link: https://leetcode.com/problems/repeated-dna-sequences/description/
 
 <br />
 
-### Approach 2: 
+### Approach 1: Sliding Window, findRepeatedDnaSequences()
 
-Instead of selecting from `Person` twice, we can simply group by email and check for occurrences because duplicate emails will have more than one count.
+Since we want DNA sequences with occurrences greater than 1, it's straightforward to think of making a hashset/hashmap to count the occurrences of each DNA sequences, then pick the sequences with value more than 1.
 
 ```sql
-SELECT email
-FROM Person
-GROUP BY email
-HAVING COUNT(email) > 1
+def findRepeatedDnaSequences(self, s: str) -> List[str]:
+	if len(s) < 10:
+		return []
+	
+	counter = dict()
+	for i in range(0, len(s)-9):
+		seq = s[i:i+10]
+		if seq not in counter:
+			counter[seq] = 1
+		else:
+			counter[seq] += 1
+	return [seq for seq in counter if counter[seq]>1]
 ```
 
-Running time:
-![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/c6115c62-f42d-4f86-8488-709dce56053a)
+Time complexity is O(n):
+![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/ff895b55-da22-450e-b06b-9bc4b6073a09)
