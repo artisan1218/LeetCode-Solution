@@ -1,36 +1,37 @@
-# Evaluate Reverse Polish Notation problem
-<img width="817" alt="Screen Shot 2022-10-01 at 6 51 34 PM" src="https://user-images.githubusercontent.com/25105806/193434455-4638816b-3a56-4695-8850-dab706e869d2.png">
+# Employees Earning More Than Their Managers problem
+![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/c8c0d30d-1f60-467d-a164-65afb96530c4)
 
-Reverse Polish Notation: http://en.wikipedia.org/wiki/Reverse_Polish_notation
-
-Leetcode link: https://leetcode.com/problems/evaluate-reverse-polish-notation/
+Leetcode link: https://leetcode.com/problems/employees-earning-more-than-their-managers
 
 <br />
 
-### Approach 1: Stack, evalRPN()
-The solution is to scan from left to right and find each operators(`+`, `-`, `*`, `/`). Everytime we meet an operator, we take its previous two operands and do the calculation, until we reach the end.
+### Approach 1: 
 
-Because we're scanning from left to right, we can guarantee that there are no operators present on the left side or current element, so we can always do valid calculations
+Since we're going to compare employee's salary with corresponding manger's salary, we can just ensure such condition in the where clause. Manager's salary can be found by another sub-query:
 
-```python3
-def evalRPN(self, tokens: List[str]) -> int:
-    result = 0
-    stack = []
-    operators = {"+", "-", "*", "/"}
-    for token in tokens:
-        if token not in operators:
-            stack.append(token)
-        else:
-            num2 = stack.pop()
-            num1 = stack.pop()
-            # int(eval()) is to round the division result towards zero
-            result = int(eval(num1 + token + num2))
-            stack.append(str(result))
-
-    return int(stack[0])
+```sql
+SELECT e.name AS Employee
+FROM Employee AS e
+WHERE e.salary > (SELECT m.salary FROM Employee AS m WHERE m.id = e.managerId);
 ```
 
-Time complexity is O(n):
+This is not the optimal solution because apparently we're doing n^2 comparisons: for each employee, we have to find it's manager's salary. 
 
-<img width="789" alt="image" src="https://user-images.githubusercontent.com/25105806/193434659-667db61d-c245-41af-a9d0-d9918246b3c3.png">
+Running time:
+![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/5603b996-ed95-4438-9031-53ab8c8c14e5)
 
+
+<br />
+
+### Approach 2:
+
+Instead of finding manager's salary in a sub-query, we can simply join employee table with manager table (although they are the same table) to get employee's manager and manager's salary:
+
+```sql
+SELECT e.name AS Employee
+FROM Employee AS e LEFT JOIN Employee AS m ON e.managerId = m.id
+WHERE e.salary > m.salary;
+```
+
+Running time:
+![image](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/e87f9cd2-3df7-40d8-8e09-62b22e570275)
