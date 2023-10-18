@@ -7,15 +7,13 @@ Leetcode link: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 <br />
 
 ### Approach 1: Dynamic Programming, maxProfitDP1()
-Reference: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/discuss/39611/Is-it-Best-Solution-with-O(n)-O(1).
+Some observations:
 
-Since we're only dealing with at most two transactions, we can use four variables to represent these two transactions:
-* `buy1` means the profit after we buy the first stock
-* `sell1` means the profit after we sell the first stock
-* `buy2` means the profit after we buy the second stock
-* `sell2` means the profit after we sell the second stock, which is the final answer
+1. If we plot the prices on the plane, we can see that we only need to care about the prices at the start and end of an increasing sub-sequences. Because for those prices within an increasing sequences, we are better off not selling them as the price will go up. For example `6 5 4 8 6 8 7 8 9 4 5` becomes `4 8 6 8 7 9 4 5`, because `6 5` is a decreasing sub-sequence and we shouldn't do anything, and `8` is in an increasing sub-sequence, if we buy in, we should buy before `8` because `7` is lower and if we sell, we should sell after `8`, because `9` is higher, so `8` can be skipped.
+2. The dp matrix at `[i][j]` means the max profit we can get from prices list up to `j` given we can have max `i` operations
+3. The max profit at `[i][j]` is the max between yesterday's profit(`dp[row][col-1]`) and 
 
-Next is simply go over the `prices` array and update above four variables accordingly.
+
 ```python3
 def maxProfitDP1(self, prices: List[int]) -> int:
     buy1, sell1, buy2, sell2 = float('-inf'), 0, float('-inf'), 0
