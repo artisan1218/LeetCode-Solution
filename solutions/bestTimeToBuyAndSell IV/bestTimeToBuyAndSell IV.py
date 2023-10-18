@@ -7,7 +7,7 @@
 from typing import List
 
 class Solution:
-    def maxProfit(self, k: int, prices: List[int]) -> int:
+    def maxProfitDP1(self, k: int, prices: List[int]) -> int:
         if len(prices)<=1:
             return 0
 
@@ -41,7 +41,7 @@ class Solution:
         return dp
     
     
-    def maxProfitDP3(self, prices: List[int]) -> int:
+    def maxProfitDP2(self, prices: List[int]) -> int:
         # row of the dp table is the transaction, column is the day
         dp = [[0 for _ in range(len(prices))] for _ in range(k+1)]
 
@@ -62,18 +62,9 @@ if __name__ == '__main__':
     k = 2
     prices = [4,8,6,8,7,9,4,5]
     # prices = [6,5,4,8,6,8,7,8,9,4,5]
-    print(solver.maxProfitDP3(prices))
+    print(solver.maxProfitDP2(prices))
 
 
-# In[2]:
-
-
-a = [2, 4, 1, 8]
-
-sorted(a, reverse=True)[:3]
-
-
-# In[ ]:
 
 
 
