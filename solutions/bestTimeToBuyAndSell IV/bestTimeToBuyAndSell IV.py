@@ -38,7 +38,7 @@ class Solution:
                         max_p = max(max_p, increasing_subseq[col]-increasing_subseq[buy] + dp[row-1][buy])
                     dp[row][col] = max_p
         
-        return dp
+        return dp[-1][-1]
     
     
     def maxProfitDP2(self, prices: List[int]) -> int:
