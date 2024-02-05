@@ -1,4 +1,4 @@
-# Best Time to Buy and Sell Stock IV problem
+# Reverse Bits problem
 ![Screenshot 2024-02-04 at 3 51 03 PM](https://github.com/artisan1218/LeetCode-Solution/assets/25105806/137da2d5-4da7-4809-b009-402aa4cffda6)
 
 
