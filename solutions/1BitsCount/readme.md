@@ -1,4 +1,5 @@
 # Number of 1 Bits problem
+
 <img width="720" alt="image" src="https://github.com/artisan1218/LeetCode-Solution/assets/25105806/9f8348d8-579d-4d57-9f0d-efba62c30e47">
 
 
@@ -28,7 +29,7 @@ Time complexity is O(n) where n is the length of the input:
 
 
 
-<br>
+<br />
 
 ### Approach 2: Loop over all 1's, hammingWeightLoopOnes()
 
