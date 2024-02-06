@@ -185,6 +185,7 @@ Records of all my solved problems on LeetCode
 |188      |[bestTimeToBuyAndSell IV](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/bestTimeToBuyAndSell%20IV)|Hard|Dynamic Programming|False|Python|[Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/description/)|
 |189      |[rotateArray](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/rotateArray)|Medium|Array|False|Python|[Rotate Array](https://leetcode.com/problems/rotate-array/)|
 |190      |[reverseBits](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/reverseBits)|Easy|Bit Manipulation|False|Python|[Reverse Bits](https://leetcode.com/problems/reverse-bits/)|
+|191      |[1BitsCount](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/1BitsCount)|Easy|Bit Manipulation|False|Python|[Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)|
 |198      |[houseRobber](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/houseRobber)|Medium|Dynamic Programming|False|Python|[House Robber](https://leetcode.com/problems/house-robber/)|
 |200      |[numIslands](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/numIslands)|Medium|DFS|False|Python|[Number of Islands](https://leetcode.com/problems/number-of-islands/)|
 |206       |[reverseLinkedList](https://github.com/artisan1218/LeetCode-Solution/tree/main/solutions/reverseLinkedList)|Easy|LinkedList|True|Python|[Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)|
