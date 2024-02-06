@@ -26,7 +26,7 @@ Time complexity is O(n):
 
 <img width="682" alt="image" src="https://github.com/artisan1218/LeetCode-Solution/assets/25105806/f1f29ce9-70d2-4143-9182-5820702cae0b">
 
-where n is the length of the input:
+where n is the length of the input
  
 
 <br />
